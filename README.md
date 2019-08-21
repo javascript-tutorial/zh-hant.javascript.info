@@ -1,80 +1,95 @@
-# The Modern JavaScript Tutorial in Chinese Traditional
+# 現代化 JavaScript 教程繁體中文版
 
-This repository hosts the translation of <https://javascript.info> in Chinese Traditional.
+這個 repository 存放網站 <https://zh-hant.javascript.info> 的繁體中文翻譯版
 
+**貢獻流程:**
 
-**That's how you can contribute:**
+- 查看 [繁體中文翻譯進度 issue (Chinese Traditional Translation Progress)](https://github.com/javascript-tutorial/zh-hant.javascript.info/issues/1)。
+- 選一篇 **尚未 (正在/完成) 翻譯** 的文章。
+- 在 [繁體中文翻譯進度 issue (Chinese Traditional Translation Progress)](https://github.com/javascript-tutorial/zh-hant.javascript.info/issues/1) 底下留言該文章的標題，例如 `An Introduction to JavaScript`。
+    - **記得你的留言內容只要留文章標題就好！** 。
+    - Bot 將會在此 issue 內該篇文章之後標示你的 id，讓大家都知道你正在翻譯該文章。
+    - Fork 此 repository，完成翻譯文章後發一個 PR。
+    - PR 標題要與文章標題一致，bot 將會把該 PR 連結至 issue 之中。
 
-- See the [Chinese Traditional Translate Progress](https://github.com/javascript-tutorial/zh-hant.javascript.info/issues/1) issue.
-- Choose an unchecked article you'd like to translate.
-- Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
-    - Our bot will mark it in the issue, for everyone to know that you're translating it.
-    - Your comment should contain only the title.
-- Fork the repository, translate and send a PR when done.
-    - PR title should match article title, the bot will write it's number into the issue.
+請等待維護者審核，將會請你修改或合併你的翻譯。
 
-Please kindly allow maintainers to review and merge or request changes in your translation.
-   
-If maintainers do not respond, or if you'd like to become a maintainer, write us at the [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
-    
-**Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
+如果維護者沒有回應，或是你想成為維護者之一，請至 [主要 repository](https://github.com/javascript-tutorial/en.javascript.info/issues/new) 聯繫。
 
-🎉 Thank you!
+**讓其他人知道你正在翻譯這份教程，甚至可以邀請他們一起加入！**
 
-Your name and the contribution size will appear in the "About project" page when the translation gets published.
+🎉 感激不盡！
 
-P.S. The full list of languages can be found at <https://javascript.info/translate>.
+你的名字和貢獻量將會在翻譯釋出後，出現在 "[關於本計畫](https://zh-hant.javascript.info/about)" 頁面上。
 
-## Structure
+註：完整的多國語言翻譯列表可以在 <https://javascript.info/translate> 之中找到
 
-Every chapter, an article or a task resides in its own folder.
+## 文件結構
 
-The folder is named `N-url`, where `N` – is the number for sorting (articles are ordered), and `url` is the URL-slug on the site.
+每個章節、文章、或課題都在專屬的檔案夾中。
 
-The folder has one of files:
+該檔案夾會以 `N-url` 的方式命名，其中 `N` 代表序號 (文章有經過排序)，而 `url` 是該網站上對應的 *URL-slug*。
 
-- `index.md` for a section,
-- `article.md` for an article,
-- `task.md` for a task formulation (+`solution.md` with the solution text if any).
+檔案夾中會有以下其中一種檔案：
 
-A file starts with the `# Title Header`, and then the text in Markdown-like format, editable in a simple text editor. 
+- `index.md` 對應一個章節,
+- `article.md` 對應一篇文章,
+- `task.md` 對應一個課題 (若有解答就也會有 `solution.md` 這個檔案)
 
-Additional resources and examples for the article or the task, are also in the same folder.
+一個檔案將以 `# 標題` 開始，然後內文以類 Markdown 的格式用簡單編輯器即可編輯。
 
-## Translation Tips
+文章與課題需要的額外資源和範例也可以在同一個檔案夾中找到。
 
-Please keep line breaks and paragraphs "as is": don't add newlines and don't remove existing ones. Makes it easy to merge future changes from the English version into the translation. 
+## 翻譯提示
 
-If you see that the English version can be improved – great, please send a PR to it.
+請保持原始的斷行與段落，不要加入或移除任何行或段落，這將有助於整合未來英文版的改動。
 
-### Terms
+如果你看到英文版可以加強的部分，很好，請送 PR 給[英文版](https://github.com/javascript-tutorial/en.javascript.info/pulls)。
 
-- Some specification terms are not to be translated, e.g. "Function Declaration" can be left "as is".
-- For other terms like `resolved promise`, `slash`, `regexp`, and so on - look for a glossary, hopefully there's one for your language already. If not, look for translations in manuals, such as [MDN](https://developer.mozilla.org/en-US/).
+### 詞彙
 
+- 一些特定的詞彙不需要翻譯，例如 "Function Declaration"。
 
-### Terms with meaning
+- 其他詞彙像是 `resolved promise`, `slash`, `regexp` 等等，請找找自己語言的詞彙表是否已有對應的詞彙，若沒有近似的詞彙，則尋找其他教程 (如：[MDN](https://developer.mozilla.org/en-US/)) 的翻譯。
 
-In English many terms have an obvious meaning. For a person who doesn't understand English, there's no such meaning.
+- 專有詞彙翻譯完，在其後方空一格半形空白並補上原詞彙，例如：同源政策 (Same Origin Policy) 或轉譯 (transpile)，等等。
+    - 若一篇文章出現兩次以上相同專有詞彙，則在第一次之後補上原詞彙即可。
 
-Please keep that in mind, sometimes explanations or additional translations are needed, e.g.
+- 若都無法找到對應的詞彙翻譯，請直接留下原文詞彙。
+
+### 詞彙含義
+
+在英文中很多詞彙有明顯的含義在內，但對於一個不瞭解英文的人來說，該含義會被忽略。
+
+請謹記有必要時可以多加解釋或增加額外的翻譯，例如：
 
 ```md
 `ReadableStream` objects allows to read data chunk-by-chunk.
 ```
 
 ```md
-`ReadableStream` ("flujo legible") objeto ... 
+`ReadableStream` objects 允許一個個資料塊 (chunk) 地讀取資料
 ```
 
-### Text in Code Blocks
+### 標點符號
 
-- Translate comments.
-- Translate user-messages and example strings.
-- Don't translate variables, classes, identifiers.
-- Ensure that the code works after the translation :)
+- 本翻譯教程以使用中文符號為主，除了空白 ` `、括號 `(`、引號 `'`/`"`。例如："strict data typing" -> "強型態確認 (strict data typing)"
 
-Example:
+- *強調***語句** 、半型符號和原文，前/後若為全型文字則需留一空白，若為全型標點符號則不需留空白。
+
+- 英語一句話只能有一個逗號，但中文無此限制，可依據語氣通順程度將一些英文句點轉為逗號。
+
+- 列舉項目後的文字須加句點。<- 像這樣
+
+
+### 內文中的程式區塊
+
+- 翻譯註解
+- 翻譯使用者訊息與範例字串
+- 不要翻譯變數 (variables)、類別 (classes) 和標示符 (identifiers)
+- 確保程式在翻譯後可以正確執行 :)
+
+例如:
 
 ```js
 // Example
@@ -82,52 +97,55 @@ const text = "Hello, world";
 document.querySelector('.hello').innerHTML = text;
 ```
 
-✅ DO (translate comment):
+✅ 請這樣翻 (翻譯註解):
 
 ```js
-// Ejemplo
-const text = 'Hola mundo';
+// 範例
+const text = 'Hello, world';
 document.querySelector('.hello').innerHTML = text;
 ```
 
-❌ DON'T (translate class):
+❌ 別翻成 (翻譯類別):
 
 ```js
-// Ejemplo
-const text = 'Hola mundo';
-// ".hello" is a class
-// DO NOT TRANSLATE
-document.querySelector('.hola').innerHTML = text;
+// 範例
+const text = 'Hello, world';
+// ".hello" 是一個類別
+// 別翻成這樣
+document.querySelector('.嗨').innerHTML = text;
 ```
 
-Please note, that sometimes code is followed by pictures, and if you translate text `Hello` -> `Hola` in the code, you need to translate text in picturess as well.
+請注意，有時候程式區塊之後會接著圖片，若你在程式區塊中翻譯了 `Hello` 成 `嗨`，那你必須也修改圖片中的字。
 
-In that case it's probably easier not to translate such text. See more about translating images later.
+在這種情況下也許不翻譯該文字是更好的選擇。
 
+*本翻譯教程以不更動圖片為原則。*
 
-### External Links
+### 外部連結
 
-If an external link is to Wikipedia, e.g. `https://en.wikipedia.org/wiki/JavaScript`, and a version of that article exists in your language that is of decent quality, link to that version instead.
+若一個外部連結是連到 Wikipedia，如：`https://en.wikipedia.org/wiki/JavaScript`，且該文章有你使用語言的優良版本，請將連結連到該版本。
 
-Example:
+例如:
 
 ```md
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a programming language.
 ```
 
-✅ OK (en -> es):
+✅ OK (en -> zh):
 
 ```md
-[JavaScript](https://es.wikipedia.org/wiki/JavaScript) es un lenguaje de programación.
+[JavaScript](https://zh.wikipedia.org/wiki/JavaScript) 是一種程式語言。
 ```
 
-For links to MDN, a partially translated version is ok.
+MDN 的連結可以使用部分翻譯的版本。
 
-If a linked article has no translated version, leave the link "as is".
+若一個外部連結的文章沒有翻譯過的版本，則維持原本連結。
 
-### Metadata
+*本翻譯教程以不更動外部連結為原則。*
 
-Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
+### 詮釋資料
+
+一些檔案，通常是課題，頂端會有 YAML 的詮釋資料 (metadata) 並以 `---` 分隔：
 
 ```md
 importance: 5
@@ -136,35 +154,28 @@ importance: 5
 ...
 ```
 
-Please don't translate "importance" (and other top metadata).
+請不要翻譯 "importance" (和其他放在頂端的詮釋資料)。
 
 ### Anchors
 
-Some headers have `[#anchor]` at the end, e.g.
+有些標題接著 `[#anchor]`，如：
 
 ```md
-## Spread operator [#spread-operator]
+## Spread 運算子 [#spread-operator]
 ```
 
-Please don't translate or remove the `[#...]` part, it's for URL anchors.
+請不要翻譯或移除該 `[#...]` 部分，這是 URL anchors 用的。
 
+## 本地運行
 
-### Images
+你可以在本地運行此教程的伺服器來看看翻譯得如何。
 
-Most illustrations use SVG format, the text in there can be replaced with a translated variant.
+伺服器安裝指南請參考 <https://github.com/javascript-tutorial/server>
 
-The translated text is in `images.yml` file in the tutorial root.
+---
+🚀
 
-The file format is YAML:
-```yaml
-image.svg:        # image file
-  "hello world":  # English phrase
-    text: "Hola mundo"  # translation
-    position: "centre"  # "center" or "right", if needed to center or right-align the translation
-```
+- Len Chen [@lenchen1112](https://github.com/lenchen1112)
+- Jason Huang [@kaddopur](https://github.com/kaddopur)
+- Tom Wu [@tom76kimo](https://github.com/tom76kimo)
 
-## Running locally
-
-You can run the tutorial server locally to see how the translation looks.
-
-The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
