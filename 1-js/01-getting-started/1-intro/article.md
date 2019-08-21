@@ -1,10 +1,10 @@
 # 介紹 JavaScript
 
-一起來看看 JavaScript 有什麼特性，我們能做些什麼，與哪些配合不錯的技術。
+一起來看看 JavaScript 有什麼特別的，我們能做些什麼，與哪些配合不錯的技術。
 
 ## 什麼是 JavaScript?
 
-*JavaScript* 最初是為了"*賦予網頁活力*"。
+*JavaScript* 最初是為了 *"賦予網頁活力"*。
 
 這種程式語言我們稱之為 *腳本*，它們可以被寫入網頁 HTML 中，並在頁面讀取時自動執行。
 
@@ -22,7 +22,7 @@
 
 瀏覽器內嵌有 JavaScript 引擎，有時也被稱為 "JavaScript 虛擬機" (JavaScript virtual machine)。
 
-不同的引擎有不同的 "代號"。例如：
+不同的引擎有不同的 "代號 (codenames)"。例如：
 
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- Chrome 和 Opera 內的引擎。
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- Firefox 內的引擎。
@@ -53,7 +53,7 @@ JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js
 
 - 在頁面加入新的 HTML ，改變既有內容與樣式
 - 與使用者互動，執行滑鼠點擊、游標移動和按鍵按壓
-- 經由網路發送請求 (requests) 予遠端伺服器，下載並上傳檔案 (亦稱為 [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) 和 [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) 技術)
+- 經由網路發送請求給遠端伺服器，下載並上傳檔案 (亦稱為 [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) 和 [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) 技術)
 - 取得與設定 cookies、詢問訪客和顯示訊息
 - 記得客戶端 (client-side) 的資料 ("local storage")
 
