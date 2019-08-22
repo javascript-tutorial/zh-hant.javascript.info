@@ -1,44 +1,44 @@
-# Code structure
+# 程式碼結構
 
-The first thing we'll study is the building blocks of code.
+我們該知道的第一件事是建立程式區塊
 
-## Statements
+## 語句 (Statements)
 
-Statements are syntax constructs and commands that perform actions.
+語句是執行操作的語法結構與命令。
 
-We've already seen a statement, `alert('Hello, world!')`, which shows the message "Hello, world!".
+我們已經看過 `alert(Hello, world!)` 這個用來顯示 "Hello, world!" 訊息的語句。
 
-We can have as many statements in our code as we want. Statements can be separated with a semicolon.
+我們可以在程式中撰寫任何數量的語句，用分號加以區隔。
 
-For example, here we split "Hello World" into two alerts:
+例如，在這裡我們把 "Hello World" 分為兩段：
 
 ```js run no-beautify
 alert('Hello'); alert('World');
 ```
 
-Usually, statements are written on separate lines to make the code more readable:
+語句通常寫在不同行內使程式更為易讀：
 
 ```js run no-beautify
 alert('Hello');
 alert('World');
 ```
 
-## Semicolons [#semicolon]
+## 分號 (Semicolons) [#semicolon]
 
-A semicolon may be omitted in most cases when a line break exists.
+大多情況下當斷行存在時分號可省略。
 
-This would also work:
+所以這樣也行：
 
 ```js run no-beautify
 alert('Hello')
 alert('World')
 ```
 
-Here, JavaScript interprets the line break as an "implicit" semicolon. This is called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+在這裡 JavaScript 直譯 (interprets) 斷行為 "隱性" 分號。這也被稱為 [自動分號插入 (automatic semicolon insertion)](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion)。
 
-**In most cases, a newline implies a semicolon. But "in most cases" does not mean "always"!**
+**大多數情況，一個換行代表著一個分號，但 "大多數情況" 不代表 "總是如此"！**
 
-There are cases when a newline does not mean a semicolon. For example:
+某些情況下有換行並不代表有分號，如：
 
 ```js run no-beautify
 alert(3 +
@@ -46,22 +46,22 @@ alert(3 +
 + 2);
 ```
 
-The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so the semicolon is not required. And in this case that works as intended.
+此程式輸出 `6`，因為 JavaScript 沒有在內插入分號。直觀上，當某行程式以 `"+"` 結束時，它是個 "不完整的表達式 (incomplete expression)" 而不需要分號，如此一來這個例子才會以我們所想像的方式運作。
 
-**But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
+**但有些情況下 JavaScript 對於分號是否真的被需要會假設 "失敗"**
 
-Errors which occur in such cases are quite hard to find and fix.
+這些情況下的錯誤很難被找到且修正。
 
-````smart header="An example of an error"
-If you're curious to see a concrete example of such an error, check this code out:
+````smart header="錯誤的例子"
+如果你想看個這種錯誤的例子，來看這段程式：
 
 ```js run
 [1, 2].forEach(alert)
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of the code: it shows `1` then `2`.
+先不用思考方括號 `[]` 跟 `forEach` 的意義，我們晚點會介紹。現在只要記得這份程式的執行結果：先顯示 `1` 接著是 `2`。
 
-Now, let's add an `alert` before the code and *not* finish it with a semicolon:
+現在來加入一個 `alert` 在這段程式前且 `不要` 以分號做結。
 
 ```js run no-beautify
 alert("There will be an error")
@@ -69,91 +69,91 @@ alert("There will be an error")
 [1, 2].forEach(alert)
 ```
 
-Now if we run the code, only the first `alert` is shown and then we have an error!
+若我們執行這段程式，只有第一個 `alert` 會被顯示出來並有錯誤產生！
 
-But everything is fine again if we add a semicolon after `alert`:
+但若我們在 `alert` 之後加入分號，一切又恢復正常：
 ```js run
 alert("All fine now");
 
 [1, 2].forEach(alert)  
 ```
 
-Now we have the "All fine now" message followed by `1` and `2`.
+現在我們有 "All fine now" 的訊息並伴隨著 `1` 和 `2` 顯示。
 
+在沒有分號時會有錯誤，是因為 JavaScript 不假設方括號 `[...]` 之前要有分號。
 
-The error in the no-semicolon variant occurs because JavaScript does not assume a semicolon before square brackets `[...]`.
-
-So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. Here's how the engine sees it:
+因為分號沒有被自動插入，所以第一個例子內的程式被視為單獨一行語句。這是引擎是怎麼看它的樣子：
 
 ```js run no-beautify
 alert("There will be an error")[1, 2].forEach(alert)
 ```
 
-But it should be two separate statements, not one. Such a merging in this case is just wrong, hence the error. This can happen in other situations.
+但程式應該要有兩段分開的語句而非單獨一個，本例中的合併是錯誤的故導致錯誤，這在很多其他情況下也可能發生。
 ````
 
-We recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
+我們建議即使是依據換行分開的語句也要標上分號，這個規則被社群廣為採納。再次強調 － 大多時間 *可能* 可以省略分號，但加上分號會更安全，尤其對新手而言。
 
-## Comments
+## 註解
 
-As time goes on, programs become more and more complex. It becomes necessary to add *comments* which describe what the code does and why.
+程式會隨著時間變得越來越複雜，有其必要加入 *註解* 來解釋程式在做什麼且為什麼這麼做。
 
-Comments can be put into any place of a script. They don't affect its execution because the engine simply ignores them.
+註解可以加在腳本內任意位置，這不影響腳本運行因為引擎會直接忽略它們。
 
-**One-line comments start with two forward slash characters `//`.**
+**單行註解由兩個正斜線字元 (forward slash characters) 開始 `//`。**
 
-The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
+此行剩餘部分就是註解，它可以佔據整行或是寫在某個語句之後。
 
-Like here:
+像這樣:
 ```js run
-// This comment occupies a line of its own
+// 此註解佔據自身整行
 alert('Hello');
 
-alert('World'); // This comment follows the statement
+alert('World'); // 此註解寫在一個語句之後
 ```
 
-**Multiline comments start with a forward slash and an asterisk <code>/&#42;</code> and end with an asterisk and a forward slash <code>&#42;/</code>.**
+**多行註解由一個正斜線字元加上一個星號開始 <code>/&#42;</code> 並以一個星號加上正斜線字元作結 <code>&#42;/</code>。**
 
-Like this:
+像這樣:
 
 ```js run
-/* An example with two messages.
-This is a multiline comment.
+/* 顯示兩個訊息的例子。
+這是一個多行註解。
 */
 alert('Hello');
 alert('World');
 ```
 
-The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code>, it won't execute.
+因為註解中的內容會被忽略，所以我們若放程式在 <code>/&#42; ... &#42;/</code> 之內將不會被執行。
 
-Sometimes it can be handy to temporarily disable a part of code:
+偶爾需要暫時把一段程式拿掉時很有用：
 
 ```js run
-/* Commenting out the code
+/* 註解掉程式
 alert('Hello');
 */
 alert('World');
 ```
 
-```smart header="Use hotkeys!"
-In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl`.
+```smart header="用熱鍵！"
+大多數編輯器中，可以按下 `key:Ctrl+/` 這個熱鍵來註解掉單行程式，而 `key:Ctrl+Shift+/` 可以註解多行 (選取一段程式碼後按下熱鍵)。Mac 則使用 `key:Cmd` 取代 `key:Ctrl`。
 ```
 
-````warn header="Nested comments are not supported!"
-There may not be `/*...*/` inside another `/*...*/`.
+````warn header="不支援巢狀註解！"
+不能在 `/*...*/` 之內嵌入另一個 `/*...*/`。
 
-Such code will die with an error:
+這樣的程式碼會掛點並產生錯誤：
 
 ```js run no-beautify
 /*
-  /* nested comment ?!? */
+  /* 巢狀註解？！？ */
 */
 alert( 'World' );
 ```
 ````
 
-Please, don't hesitate to comment your code.
+不要猶豫，請開始註解你的代碼。
 
-Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify code before publishing to a production server. They remove comments, so they don't appear in the working scripts. Therefore, comments do not have negative effects on production at all.
+註解雖會增加整個程式碼數量，但那根本不是問題。有許多工具可以在程式推上正式伺服器前先最小化你的程式碼，它們會移除註解所以不會出現在運行的腳本上。因此，註解對於正式版來說根本沒負面影響。
 
-Later in the tutorial there will be a chapter <info:code-quality> that also explains how to write better comments.
+本教程之後有個章節 <info:code-quality> 將解釋如何寫出更好的註解。
+
