@@ -70,7 +70,7 @@ JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js
     JavaScript 有些方法可與相機、麥克風或其他裝置互動，但都需要使用者明確地授權。所以啟用 JavaScript 的網頁不會偷偷開啟相機觀察周遭並傳資料給 [美國國家安全局 (NSA)](https://en.wikipedia.org/wiki/National_Security_Agency)。
 - 不同的瀏覽器分頁/視窗基本上不知道彼此，但有時例外，例如：當一個視窗使用 JavaScript 開啟另一個視窗時。但就算如此，開啟不同網站 (不同域名、通訊協定或埠) 的頁面，其中的 JavaScript 亦無法溝通。
 
-    這被稱為 "同源政策" (Same Origin Policy)。為了解決它，*兩個頁面* 都必須同意資料交換和包含一隻特殊的 JavaScript 程式來處理這件事。我們的教程將會包含這部分。
+    這被稱為 "同源政策" (Same Origin Policy)。為了解決它，*兩個頁面* 都必須同意資料交換和包含一隻特殊的 JavaScript 程式碼來處理這件事。我們的教程將會包含這部分。
 
     再次強調，這個限制是為了使用者的資安考量。一個使用者從 `http://anysite.com` 打開的頁面不該能存取另一個瀏覽器分頁 `http://gmail.com` 內的資訊。
 - JavaScript 可以簡單地經由網路與目前頁面來源的伺服器溝通。但它從別的網站/域名接收資料的能力受到限制。儘管可以也需要遠端明確地授權 (在 HTTP headers 中)。再一次強調，這是為了資安而限制。
@@ -106,7 +106,7 @@ JavaScript 的語法並不符合每個人的要求，不同人想要不同功能
 
 例如這些語言：
 
-- [CoffeeScript](http://coffeescript.org/) 是組 JavaScript 的"語法糖"。它有更簡短的語法，可以讓我們寫出更清楚且精確的程式，通常 Ruby 開發者愛用。
+- [CoffeeScript](http://coffeescript.org/) 是組 JavaScript 的"語法糖"。它有更簡短的語法，可以讓我們寫出更清楚且精確的程式碼，通常 Ruby 開發者愛用。
 - [TypeScript](http://www.typescriptlang.org/) 致力於增加 "強型態確認 (strict data typing)" 來簡化開發與支援複雜的系統，為微軟所開發。
 - [Flow](http://flow.org/) 同樣增加型態確認但使用不同方式，為臉書所開發。
 - [Dart](https://www.dartlang.org/) 是一種擁有自己引擎的獨立語言，它執行在非瀏覽器環境上 (像是手機應用程式)，但也可以轉譯成 JavaScript，為谷歌所開發。
