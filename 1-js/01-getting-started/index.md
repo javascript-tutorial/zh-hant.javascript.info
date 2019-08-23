@@ -1,3 +1,4 @@
-# An introduction
+# 介紹
 
-About the JavaScript language and the environment to develop with it.
+介紹 JavaScript 語言和開發環境。
+

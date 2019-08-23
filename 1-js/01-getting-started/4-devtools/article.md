@@ -1,64 +1,64 @@
-# Developer console
+# 開發者控制台
 
-Code is prone to errors. You will quite likely make errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
+程式碼容易產生錯誤。你也將可能寫出錯誤程式... 喔，我在說什麼？只要你是正常人類，你將 *一定會* 寫出錯誤程式，除非你是 [機器人 (robot)](https://en.wikipedia.org/wiki/Bender_(Futurama))。
 
-But in the browser, users don't see errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
+但瀏覽器之中，使用者預設看不到錯誤。所以腳本若有錯，我們看不到是什麼壞了且無從修正。
 
-To see errors and get a lot of other useful information about scripts, "developer tools" have been embedded in browsers.
+為了看到腳本的錯誤和其他較多有用訊息，"開發者工具" 被內嵌於瀏覽器之中。
 
-Most developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
+大部分開發者傾向用 Chrome 或 Firefox 開發，因為它們擁有最佳的開發者工具。其他瀏覽器也有提供開發者工具，有時甚至有特殊功能，但通常這些瀏覽器都還在 "趕上" Chrome 或 Firefox。所以大多數的開發者會有自己 "最喜歡" 的瀏覽器，然後在問題只發生在特定瀏覽器上時才切換過去。
 
-Developer tools are potent; they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
+開發者工具強大且有很多功能。一開始我們將學習如果開啟它們、查看錯誤並執行 JavaScript 指令。
 
 ## Google Chrome
 
-Open the page [bug.html](bug.html).
+打開頁面 [bug.html](bug.html)。
 
-There's an error in the JavaScript code on it. It's hidden from a regular visitor's eyes, so let's open developer tools to see it.
+裡面的 JavaScript 程式碼存在一個錯誤，但他被隱藏在一般使用者眼皮底下，所以現在來打開開發者工具看看這個錯誤吧。
 
-Press `key:F12` or, if you're on Mac, then `key:Cmd+Opt+J`.
+按下 `key:F12`，若你使用 Mac 則用 `key:Cmd+Opt+J`。
 
-The developer tools will open on the Console tab by default.
+開發者工具將會預設開啟於主控台 (Console) 分頁。
 
-It looks somewhat like this:
+看起來像這樣：
 
 ![chrome](chrome.png)
 
-The exact look of developer tools depends on your version of Chrome. It changes from time to time but should be similar.
+開發者工具的具體樣貌取決於你的 Chrome 版本，它會隨著時間改變但應該都長差不多。
 
-- Here we can see the red-colored error message. In this case, the script contains an unknown "lalala" command.
-- On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occurred.
+- 在這裡我們可以看到紅色標註的錯誤訊息，這個例子中，腳本內有一個未知的 "lalala" 指令。
+- 在右邊有一個可以點擊連至原始碼的連結 `bug.html:12`，伴隨著產生錯誤的程式行數。
 
-Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them (`key:Shift+Enter` to input multi-line commands).
+錯誤訊息底下，有一個藍色 `>` 符號，它代表著我們可以輸入 JavaScript 的 "命令行"。按下 `key:Enter` 來執行它們 (用 `key:Shift+Enter` 來輸入多行指令)。
 
-Now we can see errors, and that's enough for a start. We'll come back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
+現在我們可以看到錯誤就夠了，晚點會於章節 <info:debugging-chrome> 再回到開發者工具並深入探討除錯這件事。
 
+## Firefox、Edge 與其他
 
-## Firefox, Edge, and others
+多數其他瀏覽器使用 `key:F12` 打開開發者工具。
 
-Most other browsers use `key:F12` to open developer tools.
-
-The look & feel of them is quite similar. Once you know how to use one of these tools (you can start with Chrome), you can easily switch to another.
+它們的觀感都差不多，一旦你知道怎麼使用其中一種 (可以從 Chrome 開始)，就可以輕鬆於其它之間切換。
 
 ## Safari
 
-Safari (Mac browser, not supported by Windows/Linux) is a little bit special here. We need to enable the "Develop menu" first.
+Safari (Mac 瀏覽器，Windows/Linux 不支援) 有點不太一樣，我們需要先開啟 "開發者選單 (Develop menu)"。
 
-Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom:
+打開偏好設定 (Preferences) 並至 "進階 (Advanced)" 面板，底部有一個勾選欄位：
 
 ![safari](safari.png)
 
-Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu item named "Develop" has appeared. It has many commands and options.
+現在 `key:Cmd+Opt+C` 可以開啟控制台。同樣地，注意最上方出現一個新的選單名為 "開發 (Develop)"，有著許多指令與選項。
 
-```smart header="Multi-line input"
-Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+```smart header="輸入多行"
+通常當我們輸入一行程式碼到控制台並按下 `key:Enter`，它就執行了。
 
-To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+要插入多行程式，按下 `key:Shift+Enter`，這樣就可以輸入長片段的 JavaScript 程式碼。
 ```
 
-## Summary
+## 總結
 
-- Developer tools allow us to see errors, run commands, examine variables, and much more.
-- They can be opened with `key:F12` for most browsers on Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
+- 開發者工具允許我們看到錯誤、執行指令、查看變數 (variables) 與更多其它事。
+- 大多數 Windows 的瀏覽器可以經由按下 `key:F12` 開啟。Mac 上的 Chrome 需要 `key:Cmd+Opt+J`；Safari 要用 `key:Cmd+Opt+C` (需先啟用)。
 
-Now we have the environment ready. In the next section, we'll get down to JavaScript.
+現在我們準備好環境了，下一章開始我們將來闡述 JavaScript。
+
