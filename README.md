@@ -84,8 +84,9 @@
 
 ### 內文中的程式區塊
 
-- 翻譯註解
-- 翻譯使用者訊息與範例字串
+**本翻譯教程以不翻譯語法和對應的圖片為原則。**
+
+- 只翻譯註解與範例字串
 - 不要翻譯變數 (variables)、類別 (classes) 和標示符 (identifiers)
 - 確保程式在翻譯後可以正確執行 :)
 
@@ -105,7 +106,7 @@ const text = 'Hello, world';
 document.querySelector('.hello').innerHTML = text;
 ```
 
-❌ 別翻成 (翻譯類別):
+❌ 別翻成 (不要翻譯類別):
 
 ```js
 // 範例
@@ -117,13 +118,13 @@ document.querySelector('.嗨').innerHTML = text;
 
 請注意，有時候程式區塊之後會接著圖片，若你在程式區塊中翻譯了 `Hello` 成 `嗨`，那你必須也修改圖片中的字。
 
-在這種情況下也許不翻譯該文字是更好的選擇。
-
-*本翻譯教程以不更動圖片為原則。*
+所以在這種情況下不翻譯該文字是更好的選擇。
 
 ### 外部連結
 
-若一個外部連結是連到 Wikipedia，如：`https://en.wikipedia.org/wiki/JavaScript`，且該文章有你使用語言的優良版本，請將連結連到該版本。
+**本翻譯教程以維持原本外部連結為原則。**
+
+若一個外部連結是連到 Wikipedia，如：`https://en.wikipedia.org/wiki/JavaScript`，且該文章有你使用語言的優良版本，可以將連結連到該版本。
 
 例如:
 
@@ -140,8 +141,6 @@ document.querySelector('.嗨').innerHTML = text;
 MDN 的連結可以使用部分翻譯的版本。
 
 若一個外部連結的文章沒有翻譯過的版本，則維持原本連結。
-
-*本翻譯教程以不更動外部連結為原則。*
 
 ### 詮釋資料
 
@@ -173,7 +172,7 @@ importance: 5
 伺服器安裝指南請參考 <https://github.com/javascript-tutorial/server>
 
 ---
-🚀
+繁體中文版的維護者們 🚀
 
 - Len Chen [@lenchen1112](https://github.com/lenchen1112)
 - Jason Huang [@kaddopur](https://github.com/kaddopur)
