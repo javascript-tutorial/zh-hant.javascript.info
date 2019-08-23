@@ -1,17 +1,16 @@
 # Hello, world!
 
-This part of the tutorial is about core JavaScript, the language itself.
+這部份的教學是關於 JavaScript 的核心，討論的是這個語言自身。
 
-But we need a working environment to run our scripts and, since this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum so that you don't spend time on them if you plan to concentrate on another environment (like Node.js). We'll focus on JavaScript in the browser in the [next part](/ui) of the tutorial.
+話雖如此，我們還是需要一個執行環境來運行我們的腳本 (scripts)，而由於本書是線上教學，瀏覽器做為執行環境看起來是一個好選擇。我們會盡可能地減少僅限於瀏覽器的指令 (像是 `alert`)，讓你在其他環境 (像是 Node.js) 運行時，不必多花心力在這些指令上面。有關於在 JavaScript 在瀏覽器中運行的細節會在[之後的章節](/ui)介紹。
 
-So first, let's see how we attach a script to a webpage. For server-side environments (like Node.js), you can execute the script with a command like `"node my.js"`.
+首先，讓我們看看如何在一個網頁中添加腳本。在伺服器端 (像是 Node.js)，你可以用 `"node my.js"` 來運行你的指令。
 
+## "script" 標籤
 
-## The "script" tag
+JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地方。
 
-JavaScript programs can be inserted into any part of an HTML document with the help of the `<script>` tag.
-
-For instance:
+舉例來說:
 
 ```html run height=100
 <!DOCTYPE HTML>
@@ -35,23 +34,23 @@ For instance:
 ```
 
 ```online
-You can run the example by clicking the "Play" button in the right-top corner of the box above.
+你可以透過點擊上面方框右上角的 "播放" 按鈕來執行這個範例。
 ```
 
-The `<script>` tag contains JavaScript code which is automatically executed when the browser processes the tag.
+當瀏覽器遇到了 `<script>` 標籤，這個標籤中所包含的 JavaScript 程式碼會被自動執行。
 
 
-## Modern markup
+## 現代化標記
 
-The `<script>` tag has a few attributes that are rarely used nowadays but can still be found in old code:
+`<script>` 標籤尚有一些不常用的屬性，你可以在陳年的程式碼中見到它們:
 
-The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
-: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic; we'll talk about modules in another part of the tutorial.
+`type` 屬性: <code>&lt;script <u>type</u>=...&gt;</code>
+: 在舊的 HTML4 標準中，`<script>` 標籤中的 `type` 屬性是必填的。通當它的值會是 `type="text/javascript"`。 現在這個屬性已經不是必填。而且在現今的 HTML 標準中，這個屬性的內在含義已經完全不同了。現在這個屬性可以被用於 JavaScript 模組 (modules)，這是一個進階的主題，我們會在另外的章節詳細介紹。
 
-The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
-: This attribute was meant to show the language of the script. This attribute no longer makes sense because JavaScript is the default language. There is no need to use it.
+`language` 屬性: <code>&lt;script <u>language</u>=...&gt;</code>
+: 這個屬性是為了表示此腳本所用的語言。在 JavaScript 如今已經變成了預設語言的情況下，這個屬性已沒有意義且不再使用了。
 
-Comments before and after scripts.
+腳本前後的註解
 : In really ancient books and guides, you may find comments inside `<script>` tags, like this:
 
     ```html no-beautify
@@ -122,7 +121,7 @@ The example above can be split into two scripts to work:
 ```
 ````
 
-## Summary
+## 總結
 
 - We can use a `<script>` tag to add JavaScript code to a page.
 - The `type` and `language` attributes are not required.
