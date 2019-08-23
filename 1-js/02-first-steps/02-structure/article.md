@@ -6,7 +6,7 @@
 
 述句是執行操作的語法結構與命令。
 
-我們已經看過 `alert(Hello, world!)` 這個用來顯示 "Hello, world!" 訊息的述句。
+我們已經看過 `alert('Hello, world!')` 這個用來顯示 "Hello, world!" 訊息的述句。
 
 我們可以在程式碼中撰寫任何數量的述句，用分號加以區隔。
 
