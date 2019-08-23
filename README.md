@@ -50,7 +50,7 @@
 
 - 一些特定的詞彙不需要翻譯，例如 "Function Declaration"。
 
-- 其他詞彙像是 `resolved promise`, `slash`, `regexp` 等等，請找找自己語言的詞彙表是否已有對應的詞彙，若沒有近似的詞彙，則尋找其他教程 (如：[MDN](https://developer.mozilla.org/en-US/)) 的翻譯。
+- 其他詞彙像是 `resolved promise`, `slash`, `regexp` 等等，請先找找本 repository wiki 內的[「英文－繁中」用語對照表](https://github.com/javascript-tutorial/zh-hant.javascript.info/wiki/%E3%80%8C%E8%8B%B1%E6%96%87%EF%BC%8D%E7%B9%81%E4%B8%AD%E3%80%8D%E7%94%A8%E8%AA%9E%E5%B0%8D%E7%85%A7%E8%A1%A8)是否已有對應的詞彙，若沒有近似的詞彙，則尋找其他教程 (如：[MDN](https://developer.mozilla.org/en-US/)) 的翻譯。
 
 - 專有詞彙翻譯完，在其後方空一格半形空白並補上原詞彙，例如：同源政策 (Same Origin Policy) 或轉譯 (transpile)，等等。
     - 若一篇文章出現兩次以上相同專有詞彙，則在第一次之後補上原詞彙即可。
