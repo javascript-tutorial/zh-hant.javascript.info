@@ -1,61 +1,61 @@
-# Variables
+# 變數 (Variables)
 
-Most of the time, a JavaScript application needs to work with information. Here are two examples:
-1. An online shop -- the information might include goods being sold and a shopping cart.
-2. A chat application -- the information might include users, messages, and much more.
+通常，JavaScript 應用程式需要資訊來運作，這裡有兩個例子：
+1. 一家網購商店－資訊包括要賣的商品和購物車
+2. 聊天應用程式－資訊包括使用者、訊息和其他更多東西。
 
-Variables are used to store this information.
+變數就是用來儲存這些資訊。
 
-## A variable
+## 一個變數
 
-A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors, and other data.
+一個 [變數](https://en.wikipedia.org/wiki/Variable_(computer_science)) 是一份資料 "被命名的儲存區"。我們可以使用變數來儲存商品、訪客和其他資料。
 
-To create a variable in JavaScript, use the `let` keyword.
+在 JavaScript 中建立一個變數要使用 `let` 關鍵字。
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+底下的述語建立 (或者說：*宣告* 或 *定義*) 了一個名為 "message" 的變數：
 
 ```js
 let message;
 ```
 
-Now, we can put some data into it by using the assignment operator `=`:
+現在我們使用指定運算子 `=` 來放一些資料進去：
 
 ```js
 let message;
 
 *!*
-message = 'Hello'; // store the string
+message = 'Hello'; // 儲存該字串
 */!*
 ```
 
-The string is now saved into the memory area associated with the variable. We can access it using the variable name:
+這個字串現在被存進與這個變數相關的記憶體區塊中，我們可以使用變數名稱來存取它：
 
 ```js run
 let message;
 message = 'Hello!';
 
 *!*
-alert(message); // shows the variable content
+alert(message); // 顯示變數內容
 */!*
 ```
 
-To be concise, we can combine the variable declaration and assignment into a single line:
+若要更精簡，我們可以合併變數宣告和指定，成為單獨一行：
 
 ```js run
-let message = 'Hello!'; // define the variable and assign the value
+let message = 'Hello!'; // 定義變數並指定值
 
 alert(message); // Hello!
 ```
 
-We can also declare multiple variables in one line:
+我們也可以在一行中宣告多個變數：
 
 ```js no-beautify
 let user = 'John', age = 25, message = 'Hello';
 ```
 
-That might seem shorter, but we don't recommend it. For the sake of better readability, please use a single line per variable.
+這樣看上去雖然更簡短，但我們並不推薦這麼做。為了更好的可讀性，請一行宣告一個變數。
 
-The multiline variant is a bit longer, but easier to read:
+多行變數雖然長了一點，但更易於閱讀：
 
 ```js
 let user = 'John';
@@ -63,14 +63,15 @@ let age = 25;
 let message = 'Hello';
 ```
 
-Some people also define multiple variables in this multiline style:
+有些人也會這樣子來宣告多行變數：
+
 ```js no-beautify
 let user = 'John',
-  age = 25,
-  message = 'Hello';
+    age = 25,
+    message = 'Hello';
 ```
 
-...Or even in the "comma-first" style:
+... 或甚至使用 "逗號優先" 的樣式
 
 ```js no-beautify
 let user = 'John'
@@ -78,47 +79,47 @@ let user = 'John'
   , message = 'Hello';
 ```
 
-Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
+技術上來說，這些變化在都做一樣的事，所以這只是個人的喜好與美學而已。
 
-
-````smart header="`var` instead of `let`"
-In older scripts, you may also find another keyword: `var` instead of `let`:
+````smart header="用 `var` 而非 `let`"
+在一些較舊的腳本中，你也許會發現另一個關鍵字：`var` 而非 `let`：
 
 ```js
 *!*var*/!* message = 'Hello';
 ```
 
-The `var` keyword is *almost* the same as `let`. It also declares a variable, but in a slightly different, "old-school" way.
+`var` 關鍵字 *幾乎* 等同於 `let`，它一樣宣告變數，但有一點點的那麼 "老派" 的差異。
 
-There are subtle differences between `let` and `var`, but they do not matter for us yet. We'll cover them in detail in the chapter <info:var>.
+`let` 和 `var` 之間有著微妙的差異，但現在對我們來說還沒什麼，我們將會在 <info:var> 這個章節內涵蓋這些細節。
 ````
 
-## A real-life analogy
+## 一個現實世界的比喻
 
-We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
+若把它想像成一個上面貼有獨特命名貼紙的資料 "盒"，我們可以更簡單地掌握 "變數" 這個概念。
 
-For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
+例如，變數 `message` 可以被想像成一個被標註上 `"message"` 的盒子，裡面裝著 `"Hello!"` 的值：
 
 ![](variable.svg)
 
-We can put any value in the box.
+我們可以在盒內放入任意值。
 
-We can also change it as many times as we want:
+我們也可以隨意改變放入的值：
+
 ```js run
 let message;
 
 message = 'Hello!';
 
-message = 'World!'; // value changed
+message = 'World!'; // 值被改了
 
 alert(message);
 ```
 
-When the value is changed, the old data is removed from the variable:
+當值被改變時，舊的資料將從變數中被移除：
 
 ![](variable-change.svg)
 
-We can also declare two variables and copy data from one into the other.
+我們也可以宣告兩個變數並從某個變數中複製資料到另外一個內。
 
 ```js run
 let hello = 'Hello world!';
@@ -126,99 +127,98 @@ let hello = 'Hello world!';
 let message;
 
 *!*
-// copy 'Hello world' from hello into message
+// 從 hello 中複製 'Hello world' 到 message 內
 message = hello;
 */!*
 
-// now two variables hold the same data
+// 現在兩個變數握有相同的資料
 alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
-```smart header="Functional languages"
-It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+```smart header="函數式語言 (Functional languages)"
+值得注意的是，有種叫 [函式編程 (functional programming)](https://en.wikipedia.org/wiki/Functional_programming) 的語言，像是 [Scala](http://www.scala-lang.org/) 或 [Erlang](http://www.erlang.org/)，禁止更改變數值。
 
-In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
+在這些語言中，一旦值被 "裝箱" 就永遠在那了，如果我們需要存到別的地方，這種語言強制我們建立一個新的箱子 (宣告一個新變數)，我們不能再使用舊的。
 
-Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying such a language (even if you're not planning to use it soon) is recommended to broaden the mind.
+雖然第一次看起來有點怪，但這些語言更有足夠能力勝任正規的開發，甚至在像是平行計算的領域內，有這些限制反而更好。建議可以研讀一門這樣的語言 (即使你近期還沒打算開始用)，有助於增廣見聞。
 ```
 
-## Variable naming [#variable-naming]
+## 變數命名 [#variable-naming]
 
-There are two limitations on variable names in JavaScript:
+JavaScript 中的變數命名有兩個限制：
 
-1. The name must contain only letters, digits, or the symbols `$` and `_`.
-2. The first character must not be a digit.
+1. 命名必須只能包含字母、數字、符號 `$` 和符號 `_`
+2. 第一個字元一定不為能數字
 
-Examples of valid names:
+有效的命名如下：
 
 ```js
 let userName;
 let test123;
 ```
 
-When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word except first starting with a capital letter: `myVeryLongName`.
+當命名包含多個字節時，通常會使用 [駝峰式命名法 (camelCase)](https://en.wikipedia.org/wiki/CamelCase)。意即，字節連著字節，除了第一個字節以外，剩下的都以大寫開頭：`myVeryLongName`。
 
-What's interesting -- the dollar sign `'$'` and the underscore `'_'` can also be used in names. They are regular symbols, just like letters, without any special meaning.
+有趣的是－錢字號 `'$'` 和底線 `'_'` 也可以被用來命名。它們像字母一樣只是一般的符號，沒有其他特殊含義。
 
-These names are valid:
+這些命名是有效的：
 
 ```js run untrusted
-let $ = 1; // declared a variable with the name "$"
-let _ = 2; // and now a variable with the name "_"
+let $ = 1; // 以 "$" 為名宣告一個變數
+let _ = 2; // 用 "_" 作為名稱的變數
 
 alert($ + _); // 3
 ```
 
-Examples of incorrect variable names:
+無效的命名如下：
 
 ```js no-beautify
-let 1a; // cannot start with a digit
+let 1a; // 不能以數字開頭
 
-let my-name; // hyphens '-' aren't allowed in the name
+let my-name; // 連字號 '-' 不能用於命名
 ```
 
-```smart header="Case matters"
-Variables named `apple` and `AppLE` are two different variables.
+```smart header="大小寫有差"
+用 `apple` 和 `AppLE` 命名的變數是不同的。
 ```
 
-````smart header="Non-Latin letters are allowed, but not recommended"
-It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+````smart header="可以使用非拉丁字母，但並不建議"
+可以使用任意語言，包括西里爾 (cyrillic) 字母甚至象形文字，像這樣：
 
 ```js
 let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here, such names are allowed, but there is an international tradition to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+技術上這樣不會有問題，這些名稱都是被允許的，但國際傳統是使用英文來命名。就算我們只是寫個很小的腳本，它可能也會存活很久，到時其他國家的人也許會需要閱讀它。
 ````
 
-````warn header="Reserved names"
-There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names because they are used by the language itself.
+````warn header="保留字 (Reserved names)"
+這張 [保留字列表](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords) 列出不能用作為變數名稱的字，因為它先被語言使用了。
 
-For example: `let`, `class`, `return`, and `function` are reserved.
+像是：`let`、`class`、`return` 和 `function` 都被保留。
 
-The code below gives a syntax error:
+以下程式碼有語法錯誤：
 
 ```js run no-beautify
-let let = 5; // can't name a variable "let", error!
-let return = 5; // also can't name it "return", error!
+let let = 5; // 錯誤！不能以 `let` 命名變數。
+let return = 5; // 錯誤！也不能用 `return` 命名。
 ```
 ````
 
-````warn header="An assignment without `use strict`"
-
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`. This still works now if we don't put `use strict` in our scripts to maintain compatibility with old scripts.
+````warn header="未使用 `use strict` 時的賦值"
+一般來說，我們需要在使用變數前定義它。但在舊語法時期，技術上來說可以不使用 `let`，直接靠著給定值來建立變數。若我們不在腳本前面放上 `use strict` 的話，這依然可以運作，用以兼容並維護舊腳本。
 
 ```js run no-strict
-// note: no "use strict" in this example
+// 注意：這個例子中未使用 "use strict"
 
-num = 5; // the variable "num" is created if it didn't exist
+num = 5; // 變數 "num" 若不存在將會被建立
 
 alert(num); // 5
 ```
 
-This is a bad practice and would cause an error in strict mode:
+這是個糟糕的做法，嚴格模式下會產生錯誤：
 
 ```js
 "use strict";
@@ -229,32 +229,30 @@ num = 5; // error: num is not defined
 ```
 ````
 
-## Constants
-
-To declare a constant (unchanging) variable, use `const` instead of `let`:
+## 常數 (Constants)
+要宣告一個 (不可變的) 常數，要使用 `const` 而非 `let`：
 
 ```js
 const myBirthday = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be changed. An attempt to do so would cause an error:
+使用 `const` 宣告的變數稱為 "常數"，且不可再更動，嘗試去改變它會產生錯誤：
 
 ```js run
 const myBirthday = '18.04.1982';
 
-myBirthday = '01.01.2001'; // error, can't reassign the constant!
+myBirthday = '01.01.2001'; // 錯誤，不能對常數重新賦值！
 ```
 
-When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and clearly communicate that fact to everyone.
+當程式設計師確認一個變數將不會再被更動，就可以用 `const` 宣告它以確保並清楚地告知他人這件事。
 
+### 大寫常數
 
-### Uppercase constants
+有個普遍的做法是，使用常數作為那些執行程式前就已知有夠難記的值的別名。
 
-There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution.
+這些常數使用大寫字母與底線來命名。
 
-Such constants are named using capital letters and underscores.
-
-For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
+例如，使用常數來代表那些被稱為 "web" (十六進位) 格式的顏色：
 
 ```js run
 const COLOR_RED = "#F00";
@@ -262,69 +260,70 @@ const COLOR_GREEN = "#0F0";
 const COLOR_BLUE = "#00F";
 const COLOR_ORANGE = "#FF7F00";
 
-// ...when we need to pick a color
+// ...當需要選個顏色時
 let color = COLOR_ORANGE;
 alert(color); // #FF7F00
 ```
 
-Benefits:
+好處：
 
-- `COLOR_ORANGE` is much easier to remember than `"#FF7F00"`.
-- It is much easier to mistype `"#FF7F00"` than `COLOR_ORANGE`.
-- When reading the code, `COLOR_ORANGE` is much more meaningful than `#FF7F00`.
+- `COLOR_ORANGE` 比 `"#FF7F00"` 好記多了。
+- `"#FF7F00"` 比 `COLOR_ORANGE` 更容易手殘打錯。
+- 閱讀程式碼時，`COLOR_ORANGE` 比 `#FF7F00` 更有意義。
 
-When should we use capitals for a constant and when should we name it normally? Let's make that clear.
+什麼時候我們該使用大寫命名常數，什麼時候正常命名就好？讓我們弄更清楚吧。
 
-Being a "constant" just means that a variable's value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red) and there are constants that are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+作為一個 "常數" 就代表變數的值永不再變動，但有些常數是早在執行程式前就已知的 (像代表紅色的十六進位數值)，而有些要在執行時期才內被 *計算* 出來，但在賦予值之後就不會被更動。
 
-For instance:
+例如：
 ```js
-const pageLoadTime = /* time taken by a webpage to load */;
+const pageLoadTime = /* 載入網頁時間 */;
 ```
 
-The value of `pageLoadTime` is not known prior to the page load, so it's named normally. But it's still a constant because it doesn't change after assignment.
+`pageLoadTime` 的值在載入頁面之前是未知的，所以用正常命名就好。但它依然是一個常數，因為被給定值後就不會再變動。
 
-In other words, capital-named constants are only used as aliases for "hard-coded" values.  
+換句話說，大寫命名的常數只作為那些 "被寫死" 的值的別名。
 
-## Name things right
+## 正確命名變數
 
-Talking about variables, there's one more extremely important thing.
+說到變數，還有一件很重要的事。
 
-A variable name should have a clean, obvious meaning, describe the data that it stores.
+一個變數名稱應該要有著清楚且明確的含義，用以描述儲存在內的資料。
 
-Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
+變數名稱是學習寫程式的過程中，最重要且困難的技巧之一。一眼掃過變數名稱就可以區分出程式碼是新手還是有經驗的老手寫的。
 
-In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labeled. Or, in other words, when the variables have good names.
+在真實專案中，大部分時間都花在修改且擴展一套現存的程式碼，而非從頭開始寫完全不相干的東西。當我們做了些其他事情後再回來看某段程式碼時，被良好標示過的資訊會是更易於閱讀的，也就是變數有被很好地命名時。
 
-Please spend time thinking about the right name for a variable before declaring it. Doing so will repay you handsomely.
+請在宣告變數前花點時間思考一個變數的正確名字，這麼做將會有很好地回報。
 
-Some good-to-follow rules are:
+一些最好要遵守的規則是：
 
-- Use human-readable names like `userName` or `shoppingCart`.
-- Stay away from abbreviations or short names like `a`, `b`, `c`, unless you really know what you're doing.
-- Make names maximally descriptive and concise. Examples of bad names are `data` and `value`. Such names say nothing. It's only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
-- Agree on terms within your team and in your own mind. If a site visitor is called a "user" then we should name related variables `currentUser` or `newUser` instead of `currentVisitor` or `newManInTown`.
+- 使用人類易讀的名字，像是 `userName` 或 `shoppingCart`。
+- 避免使用縮寫或短名稱，像是 `a`、`b` 和 `c`，除非你真的知道你在做什麼。
+- 讓名字盡量具有描述性且精簡。`data` 和 `value` 是不良的例子，這些名字沒有含義，只有在程式碼上下文可以特別清楚知道 `data` 或 `value` 是從哪來時才會較適合使用。
+- 腦中的字彙應該要與團隊保持一致，若一個網站訪客稱為 "user" 那我們就該命名相關的變數為 `currentUser` 或 `newUser` 而非 `currentVisitor` 或 `newManInTown`。
 
-Sounds simple? Indeed it is, but creating descriptive and concise variable names in practice is not. Go for it.
+聽起來很簡單？用聽的當然簡單，但要實際建立一個具描述性且精簡的變數名字就沒那麼簡單，試試看吧。
 
-```smart header="Reuse or create?"
-And the last note. There are some lazy programmers who, instead of declaring new variables, tend to reuse existing ones.
+```smart header="重複使用或建個新的？"
+最後一點，有些懶惰的程式員傾向重複使用現有的變數而不宣告一個新的。
 
-As a result, their variables are like boxes into which people throw different things without changing their stickers. What's inside the box now? Who knows? We need to come closer and check.
+這樣的後果是，他們的變數就像被丟了不同東西到箱子裡卻沒有更換箱上的貼紙。現在箱子內有什麼？誰知道。我們需要靠近檢查才行。
 
-Such programmers save a little bit on variable declaration but lose ten times more on debugging.
+這些程式員在變數宣告上省了點時間，但卻會在除錯時失去十倍以上的時間。
 
-An extra variable is good, not evil.
+一個額外的變數是好的。
 
-Modern JavaScript minifiers and browsers optimize code well enough, so it won't create performance issues. Using different variables for different values can even help the engine optimize your code.
+現在的 JavaScript 壓縮器 (minifiers) 和瀏覽器對於程式碼的優化已經夠好了，所以不會產生效能問題。對不同的值使用不同變數甚至可以幫助引擎優化你的程式碼
 ```
 
-## Summary
+## 總結
 
-We can declare variables to store data by using the `var`, `let`, or `const` keywords.
+我們可以使用關鍵字 `var`、`let` 或 `const` 來宣告變數並儲存資料。
 
-- `let` -- is a modern variable declaration.
-- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
-- `const` -- is like `let`, but the value of the variable can't be changed.
+- `let` -- 是現代化變數宣告方式。
+- `var` -- 是較老派的變數宣告方式，通常不再使用它。但我們依然會在章節 <info:var> 中介紹它與 `let` 之間的微妙差別，以防你有需要用到它們。
+- `const` -- 就像 `let` 但儲存在變數中的值不能再更動。
 
-Variables should be named in a way that allows us to easily understand what's inside them.
+變數應該要以一種讓大家更容易了解裡面放了什麼的方式命名。
+
