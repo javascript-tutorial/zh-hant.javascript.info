@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Type conversions
+# 類型轉換
 
-What are results of these expressions?
+這些表達式的結果會是什麼？
 
 ```js no-beautify
 "" + 1 + 0
@@ -23,4 +23,5 @@ null + 1
 undefined + 1
 ```
 
-Think well, write down and then compare with the answer.
+好好想一下，把結果寫下來並和答案對照看看。
+
