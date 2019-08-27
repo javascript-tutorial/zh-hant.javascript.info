@@ -1,15 +1,15 @@
-# Operators
+# 運算子（Operators）
 
-We know many operators from school. They are things like addition `+`, multiplication `*`, subtraction `-`, and so on.
+我們從學校學到許多運算子，像是加法 `+`、乘法 `*`、減法 `-` 等等。
 
-In this chapter, we'll concentrate on aspects of operators that are not covered by school arithmetic.
+在本章，我們會更專注有別於學校算術運算涵蓋的部分。
 
-## Terms: "unary", "binary", "operand"
+## 術語："一元運算子（unary）"、“二元運算子（binary）"、"運算元（operand）"
 
-Before we move on, let's grasp some common terminology.
+在我們開始之前，來看看一些常用的術語。
 
-- *An operand* -- is what operators are applied to. For instance, in the multiplication of `5 * 2` there are two operands: the left operand is `5` and the right operand is `2`. Sometimes, people call these "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary negation `-` reverses the sign of a number:
+- *運算元（operand）* -- 是運算子套用的對象。例如在乘法` 5 * 2` 之中有兩個運算元：左側運算元是 `5` 而右側運算元是 `2`，有時候人們稱之為 "引數 (arguments)" 而非 "運算元"。
+- 運算子若只有單獨一個運算元，稱之為 *一元運算子（unary）*，例如，一元負號運算子 `-` 用於對數值正負轉換：
 
     ```js run
     let x = 1;
@@ -17,67 +17,66 @@ Before we move on, let's grasp some common terminology.
     *!*
     x = -x;
     */!*
-    alert( x ); // -1, unary negation was applied
+    alert( x ); // -1，套用一元負號運算子
     ```
-- An operator is *binary* if it has two operands. The same minus exists in binary form as well:
+- 運算子若有兩個運算元則稱之為 *二元運算子（binary）*，減號也有二元運算子的形式：
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binary minus subtracts values
+    alert( y - x ); // 2，二元減號運算子套用減法
     ```
 
-    Formally, we're talking about two different operators here: the unary negation (single operand: reverses the sign) and the binary subtraction (two operands: subtracts).
+    正式地說，這邊提及的是兩種不同運算子：一元負號運算子（單一個運算元，正負轉換）和二元減號運算子（兩個運算元，減法）。
 
-## String concatenation, binary +
+## 字串連接，二元運算子 +
 
-Now, let's see special features of JavaScript operators that are beyond school arithmetics.
+現在來看看學校沒教的 JavaScript 特殊功能運算子。
 
-Usually, the plus operator `+` sums numbers.
+通常加法運算子 `+` 用於加總數值。
 
-But, if the binary `+` is applied to strings, it merges (concatenates) them:
+但如果此二元運算子 `+` 被用在字串上，它將合併（連接）字串們：
 
 ```js
 let s = "my" + "string";
 alert(s); // mystring
 ```
 
-Note that if one of the operands is a string, the other one is converted to a string too.
+注意只要某一側運算元是字串，另一側將會被轉換成字串類型。
 
-For example:
+例如：
 
 ```js run
 alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, the other one is converted into a string as well.
+看吧，它並不在意字串是第一個還是第二個運算元，規則就是如此簡單：若一側運算元是字串，另一側就也會被轉成字串。
 
-However, note that operations run from left to right. If there are two numbers followed by a string, the numbers will be added before being converted to a string:
-
+然而要注意由左到右一系列的運算。如果是兩個數值運算然後才接著字串，數值們會在被轉成字串前先被加總：
 
 ```js run
-alert(2 + 2 + '1' ); // "41" and not "221"
+alert(2 + 2 + '1' ); // "41" 而非 "221"
 ```
 
-String concatenation and conversion is a special feature of the binary plus `+`. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+字串連結與轉換是二元加法運算子的一個特殊功能。其他算術運算只用於數值上，且總是會將它們的運算元轉為數值。
 
-For instance, subtraction and division:
+例如，減法和除法：
 
 ```js run
 alert( 2 - '1' ); // 1
 alert( '6' / '2' ); // 3
 ```
 
-## Numeric conversion, unary +
+## 數值轉換，一元運算子 +
 
-The plus `+` exists in two forms: the binary form that we used above and the unary form.
+加法 `+` 存在兩種型式：上面提到的二元運算子型式與一元運算子型式。
 
-The unary plus or, in other words, the plus operator `+` applied to a single value, doesn't do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
+一元正號運算子，或者說套用在單一個值上的加法運算子，不會對數值做任何事。但如果運算元不是個數值，一元正號運算子就會將它轉為數值。
 
-For example:
+例如：
 
 ```js run
-// No effect on numbers
+// 對數值沒有作用
 let x = 1;
 alert( +x ); // 1
 
@@ -85,76 +84,76 @@ let y = -2;
 alert( +y ); // -2
 
 *!*
-// Converts non-numbers
+// 轉換非數值
 alert( +true ); // 1
 alert( +"" );   // 0
 */!*
 ```
 
-It actually does the same thing as `Number(...)`, but is shorter.
+事實上它做的事和 `Number(...)` 相同，只是更簡短。
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
+從字串轉成數值的需求常會出現，例如我們從 HTML 表格欄位中拿出的值通常會是字串，我們該怎麼加總它們？
 
-The binary plus would add them as strings:
+二元加法運算子會將兩者都作為字串連接：
 
 ```js run
 let apples = "2";
 let oranges = "3";
 
-alert( apples + oranges ); // "23", the binary plus concatenates strings
+alert( apples + oranges ); // "23"，二元加法運算子連結字串們
 ```
 
-If we want to treat them as numbers, we need to convert and then sum them:
+若我們想要視其為數值，就需要轉換後再加總：
 
 ```js run
 let apples = "2";
 let oranges = "3";
 
 *!*
-// both values converted to numbers before the binary plus
+// 在二元加法運算子運作前，把兩個值都轉成數值
 alert( +apples + +oranges ); // 5
 */!*
 
-// the longer variant
+// 更長的寫法
 // alert( Number(apples) + Number(oranges) ); // 5
 ```
 
-From a mathematician's standpoint, the abundance of pluses may seem strange. But from a programmer's standpoint, there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
+從一個數學家的角度，大量的加號看起來很怪，但從一個程式設計師的角度，這沒什麼特別的：一元正號運算子會先被套用，把字串轉換成數值，然後二元加法運算子才加總起來。
 
-Why are unary pluses applied to values before the binary ones? As we're going to see, that's because of their *higher precedence*.
+為什麼一元正號運算子會在二元加法運算子之前被套用在值上？這就是我們即將要討論的，因為它們 *有著更高的優先權*。
 
-## Operator precedence
+## 運算子優先權（precedence）
 
-If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the default priority order of operators.
+如果一個表達式有多於一個運算子，執行順序會依據它們的 *優先權* 決定，換句話說，運算子們有預設的優先權順序。
 
-From school, we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
+在學校時，我們都知道在算式 `1 + 2 * 2` 中的乘法會在加法前先被計算，這就是優先權的概念，乘法被認為有著比加法 *更高的優先權*。
 
-Parentheses override any precedence, so if we're not satisfied with the default order, we can use them to change it. For example, write `(1 + 2) * 2`.
+小括號會改寫優先權，所以如果我們無法滿足於預設的順序，我們可以用小括號來變更，例如這樣寫 `(1 + 2) * 2`。
 
-There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the larger number executes first. If the precedence is the same, the execution order is from left to right.
+JavaScript 中有許多運算子，每個運算子都有個對應的優先權號碼，更大號碼的運算子會更早執行。若優先權相同，則按照左至右的方式執行。
 
-Here's an extract from the [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) (you don't need to remember this, but note that unary operators are higher than corresponding binary ones):
+這個表格來自於 [優先權列表](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence)（你不需要記憶這個表，只要注意一元運算子都比對應的二元運算子有更高權限就好）：
 
-| Precedence | Name | Sign |
+| 優先權 | 名稱 | 符號 |
 |------------|------|------|
 | ... | ... | ... |
-| 16 | unary plus | `+` |
-| 16 | unary negation | `-` |
-| 14 | multiplication | `*` |
-| 14 | division | `/` |
-| 13 | addition | `+` |
-| 13 | subtraction | `-` |
+| 16 | 一元正號 | `+` |
+| 16 | 一元負號 | `-` |
+| 14 | 乘法 | `*` |
+| 14 | 除法 | `/` |
+| 13 | 加法 | `+` |
+| 13 | 減法 | `-` |
 | ... | ... | ... |
-| 3 | assignment | `=` |
+| 3 | 指定 | `=` |
 | ... | ... | ... |
 
-As we can see, the "unary plus" has a priority of `16` which is higher than the `13` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+我們可以看到，"一元正號運算子" 有著優先權號碼 `16`，比 "加法（二元加法運算子）" 的 `13` 還高。這也是為什麼在表達式 `"+apples + +oranges"` 中，一元正號運算子比加法還要更早運作。
 
-## Assignment
+## 指定運算子（Assignment）
 
-Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `3`.
+注意看指定符號 `=` 也是一個運算子，它也被列在優先權列表中，但只有非常低的優先權 `3`。
 
-That's why, when we assign a variable, like `x = 2 * 2 + 1`, the calculations are done first and then the `=` is evaluated, storing the result in `x`.
+這就是為什麼當我們指定一個變數，像是 `x = 2 * 2 + 1` 時，計算會先完成然後才指定，把結果存入 `x` 中。
 
 ```js
 let x = 2 * 2 + 1;
@@ -162,7 +161,7 @@ let x = 2 * 2 + 1;
 alert( x ); // 5
 ```
 
-It is possible to chain assignments:
+鏈結指定是可行的：
 
 ```js run
 let a, b, c;
@@ -176,14 +175,14 @@ alert( b ); // 4
 alert( c ); // 4
 ```
 
-Chained assignments evaluate from right to left. First, the rightmost expression `2 + 2` is evaluated and then assigned to the variables on the left: `c`, `b` and `a`. At the end, all the variables share a single value.
+鏈結指定會由右至左進行。首先，最右邊的表達式 `2 + 2` 先被計算，然後再被指定給左側的變數們：`c`、`b` 和 `a`，最後所有的變數都會分享同一個值。
 
-````smart header="The assignment operator `\"=\"` returns a value"
-An operator always returns a value. That's obvious for most of them like addition `+` or multiplication `*`. But the assignment operator follows this rule too.
+````smart header="指定運算子 `\"=\"` 會回傳一個值"
+一個運算子總是會回傳一個值，這在大部分像是加法 `+` 或乘法 `*` 運算上都很明顯，而指定運算子也遵守這個規則。
 
-The call `x = value` writes the `value` into `x` *and then returns it*.
+呼叫 `x = value` 把 `value` 寫進 `x` 內 *並且回傳 x*。
 
-Here's a demo that uses an assignment as part of a more complex expression:
+這裡演示了一段利用指定操作作為某個稍微複雜的表達式的一部分：
 
 ```js run
 let a = 1;
@@ -197,32 +196,32 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-In the example above, the result of expression `(a = b + 1)` is the value which was assigned to `a` (that is `3`). It is then used for further evaluations.
+上面例子中，表達式 `(a = b + 1)` 的結果是 `a` 被指定的值 (也就是 `3`)，接著被用於進一步的運算上。
 
-Funny code, isn't it? We should understand how it works, because sometimes we see it in JavaScript libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
+很有趣的程式碼對吧？我們應該了解它是如何運作的，因為有時候會在 JavaScript 函式庫中看到它。但我們不該自己寫成這樣，這種技巧真的不會讓程式碼變得更乾淨或易讀。
 ````
 
-## Remainder %
+## 餘數運算子（Remainder）%
 
-The remainder operator `%`, despite its appearance, is not related to percents.
+餘數運算子 `%` 和百分比沒關係，就算看起來長得很像。
 
-The result of `a % b` is the remainder of the integer division of `a` by `b`.
+`a % b` 的結果是 `a` 以整數除法除以 `b` 之後的餘數。
 
-For instance:
+例如：
 
 ```js run
-alert( 5 % 2 ); // 1 is a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2 is a remainder of 8 divided by 3
-alert( 6 % 3 ); // 0 is a remainder of 6 divided by 3
+alert( 5 % 2 ); // 1 是 5 除以 2 的餘數
+alert( 8 % 3 ); // 2 是 8 除以 3 的餘數
+alert( 6 % 3 ); // 0 是 6 除以 3 的餘數
 ```
 
-## Exponentiation **
+## 指數運算子（Exponentiation）**
 
-The exponentiation operator `**` is a recent addition to the language.
+指數運算子 `**` 近期才被加到這個語言之中。
 
-For a natural number `b`, the result of `a ** b` is `a` multiplied by itself `b` times.
+對一個數 `b` 而言，`a ** b` 的結果是 `a` 與自己相乘共 `b` 次。
 
-For instance:
+例如：
 
 ```js run
 alert( 2 ** 2 ); // 4  (2 * 2)
@@ -230,54 +229,54 @@ alert( 2 ** 3 ); // 8  (2 * 2 * 2)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
 ```
 
-The operator works for non-integer numbers as well.
+該運算子也可用於非整數上。
 
-For instance:
+如：
 
 ```js run
-alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root, that's maths)
-alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
+alert( 4 ** (1/2) ); // 2（數學上 1/2 次方代表著開平方根）
+alert( 8 ** (1/3) ); // 2（1/3 次方代表著開立方根）
 ```
 
-## Increment/decrement
+## 遞增（Increment）/ 遞減（decrement）
 
 <!-- Can't use -- in title, because built-in parse turns it into – -->
 
-Increasing or decreasing a number by one is among the most common numerical operations.
+一次遞增或遞減一個數值幾乎是最常見到的數值運算。
 
-So, there are special operators for it:
+因此有些特殊運算子存在：
 
-- **Increment** `++` increases a variable by 1:
+- **Increment** `++` 使變數增加 1：
 
     ```js run no-beautify
     let counter = 2;
-    counter++;        // works the same as counter = counter + 1, but is shorter
+    counter++;        // 與 counter = counter + 1 相同，但更簡短
     alert( counter ); // 3
     ```
-- **Decrement** `--` decreases a variable by 1:
+- **Decrement** `--` 使變數減少1:
 
     ```js run no-beautify
     let counter = 2;
-    counter--;        // works the same as counter = counter - 1, but is shorter
+    counter--;        // 與 counter = counter - 1 相同，但更簡短
     alert( counter ); // 1
     ```
 
 ```warn
-Increment/decrement can only be applied to variables. Trying to use it on a value like `5++` will give an error.
+遞增/遞減 只可以套用在變數上，用在一般數值上，像是 `5++`，將會導致錯誤。
 ```
 
-The operators `++` and `--` can be placed either before or after a variable.
+`++` 和 `--` 運算子 可被置於變數的前或後其中一位置。
 
-- When the operator goes after the variable, it is in "postfix form": `counter++`.
-- The "prefix form" is when the operator goes before the variable: `++counter`.
+- 當該運算子置於變數之後，視為 "後置型式 (postfix form)"：`counter++`。
+- "前置型式 (prefix form)" 就是當該運算子放在變數之前時：`++counter`。
 
-Both of these statements do the same thing: increase `counter` by `1`.
+這兩種述語都做一樣的事：`counter` 加一。
 
-Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
+有什麼差嗎？有，但只有使用 `++/--` 的回傳值時我們才看得出差異。
 
-Let's clarify. As we know, all operators return a value. Increment/decrement is no exception. The prefix form returns the new value while the postfix form returns the old value (prior to increment/decrement).
+來說明一下吧。如我們所知，所有運算子都會回傳一個值，遞增/遞減 也不例外。前置型式回傳遞增後的新值，而後置型式回傳舊的值（在 遞增/遞減 之前）。
 
-To see the difference, here's an example:
+用這個例子來看看兩者的不同：
 
 ```js run
 let counter = 1;
@@ -286,64 +285,64 @@ let a = ++counter; // (*)
 alert(a); // *!*2*/!*
 ```
 
-In the line `(*)`, the *prefix* form `++counter` increments `counter` and returns the new value, `2`. So, the `alert` shows `2`.
+在 `(*)` 行中，*前置* 型式 `++counter` 遞增 `counter` 並回傳了新的值 `2`，所以 `alert` 顯示 `2`。
 
-Now, let's use the postfix form:
+現在來使用後置型式看看：
 
 ```js run
 let counter = 1;
-let a = counter++; // (*) changed ++counter to counter++
+let a = counter++; // (*) 由 ++counter 改成 counter++
 
 alert(a); // *!*1*/!*
 ```
 
-In the line `(*)`, the *postfix* form `counter++` also increments `counter` but returns the *old* value (prior to increment). So, the `alert` shows `1`.
+在 `(*)` 行中，*後置* 型式 `counter++` 也遞增了 `counter`，但回傳的是 *舊* 的值，所以 `alert` 顯示 `1`。
 
-To summarize:
+總結一下：
 
-- If the result of increment/decrement is not used, there is no difference in which form to use:
+- 如果 遞增/遞減 的結果沒被使用，兩者之間將沒有區別：
 
     ```js run
     let counter = 0;
     counter++;
     ++counter;
-    alert( counter ); // 2, the lines above did the same
+    alert( counter ); // 2 上面兩行做一樣的事
     ```
-- If we'd like to increase a value *and* immediately use the result of the operator, we need the prefix form:
+- 如果我們想遞增一個值 *並* 立刻使用運算結果，需要使用前置型式：
 
     ```js run
     let counter = 0;
     alert( ++counter ); // 1
     ```
-- If we'd like to increment a value but use its previous value, we need the postfix form:
+- 如果我們想遞增一個值但使用原先的值，需要使用後置型式：
 
     ```js run
     let counter = 0;
     alert( counter++ ); // 0
     ```
 
-````smart header="Increment/decrement among other operators"
-The operators `++/--` can be used inside expressions as well. Their precedence is higher than most other arithmetical operations.
+````smart header="遞增/遞減 用於其他運算子"
+`++/--` 運算子也可被用於表達式中，它們的優先權比大部分數學運算都還高。
 
-For instance:
+例如：
 
 ```js run
 let counter = 1;
 alert( 2 * ++counter ); // 4
 ```
 
-Compare with:
+與此相比：
 
 ```js run
 let counter = 1;
-alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
+alert( 2 * counter++ ); // 2，因為 counter++ 回傳 "舊" 值
 ```
 
-Though technically okay, such notation usually makes code less readable. One line does multiple things -- not good.
+儘管技術上沒問題，這種寫法通常讓程式碼閱讀性變差。一行做多件事 -- 不太好。
 
-While reading code, a fast "vertical" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
+當閱讀程式碼時，眼光快速地 "垂直" 掃視很容易忽略像是 `counter++` 這種東西，以至於變數有遞增變的不明顯。
 
-We advise a style of "one line -- one action":
+我們建議採用 "一行 -- 一動作" 的風格：
 
 ```js run
 let counter = 1;
@@ -352,13 +351,13 @@ counter++;
 ```
 ````
 
-## Bitwise operators
+## 位元運算子 (Bitwise operators)
 
-Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
+位元運算子視引數為 32 位元整數值，並在其二進位表示的層面上運作。
 
-These operators are not JavaScript-specific. They are supported in most programming languages.
+這些運算子不是 JavaScript 特有的，大多數的程式語言都有支援。
 
-The list of operators:
+這類運算子列表：
 
 - AND ( `&` )
 - OR ( `|` )
@@ -368,13 +367,13 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-These operators are used very rarely. To understand them, we need to delve into low-level number representation and it would not be optimal to do that right now, especially since we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article on MDN. It would be more practical to do that when a real need arises.
+這些運算子很少被使用，為了理解它們，我們必須得鑽研數值的底層表示方式，但現在不是個好時機，尤其是我們不會很快需要使用它們時。如果你有興趣，可以閱讀 MDN 上的這篇文章 [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators)，在有實際需求時再來看會更為具體。
 
-## Modify-in-place
+## 原地修改 (Modify-in-place)
 
-We often need to apply an operator to a variable and store the new result in that same variable.
+我們常常需要在一個變數上套用某運算子，然後把新的值存入同樣的變數內。
 
-For example:
+例如：
 
 ```js
 let n = 2;
@@ -382,63 +381,64 @@ n = n + 5;
 n = n * 2;
 ```
 
-This notation can be shortened using the operators `+=` and `*=`:
+使用 `+=` 和 `*=` 運算子的寫法會更簡潔：
 
 ```js run
 let n = 2;
-n += 5; // now n = 7 (same as n = n + 5)
-n *= 2; // now n = 14 (same as n = n * 2)
+n += 5; // 現在 n = 7（與 n = n + 5 相同）
+n *= 2; // 現在 n = 14（與 n = n * 2 相同）
 
 alert( n ); // 14
 ```
 
-Short "modify-and-assign" operators exist for all arithmetical and bitwise operators: `/=`, `-=`, etc.
+簡短的 "修改並指定" 運算子在所有數學與位元運算子都適用：`/=`、`-=` 等。
 
-Such operators have the same precedence as a normal assignment, so they run after most other calculations:
+該運算子有著與指定運算子相同的優先權，所以會在其它運算之後才執行：
 
 ```js run
 let n = 2;
 
 n *= 3 + 5;
 
-alert( n ); // 16  (right part evaluated first, same as n *= 8)
+alert( n ); // 16（右側先被計算，與 n *= 8 相同）
 ```
 
-## Comma
+## 逗號運算子
 
-The comma operator `,` is one of the rarest and most unusual operators. Sometimes, it's used to write shorter code, so we need to know it in order to understand what's going on.
+逗號運算子 `,` 是最少看到且最不成被使用的運算子之一，但有時它被用於寫出更簡短的程式碼，所以我們需要了解它才會知道發生什麼事。
 
-The comma operator allows us to evaluate several expressions, dividing them with a comma `,`. Each of them is evaluated but only the result of the last one is returned.
+逗號運算子允許我們計算多個表達式，以逗號 `,` 分開。每個表達式分開計算，但只有最後一個的結果會被回傳。
 
-For example:
+例如：
 
 ```js run
 *!*
 let a = (1 + 2, 3 + 4);
 */!*
 
-alert( a ); // 7 (the result of 3 + 4)
+alert( a ); // 7（3 + 4 的結果）
 ```
 
-Here, the first expression `1 + 2` is evaluated and its result is thrown away. Then, `3 + 4` is evaluated and returned as the result.
+在此，第一個表達式 `1 + 2` 被計算但結果被拋棄，然後 `3 + 4` 被計算後回傳其結果。
 
-```smart header="Comma has a very low precedence"
-Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
+```smart header="逗號的優先權非常低"
+請注意逗號運算子有著非常低的優先權，比 `=` 還更低，所以在上面的例子中括號非常重要。
 
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
+少了括號的話：`a = 1 + 2, 3 + 4` 會先計算 `+`，將值相加得到 `a = 3, 7` 後，指定運算子`=` 指定 `a = 3`，剩下的就被忽略了。整個看來就像是 `(a = 1 + 2), 3 + 4`。
 ```
 
-Why do we need an operator that throws away everything except the last expression?
+我們為什麼需要一個會拋棄，除了最後的表達式以外，運算結果的運算子？
 
-Sometimes, people use it in more complex constructs to put several actions in one line.
+有時候人們會在更複雜的結構上使用它，來把多個動作放入一行內。
 
-For example:
+例如：
 
 ```js
-// three operations in one line
+// 一行做三個運算
 for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
  ...
 }
 ```
 
-Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But usually they don't improve code readability so we should think well before using them.
+這種技巧在很多 JavaScript 框架中被使用，這也是我們為什麼要提到它。但通常這並不會增加程式碼的可讀性，所以我們在使用前要審慎思考過。
+
