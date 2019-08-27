@@ -16,9 +16,10 @@ null + 1 = 1 // (5)
 undefined + 1 = NaN // (6)
 ```
 
-1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
-2. The subtraction `-` (like most math operations) only works with numbers, it converts an empty string `""` to `0`.
-3. The addition with a string appends the number `5` to the string.
-4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
-5. `null` becomes `0` after the numeric conversion.
-6. `undefined` becomes `NaN` after the numeric conversion.
+1. 字串的加法 `"" + 1` 會轉換 `1` 為字串：`"" + 1 = "1"`，然後得到 `"1" + 0` 再利用一樣的規則。
+2. 減法 `-` (就像多數數學運算) 只能用在數值上，它將空字串 `""` 轉成 `0`。
+3. 字串的加法會將數值 `5` 視為字串接在其後。
+4. 減法總是會轉換至數值，所以把 `"  -9  "` 變成數值 `-9` (忽略環繞的空白)。
+5. `null` 經由數值轉換變成 `0`。
+6. `undefined` 經由數值轉換變成 `NaN`。
+
