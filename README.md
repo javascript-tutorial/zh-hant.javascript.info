@@ -73,9 +73,9 @@
 
 ### 標點符號
 
-- 本教程標點符號格式採用 [此份指南](https://github.com/sparanoid/chinese-copywriting-guidelines)
+- 本教程標點符號格式採用 [此份指南](https://github.com/sparanoid/chinese-copywriting-guidelines)。
 
-- 資源連結、**增強** *斜體* 和原文，都須 [留下空白](https://github.com/sparanoid/chinese-copywriting-guidelines#%E9%8F%88%E6%8E%A5%E4%B9%8B%E9%96%93%E5%A2%9E%E5%8A%A0%E7%A9%BA%E6%A0%BC)。
+- 資源連結、**增強**、*斜體* 和原文，都須 [留下空白](https://github.com/sparanoid/chinese-copywriting-guidelines#%E9%8F%88%E6%8E%A5%E4%B9%8B%E9%96%93%E5%A2%9E%E5%8A%A0%E7%A9%BA%E6%A0%BC)。
 
 - 英語一句話只能有一個逗號，但中文無此限制，可依據語氣通順程度將一些英文句點轉為逗號。
 
@@ -124,7 +124,7 @@ document.querySelector('.嗨').innerHTML = text;
 
 **本翻譯教程以維持原本外部連結為原則。**
 
-若一個外部連結是連到 Wikipedia，如：`https://en.wikipedia.org/wiki/JavaScript`，且該文章有你使用語言的優良版本，可以將連結連到該版本。
+但若一個外部連結是連到 Wikipedia，如：`https://en.wikipedia.org/wiki/JavaScript`，且該文章有你使用語言的優良版本，可以將連結連到該版本。
 
 例如:
 
