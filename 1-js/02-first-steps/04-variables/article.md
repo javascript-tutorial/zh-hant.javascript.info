@@ -1,8 +1,8 @@
-# 變數 (Variables)
+# 變數（Variables）
 
 通常，JavaScript 應用程式需要資訊來運作，這裡有兩個例子：
-1. 一家網購商店－資訊包括要賣的商品和購物車
-2. 聊天應用程式－資訊包括使用者、訊息和其他更多東西。
+1. 一家網購商店 -- 資訊包括要賣的商品和購物車
+2. 聊天應用程式 -- 資訊包括使用者、訊息和其他更多東西。
 
 變數就是用來儲存這些資訊。
 
@@ -12,7 +12,7 @@
 
 在 JavaScript 中建立一個變數要使用 `let` 關鍵字。
 
-底下的述語建立 (或者說：*宣告* 或 *定義*) 了一個名為 "message" 的變數：
+底下的述語建立（或者說：*宣告* 或 *定義*）了一個名為 "message" 的變數：
 
 ```js
 let message;
@@ -136,12 +136,12 @@ alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
-```smart header="函數式語言 (Functional languages)"
-值得注意的是，有種叫 [函式編程 (functional programming)](https://en.wikipedia.org/wiki/Functional_programming) 的語言，像是 [Scala](http://www.scala-lang.org/) 或 [Erlang](http://www.erlang.org/)，禁止更改變數值。
+```smart header="函數式語言（Functional languages）"
+值得注意的是，有種叫 [函式編程（functional programming）](https://en.wikipedia.org/wiki/Functional_programming) 的語言，像是 [Scala](http://www.scala-lang.org/) 或 [Erlang](http://www.erlang.org/)，禁止更改變數值。
 
-在這些語言中，一旦值被 "裝箱" 就永遠在那了，如果我們需要存到別的地方，這種語言強制我們建立一個新的箱子 (宣告一個新變數)，我們不能再使用舊的。
+在這些語言中，一旦值被 "裝箱" 就永遠在那了，如果我們需要存到別的地方，這種語言強制我們建立一個新的箱子（宣告一個新變數），我們不能再使用舊的。
 
-雖然第一次看起來有點怪，但這些語言更有足夠能力勝任正規的開發，甚至在像是平行計算的領域內，有這些限制反而更好。建議可以研讀一門這樣的語言 (即使你近期還沒打算開始用)，有助於增廣見聞。
+雖然第一次看起來有點怪，但這些語言更有足夠能力勝任正規的開發，甚至在像是平行計算的領域內，有這些限制反而更好。建議可以研讀一門這樣的語言（即使你近期還沒打算開始用），有助於增廣見聞。
 ```
 
 ## 變數命名 [#variable-naming]
@@ -158,9 +158,9 @@ let userName;
 let test123;
 ```
 
-當命名包含多個字節時，通常會使用 [駝峰式命名法 (camelCase)](https://en.wikipedia.org/wiki/CamelCase)。意即，字節連著字節，除了第一個字節以外，剩下的都以大寫開頭：`myVeryLongName`。
+當命名包含多個字節時，通常會使用 [駝峰式命名法（camelCase）](https://en.wikipedia.org/wiki/CamelCase)。意即，字節連著字節，除了第一個字節以外，剩下的都以大寫開頭：`myVeryLongName`。
 
-有趣的是－錢字號 `'$'` 和底線 `'_'` 也可以被用來命名。它們像字母一樣只是一般的符號，沒有其他特殊含義。
+有趣的是 -- 錢字號 `'$'` 和底線 `'_'` 也可以被用來命名。它們像字母一樣只是一般的符號，沒有其他特殊含義。
 
 這些命名是有效的：
 
@@ -184,7 +184,7 @@ let my-name; // 連字號 '-' 不能用於命名
 ```
 
 ````smart header="可以使用非拉丁字母，但並不建議"
-可以使用任意語言，包括西里爾 (cyrillic) 字母甚至象形文字，像這樣：
+可以使用任意語言，包括西里爾（cyrillic）字母甚至象形文字，像這樣：
 
 ```js
 let имя = '...';
@@ -194,7 +194,7 @@ let 我 = '...';
 技術上這樣不會有問題，這些名稱都是被允許的，但國際傳統是使用英文來命名。就算我們只是寫個很小的腳本，它可能也會存活很久，到時其他國家的人也許會需要閱讀它。
 ````
 
-````warn header="保留字 (Reserved names)"
+````warn header="保留字（Reserved names）"
 這張 [保留字列表](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords) 列出不能用作為變數名稱的字，因為它先被語言使用了。
 
 像是：`let`、`class`、`return` 和 `function` 都被保留。
@@ -229,8 +229,8 @@ num = 5; // error: num is not defined
 ```
 ````
 
-## 常數 (Constants)
-要宣告一個 (不可變的) 常數，要使用 `const` 而非 `let`：
+## 常數（Constants）
+要宣告一個（不可變的）常數，要使用 `const` 而非 `let`：
 
 ```js
 const myBirthday = '18.04.1982';
@@ -252,7 +252,7 @@ myBirthday = '01.01.2001'; // 錯誤，不能對常數重新賦值！
 
 這些常數使用大寫字母與底線來命名。
 
-例如，使用常數來代表那些被稱為 "web" (十六進位) 格式的顏色：
+例如，使用常數來代表那些被稱為 "web"（十六進位）格式的顏色：
 
 ```js run
 const COLOR_RED = "#F00";
@@ -273,7 +273,7 @@ alert(color); // #FF7F00
 
 什麼時候我們該使用大寫命名常數，什麼時候正常命名就好？讓我們弄更清楚吧。
 
-作為一個 "常數" 就代表變數的值永不再變動，但有些常數是早在執行程式前就已知的 (像代表紅色的十六進位數值)，而有些要在執行時期才內被 *計算* 出來，但在賦予值之後就不會被更動。
+作為一個 "常數" 就代表變數的值永不再變動，但有些常數是早在執行程式前就已知的（像代表紅色的十六進位數值），而有些要在執行時期才內被 *計算* 出來，但在賦予值之後就不會被更動。
 
 例如：
 ```js
@@ -314,7 +314,7 @@ const pageLoadTime = /* 載入網頁時間 */;
 
 一個額外的變數是好的。
 
-現在的 JavaScript 壓縮器 (minifiers) 和瀏覽器對於程式碼的優化已經夠好了，所以不會產生效能問題。對不同的值使用不同變數甚至可以幫助引擎優化你的程式碼
+現在的 JavaScript 壓縮器（minifiers）和瀏覽器對於程式碼的優化已經夠好了，所以不會產生效能問題。對不同的值使用不同變數甚至可以幫助引擎優化你的程式碼
 ```
 
 ## 總結

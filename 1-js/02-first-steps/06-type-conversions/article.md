@@ -74,7 +74,7 @@ alert(age); // NaN，轉換失敗
 
 ```js run
 alert( Number("   123   ") ); // 123
-alert( Number("123z") );      // NaN (在 "z" 讀取數值時產生錯誤)
+alert( Number("123z") );      // NaN（在 "z" 讀取數值時產生錯誤）
 alert( Number(true) );        // 1
 alert( Number(false) );       // 0
 ```
@@ -87,8 +87,8 @@ alert( Number(false) );       // 0
 然後兩者將被連接：
 
 ```js run
-alert( 1 + '2' ); // '12' (右側為字串)
-alert( '1' + 2 ); // '12' (左側為字串)
+alert( 1 + '2' ); // '12'（右側為字串）
+alert( '1' + 2 ); // '12'（左側為字串）
 ```
 
 這只發生在當至少一側的引數是字串時，否則值都會被轉為數值。
@@ -98,7 +98,7 @@ alert( '1' + 2 ); // '12' (左側為字串)
 
 布林轉換是最簡單的一個。
 
-它發生在邏輯運算 (晚點我們將看到條件判斷和其它類似的東西)，但也可以經由呼叫 `Boolean(value)` 來明確地轉換。
+它發生在邏輯運算（晚點我們將看到條件判斷和其它類似的東西），但也可以經由呼叫 `Boolean(value)` 來明確地轉換。
 
 轉換規則是：
 
@@ -116,11 +116,11 @@ alert( Boolean("") ); // false
 ```
 
 ````warn header="請注意：包含零的字串 `\"0\"` 將會是 `true`"
-某些語言 (如 PHP) 視 `"0"` 為 `false`，但在 JavaScript 中，一個非空字串都會是 `true`。
+某些語言（如 PHP）視 `"0"` 為 `false`，但在 JavaScript 中，一個非空字串都會是 `true`。
 
 ```js run
 alert( Boolean("0") ); // true
-alert( Boolean(" ") ); // 空白，也是 true (任何非空字串都是 true)
+alert( Boolean(" ") ); // 空白，也是 true（任何非空字串都是 true）
 ```
 ````
 
@@ -128,9 +128,9 @@ alert( Boolean(" ") ); // 空白，也是 true (任何非空字串都是 true)
 
 三種最為廣泛使用的類型轉換是：轉字串、轉數值和轉布林。
 
-**`ToString`** － 用於當我們輸出某些東西時，可使用 `String(value)` 來轉換，原生值的字串轉換通常是很直觀的。
+**`ToString`** -- 用於當我們輸出某些東西時，可使用 `String(value)` 來轉換，原生值的字串轉換通常是很直觀的。
 
-**`ToNumber`** － 用於數學運算，可使用 `Number(value)` 來轉換。
+**`ToNumber`** -- 用於數學運算，可使用 `Number(value)` 來轉換。
 
 按照以下規則轉換：
 
@@ -141,7 +141,7 @@ alert( Boolean(" ") ); // 空白，也是 true (任何非空字串都是 true)
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | 字串 "依原樣" 讀取並忽略頭尾空白，若為空字串則為 `0`，有錯誤則成為 `NaN`。 |
 
-**`ToBoolean`** － 用於邏輯運算，可使用 `Boolean(value)` 來轉換。
+**`ToBoolean`** -- 用於邏輯運算，可使用 `Boolean(value)` 來轉換。
 
 規則是：
 

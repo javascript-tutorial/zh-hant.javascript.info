@@ -2,18 +2,18 @@
 
 程式設計師花最多時間的地方就是在使用程式編輯器。
 
-程式編輯器主要分兩類：整合開發環境 (IDEs) 和輕量化編輯器，很多人每種都會選一個使用。
+程式編輯器主要分兩類：整合開發環境（IDEs）和輕量化編輯器，很多人每種都會選一個使用。
 
 ## IDE
 
-[IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) 這個詞意會著一個強大且擁有許多功能的編輯器，通常使用在開發 "整個專案" 上。顧名思義，它不只是一個編輯器也是一個完整 "開發環境"。
+[IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)（Integrated Development Environment）這個詞意會著一個強大且擁有許多功能的編輯器，通常使用在開發 "整個專案" 上。顧名思義，它不只是一個編輯器也是一個完整 "開發環境"。
 
-一個 IDE 載入專案 (通常代表很多檔案) ，允許於不同檔案間切換，基於整個專案提供自動完成 (autocompletion) 功能 (而非只是開檔案)，並且整合版本控制系統 (像是 [git](https://git-scm.com/))、測試環境和其他專案等級的東西。
+一個 IDE 載入專案（通常代表很多檔案），允許於不同檔案間切換，基於整個專案提供自動完成（autocompletion）功能（而非只是開檔案），並且整合版本控制系統（像是 [git](https://git-scm.com/)）、測試環境和其他專案等級的東西。
 
 如果你還沒選擇使用一個 IDE，可以考慮以下選擇：
 
-- [Visual Studio Code](https://code.visualstudio.com/) (跨平台，免費)。
-- [WebStorm](http://www.jetbrains.com/webstorm/) (跨平台，付費)。
+- [Visual Studio Code](https://code.visualstudio.com/)（跨平台，免費）。
+- [WebStorm](http://www.jetbrains.com/webstorm/)（跨平台，付費）。
 
 若使用 Windows 系統，也可選用 "Visual Studio"，但別跟 "Visual Studio Code" 搞混了。"Visual Studio" 是一個需付費且強大的 Windows 專屬編輯器，特別適合開發 .NET 平台，用來開發 JavaScript 也不錯。它有個免費的版本 [Visual Studio Community](https://www.visualstudio.com/vs/community/)。
 
@@ -31,9 +31,9 @@
 
 以下是一些值得考慮的選擇：
 
-- [Atom](https://atom.io/) (跨平台，免費)。
-- [Sublime Text](http://www.sublimetext.com) (跨平台，共享軟體)。
-- [Notepad++](https://notepad-plus-plus.org/) (Windows，免費)。
+- [Atom](https://atom.io/)（跨平台，免費）。
+- [Sublime Text](http://www.sublimetext.com)（跨平台，共享軟體）。
+- [Notepad++](https://notepad-plus-plus.org/)（Windows，免費）。
 - [Vim](http://www.vim.org/) 和 [Emacs](https://www.gnu.org/software/emacs/) 也很不錯，前提是你要知道怎麼使用。
 
 ## 不要起爭議

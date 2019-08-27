@@ -2,7 +2,7 @@
 
 我們該知道的第一件事是建立程式碼區塊
 
-## 述句 (Statements)
+## 述句（Statements）
 
 述句是執行操作的語法結構與命令。
 
@@ -23,7 +23,7 @@ alert('Hello');
 alert('World');
 ```
 
-## 分號 (Semicolons) [#semicolon]
+## 分號（Semicolons）[#semicolon]
 
 大多情況下當斷行存在時分號可省略。
 
@@ -34,7 +34,7 @@ alert('Hello')
 alert('World')
 ```
 
-在這裡 JavaScript 直譯 (interprets) 斷行為 "隱性" 分號。這也被稱為 [自動分號插入 (automatic semicolon insertion)](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion)。
+在這裡 JavaScript 直譯（interprets）斷行為 "隱性" 分號。這也被稱為 [自動分號插入（automatic semicolon insertion）](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion)。
 
 **大多數情況，一個換行代表著一個分號，但 "大多數情況" 不代表 "總是如此"！**
 
@@ -46,7 +46,7 @@ alert(3 +
 + 2);
 ```
 
-此程式碼輸出 `6`，因為 JavaScript 沒有在內插入分號。直觀上，當某行程式以 `"+"` 結束時，它是個 "不完整的表達式 (incomplete expression)" 而不需要分號，如此一來這個例子才會以我們所想像的方式運作。
+此程式碼輸出 `6`，因為 JavaScript 沒有在內插入分號。直觀上，當某行程式以 `"+"` 結束時，它是個 "不完整的表達式（incomplete expression）" 而不需要分號，如此一來這個例子才會以我們所想像的方式運作。
 
 **但有些情況下 JavaScript 對於分號是否真的被需要會假設 "失敗"**
 
@@ -91,7 +91,7 @@ alert("There will be an error")[1, 2].forEach(alert)
 但程式應該要有兩個分開的述句而非單獨一個，本例中的合併是錯誤的所以導致錯誤，這在很多其他情況下也可能發生。
 ````
 
-我們建議即使是依據換行分開的述句也要標上分號，這個規則被社群廣為採納。再次強調 － 大多時間 *可能* 可以省略分號，但加上分號會更安全，尤其對新手而言。
+我們建議即使是依據換行分開的述句也要標上分號，這個規則被社群廣為採納。再次強調 -- 大多時間 *可能* 可以省略分號，但加上分號會更安全，尤其對新手而言。
 
 ## 註解
 
@@ -99,7 +99,7 @@ alert("There will be an error")[1, 2].forEach(alert)
 
 註解可以加在腳本內任意位置，這不影響腳本運行因為引擎會直接忽略它們。
 
-**單行註解由兩個正斜線字元 (forward slash characters) 開始 `//`。**
+**單行註解由兩個正斜線字元（forward slash characters）開始 `//`。**
 
 此行剩餘部分就是註解，它可以佔據整行或是寫在某個述句之後。
 
@@ -135,7 +135,7 @@ alert('World');
 ```
 
 ```smart header="用熱鍵！"
-大多數編輯器中，可以按下 `key:Ctrl+/` 這個熱鍵來註解掉單行程式碼，而 `key:Ctrl+Shift+/` 可以註解多行 (選取一段程式碼後按下熱鍵)。Mac 則使用 `key:Cmd` 取代 `key:Ctrl`。
+大多數編輯器中，可以按下 `key:Ctrl+/` 這個熱鍵來註解掉單行程式碼，而 `key:Ctrl+Shift+/` 可以註解多行（選取一段程式碼後按下熱鍵）。Mac 則使用 `key:Cmd` 取代 `key:Ctrl`。
 ```
 
 ````warn header="不支援巢狀註解！"

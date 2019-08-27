@@ -8,18 +8,18 @@ let message = "hello";
 message = 123456;
 ```
 
-若允許這麼做的程式語言，稱其具有 "動態類型 (dynamically typed)"，意思是變數不會綁定任一種資料類型。
+若允許這麼做的程式語言，稱其具有 "動態類型（dynamically typed）"，意思是變數不會綁定任一種資料類型。
 
 JavaScript 中有七種基礎的資料類型，在此我們會稍微介紹下它們，然後在接下來的章節中我們會逐一介紹其細節：
 
-## 數值 (A number)
+## 數值（A number）
 
 ```js
 let n = 123;
 n = 12.345;
 ```
 
-*數值 (number)* 類型用於表示整數 (integer) 與浮點數 (floating point numbers)。
+*數值（number）* 類型用於表示整數（integer）與浮點數（floating point numbers）。
 
 數值有許多運算方式，像是：乘法 `*`、除法 `/`、加法 `+`、減法 `-` 等等。
 
@@ -56,21 +56,21 @@ n = 12.345;
 ```smart header="數學運算很安全"
 操作數學運算在 JavaScript 是 "安全的"。我們可以做任何事情：除以零、把不是數值的字串當作數值等等。
 
-腳本永遠不會因為數學運算導致致命錯誤 (fatal error) 而停止 ("死亡")，最糟只會得到 `NaN` 這個結果而已。
+腳本永遠不會因為數學運算導致致命錯誤（fatal error）而停止（"死亡"），最糟只會得到 `NaN` 這個結果而已。
 ```
 
 特殊數值是屬於 "數值" 類型的一員，當然它們在世間的常識中並不是數值。
 
 我們會在章節 <info:number> 中看到更多使用數值的方式。
 
-## 字串 (A string)
+## 字串（A string）
 
-JavaScript 中的字串 (string) 必須被引號 (quotes) 所環繞。
+JavaScript 中的字串（string）必須被引號（quotes）所環繞。
 
 ```js
 let str = "Hello";
-let str2 = 'Single quotes are ok too (單引號也可以)';
-let phrase = `can embed ${str} (字串可被 \${內嵌} )`;
+let str2 = 'Single quotes are ok too（單引號也可以）';
+let phrase = `can embed ${str}（字串可被 \${內嵌}）`;
 ```
 
 在 JavaScript 中，有三種引號。
@@ -97,20 +97,20 @@ alert( `the result is *!*${1 + 2}*/!*` ); // the result is 3
 
 請注意這只在反引號中有作用，其他引號不具此種內嵌功能！
 ```js run
-alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (雙引號什麼都沒做)
+alert( "the result is ${1 + 2}" ); // the result is ${1 + 2}（雙引號什麼都沒做）
 ```
 
 我們會在章節 <info:string> 中介紹更多細節。
 
-```smart header="不存在 *字元 (character)* 類型"
+```smart header="不存在 *字元（character）* 類型"
 在一些語言中，單一字元有個特殊的 "字元" 類型，像是在 C 語言或是 Java 中的 `char`。
 
 在 JavaScript 中沒有這種類型，只有一種 `字串` 類型。一串字串可以只有一個或擁有多個字元在內。
 ```
 
-## 布林 (A boolean) (邏輯類型)
+## 布林（A boolean）（邏輯類型）
 
-布林 (boolean) 類型只有兩種值：`true` 和 `false`。
+布林（boolean）類型只有兩種值：`true` 和 `false`。
 
 這種類型通常運於儲存 yes 或 no 的值：`true` 代表 "yes、正確"，而 `false` 代表 "no、不正確"。
 
@@ -126,7 +126,7 @@ let ageFieldChecked = false; // no, age 欄位尚未確認
 ```js run
 let isGreater = 4 > 1;
 
-alert( isGreater ); // true (比較的結果是 "yes")
+alert( isGreater ); // true（比較的結果是 "yes"）
 ```
 
 我們將在章節 <info:logical-operators> 中涵蓋布林類型更深入的內容。
@@ -173,17 +173,17 @@ alert(x); // "undefined"
 
 ...但我們不建議這麼做。通常我們使用 `null` 來給一個變數 "空白" 或是 "未知" 的值，然後使用 `undefined` 來查看變數是否有被給過值。
 
-## 物件 (Objects) 和符號 (Symbols)
+## 物件（Objects）和符號（Symbols）
 
-`物件 (object)` 這個類型很特殊。
+`物件（object）` 這個類型很特殊。
 
-其它類型都稱為 "原生 (primitive)" 類型，因為它們的值只可包含一種東西 (一個字串或一個數值或一個其它東西)，相對地，物件被用來儲存資料群集和更複雜的東西。再更充分了解原生類型後，我們晚點會在 <info:object> 這個章節中介紹它。
+其它類型都稱為 "原生（primitive）" 類型，因為它們的值只可包含一種東西（一個字串或一個數值或一個其它東西），相對地，物件被用來儲存資料群集和更複雜的東西。再更充分了解原生類型後，我們晚點會在 <info:object> 這個章節中介紹它。
 
-`符號 (symbol)` 類型被用在為物件建立一個獨特的識別符 (identifiers)，為了完整性我們在此提到它，但會在介紹完物件後再來學習。
+`符號（symbol）` 類型被用在為物件建立一個獨特的識別符（identifiers），為了完整性我們在此提到它，但會在介紹完物件後再來學習。
 
-## typeof 運算子(typeof operator) [#type-typeof]
+## typeof 運算子(typeof operator）[#type-typeof]
 
-`typeof` 運算子會回傳其引數 (argument) 的類型。這在當我們想要分開處理不同類型的值，或只是想要快速檢查類型時，就會很有用。
+`typeof` 運算子會回傳其引數（argument）的類型。這在當我們想要分開處理不同類型的值，或只是想要快速檢查類型時，就會很有用。
 
 它支援兩種語法格式：
 
@@ -206,15 +206,15 @@ typeof "foo" // "string"
 typeof Symbol("id") // "symbol"
 
 *!*
-typeof Math // "object"  (1)
+typeof Math // "object"（1）
 */!*
 
 *!*
-typeof null // "object"  (2)
+typeof null // "object"（2）
 */!*
 
 *!*
-typeof alert // "function"  (3)
+typeof alert // "function"（3）
 */!*
 ```
 
@@ -232,8 +232,8 @@ typeof alert // "function"  (3)
 - `number` 用於任何類型的數值：整數或浮點數。
 - `string` 用於字串。一個字串可以包含一個或多個字元，但不獨立存在單一字元的類型。
 - `boolean` 用於 `true` 或 `false`。
-- `null` 用於未知的值 － 只有一個值 `null` 的獨立類型。
-- `undefined` 用於尚未指定值 － 只有一個值 `undefined` 的獨立類型。
+- `null` 用於未知的值 -- 只有一個值 `null` 的獨立類型。
+- `undefined` 用於尚未指定值 -- 只有一個值 `undefined` 的獨立類型。
 - `object` 用於更為複雜的資料結構。
 - `symbol` 用於獨特的識別符。
 
@@ -241,7 +241,7 @@ typeof alert // "function"  (3)
 
 - 兩種格式：`typeof x` 或 `typeof(x)`。
 - 回傳一個類型名稱的字串，像是 `"string"`。
-- 對於 `null` 回傳 `"object"` － 這是語言中的錯誤，它實際上不是個物件。
+- 對於 `null` 回傳 `"object"` -- 這是語言中的錯誤，它實際上不是個物件。
 
 接下來的章節中，我們將更專注於介紹原生類型，一旦對它們更熟悉了，就會開始來介紹物件。
 
