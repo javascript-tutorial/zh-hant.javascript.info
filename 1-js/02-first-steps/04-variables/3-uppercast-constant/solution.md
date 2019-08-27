@@ -1,5 +1,6 @@
-We generally use upper case for constants that are "hard-coded". Or, in other words, when the value is known prior to execution and directly written into the code.
+我們通常使用大寫來命名 "寫死的" 常數，或者換句話說，當常數的值在程式執行前就已知並寫在程式碼內時。
 
-In this code, `birthday` is exactly like that. So we could use the upper case for it.
+這份程式碼中的 `birthday` 是這樣，所以我們可以讓它使用大寫命名。
 
-In contrast, `age` is evaluated in run-time. Today we have one age, a year after we'll have another one. It is constant in a sense that it does not change through the code execution. But it is a bit "less of a constant" than `birthday`: it is calculated, so we should keep the lower case for it.
+相對地，`age` 在執行期間才被計算出來。今天我們有一個年齡，一年後就會有另一個。它在整個程式碼被執行的過程中不會改變，但相較於 `birthday` 卻 "沒那麼不變"，它是被計算出來的，故我們應該用小寫來命名。
+
