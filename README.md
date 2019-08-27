@@ -172,7 +172,7 @@ importance: 5
 伺服器安裝指南請參考 <https://github.com/javascript-tutorial/server>
 
 ---
-繁體中文版的維護者們 🚀
+繁體中文版的維護者們（依帳號順序） 🚀
 
 - Arvin Huang [@arvin0731](https://github.com/arvin0731)
 - Jason Huang [@kaddopur](https://github.com/kaddopur)
