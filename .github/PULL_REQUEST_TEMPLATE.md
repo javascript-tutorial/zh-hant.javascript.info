@@ -4,7 +4,7 @@
 
  ## Modified files
 
- 文件名 | 更改（理由）
+ File name | Change（reason）
 -|-
 article.md | 翻譯繁體中文
 limitations.png | 新增圖片
