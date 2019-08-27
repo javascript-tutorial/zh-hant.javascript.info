@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# String quotes
+# 字串引號
 
-What is the output of the script?
+此腳本會輸出什麼？
 
 ```js
 let name = "Ilya";

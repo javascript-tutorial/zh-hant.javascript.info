@@ -1,15 +1,14 @@
-
-Backticks embed the expression inside `${...}` into the string.
+反引號把放在 `${...}` 中表達式的結果嵌入字串中。
 
 ```js run
 let name = "Ilya";
 
-// the expression is a number 1
+// 表達式是數值 1
 alert( `hello ${1}` ); // hello 1
 
-// the expression is a string "name"
+// 表達式是字串 "name"
 alert( `hello ${"name"}` ); // hello name
 
-// the expression is a variable, embed it
+// 表達式是個變數，嵌入它
 alert( `hello ${name}` ); // hello Ilya
 ```
