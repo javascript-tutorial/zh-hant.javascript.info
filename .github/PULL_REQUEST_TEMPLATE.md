@@ -6,5 +6,7 @@
 
  File name | Change（reason）
 -|-
-article.md | 翻譯繁體中文
-limitations.png | 新增圖片
+`article.md` | 翻譯繁體中文
+`1-task-folder/*` | 翻譯繁體中文
+`limitations.png` | 新增圖片
+
