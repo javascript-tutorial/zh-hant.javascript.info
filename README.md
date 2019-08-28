@@ -77,9 +77,9 @@
 
 - 資源連結、**增強**、*斜體* 和原文，都須 [留下空白](https://github.com/sparanoid/chinese-copywriting-guidelines#%E9%8F%88%E6%8E%A5%E4%B9%8B%E9%96%93%E5%A2%9E%E5%8A%A0%E7%A9%BA%E6%A0%BC)。
 
-- 斜線號較為特殊，若用於分隔兩同類型詞彙時，請維持半形斜線且兩側不加空白，**但在剩下的句子之前要留一空白做分隔**：
-    - `Increment/decrement can only be applied to variables.`
-    - `遞增/遞減 只能被套用在變數上。`
+- 斜線號 `/` 較為特殊，若用於分隔兩同類型詞彙時，請維持半形斜線且兩側不加空白，**但在詞彙們整體的前後要留一空白做分隔**：
+    - `Increment/decrement can only be applied to variables.`：`遞增/遞減 只能被套用在變數上。`
+    - `If the result of increment/decrement is not used, ...`：`如果 遞增/遞減 的結果沒被使用，...`
 
 - 英語一句話只能有一個逗號，但中文無此限制，可依據語氣通順程度將一些英文句點轉為逗號。
 
