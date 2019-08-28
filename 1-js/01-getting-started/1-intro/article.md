@@ -20,9 +20,9 @@
 
 現在，JavaScript 不僅可執行於瀏覽器中，還可運作於伺服器上，或任何具有 [JavaScript 引擎](https://en.wikipedia.org/wiki/JavaScript_engine) 的裝置內。
 
-瀏覽器內嵌有 JavaScript 引擎，有時也被稱為 "JavaScript 虛擬機" (JavaScript virtual machine)。
+瀏覽器內嵌有 JavaScript 引擎，有時也被稱為 "JavaScript 虛擬機"（JavaScript virtual machine）。
 
-不同的引擎有不同的 "代號 (codenames)"。例如：
+不同的引擎有不同的 "代號（codenames）"。例如：
 
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- Chrome 和 Opera 內的引擎。
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- Firefox 內的引擎。
@@ -34,8 +34,8 @@
 
 引擎很複雜，但概念很簡單。
 
-1. 引擎 (瀏覽器內建) 讀取 ("解析") 腳本
-2. 接著轉換 ("編譯") 腳本為機器語言
+1. 引擎（瀏覽器內建）讀取（"解析"）腳本
+2. 接著轉換（"編譯"）腳本為機器語言
 3. 然後機器語言極快地執行
 
 引擎會對流程中每個階段進行優化。甚至會在執行時監看編譯好的腳本，分析其資料流並以此再優化為機器碼，由此腳本可以快速地執行。
@@ -45,7 +45,7 @@
 
 現代化 JavaScript 是個 "安全" 的程式語言。它不提供對記憶體或 CPU 的低階存取，因為它原生是為了瀏覽器而建立，所以不需要。
 
-JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js](https://wikipedia.org/wiki/Node.js) 提供 JavaScript 可以讀寫任意檔案與發送網路請求 (network requests) 等功能。
+JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js](https://wikipedia.org/wiki/Node.js) 提供 JavaScript 可以讀寫任意檔案與發送網路請求（network requests）等功能。
 
 瀏覽器中的 JavaScript 可以做與網頁操作、使用者互動和網頁伺服器相關的任何事情。
 
@@ -53,9 +53,9 @@ JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js
 
 - 在頁面加入新的 HTML ，改變既有內容與樣式
 - 與使用者互動，執行滑鼠點擊、游標移動和按鍵按壓
-- 經由網路發送請求給遠端伺服器，下載並上傳檔案 (亦稱為 [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) 和 [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) 技術)
+- 經由網路發送請求給遠端伺服器，下載並上傳檔案（亦稱為 [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) 和 [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) 技術）
 - 取得與設定 cookies、詢問訪客和顯示訊息
-- 記得客戶端 (client-side) 的資料 ("local storage")
+- 記得客戶端（client-side）的資料（"local storage"）
 
 ## 瀏覽器中的 JavaScript **不能**做什麼？
 
@@ -67,13 +67,13 @@ JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js
 
     現代化瀏覽器允許 JavaScript 有限制地操作檔案，且只有在使用者做特定動作時提供，像是："拖曳" 一個檔案至瀏覽器視窗，或經由 `<input>` 標籤選取。
 
-    JavaScript 有些方法可與相機、麥克風或其他裝置互動，但都需要使用者明確地授權。所以啟用 JavaScript 的網頁不會偷偷開啟相機觀察周遭並傳資料給 [美國國家安全局 (NSA)](https://en.wikipedia.org/wiki/National_Security_Agency)。
-- 不同的瀏覽器分頁/視窗基本上不知道彼此，但有時例外，例如：當一個視窗使用 JavaScript 開啟另一個視窗時。但就算如此，開啟不同網站 (不同域名、通訊協定或埠) 的頁面，其中的 JavaScript 亦無法溝通。
+    JavaScript 有些方法可與相機、麥克風或其他裝置互動，但都需要使用者明確地授權。所以啟用 JavaScript 的網頁不會偷偷開啟相機觀察周遭並傳資料給 [美國國家安全局（NSA）](https://en.wikipedia.org/wiki/National_Security_Agency)。
+- 不同的瀏覽器分頁/視窗基本上不知道彼此，但有時例外，例如：當一個視窗使用 JavaScript 開啟另一個視窗時。但就算如此，開啟不同網站（不同域名、通訊協定或埠）的頁面，其中的 JavaScript 亦無法溝通。
 
-    這被稱為 "同源政策" (Same Origin Policy)。為了解決它，*兩個頁面* 都必須同意資料交換和包含一隻特殊的 JavaScript 程式碼來處理這件事。我們的教程將會包含這部分。
+    這被稱為 "同源政策"（Same Origin Policy）。為了解決它，*兩個頁面* 都必須同意資料交換和包含一隻特殊的 JavaScript 程式碼來處理這件事。我們的教程將會包含這部分。
 
     再次強調，這個限制是為了使用者的資安考量。一個使用者從 `http://anysite.com` 打開的頁面不該能存取另一個瀏覽器分頁 `http://gmail.com` 內的資訊。
-- JavaScript 可以簡單地經由網路與目前頁面來源的伺服器溝通。但它從別的網站/域名接收資料的能力受到限制。儘管可以也需要遠端明確地授權 (在 HTTP headers 中)。再一次強調，這是為了資安而限制。
+- JavaScript 可以簡單地經由網路與目前頁面來源的伺服器溝通。但它從別的網站/域名接收資料的能力受到限制。儘管可以也需要遠端明確地授權（在 HTTP headers 中）。再一次強調，這是為了資安而限制。
 
 ![](limitations.svg)
 
@@ -100,16 +100,16 @@ JavaScript 的語法並不符合每個人的要求，不同人想要不同功能
 
 這是預期中的，因為每個人的計畫和需求都不一樣。
 
-所以最近有大量新語言出現，它們在被瀏覽器執行前，都被 *轉譯* (transpiled) 成 JavaScript。
+所以最近有大量新語言出現，它們在被瀏覽器執行前，都被 *轉譯*（transpiled）成 JavaScript。
 
 現代化的工具讓轉譯迅速且透明，且實際上使開發者用另一種語言寫程式，再被自行轉換成 JavaScript。
 
 例如這些語言：
 
-- [CoffeeScript](http://coffeescript.org/) 是組 JavaScript 的"語法糖"。它有更簡短的語法，可以讓我們寫出更清楚且精確的程式碼，通常 Ruby 開發者愛用。
-- [TypeScript](http://www.typescriptlang.org/) 致力於增加 "強型態確認 (strict data typing)" 來簡化開發與支援複雜的系統，為微軟所開發。
+- [CoffeeScript](http://coffeescript.org/) 是組 JavaScript 的 "語法糖"。它有更簡短的語法，可以讓我們寫出更清楚且精確的程式碼，通常 Ruby 開發者愛用。
+- [TypeScript](http://www.typescriptlang.org/) 致力於增加 "強型態確認（strict data typing）" 來簡化開發與支援複雜的系統，為微軟所開發。
 - [Flow](http://flow.org/) 同樣增加型態確認但使用不同方式，為臉書所開發。
-- [Dart](https://www.dartlang.org/) 是一種擁有自己引擎的獨立語言，它執行在非瀏覽器環境上 (像是手機應用程式)，但也可以轉譯成 JavaScript，為谷歌所開發。
+- [Dart](https://www.dartlang.org/) 是一種擁有自己引擎的獨立語言，它執行在非瀏覽器環境上（像是手機應用程式），但也可以轉譯成 JavaScript，為谷歌所開發。
 
 還有更多其他語言。當然，就算我們使用某種轉譯式語言，我們應該也要了解 JavaScript 來真正知道我們在做什麼。
 
