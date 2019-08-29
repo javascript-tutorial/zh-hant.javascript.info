@@ -1,48 +1,48 @@
-# Interaction: alert, prompt, confirm
+# 互動： alert, prompt, confirm
 
-In this part of the tutorial we cover JavaScript language "as is", without environment-specific tweaks.
+此部分的教程涵蓋 "原本" 的 JavaScript，不需對環境做特別調整。
 
-But we'll still be using the browser as our demo environment, so we should know at least a few of its user-interface functions. In this chapter, we'll get familiar with the browser functions `alert`, `prompt` and `confirm`.
+不過我們依然使用瀏覽器做為演示環境，所以我們應該至少知道一些跟使用者互動的函式。在本章，我們將會對 `alert`、`prompt` 和 `confirm` 瀏覽器函式更為熟悉。
 
 ## alert
 
-Syntax:
+語法：
 
 ```js
 alert(message);
 ```
 
-This shows a message and pauses script execution until the user presses "OK".
+會顯示一段訊息並中斷腳本執行直到使用者按下 "OK"。
 
-For example:
+例如：
 
 ```js run
 alert("Hello");
 ```
 
-The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons, etc. until they have dealt with the window. In this case -- until they press "OK".
+該顯示訊息的迷你窗口稱之為 *模態視窗 （modal window）*。"模態 (modal)" 這個字代表使用者不能與頁面其他部分互動或按其他按鈕等，直到他們處理了這個視窗為止，在此處為 -- 直到它們按下 "OK"。
 
 ## prompt
 
-The function `prompt` accepts two arguments:
+函式 `prompt` 接收兩個參數：
 
 ```js no-beautify
 result = prompt(title, [default]);
 ```
 
-It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
+會顯示一個帶有文字訊息的模態視窗，並有給訪問者輸入的欄位和 OK/Cancel 的按鈕。
 
 `title`
-: The text to show the visitor.
+: 顯示予使用者的文字。
 
 `default`
-: An optional second parameter, the initial value for the input field.
+: 可選的第二個參數，為輸入欄位的初始值。
 
-The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key.
+訪問者可在 prompt 輸入欄位寫些東西然後按下 OK。或者可藉由按下 Cancel 取消輸入，或按 `key:Esc` 按鍵。
 
-The call to `prompt` returns the text from the input field or `null` if the input was canceled.
+呼叫 `prompt` 後會回傳輸入欄位的文字，或輸入被取消時則回傳 `null`。
 
-For instance:
+舉個例：
 
 ```js run
 let age = prompt('How old are you?', 100);
@@ -50,60 +50,61 @@ let age = prompt('How old are you?', 100);
 alert(`You are ${age} years old!`); // You are 100 years old!
 ```
 
-````warn header="In IE: always supply a `default`"
-The second parameter is optional, but if we don't supply it, Internet Explorer will insert the text `"undefined"` into the prompt.
+````warn header="在 IE：總是給個 `default`"
+第二個參數是可選的，但如果我們沒給，Internet Explorer 會把 `"undefined"` 這個文字插入到 prompt 內。
 
-Run this code in Internet Explorer to see:
+在 Internet Explorer 執行此程式碼來看看：
 
 ```js run
 let test = prompt("Test");
 ```
 
-So, for prompts to look good in IE, we recommend always providing the second argument:
+所以為了讓 IE 內的 prompt 看起來沒問題，我們建議總是提供第二個引數：
 
 ```js run
-let test = prompt("Test", ''); // <-- for IE
+let test = prompt("Test", ''); // <-- 為了 IE
 ```
 ````
 
 ## confirm
 
-The syntax:
+語法為：
 
 ```js
 result = confirm(question);
 ```
 
-The function `confirm` shows a modal window with a `question` and two buttons: OK and Cancel.
+函式 `confirm` 顯示一個模態視窗，包含一個 `問題` 與兩個按鈕：OK 和 Cancel。 
 
-The result is `true` if OK is pressed and `false` otherwise.
+若按下 OK 回傳結果是 `true` 否則為 `false`。
 
-For example:
+例如：
 
 ```js run
 let isBoss = confirm("Are you the boss?");
 
-alert( isBoss ); // true if OK is pressed
+alert( isBoss ); // 若按下 OK 則為 true
 ```
 
-## Summary
+## 總結
 
-We covered 3 browser-specific functions to interact with visitors:
+我們介紹三種瀏覽器相關的函式用來和訪問者互動：
 
 `alert`
-: shows a message.
+: 顯示訊息。
 
 `prompt`
-: shows a message asking the user to input text. It returns the text or, if Cancel button or `key:Esc` is clicked, `null`.
+: 顯示訊息並要求使用者輸入文字並回傳該文字，若按下 Cancel 按鈕或 `key:Esc` 鍵時，則回傳 `null`。
 
 `confirm`
-: shows a message and waits for the user to press "OK" or "Cancel". It returns `true` for OK and `false` for Cancel/`key:Esc`.
+: 顯示訊息並等待使用者按下 "OK" 或 "Cancel"，OK 時回傳 `true`，Cancel/`key:Esc` 時回傳 `false`。
 
-All these methods are modal: they pause script execution and don't allow the visitor to interact with the rest of the page until the window has been dismissed.
+這些方法都是模態：它們暫停腳本執行並讓訪問者無法和頁面其餘部分互動，直到視窗被關掉為止。
 
-There are two limitations shared by all the methods above:
+以上這些方法都有兩個限制：
 
-1. The exact location of the modal window is determined by the browser. Usually, it's in the center.
-2. The exact look of the window also depends on the browser. We can't modify it.
+1. 模態視窗確切的位置是由瀏覽器決定的，通常會是在中間。
+2. 視窗確切的外觀也是由瀏覽器決定的，我們無法修改。
 
-That is the price for simplicity. There are other ways to show nicer windows and richer interaction with the visitor, but if "bells and whistles" do not matter much, these methods work just fine.
+這就是簡單的代價，有其它顯示更好視窗和與使用者互動更為豐富的方法，但若 "花裡胡哨" 沒那麼重要，這些方法已經夠用了。
+

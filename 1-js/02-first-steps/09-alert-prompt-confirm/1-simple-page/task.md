@@ -2,8 +2,9 @@ importance: 4
 
 ---
 
-# A simple page
+# 簡單的頁面
 
-Create a web-page that asks for a name and outputs it.
+建立一個網頁，要求輸入一個名字並輸出它。
 
 [demo]
+
