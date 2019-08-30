@@ -367,7 +367,7 @@ counter++;
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-這些運算子很少被使用，為了理解它們，我們必須得鑽研數值的底層表示方式，但現在不是個好時機，尤其是我們不會很快需要使用它們時。如果你有興趣，可以閱讀 MDN 上的這篇文章 [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators)，在有實際需求時再來看會更為具體。
+這些運算子很少被使用，為了理解它們，我們必須得鑽研數值的底層表示方式，但現在不是個好時機，尤其是我們不會很快需要使用它們時。如果你有興趣，可以閱讀 MDN 上的這篇文章 [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators)。在有具體需求時再來查看比較實際。
 
 ## 原地修改 (Modify-in-place)
 
