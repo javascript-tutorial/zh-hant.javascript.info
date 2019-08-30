@@ -1,11 +1,11 @@
-JavaScript-code:
+JavaScript 程式碼：
 
 ```js demo run
 let name = prompt("What is your name?", "");
 alert(name);
 ```
 
-The full page:
+整個網頁原始碼：
 
 ```html
 <!DOCTYPE html>
@@ -22,3 +22,4 @@ The full page:
 </body>
 </html>
 ```
+
