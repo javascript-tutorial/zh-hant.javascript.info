@@ -38,7 +38,7 @@ result = prompt(title, [default]);
 `default`
 : 可選的第二個參數，為輸入欄位的初始值。
 
-訪問者可在 prompt 輸入欄位寫些東西然後按下 OK。或者可藉由按下 Cancel 取消輸入，或按 `key:Esc` 按鍵。
+訪問者可在 prompt 輸入欄位寫些東西然後按下 OK。或者可藉由按下 Cancel 或 `key:Esc` 按鍵取消輸入。
 
 呼叫 `prompt` 後會回傳輸入欄位的文字，或輸入被取消時則回傳 `null`。
 
