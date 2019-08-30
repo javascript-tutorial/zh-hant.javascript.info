@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Rewrite 'if' into '?'
+# 改寫 'if' 成 '?'
 
-Rewrite this `if` using the conditional operator `'?'`:
+使用條件運算子 `'?'` 改寫底下 `if`：
 
 ```js
 let result;
@@ -15,3 +15,4 @@ if (a + b < 4) {
   result = 'Over';
 }
 ```
+

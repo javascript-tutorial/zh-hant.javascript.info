@@ -1,8 +1,8 @@
-**Yes, it will.**
+**對，會喔。**
 
-Any string except an empty one (and `"0"` is not empty) becomes `true` in the logical context.
+任何非空字串 (`"0"` 不是空的) 在邏輯中都會變成 `true`。
 
-We can run and check:
+我們可以執行並檢查：
 
 ```js run
 if ("0") {

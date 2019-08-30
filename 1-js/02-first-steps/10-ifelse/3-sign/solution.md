@@ -1,5 +1,4 @@
 
-
 ```js run
 let value = prompt('Type a number', 0);
 
