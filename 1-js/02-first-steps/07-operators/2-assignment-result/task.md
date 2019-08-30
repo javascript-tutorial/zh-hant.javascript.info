@@ -2,12 +2,13 @@ importance: 3
 
 ---
 
-# Assignment result
+# 指定後的結果
 
-What are the values of `a` and `x` after the code below?
+下面程式碼執行後，`a` 和 `x` 的值會是什麼？
 
 ```js
 let a = 2;
 
 let x = 1 + (a *= 2);
 ```
+

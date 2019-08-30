@@ -1,5 +1,5 @@
-The answer is:
+答案是：
 
-- `a = 4` (multiplied by 2)
-- `x = 5` (calculated as 1 + 4)
+- `a = 4`（乘以 2）
+- `x = 5`（視為 1 + 4 計算）
 

@@ -1,5 +1,4 @@
-
-The answer is:
+答案是：
 
 - `a = 2`
 - `b = 2`
@@ -9,10 +8,10 @@ The answer is:
 ```js run no-beautify
 let a = 1, b = 1;
 
-alert( ++a ); // 2, prefix form returns the new value
-alert( b++ ); // 1, postfix form returns the old value
+alert( ++a ); // 2，前置型式回傳新的值
+alert( b++ ); // 1，後置型式回傳舊的值
 
-alert( a ); // 2, incremented once
-alert( b ); // 2, incremented once
+alert( a ); // 2，遞增一次
+alert( b ); // 2，遞增一次
 ```
 
