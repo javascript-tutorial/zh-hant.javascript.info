@@ -2,7 +2,7 @@ importance: 3
 
 ---
 
-# 使用 AND 的 alert 們，結果會是？
+# 這些使用 AND 的 alert 其輸出結果是？
 
 這段程式碼會顯示什麼？
 
