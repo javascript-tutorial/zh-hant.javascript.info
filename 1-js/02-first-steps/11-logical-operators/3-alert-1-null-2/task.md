@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# What is the result of AND?
+# AND 的結果是？
 
-What is this code going to show?
+底下程式碼會顯示什麼？
 
 ```js
 alert( 1 && null && 2 );

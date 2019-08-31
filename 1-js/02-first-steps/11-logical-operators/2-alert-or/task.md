@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# What's the result of OR'ed alerts?
+# 使用 OR 的 alert 們，結果會是？
 
-What will the code below output?
+底下程式碼會輸出什麼？
 
 ```js
 alert( alert(1) || 2 || alert(3) );
