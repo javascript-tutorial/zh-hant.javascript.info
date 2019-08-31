@@ -92,7 +92,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 ```smart
 一般來說，只有簡單的腳本適合直接寫在 HTML 中。比較複雜的腳本請放在獨立的檔案。 
 
-使用獨立的檔案的好處是，瀏覽器會下載它且將之存入[快取（cache）](https://en.wikipedia.org/wiki/Web_cache)。
+使用獨立的檔案的好處是，瀏覽器會下載它且將之存入 [快取（cache）](https://en.wikipedia.org/wiki/Web_cache)。
 
 而當其他頁面需要添加同一個腳本時，就會省略下載而從快取中拿取，這個腳本實際上只被下載了一次。
 
