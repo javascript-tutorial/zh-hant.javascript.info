@@ -1,41 +1,41 @@
-# Comparisons
+# 值的比較
 
-We know many comparison operators from maths:
+我們知道許多數學上的比較運算子：
 
-- Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
-- Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
-- Equals: `a == b` (please note the double equals sign `=`. A single symbol `a = b` would mean an assignment).
-- Not equals. In maths the notation is <code>&ne;</code>, but in JavaScript it's written as an assignment with an exclamation sign before it: <code>a != b</code>.
+- 大於/小於： <code>a &gt; b</code>, <code>a &lt; b</code>。
+- 大於等於/小於等於：<code>a &gt;= b</code>, <code>a &lt;= b</code>。
+- 等於：`a == b`（請注意這裡使用的是兩個等號 `=`。單一個等號 `a = b` 代表的是賦值。
+- 不等於：在數學中我們使用 <code>&ne;</code> 來表示，但在 JavaScript 中，是透過在單一個等號前方加上驚嘆號作為表示：<code>a != b</code>。
 
-## Boolean is the result
+## 比較結果為 Boolean 類型
 
-Like all other operators, a comparison returns a value. In this case, the value is a boolean.
+如同其他運算子，一個比較運算會回傳一個值。在這個例子中，其回傳值的類型為布林值（Boolean）。
 
-- `true` -- means "yes", "correct" or "the truth".
-- `false` -- means "no", "wrong" or "not the truth".
+- `true` -- 代表 "yes（是）", "correct（正確）" 或 "the truth（真理）"。
+- `false` -- means "no（否）", "wrong（錯誤）" 或 "not the truth（非真理）"。
 
-For example:
+範例:
 
 ```js run
-alert( 2 > 1 );  // true (correct)
-alert( 2 == 1 ); // false (wrong)
-alert( 2 != 1 ); // true (correct)
+alert( 2 > 1 );  // true (正確)
+alert( 2 == 1 ); // false (錯誤)
+alert( 2 != 1 ); // true (正確)
 ```
 
-A comparison result can be assigned to a variable, just like any value:
+和其他類型的值一樣，比較運算的結果可以被賦值給任意變數：
 
 ```js run
-let result = 5 > 4; // assign the result of the comparison
+let result = 5 > 4; // 將比較結果賦值給 result 變數
 alert( result ); // true
 ```
 
-## String comparison
+## 字串比較
 
-To see whether a string is greater than another, JavaScript uses the so-called "dictionary" or "lexicographical" order.
+在比較字串間的大小時，JavaScript 採用所謂 "字典" 或是 "辭典" 順序進行判斷。
 
-In other words, strings are compared letter-by-letter.
+換句話說，字串是按照其字母（符）逐個進行比較的。
 
-For example:
+範例:
 
 ```js run
 alert( 'Z' > 'A' ); // true
@@ -43,53 +43,53 @@ alert( 'Glow' > 'Glee' ); // true
 alert( 'Bee' > 'Be' ); // true
 ```
 
-The algorithm to compare two strings is simple:
+字串比較的演算法很簡單：
 
-1. Compare the first character of both strings.
-2. If the first character from the first string is greater (or less) than the other string's, then the first string is greater (or less) than the second. We're done.
-3. Otherwise, if both strings' first characters are the same, compare the second characters the same way.
-4. Repeat until the end of either string.
-5. If both strings end at the same length, then they are equal. Otherwise, the longer string is greater.
+1. 比較兩個字串的首位字符大小。
+2. 若其中一方的第一個字符大於（或小於）另一個字串的第一個字符，則該字串大於（或小於）另一個字串，演算法結束。
+3. 然而，若是兩個字串的首位字符相等，則取出各自的後一位字符，以同樣方法進行比較。
+4. 重複上述步驟直到任一字串率先用完所有字符。
+5. 如果兩個字串同時用完所有字符，也就是擁有相同長度，則可判定雙方為相等。否則，還有尚未比完字符的字串（長度較長）者為大。
 
-In the examples above, the comparison `'Z' > 'A'` gets to a result at the first step while the strings `"Glow"` and `"Glee"` are compared character-by-character:
+在上面的範例中，`'Z' > 'A'` 的比較在第一步揍就取得結果，而字串 `"Glow"` 和 `"Glee"` 則繼續按字符逐個比較：
 
-1. `G` is the same as `G`.
-2. `l` is the same as `l`.
-3. `o` is greater than `e`. Stop here. The first string is greater.
+1. `G` 和 `G` 相等。
+2. `l` 和 `l` 相等。
+3. `o` 大於 `e`。演算法停止。第一個字串較大。
 
-```smart header="Not a real dictionary, but Unicode order"
-The comparison algorithm given above is roughly equivalent to the one used in dictionaries or phone books, but it's not exactly the same.
+```smart header="並非真正的字典排序，而是 Unicode 順序"
+上述的比較演算法跟字典或是電話簿中的排序演算法約莫相同，但並非完全ㄧ樣。
 
-For instance, case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? The lowercase `"a"`. Why? Because the lowercase character has a greater index in the internal encoding table JavaScript uses (Unicode). We'll get back to specific details and consequences of this in the chapter <info:string>.
+舉例來說，大小寫是有差異的。一個大寫的 `"A"` 與小寫的 `"a"` 並不相等。哪一個更大呢？小寫的 `"a"`。原因在於小寫字符在 JavaScript 使用的內部編碼表中（Unicode），擁有較大的索引值。我們會在 <info:string> 章節中討論更多相關細節。
 ```
 
-## Comparison of different types
+## 不同類型間的比較
 
-When comparing values of different types, JavaScript converts the values to numbers.
+當比較不同類型的值時，JavaScript 會先將它們轉換為數字（number）再進行比較運算。
 
-For example:
+範例:
 
 ```js run
-alert( '2' > 1 ); // true, string '2' becomes a number 2
-alert( '01' == 1 ); // true, string '01' becomes a number 1
+alert( '2' > 1 ); // true, 字串 '2' 轉換為數字 2
+alert( '01' == 1 ); // true, 字串 '01' 轉換為數字 1
 ```
 
-For boolean values, `true` becomes `1` and `false` becomes `0`.
+至於布林數值，`true` 變成 `1`，而 `false` 變為 `0`.
 
-For example:
+範例:
 
 ```js run
 alert( true == 1 ); // true
 alert( false == 0 ); // true
 ```
 
-````smart header="A funny consequence"
-It is possible that at the same time:
+````smart header="有趣的結果"
+有時候，以下狀況會同時發生：
 
-- Two values are equal.
-- One of them is `true` as a boolean and the other one is `false` as a boolean.
+- 兩個數值是相同的.
+- 但若以布林值表示，其中一個是 `true`，另一個則為 `false`。
 
-For example:
+範例:
 
 ```js run
 let a = 0;
@@ -101,10 +101,10 @@ alert( Boolean(b) ); // true
 alert(a == b); // true!
 ```
 
-From JavaScript's standpoint, this result is quite normal. An equality check converts values using the numeric conversion (hence `"0"` becomes `0`), while the explicit `Boolean` conversion uses another set of rules.
+從 JavaScript 的觀點來看，這樣的結果蠻正常的。比較運算會將值先轉成數字後才進行比較（因此，`"0"` 變成了 `0`，而明確的 `Boolean` 函式轉換則採用不同的規則。
 ````
 
-## Strict equality
+## 嚴格相等
 
 A regular equality check `==` has a problem. It cannot differentiate `0` from `false`:
 
