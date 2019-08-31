@@ -11,7 +11,7 @@
 
 JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地方。
 
-舉例來說:
+舉例來說：
 
 ```html run height=100
 <!DOCTYPE HTML>
@@ -45,10 +45,10 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 
 `<script>` 標籤尚有一些不常用的屬性，你可以在陳年的程式碼中見到它們：
 
-`type` 屬性: <code>&lt;script <u>type</u>=...&gt;</code>
+`type` 屬性： <code>&lt;script <u>type</u>=...&gt;</code>
 : 在舊的 HTML4 標準中，`<script>` 標籤中的 `type` 屬性是必填的。通當它的值會是 `type="text/javascript"`。 現在這個屬性已經不是必填。而且在現今的 HTML 標準中，這個屬性的內在含義已經完全不同了。現在這個屬性可以被用於 JavaScript 模組（modules），這是一個進階的主題，我們會在另外的章節詳細介紹。
 
-`language` 屬性: <code>&lt;script <u>language</u>=...&gt;</code>
+`language` 屬性： <code>&lt;script <u>language</u>=...&gt;</code>
 : 這個屬性是為了表示此腳本所用的語言。在 JavaScript 如今已經變成了預設語言的情況下，這個屬性已沒有意義且不再使用了。
 
 腳本前後的註解
