@@ -126,7 +126,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 ## 總結
 
 - 使用 `<script>` 來添加 JavaScript 在頁面上。
-- `type` 及 `language` 屬性不是必填的。
+- 不再需要 `type` 及 `language` 屬性了。
 - 使用 `<script src="path/to/script.js"></script>` 來引入外部腳本。
 
 對於瀏覽器和腳本在頁面上的交互作用還有很多等著我們學習。但請記得，此部份的教程還是關注在 JavaScript 語言本身，我們暫時先不岔題到各個瀏覽器的實作。我們的確是用瀏覽器當做一種 JavaScript 的執行環境，只是因為在線上閱讀時更方便使用，但它只是多種環境的其中一種。
