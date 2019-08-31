@@ -52,7 +52,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 : 這個屬性是為了表示此腳本所用的語言。在 JavaScript 如今已經變成了預設語言的情況下，這個屬性已沒有意義且不再使用了。
 
 腳本前後的註解
-: 在真的很古早的書籍和指南中，你或許可以在 `<script> ` 標籤內看到註解（comments）像是：
+: 在真的很古早的書籍和指南中，你或許可以在 `<script>` 標籤內看到註解（comments），像是：
 
     ```html no-beautify
     <script type="text/javascript"><!--
