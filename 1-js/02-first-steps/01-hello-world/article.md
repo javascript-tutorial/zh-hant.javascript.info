@@ -73,7 +73,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 <script src="/path/to/script.js"></script>
 ```
 
-這邊的 `/path/to/script.js` 代表從網站根目錄開始，腳本檔案的絕對路徑。我們也可以提供相對於當前頁面的相對路徑。舉例來說，`src="script.js"` 指的前面資料夾中的一個 `"script.js"` 檔案。
+這邊的 `/path/to/script.js` 代表從網站根目錄開始，腳本檔案的絕對路徑，我們也可以提供相對於當前頁面的相對路徑。舉例來說，`src="script.js"` 指的是目前資料夾中的一個 `"script.js"` 檔案。
 
 我們也可以提供完整的 URL，例如：
 
