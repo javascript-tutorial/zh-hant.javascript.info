@@ -158,8 +158,7 @@ alert( 0 === false ); // false，因為類型不同。
 
 ### 奇怪的結果：null vs 0
 
-
-Let's compare `null` with a zero:
+我們來比較 `null` 與 0：
 
 ```js run
 alert( null > 0 );  // (1) false
@@ -167,15 +166,15 @@ alert( null == 0 ); // (2) false
 alert( null >= 0 ); // (3) *!*true*/!*
 ```
 
-Mathematically, that's strange. The last result states that "`null` is greater than or equal to zero", so in one of the comparisons above it must be `true`, but they are both false.
+從數學的角度來看，上面的結果很奇怪。最後一行程式碼的執行結果顯示 "`null` 大於等於 0"，既然如此，第一與第二行程式碼中，必定有一個的結果為 `true`，然而事實表明其結果皆為 false。
 
-The reason is that an equality check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, treating it as `0`. That's why (3) `null >= 0` is true and (1) `null > 0` is false.
+之所以會出現這個奇怪的結果，是因為相等性檢查 `==` 與比較運算子 `> < >= <=` 的運作邏輯是不同的。比較運算會將 `null` 轉成數字，將其視為 `0`。這就是為何 （3）`null >= 0` 的結果為 true，而（1）`null > 0` 為 false。
 
-On the other hand, the equality check `==` for `undefined` and `null` is defined such that, without any conversions, they equal each other and don't equal anything else. That's why (2) `null == 0` is false.
+另一方面，`undefined` 與 `null` 在相等性檢查中，被定義為不進行任何類型轉換，且它們除了彼此相等外，不會相等於其他類型的值。這解釋了為什麼（2）`null == 0` 的結果是 false。
 
-### An incomparable undefined
+### 無法比較的 undefined
 
-The value `undefined` shouldn't be compared to other values:
+`undefined` 不應該用來與任何值比較：
 
 ```js run
 alert( undefined > 0 ); // false (1)
@@ -183,25 +182,25 @@ alert( undefined < 0 ); // false (2)
 alert( undefined == 0 ); // false (3)
 ```
 
-Why does it dislike zero so much? Always false!
+為何它如此討厭 0？總是回傳 false！
 
-We get these results because:
+原因如下：
 
-- Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN` and `NaN` is a special numeric value which returns `false` for all comparisons.
-- The equality check `(3)` returns `false` because `undefined` only equals `null`, `undefined`, and no other value.
+- 比較式 `（1）`與`（2）`回傳 `false`，因為 `undefined` 在進行比較時，被轉換成了 `NaN`，而 `NaN` 是一個特殊的數字類型，它與任何值比較都會回傳 `false`。
+- 相等性檢查 `（3）`回傳 `false`，因為在定義中， `undefined` 只與 `null` 與 `undefined` 相等，不會與其他值相等。
 
-### Evade problems
+### 避免錯誤
 
-Why did we go over these examples? Should we remember these peculiarities all the time? Well, not really. Actually, these tricky things will gradually become familiar over time, but there's a solid way to evade problems with them:
+為何我們要研究上述範例呢？我們應該要時刻記住這些奇怪的規則嗎？其實並不需要。實際上，隨著時間，你會對這些奇怪的事情漸漸熟悉，但有個更為可靠的方式可以用來避免這方面的問題：
 
-Just treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
+除了嚴格相等 `===` 以外，其他凡是有 `undefined/null` 參與的比較運算，多放點心思注意一下。
 
-Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you're really sure of what you're doing. If a variable can have these values, check for them separately.
+除非你非常清楚自己在做什麼，否則不要使用 `>= > < <=` 去比較一個可能為 `null/undefined` 的變數。如果一個變數可能會是 `null/undefined`，仔細地檢查它的實際數值情況。
 
-## Summary
+## 結論
 
-- Comparison operators return a boolean value.
-- Strings are compared letter-by-letter in the "dictionary" order.
-- When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
-- The values `null` and `undefined` equal `==` each other and do not equal any other value.
-- Be careful when using comparisons like `>` or `<` with variables that can occasionally be `null/undefined`. Checking for `null/undefined` separately is a good idea.
+- 比較運算子總是回傳布林值。
+- 字串間的比較是按照 "字典" 順序逐個字符（母）比較。
+- 當不同類型的值互相比較時，他們會先被轉換成數字類型（不包含嚴格相等檢查）再進行比較。
+- 在非嚴格相等 `==` 下，`null` 與 `undefined` 彼此相等且不等於任何其他值。
+- 在使用 `>` 或 `<` 比較時，要小心變數可能為 `null/undefined` 的情況。個別檢查變數是否為 `null/undefined` 會是個好方法。
