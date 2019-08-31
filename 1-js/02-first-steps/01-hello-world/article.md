@@ -125,7 +125,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 
 ## 總結
 
-- 使用 `<script>` 來添加 JavaScript 在頁面上。
+- 使用 `<script>` 標籤在頁面上添加 JavaScript 程式碼。
 - 不再需要 `type` 及 `language` 屬性了。
 - 使用 `<script src="path/to/script.js"></script>` 來引入外部腳本。
 
