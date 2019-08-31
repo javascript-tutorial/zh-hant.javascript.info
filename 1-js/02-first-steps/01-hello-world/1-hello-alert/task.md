@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Show an alert
+# 顯示一個提示語
 
-Create a page that shows a message "I'm JavaScript!".
+創建一個頁面來顯示 "I'm JavaScript!" 提示語。
 
-Do it in a sandbox, or on your hard drive, doesn't matter, just ensure that it works.
+寫在沙盒或是你的硬碟中都沒有關係，只要你確保它能夠正確運行。
 
 [demo src="solution"]
 
