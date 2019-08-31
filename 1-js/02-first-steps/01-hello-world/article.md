@@ -67,7 +67,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 
 如果我們有大量的 JavaScript 程式碼，我們可以將它們放在一個單獨的檔案中。
 
-腳本檔案可以通過 `scr` 屬性添加到 HTML 檔案中。
+腳本檔案可以通過 `src` 屬性添加到 HTML 檔案中：
 
 ```html
 <script src="/path/to/script.js"></script>
