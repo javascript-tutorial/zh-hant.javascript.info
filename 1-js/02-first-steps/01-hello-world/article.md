@@ -2,9 +2,9 @@
 
 這部份的教學是關於 JavaScript 的核心，討論的是這個語言自身。
 
-話雖如此，我們還是需要一個執行環境來運行我們的腳本 (scripts)，而由於本書是線上教學，瀏覽器做為執行環境看起來是一個好選擇。我們會盡可能地減少僅限於瀏覽器的指令 (像是 `alert`)，讓你在其他環境 (像是 Node.js) 運行時，不必多花心力在這些指令上面。有關於在 JavaScript 在瀏覽器中運行的細節會在[之後的章節](/ui)介紹。
+話雖如此，我們還是需要一個執行環境來運行我們的腳本（scripts），而由於本書是線上教學，瀏覽器做為執行環境看起來是一個好選擇。我們會盡可能地減少僅限於瀏覽器的指令（像是 `alert`），讓你在其他環境（像是 Node.js）運行時，不必多花心力在這些指令上面。有關於在 JavaScript 在瀏覽器中運行的細節會在[之後的章節](/ui)介紹。
 
-首先，讓我們看看如何在一個網頁中添加腳本。在伺服器端 (像是 Node.js)，你可以用 `"node my.js"` 來運行你的指令。
+首先，讓我們看看如何在一個網頁中添加腳本。在伺服器端（像是 Node.js），你可以用 `"node my.js"` 來運行你的指令。
 
 ## "script" 標籤
 
@@ -42,16 +42,16 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 
 ## 現代化標記
 
-`<script>` 標籤尚有一些不常用的屬性，你可以在陳年的程式碼中見到它們:
+`<script>` 標籤尚有一些不常用的屬性，你可以在陳年的程式碼中見到它們：
 
 `type` 屬性: <code>&lt;script <u>type</u>=...&gt;</code>
-: 在舊的 HTML4 標準中，`<script>` 標籤中的 `type` 屬性是必填的。通當它的值會是 `type="text/javascript"`。 現在這個屬性已經不是必填。而且在現今的 HTML 標準中，這個屬性的內在含義已經完全不同了。現在這個屬性可以被用於 JavaScript 模組 (modules)，這是一個進階的主題，我們會在另外的章節詳細介紹。
+: 在舊的 HTML4 標準中，`<script>` 標籤中的 `type` 屬性是必填的。通當它的值會是 `type="text/javascript"`。 現在這個屬性已經不是必填。而且在現今的 HTML 標準中，這個屬性的內在含義已經完全不同了。現在這個屬性可以被用於 JavaScript 模組（modules），這是一個進階的主題，我們會在另外的章節詳細介紹。
 
 `language` 屬性: <code>&lt;script <u>language</u>=...&gt;</code>
 : 這個屬性是為了表示此腳本所用的語言。在 JavaScript 如今已經變成了預設語言的情況下，這個屬性已沒有意義且不再使用了。
 
 腳本前後的註解
-: In really ancient books and guides, you may find comments inside `<script>` tags, like this:
+: 在真的很古早的書籍和指南中，你或許可以在 `<script> ` 標籤內看到註解（comments）像是：
 
     ```html no-beautify
     <script type="text/javascript"><!--
@@ -59,28 +59,27 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
     //--></script>
     ```
 
-    This trick isn't used in modern JavaScript. These comments hid JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+    此用法在現代的 JavaScript 已不復見。這些註解是為了替不支援 `<script>` 標籤的瀏覽器隱藏 JavaScript 程式碼。而由於近 15 年來的瀏覽器都支援 JavaScript，你可以用這種註解來分辨真正過時的程式碼。
 
+## 外部腳本
 
-## External scripts
+如果我們有大量的 JavaScript 程式碼，我們可以將它們放在一個單獨的檔案中。
 
-If we have a lot of JavaScript code, we can put it into a separate file.
-
-Script files are attached to HTML with the `src` attribute:
+腳本檔案可以通過 `scr` 屬性添加到 HTML 檔案中。
 
 ```html
 <script src="/path/to/script.js"></script>
 ```
 
-Here, `/path/to/script.js` is an absolute path to the script from the site root. One can also provide a relative path from the current page. For instance, `src="script.js"` would mean a file `"script.js"` in the current folder.
+這邊的 `/path/to/script.js` 代表從網站根目錄開始，腳本檔案的絕對路徑。我們也可以提供相對於當前頁面的相對路徑。舉例來說，`src="script.js"` 指的前面資料夾中的一個 `"script.js"` 檔案。
 
-We can give a full URL as well. For instance:
+我們也可以提供完整的 URL，例如：
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
 ```
 
-To attach several scripts, use multiple tags:
+如果要添加多個腳本，請使用多個標籤：
 
 ```html
 <script src="/js/script1.js"></script>
@@ -89,29 +88,29 @@ To attach several scripts, use multiple tags:
 ```
 
 ```smart
-As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
+一般來說，只有簡單的腳本適合直接寫在 HTML 中。比較複雜的腳本請放在獨立的檔案。 
 
-The benefit of a separate file is that the browser will download it and store it in its [cache](https://en.wikipedia.org/wiki/Web_cache).
+使用獨立的檔案的好處是，瀏覽器會下載它且將之存入[快取（cache）](https://en.wikipedia.org/wiki/Web_cache)。
 
-Other pages that reference the same script will take it from the cache instead of downloading it, so the file is actually downloaded only once.
+而當其他頁面需要添加同一個腳本時，就會省略下載而從快取中拿取，這個腳本實際上只被下載了一次。
 
-That reduces traffic and makes pages faster.
+這可以減少流量而使頁面加載變快。
 ```
 
-````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag can't have both the `src` attribute and code inside.
+````warn header="如果 `src` 屬性被設置了，`script` 標籤中的內容將會被忽略"
+`<script>` 標籤不能同時含有 `src` 屬性以及包在其中的內容。
 
-This won't work:
+這樣寫不會有作用：
 
 ```html
 <script *!*src*/!*="file.js">
-  alert(1); // the content is ignored, because src is set
+  alert(1); // 因為 src 被設置了，此段內容將會被忽略
 </script>
 ```
 
-We must choose either an external `<script src="…">` or a regular `<script>` with code.
+我們只能在二者中擇一，選擇引用外部資源像是 `<script src="…">` ，或是直接編寫程式碼在 `<script>` 中。
 
-The example above can be split into two scripts to work:
+如果要讓上方的範例可以正常運行，請分開寫成兩段：
 
 ```html
 <script src="file.js"></script>
@@ -123,9 +122,8 @@ The example above can be split into two scripts to work:
 
 ## 總結
 
-- We can use a `<script>` tag to add JavaScript code to a page.
-- The `type` and `language` attributes are not required.
-- A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
+- 使用 `<script>` 來添加 JavaScript 在頁面上。
+- `type` 及 `language` 屬性不是必填的。
+- 使用 `<script src="path/to/script.js"></script>` 來引入外部腳本。
 
-
-There is much more to learn about browser scripts and their interaction with the webpage. But let's keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn't distract ourselves with browser-specific implementations of it. We'll be using the browser as a way to run JavaScript, which is very convenient for online reading, but only one of many.
+對於瀏覽器和腳本在頁面上的交互作用還有很多等著我們學習。但請記得，此部份的教程還是關注在 JavaScript 語言本身，我們暫時先不岔題到各個瀏覽器的實作。我們的確是用瀏覽器當做一種 JavaScript 的執行環境，只是因為在在線閱讀時更方便使用，但它只是多種環境的其中一種。
