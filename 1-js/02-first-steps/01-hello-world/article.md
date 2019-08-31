@@ -6,6 +6,7 @@
 
 首先，讓我們看看如何在一個網頁中添加腳本。在伺服器端（像是 Node.js），你可以用 `"node my.js"` 來運行你的指令。
 
+
 ## "script" 標籤
 
 JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地方。
@@ -60,6 +61,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
     ```
 
     此用法在現代的 JavaScript 已不復見。這些註解是為了替不支援 `<script>` 標籤的瀏覽器隱藏 JavaScript 程式碼。而由於近 15 年來的瀏覽器都支援 JavaScript，你可以用這種註解來分辨真正過時的程式碼。
+
 
 ## 外部腳本
 
@@ -119,6 +121,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 </script>
 ```
 ````
+
 
 ## 總結
 
