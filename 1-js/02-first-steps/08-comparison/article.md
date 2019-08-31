@@ -106,60 +106,58 @@ alert(a == b); // true!
 
 ## 嚴格相等
 
-A regular equality check `==` has a problem. It cannot differentiate `0` from `false`:
+普通的相等性檢查 `==` 存在一個問題，它分辨不出 `0` 與 `false` 的差別：
 
 ```js run
 alert( 0 == false ); // true
 ```
 
-The same thing happens with an empty string:
+同樣無法區別空字串與 `false`：
 
 ```js run
 alert( '' == false ); // true
 ```
 
-This happens because operands of different types are converted to numbers by the equality operator `==`. An empty string, just like `false`, becomes a zero.
+這是因為在比較不同類型的值時，`==` 會將其兩側的值轉換為數字。空字串與 `false` 都會變成 0。
 
-What to do if we'd like to differentiate `0` from `false`?
+如果我們想要區分 `0` 與 `false` 的話該怎麼做呢？
 
-**A strict equality operator `===` checks the equality without type conversion.**
+**嚴格相等運算子 `===` 在比較運算時不進行類型轉換.**
 
-In other words, if `a` and `b` are of different types, then `a === b` immediately returns `false` without an attempt to convert them.
+換句話說，如果 `a` 與 `b` 屬於不同類型，那 `a === b` 會立即回傳 `false`，並不會執行任何類型轉換。
 
-Let's try it:
+讓我們試試：
 
 ```js run
-alert( 0 === false ); // false, because the types are different
+alert( 0 === false ); // false，因為類型不同。
 ```
 
-There is also a "strict non-equality" operator `!==` analogous to `!=`.
+同樣的，與 "不相等" 符號 `!=` 類似，"嚴格不相等" 表示為 `!==`。
 
-The strict equality operator is a bit longer to write, but makes it obvious what's going on and leaves less room for errors.
+嚴格相等運算子寫起來有點長，但它很清楚的表示了比較的意圖，並降低出錯的機率。
 
-## Comparison with null and undefined
+## 涉及 null 和 undefined 的比較
 
-There's a non-intuitive behavior when `null` or `undefined` are compared to other values.
+當使用 `null` 或 `undefined` 與其他值進行比較時，常會出現意料之外的結果。
 
-For a strict equality check `===`
-: These values are different, because each of them is a different type.
+若以嚴格相等 `===` 比較 `null` 與 `undefined`：它們是不相等的，因為各自屬於不同類型。
 
     ```js run
     alert( null === undefined ); // false
     ```
 
-For a non-strict check `==`
-: There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but not any other value.
+而若以非嚴格相等 `==` 比較兩者：JavaScript 存在一個特別的規則，讓它們就像是 "一對甜蜜情侶"：會判定它們相等於對方（在非嚴格相等 `==` 下），但並不相等於任何其他值。
 
     ```js run
     alert( null == undefined ); // true
     ```
 
-For maths and other comparisons `< > <= >=`
-: `null/undefined` are converted to numbers: `null` becomes `0`, while `undefined` becomes `NaN`.
+對於數學式或其他比較方法 `< > <= >=`：`null/undefined` 會轉換為數字：`null` 變成 `0`，而 `undefined` 變成 `NaN`。
 
-Now let's see some funny things that happen when we apply these rules. And, what's more important, how to not fall into a trap with them.
+接著讓我們來看看，這些規則會帶來哪些有趣的現象。同時，更重要的是，我們該如何避免掉入這些陷阱。
 
-### Strange result: null vs 0
+### 奇怪的結果：null vs 0
+
 
 Let's compare `null` with a zero:
 
