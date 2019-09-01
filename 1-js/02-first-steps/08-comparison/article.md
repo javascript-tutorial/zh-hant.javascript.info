@@ -140,7 +140,8 @@ alert( 0 === false ); // false，因為類型不同。
 
 當使用 `null` 或 `undefined` 與其他值進行比較時，常會出現意料之外的結果。
 
-若以嚴格相等 `===` 比較 `null` 與 `undefined`：它們是不相等的，因為各自屬於不同類型。
+若以嚴格相等 `===` 做比較
+: `null` 與 `undefined` 是不相等的，因為各自屬於不同類型。
 
     ```js run
     alert( null === undefined ); // false
