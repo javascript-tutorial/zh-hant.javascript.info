@@ -65,7 +65,7 @@ alert( 'Bee' > 'Be' ); // true
 
 ## 不同類型間的比較
 
-當比較不同類型的值時，JavaScript 會先將它們轉換為數字（number）再進行比較運算。
+當比較不同類型的值時，JavaScript 會先將它們轉換為數值（number）再進行比較。
 
 範例:
 
