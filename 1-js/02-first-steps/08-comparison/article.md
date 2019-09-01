@@ -154,7 +154,8 @@ alert( 0 === false ); // false，因為類型不同。
     alert( null == undefined ); // true
     ```
 
-對於數學式或其他比較方法 `< > <= >=`：`null/undefined` 會轉換為數字：`null` 變成 `0`，而 `undefined` 變成 `NaN`。
+對於數學式或其他比較方法 `< > <= >=`
+: `null/undefined` 會轉換為數值：`null` 變成 `0`，而 `undefined` 變成 `NaN`。
 
 接著讓我們來看看，這些規則會帶來哪些有趣的現象。同時，更重要的是，我們該如何避免掉入這些陷阱。
 
