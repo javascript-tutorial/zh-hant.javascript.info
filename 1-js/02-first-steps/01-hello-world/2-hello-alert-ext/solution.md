@@ -1,8 +1,8 @@
-The HTML code:
+HTML 程式碼：
 
 [html src="index.html"]
 
-For the file `alert.js` in the same folder:
+使用在同一個資料夾中的 `alert.js`：
 
 [js src="alert.js"]
 
