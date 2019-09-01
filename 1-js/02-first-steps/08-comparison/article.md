@@ -25,7 +25,7 @@ alert( 2 != 1 ); // true（正確）
 和其他類型的值一樣，比較運算的結果可以被指定給任意變數：
 
 ```js run
-let result = 5 > 4; // 將比較結果賦值給 result 變數
+let result = 5 > 4; // 將比較結果指定給 result 變數
 alert( result ); // true
 ```
 
