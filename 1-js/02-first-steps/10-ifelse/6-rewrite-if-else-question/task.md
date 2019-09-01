@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Rewrite 'if..else' into '?'
+# 改寫 'if..else' 成 '?'
 
-Rewrite `if..else` using multiple ternary operators `'?'`.
+使用多個三元運算子 `'?'` 改寫 `if...else`。
 
-For readability, it's recommended to split the code into multiple lines.
+為了閱讀性，建議把程式碼拆成多行。
 
 ```js
 let message;
@@ -21,3 +21,4 @@ if (login == 'Employee') {
   message = '';
 }
 ```
+
