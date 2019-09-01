@@ -2,7 +2,7 @@
 
 我們知道許多數學上的比較運算子：
 
-- 大於/小於： <code>a &gt; b</code>, <code>a &lt; b</code>。
+- 大於/小於：<code>a &gt; b</code>, <code>a &lt; b</code>。
 - 大於等於/小於等於：<code>a &gt;= b</code>, <code>a &lt;= b</code>。
 - 等於：`a == b`（請注意這裡使用的是兩個等號 `=`。單一個等號 `a = b` 代表的是賦值。
 - 不等於：在數學中我們使用 <code>&ne;</code> 來表示，但在 JavaScript 中，是透過在單一個等號前方加上驚嘆號作為表示：<code>a != b</code>。
