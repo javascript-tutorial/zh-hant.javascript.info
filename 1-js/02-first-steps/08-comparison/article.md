@@ -18,7 +18,7 @@
 
 ```js run
 alert( 2 > 1 );  // true（正確）
-alert( 2 == 1 ); // false (錯誤)
+alert( 2 == 1 ); // false（錯誤）
 alert( 2 != 1 ); // true (正確)
 ```
 
