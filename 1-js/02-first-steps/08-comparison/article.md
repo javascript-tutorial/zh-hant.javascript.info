@@ -35,7 +35,7 @@ alert( result ); // true
 
 換句話說，字串是按照其字母（符）逐個進行比較的。
 
-範例:
+範例：
 
 ```js run
 alert( 'Z' > 'A' ); // true
