@@ -187,7 +187,7 @@ alert( undefined == 0 ); // false (3)
 原因如下：
 
 - 比較式 `（1）`與`（2）`回傳 `false`，因為 `undefined` 在進行比較時，被轉換成了 `NaN`，而 `NaN` 是一個特殊的數字類型，它與任何值比較都會回傳 `false`。
-- 相等性檢查 `（3）`回傳 `false`，因為在定義中， `undefined` 只與 `null` 與 `undefined` 相等，不會與其他值相等。
+- 相等性檢查 `（3）`回傳 `false`，因為在定義中， `undefined` 只與 `null` 和 `undefined` 相等，不會與其他值相等。
 
 ### 避免錯誤
 
