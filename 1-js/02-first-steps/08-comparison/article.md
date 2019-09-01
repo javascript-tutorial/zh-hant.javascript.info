@@ -70,7 +70,7 @@ alert( 'Bee' > 'Be' ); // true
 範例:
 
 ```js run
-alert( '2' > 1 ); // true, 字串 '2' 轉換為數字 2
+alert( '2' > 1 ); // true, 字串 '2' 轉換為數值 2
 alert( '01' == 1 ); // true, 字串 '01' 轉換為數字 1
 ```
 
