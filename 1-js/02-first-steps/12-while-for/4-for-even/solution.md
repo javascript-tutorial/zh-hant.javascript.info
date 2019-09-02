@@ -1,5 +1,4 @@
 
-
 ```js run demo
 for (let i = 2; i <= 10; i++) {
   if (i % 2 == 0) {
@@ -8,4 +7,5 @@ for (let i = 2; i <= 10; i++) {
 }
 ```
 
-We use the "modulo" operator `%` to get the remainder and check for the evenness here.
+我們使用 "模數（modulo）" 運算子 `%` 來得到餘數，並確認其偶數的性質。
+

@@ -1,6 +1,6 @@
-There are many algorithms for this task.
+有許多演算法可以完成這次課題。
 
-Let's use a nested loop:
+使用一個巢狀迴圈的虛擬碼：
 
 ```js
 For each i in the interval {
@@ -10,7 +10,7 @@ For each i in the interval {
 }
 ```
 
-The code using a label:
+使用標籤的程式碼：
 
 ```js run
 let n = 10;
@@ -26,4 +26,5 @@ for (let i = 2; i <= n; i++) { // for each i...
 }
 ```
 
-There's a lot of space to opimize it. For instance, we could look for the divisors from `2` to square root of `i`. But anyway, if we want to be really efficient for large intervals, we need to change the approach and rely on advanced maths and complex algorithms like [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) etc.
+有很多可以優化的空間。舉個例，我們可以從 `2` 到 `i` 的平方根中尋找除數。但總之，若我們想要在大區間內具有高效運算，我們必須改變作法，且依賴高階數學與複雜演算法，像是：[Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve)、[General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) 等等。
+

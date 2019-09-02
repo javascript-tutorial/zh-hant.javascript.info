@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# Last loop value
+# 迴圈最後的值
 
-What is the last value alerted by this code? Why?
+程式碼最後顯示的值是？為什麼？
 
 ```js
 let i = 3;
@@ -13,3 +13,4 @@ while (i) {
   alert( i-- );
 }
 ```
+
