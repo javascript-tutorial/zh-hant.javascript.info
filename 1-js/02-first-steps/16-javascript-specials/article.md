@@ -1,23 +1,24 @@
-# JavaScript specials
+# JavaScript 特性
 
-This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
+本章節簡要回顧我們到目前為止所學的 JavaScript 特性，並針對一些細節特別注意。
 
-## Code structure
+## 程式碼結構
 
-Statements are delimited with a semicolon:
+
+述句（Statements）用分號隔開:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
 ```
 
-Usually, a line-break is also treated as a delimiter, so that would also work:
+通常，換行符號也被視為分隔符號， 因此也能這樣分隔述句：
 
 ```js run no-beautify
 alert('Hello')
 alert('World')
 ```
 
-That's called "automatic semicolon insertion". Sometimes it doesn't work, for instance:
+這是所謂的 "自動分號插入"。但有時它不起作用，例如：
 
 ```js run
 alert("There will be an error after this message")
@@ -25,27 +26,28 @@ alert("There will be an error after this message")
 [1, 2].forEach(alert)
 ```
 
-Most codestyle guides agree that we should put a semicolon after each statement.
+大多數程式碼風格指南都認為我們應該在每個述句後加上分號。
 
-Semicolons are not required after code blocks `{...}` and syntax constructs with them like loops:
+在程式碼區塊 `{...}` 和迴圈述句後不需要加上分號：
 
 ```js
 function f() {
-  // no semicolon needed after function declaration
+  // 函數宣告後不需要分號
 }
 
 for(;;) {
-  // no semicolon needed after the loop
+  // 迴圈述句後不需要分號
 }
 ```
 
-...But even if we can put an "extra" semicolon somewhere, that's not an error. It will be ignored.
+...但即使我們在某處放了 "額外" 的分號，這也不會造成錯誤。它會被忽略。
 
-More in: <info:structure>.
+更多資訊： <info:structure>。
 
-## Strict mode
 
-To fully enable all features of modern JavaScript, we should start scripts with `"use strict"`.
+## 嚴格模式（Strict mode）
+
+為了完全啟用現在 JavaScript 的所有功能，我們應該使用 `"use strict"` 指令。
 
 ```js
 'use strict';
@@ -53,50 +55,51 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 ...
 ```
 
-The directive must be at the top of a script or at the beginning of a function body.
+該指令必須放在 JavaScript 腳本的頂部或是函數的開頭。
 
-Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
+沒有使用 `"use strict"`，一切依然能正常運行，但是某些特性會以 "兼容" 舊式的方式表現，我們通常偏好使用現代的方式。
 
-Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
+有些語言的現代功能與特性（像是我們將來要學的類別）會隱式地啟用嚴格模式。
 
-More in: <info:strict-mode>.
+更多資訊： <info:strict-mode>.
 
-## Variables
+## 變數（Variables）
 
-Can be declared using:
+可以用下列方式聲明變數：
 
 - `let`
-- `const` (constant, can't be changed)
-- `var` (old-style, will see later)
+- `const` （常數，宣告後不可改變）
+- `var` （舊式，稍後會看到）
 
-A variable name can include:
-- Letters and digits, but the first character may not be a digit.
-- Characters `$` and `_` are normal, on par with letters.
-- Non-Latin alphabets and hieroglyphs are also allowed, but commonly not used.
+一個變數名稱可以包含：
+- 字母與數字，但變數名的第一個字元不能是數字。
+- 字元 `$` 和 `_` 是允許且正常的，用法同字母。
+- 非拉丁字母與象形文字也是允許的，但通常不會使用。
 
-Variables are dynamically typed. They can store any value:
+變數的值是可以動態更改其類型的，他們可以儲存任何的值：
 
 ```js
 let x = 5;
 x = "John";
 ```
 
-There are 7 data types:
+有 7 種資料類型：
 
-- `number` for both floating-point and integer numbers,
-- `string` for strings,
-- `boolean` for logical values: `true/false`,
-- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
-- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
-- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
+- `number` 可以是浮點數或是整數。
+- `string` 字串類型。
+- `boolean` 表達邏輯的值： `true/false`。
+- `null` -- 具有單一值 `null` 的類型，代表 "空的" 或 "不存在"。
+- `undefined` -- 具有單一值 `undefined` 的類型，代表 "未指定"。
+- `object` 與 `symbol` -- 用於複雜的資料結構和唯一識別符號，我們還沒學習這個類型。
 
-The `typeof` operator returns the type for a value, with two exceptions:
+`typeof` 運算子會回傳值的類型，但有兩個例外：
+
 ```js
-typeof null == "object" // error in the language
-typeof function(){} == "function" // functions are treated specially
+typeof null == "object" // 語言中的錯誤
+typeof function(){} == "function" // 函數是特別的類型
 ```
 
-More in: <info:variables> and <info:types>.
+更多資訊： <info:variables> 和 <info:types>。
 
 ## Interaction
 
