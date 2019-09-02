@@ -12,7 +12,11 @@
 
 在 JavaScript 中建立一個變數要使用 `let` 關鍵字。
 
+<<<<<<< HEAD
 底下的述語建立（或者說：*宣告* 或 *定義*）了一個名為 "message" 的變數：
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 ```js
 let message;

@@ -10,7 +10,7 @@
 在這章節，我們將不會轉換物件類型，我們會從原生類型開始說起。等晚點我們學完物件後，會在章節 <info:object-toprimitive> 中談到物件是如何被轉換的。
 ```
 
-## ToString
+## To String
 
 字串轉換發生在我們需要得到某個值的字串型態時。
 
@@ -30,7 +30,7 @@ alert(typeof value); // string
 
 字串轉換通常很直觀，一個 `false` 變成 `"false"`，`null` 變成 `"null"` 等。
 
-## ToNumber
+## To Number
 
 數值轉換自動發生在數學運算函式和表達式。
 
@@ -94,7 +94,7 @@ alert( '1' + 2 ); // '12'（左側為字串）
 這只發生在當至少一側的引數是字串時，否則值都會被轉為數值。
 ````
 
-## ToBoolean
+## To Boolean
 
 布林轉換是最簡單的一個。
 
@@ -130,9 +130,15 @@ alert( Boolean(" ") ); // 空白，也是 true（任何非空字串都是 true�
 
 **`ToString`** -- 用於當我們輸出某些東西時，可使用 `String(value)` 來轉換，原生值的字串轉換通常是很直觀的。
 
+<<<<<<< HEAD
 **`ToNumber`** -- 用於數學運算，可使用 `Number(value)` 來轉換。
 
 按照以下規則轉換：
+=======
+**`To String`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+
+**`To Number`** -- Occurs in math operations. Can be performed with `Number(value)`.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 | 值 | 會變成... |
 |-------|-------------|
@@ -141,7 +147,11 @@ alert( Boolean(" ") ); // 空白，也是 true（任何非空字串都是 true�
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | 字串 "依原樣" 讀取並忽略頭尾空白，若為空字串則為 `0`，有錯誤則成為 `NaN`。 |
 
+<<<<<<< HEAD
 **`ToBoolean`** -- 用於邏輯運算，可使用 `Boolean(value)` 來轉換。
+=======
+**`To Boolean`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 規則是：
 
