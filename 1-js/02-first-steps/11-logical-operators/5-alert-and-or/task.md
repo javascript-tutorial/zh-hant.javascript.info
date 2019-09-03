@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# The result of OR AND OR
+# OR AND OR 的結果
 
-What will the result be?
+這樣的結果會是？
 
 ```js
 alert( null || 2 && 3 || 4 );

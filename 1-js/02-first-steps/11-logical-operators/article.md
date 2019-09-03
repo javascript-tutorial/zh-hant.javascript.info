@@ -1,24 +1,24 @@
-# Logical operators
+# 邏輯運算子
 
-There are three logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
+JavaScript 中有三種邏輯運算子：`||`（OR）、`&&`（AND）和 `!`（NOT）。
 
-Although they are called "logical", they can be applied to values of any type, not only boolean. Their result can also be of any type.
+雖然被稱為 "邏輯"，這些運算子也可被用於不只是布林類型的任何值上，結果亦可能是任何類型。
 
-Let's see the details.
+讓我們來看看細節吧。
 
-## || (OR)
+## ||（OR）
 
-The "OR" operator is represented with two vertical line symbols:
+"OR" 運算子用兩條垂直線符號表示：
 
 ```js
 result = a || b;
 ```
 
-In classical programming, the logical OR is meant to manipulate boolean values only. If any of its arguments are `true`, it returns `true`, otherwise it returns `false`.
+在傳統的程式設計中，邏輯 OR 意味著只操作布林值，如果它的任一個引數是 `true` 則回傳 `true`，否則回傳 `false`。
 
-In JavaScript, the operator is a little bit trickier and more powerful. But first, let's see what happens with boolean values.
+在 JavaScript 中，這個運算子有點棘手，但相對有更多功用，首先，讓我們看看用在布林值上會發生什麼事。
 
-There are four possible logical combinations:
+有四種可能的邏輯組合：
 
 ```js run
 alert( true || true );   // true
@@ -27,21 +27,21 @@ alert( true || false );  // true
 alert( false || false ); // false
 ```
 
-As we can see, the result is always `true` except for the case when both operands are `false`.
+如我們所見，除了兩個運算元都是 `false` 的情況以外，剩下的結果都是 `true`。
 
-If an operand is not a boolean, it's converted to a boolean for the evaluation.
+如果某個運算元不是布林值，它會被轉成布林值再進行核定。
 
-For instance, the number `1` is treated as `true`, the number `0` as `false`:
+舉個例，數值 `1` 被視為 `true`，而數值 `0` 則為 `false`：
 
 ```js run
-if (1 || 0) { // works just like if( true || false )
+if (1 || 0) { // 運作起來就像 if( ture || false )
   alert( 'truthy!' );
 }
 ```
 
-Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is `true`.
+大部分時間，OR `||` 被用於 `if` 述語中來測試給予的 *任何* 條件是否皆為 `true`。
 
-For example:
+例如：
 
 ```js run
 let hour = 9;
@@ -53,57 +53,57 @@ if (hour < 10 || hour > 18) {
 }
 ```
 
-We can pass more conditions:
+我們也可傳入更多條件：
 
 ```js run
 let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'The office is closed.' ); // it is the weekend
+  alert( 'The office is closed.' ); // 因為是週末
 }
 ```
 
-## OR "||" finds the first truthy value
+## OR "||" 找出第一個真值
 
-The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
+前面提到的邏輯運算有點傳統，現在來看些 JavaScript 的 "額外" 特性。
 
-The extended algorithm works as follows.
+擴展的演算法如下述運作。
 
-Given multiple OR'ed values:
+給予多個使用 OR 的值：
 
 ```js
 result = value1 || value2 || value3;
 ```
 
-The OR `||` operator does the following:
+OR `||` 運算子做以下的事：
 
-- Evaluates operands from left to right.
-- For each operand, converts it to boolean. If the result is `true`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were `false`), returns the last operand.
+- 由左至右核定運算元。
+- 轉換每個運算元為布林值，若結果為 `true`，停止核定並回傳該運算元原始的值。
+- 若所有運算元皆已被核定（意即，皆為 `false`），回傳最後一個運算元。
 
-A value is returned in its original form, without the conversion.
+回傳值是其原始型式，而非轉換的結果。
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no truthy value is found.
+也就是說，一連串 OR `||` 回傳第一個真值，或在都沒有找到真值時回傳最後一個值。
 
-For instance:
+舉個例：
 
 ```js run
-alert( 1 || 0 ); // 1 (1 is truthy)
-alert( true || 'no matter what' ); // (true is truthy)
+alert( 1 || 0 ); // 1（1 是真值）
+alert( true || 'no matter what' ); //（true 是真值）
 
-alert( null || 1 ); // 1 (1 is the first truthy value)
-alert( null || 0 || 1 ); // 1 (the first truthy value)
-alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+alert( null || 1 ); // 1（1 是第一個真值）
+alert( null || 0 || 1 ); // 1（第一個真值）
+alert( undefined || null || 0 ); // 0（皆為虛值，回傳最後一個值）
 ```
 
-This leads to some interesting usage compared to a "pure, classical, boolean-only OR".
+這導致一些跟 "純粹傳統布林限定 OR" 不太一樣的有趣用法。
 
-1. **Getting the first truthy value from a list of variables or expressions.**
+1. **取得一串變數或表達式中的第一個真值。**
 
-    Imagine we have a list of variables which can either contain data or be `null/undefined`. How can we find the first one with data?
+    想像我們有一串變數，之中包含著資料或者 `null/undefined`。我們要如何找到第一筆資料？
 
-    We can use OR `||`:
+    我們可以使用 OR `||`:
 
     ```js run
     let currentUser = null;
@@ -113,27 +113,28 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     let name = currentUser || defaultUser || "unnamed";
     */!*
 
-    alert( name ); // selects "John" – the first truthy value
+    alert( name ); // 選出 "John" - 第一個真值
     ```
 
-    If both `currentUser` and `defaultUser` were falsy, `"unnamed"` would be the result.
-2. **Short-circuit evaluation.**
+    `currentUser` 和 `defaultUser` 皆為虛值時，結果就會是 `"unnamed"`。
 
-    Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. This process is called "a short-circuit evaluation" because it goes as short as possible from left to right.
+2. **短路核定（Short-circuit evaluation）。**
 
-    This is clearly seen when the expression given as the second argument has a side effect like a variable assignment.
+    運算元不只可以為值，也可以為任意表達式，OR 由左至右核定測試運算元。核定會在第一個真值被找到時停止，並且回傳該值。這個過程就是所謂的 "短路核定"，因為過程由左至右盡可能的少。
 
-    In the example below, `x` does not get assigned:
+    當表達式作為第二個引數，並帶有像是變數指定等副作用（side effect）的時候，就可以很清楚地看出來。
+
+    底下的例子中，`x` 沒有被給值：
 
     ```js run no-beautify
     let x;
 
     *!*true*/!* || (x = 1);
 
-    alert(x); // undefined, because (x = 1) not evaluated
+    alert(x); // undefined，因為（x = 1）沒有被核定
     ```
 
-    If, instead, the first argument is `false`, `||` evaluates the second one, thus running the assignment:
+    然而，若第一個引數是 `false`，`||` 將核定第二個引數，那麼賦值就會被執行：
 
     ```js run no-beautify
     let x;
@@ -143,21 +144,21 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     alert(x); // 1
     ```
 
-    An assignment is a simple case. There may be side effects, that won't show up if the evaluation doesn't reach them.
+    賦值是個很簡單的例子。也許內含副作用，但在沒被核定之前它們不會出現。
 
-    As we can see, such a use case is a "shorter way of doing `if`". The first operand is converted to boolean. If it's false, the second one is evaluated.
+    如果我們所見，這種用法是 "簡短版 `if`"。第一個運算元被轉換成布林值，如果其為假，第二個運算元才被接著核定。
 
-    Most of time, it's better to use a "regular" `if` to keep the code easy to understand, but sometimes this can be handy.
+    大部分時間使用 "正規的" `if` 會比較好，能讓程式碼更容易被理解，但有時候這麼做滿方便的就是。
 
-## && (AND)
+## &&（AND）
 
-The AND operator is represented with two ampersands `&&`:
+AND 運算子使用兩個和號 `&&` 來表示：
 
 ```js
 result = a && b;
 ```
 
-In classical programming, AND returns `true` if both operands are truthy and `false` otherwise:
+傳統程式設計中，在兩個運算元皆為真值時 AND 回傳 `true`，否則回傳 `false`：
 
 ```js run
 alert( true && true );   // true
@@ -166,7 +167,7 @@ alert( true && false );  // false
 alert( false && false ); // false
 ```
 
-An example with `if`:
+用於 `if` 中的例子：
 
 ```js run
 let hour = 12;
@@ -177,68 +178,67 @@ if (hour == 12 && minute == 30) {
 }
 ```
 
-Just as with OR, any value is allowed as an operand of AND:
+跟 OR 一樣，任何值都可作為 AND 的運算元：
 
 ```js run
-if (1 && 0) { // evaluated as true && false
+if (1 && 0) { // 作為 true && false 進行核定
   alert( "won't work, because the result is falsy" );
 }
 ```
 
+## AND "&&" 找出第一個虛值
 
-## AND "&&" finds the first falsy value
-
-Given multiple AND'ed values:
+給予多個使用 AND 的值：
 
 ```js
 result = value1 && value2 && value3;
 ```
 
-The AND `&&` operator does the following:
+AND `&&` 運算子做以下的事情：
 
-- Evaluates operands from left to right.
-- For each operand, converts it to a boolean. If the result is `false`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were truthy), returns the last operand.
+- 由左至右核定運算元。
+- 轉換每個運算元為布林值，若其值為 `false`，停止核定並回傳運算元的原始值。
+- 若所有運算元皆已被核定（意即，皆為真值），回傳最後一個運算元。
 
-In other words, AND returns the first falsy value or the last value if none were found.
+換句話說，AND 回傳第一個虛值，或在都沒找到時回傳最後一個值。
 
-The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
+上面的規則和 OR 很像，不同點在於 AND 回傳第一個 *虛值*，而 OR 回傳第一個 *真值*。
 
-Examples:
+例如：
 
 ```js run
-// if the first operand is truthy,
-// AND returns the second operand:
+// 若第一個運算元為真值，
+// AND 回傳第二個運算元：
 alert( 1 && 0 ); // 0
 alert( 1 && 5 ); // 5
 
-// if the first operand is falsy,
-// AND returns it. The second operand is ignored
+// 若第一個運算元回虛值，
+// AND 回傳它。第二個運算元則被忽略。
 alert( null && 5 ); // null
 alert( 0 && "no matter what" ); // 0
 ```
 
-We can also pass several values in a row. See how the first falsy one is returned:
+我們也可在一行程式碼中傳遞數個變數。來看第一個虛值是如何被回傳：
 
 ```js run
 alert( 1 && 2 && null && 3 ); // null
 ```
 
-When all values are truthy, the last value is returned:
+當所有值都是真值時，最後一個值會被回傳：
 
 ```js run
-alert( 1 && 2 && 3 ); // 3, the last one
+alert( 1 && 2 && 3 ); // 3，最後一個值
 ```
 
-````smart header="Precedence of AND `&&` is higher than OR `||`"
-The precedence of AND `&&` operator is higher than OR `||`.
+````smart header="AND `&&` 的優先權比 OR `||` 還要高"
+AND `&&` 運算子的優先權比 OR `||` 還高。
 
-So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
+所以程式碼 `a && b || c && d` 本質上跟 `&&` 使用括號的表達式一樣：`(a && b) || (c && d)`。
 ````
 
-Just like OR, the AND `&&` operator can sometimes replace `if`.
+跟 OR 一樣，AND `&&` 運算子有時可以取代 `if`。
 
-For instance:
+舉個例：
 
 ```js run
 let x = 1;
@@ -246,9 +246,9 @@ let x = 1;
 (x > 0) && alert( 'Greater than zero!' );
 ```
 
-The action in the right part of `&&` would execute only if the evaluation reaches it. That is, only if `(x > 0)` is true.
+`&&` 右側的動作只在有進行核定時才會被執行到，也就是當 `(x > 0)` 為真時。
 
-So we basically have an analogue for:
+所以基本上我們有個類似的做法：
 
 ```js run
 let x = 1;
@@ -258,46 +258,47 @@ if (x > 0) {
 }
 ```
 
-The variant with `&&` appears shorter. But `if` is more obvious and tends to be a little bit more readable.
+使用 `&&` 的方式看起來更簡短，但 `if` 更明顯易懂且多了那麼點可讀性。
 
-So we recommend using every construct for its purpose: use `if` if we want if and use `&&` if we want AND.
+所以我們建議根據用途使用不同的程式碼建構方式：要用條件式時選 `if`，要做 AND 運算時用 `&&`。
 
-## ! (NOT)
+## !（NOT）
 
-The boolean NOT operator is represented with an exclamation sign `!`.
+布林運算的 NOT 運算子使用一個驚嘆號 `!` 表示。
 
-The syntax is pretty simple:
+語法很簡單：
 
 ```js
 result = !value;
 ```
 
-The operator accepts a single argument and does the following:
+該運算子接收單一個引數並做以下的事：
 
-1. Converts the operand to boolean type: `true/false`.
-2. Returns the inverse value.
+1. 轉換運算元為布林類型：`true/false`。
+2. 回傳其相反的值。
 
-For instance:
+舉個例：
 
 ```js run
 alert( !true ); // false
 alert( !0 ); // true
 ```
 
-A double NOT `!!` is sometimes used for converting a value to boolean type:
+兩個 NOT `!!` 有時被用於轉換一個值為布林類型：
 
 ```js run
 alert( !!"non-empty string" ); // true
 alert( !!null ); // false
 ```
 
-That is, the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again. In the end, we have a plain value-to-boolean conversion.
+意即，第一個 NOT 把值轉為布林值並回傳其相反值，接著第二個 NOT 再反轉一次。最後我們可以得到一個單純的方式把值轉成布林。
 
-There's a little more verbose way to do the same thing -- a built-in `Boolean` function:
+有個更詳細的方式做同樣的事情 -- 內建的 `Boolean` 函式：
 
 ```js run
 alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
 
-The precedence of NOT `!` is the highest of all logical operators, so it always executes first, before `&&` or `||`.
+NOT `!` 的優先權是邏輯運算子中最高的，所以它總是在 `&&` 或 `||` 之前執行。
+

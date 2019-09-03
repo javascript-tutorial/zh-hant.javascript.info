@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# A question about "if"
+# "if" 相關的問題
 
-Which of these `alert`s are going to execute?
+這些 `alert` 之中哪一個將執行？
 
-What will the results of the expressions be inside `if(...)`?
+`if(...)` 內表達式的結果是什麼？
 
 ```js
 if (-1 || 0) alert( 'first' );

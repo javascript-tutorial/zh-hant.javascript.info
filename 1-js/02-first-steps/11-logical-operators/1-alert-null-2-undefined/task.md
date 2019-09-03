@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# What's the result of OR?
+# OR 的結果是？
 
-What is the code below going to output?
+以下程式碼會輸出什麼？
 
 ```js
 alert( null || 2 || undefined );

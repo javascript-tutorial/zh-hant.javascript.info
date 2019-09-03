@@ -1,5 +1,3 @@
-
-
 ```js run demo
 let userName = prompt("Who's there?", '');
 
@@ -22,4 +20,5 @@ if (userName == 'Admin') {
 }
 ```
 
-Note the vertical indents inside the `if` blocks. They are technically not required, but make the code more readable.
+注意 `if` 區塊中的垂直縮排，技術上雖然不一定需要，但可以讓程式碼更為易讀。
+
