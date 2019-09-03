@@ -14,7 +14,7 @@ importance: 4
     let i = 0;
     while (++i < 5) alert( i );
     ```
-2. 後置型式`i++`：
+2. 後置型式 `i++`：
 
     ```js
     let i = 0;
