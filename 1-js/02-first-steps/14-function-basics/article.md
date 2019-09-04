@@ -1,18 +1,18 @@
-# Functions
+# 函式（Functions）
 
-Quite often we need to perform a similar action in many places of the script.
+我們常常會需要在腳本的很多地方執行類似的動作。
 
-For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
+例如，我們需要在使用者登入、登出或做其他事情時，顯示一則美觀的訊息。
 
-Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+函式是程式主要的 "建構區塊"，它們允許程式碼被不重複地多次呼叫。
 
-We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
+我們已經看過一些內建函式的例子，像是 `alert(message)`、`prompt(message, default)` 和 `confirm(question)`，不過我們也可以自己來建立函式。
 
-## Function Declaration
+## 函式宣告（Function Declaration）
 
-To create a function we can use a *function declaration*.
+要建立一個函式，我們可以使用 *函式宣告（function declaration）*。
 
-It looks like this:
+它長得像這樣：
 
 ```js
 function showMessage() {
@@ -20,7 +20,7 @@ function showMessage() {
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (comma-separated, empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+`function` 關鍵字寫在最前面，然後是 *函式的名字*，接著一串在小括號內的 *參數（parameters）*（用逗號分開，上面的例子中為空），最後在大括號之間的是函式的程式碼，也被稱為 "函式本體（function body）"。
 
 ```js
 function name(parameters) {
@@ -28,9 +28,9 @@ function name(parameters) {
 }
 ```
 
-Our new function can be called by its name: `showMessage()`.
+我們的新函式可以使用它的名字來呼叫：`showMessage()`。
 
-For instance:
+舉個例：
 
 ```js run
 function showMessage() {
@@ -43,22 +43,22 @@ showMessage();
 */!*
 ```
 
-The call `showMessage()` executes the code of the function. Here we will see the message two times.
+呼叫 `showMessage()` 執行函式的程式碼，這邊我們會看到兩次該則訊息。
 
-This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
+這個例子清楚演示了函式主要的功能之一：避免重複的程式碼。
 
-If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
+若我們還需要改變該則訊息內容或是被顯示的方式，那改一個地方的程式碼就可以了：也就是函式用來輸出它的部分。
 
-## Local variables
+## 區域變數（Local variables）
 
-A variable declared inside a function is only visible inside that function.
+一個在函式內被宣告的變數只有在函式內是可視（visible）的。
 
-For example:
+例如：
 
 ```js run
 function showMessage() {
 *!*
-  let message = "Hello, I'm JavaScript!"; // local variable
+  let message = "Hello, I'm JavaScript!"; // 區域變數
 */!*
 
   alert( message );
@@ -66,12 +66,12 @@ function showMessage() {
 
 showMessage(); // Hello, I'm JavaScript!
 
-alert( message ); // <-- Error! The variable is local to the function
+alert( message ); // <-- 錯誤！該變數是函式的區域變數
 ```
 
-## Outer variables
+## 外部變數（Outer variables）
 
-A function can access an outer variable as well, for example:
+函式也可以存取外部變數，例如：
 
 ```js run no-beautify
 let *!*userName*/!* = 'John';
@@ -84,65 +84,65 @@ function showMessage() {
 showMessage(); // Hello, John
 ```
 
-The function has full access to the outer variable. It can modify it as well.
+函式有著完整存取外部變數的權限，也可以修改它。
 
-For instance:
+舉個例：
 
 ```js run
 let *!*userName*/!* = 'John';
 
 function showMessage() {
-  *!*userName*/!* = "Bob"; // (1) changed the outer variable
+  *!*userName*/!* = "Bob"; // （1）改變外部變數
 
   let message = 'Hello, ' + *!*userName*/!*;
   alert(message);
 }
 
-alert( userName ); // *!*John*/!* before the function call
+alert( userName ); // *!*John*/!* 呼叫函式前
 
 showMessage();
 
-alert( userName ); // *!*Bob*/!*, the value was modified by the function
+alert( userName ); // *!*Bob*/!*，值被函式修改了
 ```
 
-The outer variable is only used if there's no local one.
+只有不存在相同名字的區域變數時，才會用到該名字的外部變數。
 
-If a same-named variable is declared inside the function then it *shadows* the outer one. For instance, in the code below the function uses the local `userName`. The outer one is ignored:
+若有個相同名字的變數在函式內被宣告，則它會 *遮蔽（shadows）* 外部的那個。舉個例，底下的程式碼中，函式使用區域的 `userName`，而外部的將會被忽略：
 
 ```js run
 let userName = 'John';
 
 function showMessage() {
 *!*
-  let userName = "Bob"; // declare a local variable
+  let userName = "Bob"; // 宣告區域變數
 */!*
 
   let message = 'Hello, ' + userName; // *!*Bob*/!*
   alert(message);
 }
 
-// the function will create and use its own userName
+// 函式會建立並使用自己的 userName
 showMessage();
 
-alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
+alert( userName ); // *!*John*/!* 維持不變，函式並沒有存取外部變數
 ```
 
-```smart header="Global variables"
-Variables declared outside of any function, such as the outer `userName` in the code above, are called *global*.
+```smart header="全域變數（Global variables）"
+宣告在任何函式之外的變數，像是上面程式碼中位於外部的 `userName`，被稱之為 *全域*。
 
-Global variables are visible from any function (unless shadowed by locals).
+全域變數在任何函式內都可視（除非被區域變數遮蔽）。
 
-It's a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
+減少使用全域變數是個良好做法。目前流行的程式碼中很少或甚至不使用全域變數，大多數變數存在函式之中，但有時它們被用在儲存專案等級的資料時會很有用。
 ```
 
-## Parameters
+## 參數（Parameters）
 
-We can pass arbitrary data to functions using parameters (also called *function arguments*) .
+我們可以使用參數，或稱為 *函式引數（function arguments）*，來傳遞任意資料給函式。
 
-In the example below, the function has two parameters: `from` and `text`.
+在上面的例子中，函式有兩個參數：`from` 和 `text`。
 
 ```js run
-function showMessage(*!*from, text*/!*) { // arguments: from, text
+function showMessage(*!*from, text*/!*) { // 引數：from、text
   alert(from + ': ' + text);
 }
 
@@ -152,16 +152,15 @@ showMessage('Ann', "What's up?"); // Ann: What's up? (**)
 */!*
 ```
 
-When the function is called in lines `(*)` and `(**)`, the given values are copied to local variables `from` and `text`. Then the function uses them.
+當函式在 `(*)` 和 `(**)` 被呼叫時，被給予的值將會被複製到區域變數 `from` 和 `text` 中，然後函式才使用它們。
 
-Here's one more example: we have a variable `from` and pass it to the function. Please note: the function changes `from`, but the change is not seen outside, because a function always gets a copy of the value:
-
+這裡有另一個例子：我們把一個變數 `from` 傳遞給函式。請注意，此函式改變了 `from`，但這個改變在外部看不到，因為函式總是使用該值的複製品：
 
 ```js run
 function showMessage(from, text) {
 
 *!*
-  from = '*' + from + '*'; // make "from" look nicer
+  from = '*' + from + '*'; // 讓 "from" 變得更好看
 */!*
 
   alert( from + ': ' + text );
@@ -171,23 +170,23 @@ let from = "Ann";
 
 showMessage(from, "Hello"); // *Ann*: Hello
 
-// the value of "from" is the same, the function modified a local copy
+// "from" 的值維持原樣，因為函式修改的是身為區域變數的複製品
 alert( from ); // Ann
 ```
 
-## Default values
+## 預設值
 
-If a parameter is not provided, then its value becomes `undefined`.
+若參數沒被提供，它的值會變成 `undefined`。
 
-For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
+舉個例，前述的函式 `showMessage(from, text)` 可以使用單一個引數來呼叫：
 
 ```js
 showMessage("Ann");
 ```
 
-That's not an error. Such a call would output `"Ann: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
+那並非錯誤，這種呼叫方式會輸出 `"Ann: undefined"`。因為沒有 `text`，所以它預設成 `text === undefined`。
 
-If we want to use a "default" `text` in this case, then we can specify it after `=`:
+如果在這種情況想使用一個 "預設的" `text`，那我們可以加個 `=` 並在其後指定預設值：
 
 ```js run
 function showMessage(from, *!*text = "no text given"*/!*) {
@@ -197,27 +196,27 @@ function showMessage(from, *!*text = "no text given"*/!*) {
 showMessage("Ann"); // Ann: no text given
 ```
 
-Now if the `text` parameter is not passed, it will get the value `"no text given"`
+若現在沒有傳遞 `text` 參數，它將會拿到值 `"no text given"`。
 
-Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+這邊的 `"no text given"` 是一個字串，但它可以是更為複雜的表達式，該表達式只在未給予參數時才會被計算和指定。所以這麼做是可以的：
 
 ```js run
 function showMessage(from, text = anotherFunction()) {
-  // anotherFunction() only executed if no text given
-  // its result becomes the value of text
+  // anotherFunction() 只有在沒給 text 的時候會被執行
+  // 其結果會變成 text 的值
 }
 ```
 
-```smart header="Evaluation of default parameters"
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter.
+```smart header="預設參數的計算"
+在 JavaScript 中，每次呼叫函式卻沒帶對應參數時，該預設參數才會被計算。
 
-In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
+上面的例子中，在呼叫 `showMessage()` 卻沒帶 `text` 參數時，才會去呼叫 `anotherFunction()`。
 ```
 
-````smart header="Default parameters old-style"
-Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+````smart header="舊風格的預設參數"
+舊版本的 JavaScript 不支援預設參數，所以有幾種替代方案來支援，你可以在大多數老舊的腳本中找到。
 
-For instance, an explicit check for being `undefined`:
+舉個例，明確檢查 `undefined`：
 
 ```js
 function showMessage(from, text) {
@@ -231,19 +230,16 @@ function showMessage(from, text) {
 }
 ```
 
-...Or the `||` operator:
+...或使用 `||` 運算子：
 
 ```js
 function showMessage(from, text) {
-  // if text is falsy then text gets the "default" value
+  // 若 text 為虛值，則 text 會得到其 "預設" 值
   text = text || 'no text given';
   ...
 }
 ```
-
-
 ````
-
 
 ## Returning a value
 
