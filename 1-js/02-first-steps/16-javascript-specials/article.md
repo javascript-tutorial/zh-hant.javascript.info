@@ -101,22 +101,22 @@ typeof function(){} == "function" // 函數是特別的類型
 
 更多資訊： <info:variables> 和 <info:types>。
 
-## Interaction
+## 互動（Interaction）
 
-We're using a browser as a working environment, so basic UI functions will be:
+我們使用瀏覽器作為工作環境，所以基本的 UI 功能會是：
 
 [`prompt(question, [default])`](mdn:api/Window/prompt)
-: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
+: 詢問一個問題，並回傳使用者輸入的內容，若使用者按下 "取消"，則回傳 `null` 。
 
 [`confirm(question)`](mdn:api/Window/confirm)
-: Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
+: 詢問一個問題，並建議在確定與取消間進行選擇。選項結果以 `true/false` 回傳。
 
 [`alert(message)`](mdn:api/Window/alert)
-: Output a `message`.
+: 輸出一個 `消息`。
 
-All these functions are *modal*, they pause the code execution and prevent the visitor from interacting with the page until they answer.
+所有這些函式都是 *模態*，他們會暫停程式碼執行並阻擋使用者與頁面互動，直到使用者回應模態。
 
-For instance:
+舉例來說:
 
 ```js run
 let userName = prompt("Your name?", "Alice");
@@ -126,58 +126,58 @@ alert( "Visitor: " + userName ); // Alice
 alert( "Tea wanted: " + isTeaWanted ); // true
 ```
 
-More in: <info:alert-prompt-confirm>.
+更多資訊： <info:alert-prompt-confirm>.
 
-## Operators
+## 運算子（Operators）
 
-JavaScript supports the following operators:
+JavaScript 支援以下運算子：
 
-Arithmetical
-: Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
+算術運算子（Arithmetical）
+： 常規的運算子如： `* + - /`，以及取餘數操作的 `%` 和 冪運算子 `**`。
 
-    The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
+    二元加號 `+` 連結字串。如果任何一個操作運算元是字串，則另一個也會被轉換成字串：
 
     ```js run
     alert( '1' + 2 ); // '12', string
     alert( 1 + '2' ); // '12', string
     ```
 
-Assignments
-: There is a simple assignment: `a = b` and combined ones like `a *= 2`.
+賦值（Assignments）
+： 簡單的賦值： `a = b` 和結合其他運算的賦值 `a *= 2`。
 
-Bitwise
-: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+位元操作（Bitwise）
+： 位元操作在最低、位元層級使用 32-bit 整數： 有需要時，請參閱 [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)。
 
-Conditional
-: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
+條件運算（Conditional）
+： 唯一具有三個參數的操作： `cond ? resultA : resultB`. 如果 `cond` 是真值，則回傳 `resultA`否則回傳 `resultB`。
 
-Logical operators
-: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped (not necessary `true`/`false`). Logical NOT `!` converts the operand to boolean type and returns the inverse value.
+邏輯運算子（Logical operators）
+： 邏輯的 AND `&&` 和 OR `||` 執行短路核定，然後回傳停止時的值。邏輯的 NOT `!` 轉換操作運算元成布林類型，並回傳相反的值。
 
-Comparisons
-: Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
+比較運算子（Comparisons）
+： 相等性檢查 `==` 將不同類型的值轉換成數字（除了 `null` 和 `undefined`，他們除了彼此相等外，沒有別種情況）， 所以這些事相等的：
 
     ```js run
     alert( 0 == false ); // true
     alert( 0 == '' ); // true
     ```
 
-    Other comparisons convert to a number as well.
+    其他的比較也會轉換成數字。
 
-    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
+    嚴格相等運算子 `===` 不會進行轉換： 不同類型永遠代表不同的值。
 
-    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
+    `null` 和 `undefined` 值比較特殊： 他們只在 `==` 下相等。
 
-    Greater/less comparisons compare strings character-by-character, other types are converted to a number.
+    大於/小於 的比較運算，在比較字串時，是按照字元逐一比較，其他類型則會先轉換成數字。
 
-Other operators
-: There are few others, like a comma operator.
+其他運算子
+： 有一些其他的運算子，像是逗號運算子。
 
-More in: <info:operators>, <info:comparison>, <info:logical-operators>.
+更多資訊： <info:operators>, <info:comparison>, <info:logical-operators>.
 
-## Loops
+## 迴圈
 
-- We covered 3 types of loops:
+- 我們介紹了三種類型的迴圈:
 
     ```js
     // 1
