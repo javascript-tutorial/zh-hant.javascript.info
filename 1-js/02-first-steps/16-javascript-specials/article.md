@@ -273,7 +273,7 @@ switch (age) {
 
 - 函式可能有區域變數： 那些在函式內宣告的變數。 這類的變數其作用域只存在函式內部。
 - 參數可以有預設值：`function sum(a = 1, b = 2) {...}`。
-- 函數永遠會回傳一些東西。如果沒有 `return` 述句，則其結果為 `undefined`。
+- 函式永遠會回傳一些東西。如果沒有 `return` 述語，則其結果為 `undefined`。
 
 更多資訊：參見 <info:function-basics>、<info:function-expressions-arrows>。
 
