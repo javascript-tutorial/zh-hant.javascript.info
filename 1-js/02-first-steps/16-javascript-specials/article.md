@@ -196,25 +196,25 @@ JavaScript 支援以下運算子：
     }
     ```
 
-- The variable declared in `for(let...)` loop is visible only inside the loop. But we can also omit `let` and reuse an existing variable.
-- Directives `break/continue` allow to exit the whole loop/current iteration. Use labels to break nested loops.
+- 在 `for(let...)` 迴圈中宣告的變數其作用域只在迴圈中但我們也能省略 `let` 並重用現有的變數。
+- 指令 `break/continue` 允許退出整個 迴圈/當前循環。使用標籤來打破巢狀迴圈。
 
-Details in: <info:while-for>.
+更多資訊： <info:while-for>。
 
-Later we'll study more types of loops to deal with objects.
+稍後我們將會學習更多類型的迴圈來處理物件。
 
-## The "switch" construct
+## "switch" 結構
 
-The "switch" construct can replace multiple `if` checks. It uses `===` (strict equality) for comparisons.
+"switch" 結構可以取代多個 `if` 檢查。 它使用 `===` （嚴格相等） 進行比較。
 
-For instance:
+例如：
 
 ```js run
 let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-    alert("Won't work"); // the result of prompt is a string, not a number
+    alert("Won't work"); // 提示的結果是一個字串，而非數字
 
   case "18":
     alert("This works!");
@@ -225,13 +225,13 @@ switch (age) {
 }
 ```
 
-Details in: <info:switch>.
+更多資訊： <info:switch>。
 
-## Functions
+## 函式
 
-We covered three ways to create a function in JavaScript:
+我們介紹了三種在 JavaScript 中創建函式的方式：
 
-1. Function Declaration: the function in the main code flow
+1. 函式宣告: 主要程式流程中的函示
 
     ```js
     function sum(a, b) {
@@ -241,7 +241,7 @@ We covered three ways to create a function in JavaScript:
     }
     ```
 
-2. Function Expression: the function in the context of an expression
+2. 函式運算式： 運算式上下文中的函式
 
     ```js
     let sum = function(a, b) {
@@ -251,32 +251,32 @@ We covered three ways to create a function in JavaScript:
     };
     ```
 
-3. Arrow functions:
+3. 箭頭函式：
 
     ```js
-    // expression at the right side
+    // 運算式在右邊
     let sum = (a, b) => a + b;
 
-    // or multi-line syntax with { ... }, need return here:
+    // 或是帶有 { ... } 的多行語法，需要回傳：
     let sum = (a, b) => {
       // ...
       return a + b;
     }
 
-    // without arguments
+    // 沒有參數
     let sayHi = () => alert("Hello");
 
-    // with a single argument
+    // 單一參數
     let double = n => n * 2;
     ```
 
 
-- Functions may have local variables: those declared inside its body. Such variables are only visible inside the function.
-- Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
-- Functions always return something. If there's no `return` statement, then the result is `undefined`.
+- 函式可能有區域變數： 那些在函式內宣告的變數。 這類的變數其作用域只存在函式內部。
+- 參數可以有預設值： `function sum(a = 1, b = 2) {...}`。
+- 函數永遠會回傳一些東西。如果沒有 `return` 述句，則其結果為 `undefined`。
 
-Details: see <info:function-basics>, <info:function-expressions-arrows>.
+更多資訊：參見 <info:function-basics>, <info:function-expressions-arrows>.
 
-## More to come
+## 還有更多
 
-That was a brief list of JavaScript features. As of now we've studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.
+這是 JavaScript 特性的簡短概要。 截至目前，我們只學習了基礎知識。隨著教程的深入，你將會學習到 JavaScript 的更多特性與進階功能。
