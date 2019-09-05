@@ -106,7 +106,7 @@ typeof function(){} == "function" // 函式被特別對待
 我們使用瀏覽器作為工作環境，所以基本的 UI 功能會是：
 
 [`prompt(question, [default])`](mdn:api/Window/prompt)
-: 詢問一個問題，並回傳使用者輸入的內容，若使用者按下 "取消"，則回傳 `null` 。
+: 詢問一個 `question`，並回傳使用者輸入的內容，若使用者按下 "取消"，則回傳 `null` 。
 
 [`confirm(question)`](mdn:api/Window/confirm)
 : 詢問一個問題，並建議在確定與取消間進行選擇。選項結果以 `true/false` 回傳。
