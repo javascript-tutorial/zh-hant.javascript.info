@@ -266,7 +266,7 @@ switch (age) {
     // 沒有引數
     let sayHi = () => alert("Hello");
 
-    // 單一參數
+    // 單一引數
     let double = n => n * 2;
     ```
 
