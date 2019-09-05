@@ -142,7 +142,7 @@ JavaScript 支援以下運算子：
     alert( 1 + '2' ); // '12', string
     ```
 
-賦值（Assignments）
+指定運算子（Assignments）
 ： 簡單的賦值： `a = b` 和結合其他運算的賦值 `a *= 2`。
 
 位元操作（Bitwise）
