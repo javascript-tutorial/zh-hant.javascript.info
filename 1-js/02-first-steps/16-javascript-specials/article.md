@@ -112,7 +112,7 @@ typeof function(){} == "function" // 函式被特別對待
 : 詢問一個 `question`，並提供在 Ok 與 Cancel 間進行選擇。選擇結果以 `true/false` 回傳。
 
 [`alert(message)`](mdn:api/Window/alert)
-: 輸出一個 `消息`。
+: 輸出一個 `message`。
 
 所有這些函式都是 *模態*，他們會暫停程式碼執行並阻擋使用者與頁面互動，直到使用者回應模態。
 
