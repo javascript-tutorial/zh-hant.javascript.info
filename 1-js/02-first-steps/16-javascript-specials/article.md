@@ -96,7 +96,7 @@ x = "John";
 
 ```js
 typeof null == "object" // 語言本身的錯誤
-typeof function(){} == "function" // 函數是特別的類型
+typeof function(){} == "function" // 函式被特別對待
 ```
 
 更多資訊： <info:variables> 和 <info:types>。
