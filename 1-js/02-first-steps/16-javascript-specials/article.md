@@ -263,7 +263,7 @@ switch (age) {
       return a + b;
     }
 
-    // 沒有參數
+    // 沒有引數
     let sayHi = () => alert("Hello");
 
     // 單一參數
