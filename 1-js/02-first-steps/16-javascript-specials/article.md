@@ -95,7 +95,7 @@ x = "John";
 `typeof` 運算子會回傳值的類型，但有兩個例外：
 
 ```js
-typeof null == "object" // 語言中的錯誤
+typeof null == "object" // 在這語言中是錯誤的
 typeof function(){} == "function" // 函數是特別的類型
 ```
 
