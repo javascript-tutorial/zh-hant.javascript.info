@@ -5,7 +5,7 @@
 ## 程式碼結構
 
 
-述句（Statements）用分號隔開:
+述語（Statements）用分號隔開:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
