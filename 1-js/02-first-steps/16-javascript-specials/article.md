@@ -109,7 +109,7 @@ typeof function(){} == "function" // 函式被特別對待
 : 詢問一個 `question`，並回傳使用者輸入的內容，若使用者按下 "取消"，則回傳 `null` 。
 
 [`confirm(question)`](mdn:api/Window/confirm)
-: 詢問一個問題，並建議在確定與取消間進行選擇。選項結果以 `true/false` 回傳。
+: 詢問一個 `question`，並提供在 Ok 與 Cancel 間進行選擇。選擇結果以 `true/false` 回傳。
 
 [`alert(message)`](mdn:api/Window/alert)
 : 輸出一個 `消息`。
