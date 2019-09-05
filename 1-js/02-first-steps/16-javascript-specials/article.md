@@ -146,7 +146,7 @@ JavaScript 支援以下運算子：
 ： 簡單的賦值： `a = b` 和結合其他運算的賦值 `a *= 2`。
 
 位元操作（Bitwise）
-： 位元操作在最低、位元層級使用 32-bit 整數： 有需要時，請參閱 [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)。
+： 位元操作在最底層的位元層面使用 32-bit 整數： 有需要時，請參閱 [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)。
 
 條件運算（Conditional）
 ： 唯一具有三個參數的操作： `cond ? resultA : resultB`. 如果 `cond` 是真值，則回傳 `resultA`否則回傳 `resultB`。
