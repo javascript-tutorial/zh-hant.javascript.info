@@ -47,7 +47,7 @@ for(;;) {
 
 ## 嚴格模式（Strict mode）
 
-為了完全啟用現在 JavaScript 的所有功能，我們應該使用 `"use strict"` 指令。
+為了完全啟用現代 JavaScript 的所有功能，我們應該使用 `"use strict"` 指令。
 
 ```js
 'use strict';
