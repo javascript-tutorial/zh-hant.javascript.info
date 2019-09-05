@@ -11,7 +11,7 @@
 alert('Hello'); alert('World');
 ```
 
-通常，換行符號也被視為分隔符號， 因此也能這樣分隔述句：
+通常，換行符號也被視為分隔符號， 因此也能這樣分隔述語：
 
 ```js run no-beautify
 alert('Hello')
