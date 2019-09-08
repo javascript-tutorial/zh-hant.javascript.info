@@ -1,3 +1,4 @@
-# JavaScript Fundamentals
+# JavaScript 基礎知識
 
-Let's learn the fundamentals of script building.
+來學學撰寫腳本的基礎知識吧。
+
