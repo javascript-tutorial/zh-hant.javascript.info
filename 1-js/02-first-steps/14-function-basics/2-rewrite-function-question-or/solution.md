@@ -1,4 +1,4 @@
-Using a question mark operator `'?'`:
+使用問號運算子 `'?'`：
 
 ```js
 function checkAge(age) {
@@ -6,7 +6,7 @@ function checkAge(age) {
 }
 ```
 
-Using OR `||` (the shortest variant):
+使用 OR `||`（最短的做法）：
 
 ```js
 function checkAge(age) {
@@ -14,4 +14,5 @@ function checkAge(age) {
 }
 ```
 
-Note that the parentheses around `age > 18` are not required here. They exist for better readabilty.
+注意圍繞著 `age > 18` 的括號在此並非必要，它們存在的原因只是為了更佳的可讀性。
+

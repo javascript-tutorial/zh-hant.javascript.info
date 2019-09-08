@@ -2,11 +2,11 @@ importance: 4
 
 ---
 
-# Is "else" required?
+# "else" 是否必須？
 
-The following function returns `true` if the parameter `age` is greater than `18`.
+底下的函式中，若參數 `age` 大於 `18` 時會回傳 `true`。
 
-Otherwise it asks for a confirmation and returns its result:
+否則它會要求確認並回傳結果：
 
 ```js
 function checkAge(age) {
@@ -21,7 +21,7 @@ function checkAge(age) {
 }
 ```
 
-Will the function work differently if `else` is removed?
+若把 `else` 刪掉，此函式是否會以不同方式運作？
 
 ```js
 function checkAge(age) {
@@ -35,4 +35,5 @@ function checkAge(age) {
 }
 ```
 
-Is there any difference in the behavior of these two variants?
+這兩種做法在行為上是否有任何不同？
+
