@@ -1,183 +1,184 @@
-# Debugging in Chrome
+# 在 Chrome 中除錯
 
-Before writing more complex code, let's talk about debugging.
+在我們寫更複雜的程式碼之前，來說說怎麼除錯吧。
 
-[Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
+[除錯（Debugging）](https://en.wikipedia.org/wiki/Debugging) 是在腳本中找出並修正錯誤的過程。所有現代瀏覽器和大部分的環境都支援除錯工具 -- 開發工具中特別的使用者介面，用來讓除錯更為簡單。它也可以一步步追蹤程式碼執行步驟，以看出現在到底發生什麼事。
 
-We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
+在此我們會使用 Chrome，因為它具有足夠的功能，大部分其它的瀏覽器也有類似的功能。
 
-## The "Sources" panel
+## "Sources" 面板
 
-Your Chrome version may look a little bit different, but it still should be obvious what's there.
+你的 Chrome 版本可能會有些許不同，但它應該還是可以很明顯被看到的。
 
-- Open the [example page](debugging/index.html) in Chrome.
-- Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-- Select the `Sources` panel.
+- 在 Chrome 中打開 [範例頁面](debugging/index.html)。
+- 利用 `key:F12`（Mac: `key:Cmd+Opt+I`）開啟開發者工具。
+- 選取 `Sources` 面板。
 
-Here's what you should see if you are doing it for the first time:
+若你是第一次這麼做，你應該會看到這些東西：
 
 ![](chrome-open-sources.svg)
 
-The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
+切換按鈕 <span class="devtools" style="background-position:-168px -76px"></span> 會打開檔案分頁。
 
-Let's click it and select `hello.js` in the tree view. Here's what should show up:
+點擊它並在樹狀圖中選擇 `hello.js`，這是應該要顯示的畫面：
 
 ![](chrome-tabs.svg)
 
-Here we can see three zones:
+在這我們可以看到三個區域：
 
-1. The **Resources zone** lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
-2. The **Source zone** shows the source code.
-3. The **Information and control zone** is for debugging, we'll explore it soon.
+1. **資源區域** 列出 HTML、JavaScript、CSS 和其他檔案，包含置於頁面中的圖片。Chrome 擴充套件（extensions）也會顯示在這。
+2. **來源區域** 顯示原始碼。
+3. **資訊與控制區域** 是為了除錯使用，我們很快會探討它。
 
-Now you could click the same toggler <span class="devtools" style="background-position:-200px -76px"></span> again to hide the resources list and give the code some space.
+現在你可以再點擊同一個切換鈕 <span class="devtools" style="background-position:-200px -76px"></span> 來隱藏資源列表來給程式碼多一點空間。
 
-## Console
+## 主控台（Console）
 
-If we press `key:Esc`, then a console opens below. We can type commands there and press `key:Enter` to execute.
+當我們按下 `key:Esc`，則主控台將會在下方開啟。我們可以在此輸入些命令並按下 `key:Enter` 來執行。
 
-After a statement is executed, its result is shown below.
+在述語被執行後，其結果會在下方顯示。
 
-For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing, so the result is `undefined`:
+例如，這邊的 `1+2` 結果為 `3`，且 `hello("debugger")` 沒回傳東西，所以結果是 `undefined`：
 
 ![](chrome-sources-console.svg)
 
-## Breakpoints
+## 中斷點（Breakpoints）
 
-Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at line number `4`. Yes, right on the `4` digit, not on the code.
+來檢查看看 [範例頁面](debugging/index.html) 的程式碼發生什麼事。在 `hello.js` 上點擊行號 `4`，沒錯，就是在 `4` 這個數字上點下去，不是點程式碼。
 
-Congratulations! You've set a breakpoint. Please also click on the number for line `8`.
+恭喜！你已經設定一個中斷點了。現在也請點擊第 `8` 行的行號。
 
-It should look like this (blue is where you should click):
+應該看起來像這樣（藍色是你應該要點的地方）：
 
 ![](chrome-sources-breakpoint.svg)
 
-A *breakpoint* is a point of code where the debugger will automatically pause the JavaScript execution.
+*中斷點* 是除錯器會自動暫停 JavaScript 執行的某個程式碼位置。
 
-While the code is paused, we can examine current variables, execute commands in the console etc. In other words, we can debug it.
+當程式碼被暫停，我們可以檢驗目前的變數並在主控台執行一些命令等等。換句話說，我們可以用它來除錯。
 
-We can always find a list of breakpoints in the right panel. That's useful when we have many breakpoints in various files. It allows us to:
-- Quickly jump to the breakpoint in the code (by clicking on it in the right panel).
-- Temporarily disable the breakpoint by unchecking it.
-- Remove the breakpoint by right-clicking and selecting Remove.
-- ...And so on.
+我們隨時可以在右側面板中找到所有中斷點的列表，當我們在不同檔案間有很多中斷點時會很有用。這允許我們可以：
+- 快速跳至程式碼中的某個中斷點（經由在右側面板點擊它）。
+- 經由再次點擊來讓某個中斷點暫時失效。
+- 右鍵點擊並選擇 Remove 可以移除某個中斷點。
+- ...等等。
 
-```smart header="Conditional breakpoints"
-*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression is truthy.
+```smart header="條件式中斷點"
+*右鍵點擊* 某行號允許你建立一個 *條件式* 中斷點，它只有在給予的條件為真值時才會被觸發。
 
-That's handy when we need to stop only for a certain variable value or for certain function parameters.
+當我們只有在某個特定變數值或特別的函式參數需要中斷時，這會很方便。
 ```
 
-## Debugger command
+## 除錯命令
 
-We can also pause the code by using the `debugger` command in it, like this:
+我們也可以經由使用 `debugger` 命令來暫停程式碼，像這樣：
 
 ```js
 function hello(name) {
   let phrase = `Hello, ${name}!`;
 
 *!*
-  debugger;  // <-- the debugger stops here
+  debugger;  // <-- 除錯器會停在這裡
 */!*
 
   say(phrase);
 }
 ```
 
-That's very convenient when we are in a code editor and don't want to switch to the browser and look up the script in developer tools to set the breakpoint.
+當我們正在程式碼編輯器中，而不想切換到瀏覽器再到除錯器內查看腳本並設置中斷點時，這會非常方便。
 
+## 暫停且查看
 
-## Pause and look around
+在我們的例子中，`hello()` 在頁面載入時被呼叫，所以（在我們設置中斷點後）啟動除錯器最簡單的方法就是重新載入頁面。所以來按下 `key:F5`（Windows, Linux）或 `key:Cmd+R`（Mac）吧。
 
-In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
-
-As the breakpoint is set, the execution pauses at the 4th line:
+就像中斷點設定的一樣，執行會暫停在第 4 行：
 
 ![](chrome-sources-debugger-pause.svg)
 
-Please open the informational dropdowns to the right (labeled with arrows). They allow you to examine the current code state:
+請打開右側（箭頭標示）的資訊下拉選單，可以讓你檢查目前的程式碼狀態：
 
-1. **`Watch` -- shows current values for any expressions.**
+1. **`Watch` -- 顯示目前任何表達式的值。**
 
-    You can click the plus `+` and input an expression. The debugger will show its value at any moment, automatically recalculating it in the process of execution.
+    你可以點擊加號 `+` 並輸入表達式，除錯器會隨時顯示它的值，並在程序執行時自動重新計算。
 
-2. **`Call Stack` -- shows the nested calls chain.**
+2. **`Call Stack` -- 顯示巢狀呼叫鏈。**
 
-    At the current moment the debugger is inside `hello()` call, called by a script in `index.html` (no function there, so it's called "anonymous").
+    此時除錯器正處於 `hello()` 的呼叫之中，被位於 `index.html` 的腳本所呼叫（此處沒有函式，所以顯示為 `anonymous`）。
 
-    If you click on a stack item (e.g. "anonymous"), the debugger jumps to the corresponding code, and all its variables can be examined as well.
-3. **`Scope` -- current variables.**
+    若你點擊一個堆疊項目（如："anonymous"），除錯器會跳到其對應的程式碼，且所有它的變數也可以被檢查。
 
-    `Local` shows local function variables. You can also see their values highlighted right over the source.
+3. **`Scope` -- 目前的變數。**
 
-    `Global` has global variables (out of any functions).
+    `Local` 顯示區域函式變數，你也可以在原始碼中看到它們的值被強調出來。
 
-    There's also `this` keyword there that we didn't study yet, but we'll do that soon.
+    `Global` 顯示全域變數（在函式之外）。
 
-## Tracing the execution
+    還有個 `this` 關鍵字我們尚未學習到，但我們很快就會探討它了。
 
-Now it's time to *trace* the script.
+## 追蹤執行
 
-There are buttons for it at the top of the right panel. Let's engage them.
+現在是時候來 *追蹤* 腳本了。
 
-<span class="devtools" style="background-position:-7px -76px"></span> -- continue the execution, hotkey `key:F8`.
-: Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
+右側面板頂部有些按鈕可以使用，來用用看吧。
 
-    Here's what we can see after a click on it:
+<span class="devtools" style="background-position:-7px -76px"></span> -- 繼續執行，快捷鍵 `key:F8`。
+: 恢復執行。若沒有額外的中斷點，則執行將會繼續且除錯器不會再獲取控制。
+
+    這是我們點下去後會看到的：
 
     ![](chrome-sources-debugger-trace-1.svg)
 
-    The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call Stack" at the right. It has increased by one more call. We're inside `say()` now.
+    執行已經被恢復了，直到 `say()` 內的另一個中斷點才暫停。看一下右側 "Call Stack" 的內容，它多增加了一層呼叫，我們現在正在 `say()` 之中。
 
-<span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *don't go into the function*, hotkey `key:F10`.
-: If we click it now, `alert` will be shown. The important thing is that `alert` can be any function, the execution "steps over it", skipping the function internals.
+<span class="devtools" style="background-position:-137px -76px"></span> -- 下一步（執行下一行命令），但 *不會進入函式*，快捷鍵 `key:F10`。
+: 若我們點擊它，`alert` 將會顯示出來。要注意這裡的 `alert` 可以是任意函式，執行將會 "跨過（steps over）它"，忽略函式的內部。
 
-<span class="devtools" style="background-position:-72px -76px"></span> -- make a step, hotkey `key:F11`.
-: The same as the previous one, but "steps into" nested functions. Clicking this will step through all script actions one by one.
+<span class="devtools" style="background-position:-72px -76px"></span> -- 下一步，快捷鍵 `key:F11`。
+: 和前一個相同，但差在會 "跨進（steps into）" 巢狀函式。點擊它將會一步步進行所有腳本的動作。
 
-<span class="devtools" style="background-position:-104px -76px"></span> -- continue the execution till the end of the current function, hotkey `key:Shift+F11`.
-: The execution would stop at the very last line of the current function. That's handy when we accidentally entered a nested call using <span class="devtools" style="background-position:-72px -76px"></span>, but it does not interest us, and we want to continue to its end as soon as possible.
+<span class="devtools" style="background-position:-104px -76px"></span> -- 繼續執行至目前函式完成為止，快捷鍵 `key:Shift+F11`。
+: 執行會被暫停在目前函式的最後一行，當我們因使用 <span class="devtools" style="background-position:-72px -76px"></span> 而意外進入不感興趣的巢狀呼叫時會很有用，此時我們只想盡快結束它並接著繼續。
 
-<span class="devtools" style="background-position:-7px -28px"></span> -- enable/disable all breakpoints.
-: That button does not move the execution. Just a mass on/off for breakpoints.
+<span class="devtools" style="background-position:-7px -28px"></span> -- 啟用/關閉 所有中斷點。
+: 此按鈕不影響執行，只會讓中斷點全開/關。
 
-<span class="devtools" style="background-position:-264px -4px"></span> -- enable/disable automatic pause in case of an error.
-: When enabled, and the developer tools is open, a script error automatically pauses the execution. Then we can analyze variables to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
+<span class="devtools" style="background-position:-264px -4px"></span> -- 啟用/關閉 遇到錯誤時的自動暫停功能。
+: 當啟用且開發者工具開著時，腳本錯誤將會自動暫停執行，然後我們可以分析變數來看什麼東西壞了。所以若腳本因為錯誤而掛點，我們可以打開除錯器，啟用這個選項並重新載入頁面來看看它掛在哪和當下的週遭環境是什麼。
 
-```smart header="Continue to here"
-Right click on a line of code opens the context menu with a great option called "Continue to here".
+```smart header="繼續至此（Continue to here）"
+右鍵點擊一行程式碼可以開啟有著一個非常棒選項的選單，"Continue to here"。
 
-That's handy when we want to move multiple steps forward to the line, but we're too lazy to set a breakpoint.
+當我們想要向前移動多個步驟直到此行，卻又懶到不想設置中斷點時，這會非常方便。
 ```
 
-## Logging
+## 紀錄
 
-To output something to console from our code, there's `console.log` function.
+想要從我們的程式碼輸出某些東西到主控台時，有個 `console.log` 函式可以用。
 
-For instance, this outputs values from `0` to `4` to console:
+舉個例，這將會輸出從 `0` 到 `4` 的值到主控台：
 
 ```js run
-// open console to see
+// 打開主控台來看看
 for (let i = 0; i < 5; i++) {
   console.log("value,", i);
 }
 ```
 
-Regular users don't see that output, it is in the console. To see it, either open the Console panel of developer tools or press `key:Esc` while in another panel: that opens the console at the bottom.
+一般使用者不會看到這些輸出，它只在主控台內。想要看到的話，只能打開開發者工具的主控台面板，或在位於其他面板時按下 `key:Ese`：這將在底部開啟主控台。
 
-If we have enough logging in our code, then we can see what's going on from the records, without the debugger.
+若我們在程式碼內做充足的紀錄，則我們可以從紀錄中看發生什麼事，而不需要用到除錯器。
 
-## Summary
+## 總結
 
-As we can see, there are three main ways to pause a script:
-1. A breakpoint.
-2. The `debugger` statements.
-3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on").
+如我們所見，有三種主要暫停腳本的方式：
+1. 中斷點。
+2. `debugger` 述語。
+3. 錯誤（若開發者工具開著且按鈕 <span class="devtools" style="background-position:-264px -4px"></span> 開啟著）。
 
-When paused, we can debug - examine variables and trace the code to see where the execution goes wrong.
+當暫停時，我們可以除錯 - 檢查變數和追蹤程式碼來看執行哪裡有問題。
 
-There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>.
+開發者工具有更多尚未在此被介紹的選項，完整的操作手冊在 <https://developers.google.com/web/tools/chrome-devtools>。
 
-The information from this chapter is enough to begin debugging, but later, especially if you do a lot of browser stuff, please go there and look through more advanced capabilities of developer tools.
+本章節的資訊已經夠用於除錯了，但之後，尤其當你做了很多瀏覽器相關的事以後，請去看看更多開發者工具的進階功能。
 
-Oh, and also you can click at various places of dev tools and just see what's showing up. That's probably the fastest route to learn dev tools. Don't forget about the right click and context menus!
+喔，當然你也可以點擊開發者工具的不同位置來看看什麼會顯示出來，這也許是學習使用開發者工具最快的途徑，也不要忘了右鍵點擊查看選單喔！
+
