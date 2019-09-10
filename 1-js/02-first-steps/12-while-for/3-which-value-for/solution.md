@@ -1,4 +1,4 @@
-**The answer: from `0` to `4` in both cases.**
+**答案是：兩者都是從 `0` 到 `4`。**
 
 ```js run
 for (let i = 0; i < 5; ++i) alert( i );
@@ -6,12 +6,13 @@ for (let i = 0; i < 5; ++i) alert( i );
 for (let i = 0; i < 5; i++) alert( i );
 ```
 
-That can be easily deducted from the algorithm of `for`:
+該結果可以簡單地由 `for` 演算法推導出來：
 
-1. Execute once `i = 0` before everything (begin).
-2. Check the condition `i < 5`
-3. If `true` -- execute the loop body `alert(i)`, and then `i++`
+1. 在開始前（begin），執行一次 `i = 0`。
+2. 檢查條件 `i < 5`。
+3. 若為 `true` -- 執行迴圈本體 `alert(i)` 並 `i++`。
 
-The increment `i++` is separated from the condition check (2). That's just another statement.
+遞增 `i++` 跟條件檢查（2）是分開的，它就是另一個述語。
 
-The value returned by the increment is not used here, so there's no difference between `i++` and `++i`.
+遞增所回傳的值沒有在這邊被使用到，所以在 `i++` 和 `++i` 之間沒有任何區別。
+
