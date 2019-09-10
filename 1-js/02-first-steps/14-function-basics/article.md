@@ -258,7 +258,7 @@ alert( result ); // 3
 
 `return` 指令可以放在函式中的任意位置，當執行到這個指令，函式將會停止並將值回傳給呼叫它的程式碼（將回傳值指定給上例中的 `result` ）。
 
-一個函式中可以許會有多個 `return` 的可能位置，舉個例：
+一個函式中或許會有多個 `return`，舉個例：
 
 ```js run
 function checkAge(age) {
