@@ -37,12 +37,11 @@ i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 
 ```quote author="老子（道德經）"
 道隱無名。夫唯道，善貸且成。
-completed.
 ```
 
 另一個寫程式更快的方式是到處使用單一字母的變數名稱，像是 `a`、`b` 或 `c`。
 
-短變數會像個真正的忍者處於森林中一樣，消失於程式碼之中，沒有人能夠使用編輯器的 "搜尋" 找到它們。即使有人辦得到，他們也無法 "破譯" `a` 或 `b` 的名字意義。
+短變數會像個真正的忍者處於森林中一樣，消失於程式碼之中，沒有人能夠使用編輯器的 "搜尋" 找到它們。即使有人辦得到，他們也無法 "破譯" `a` 或 `b` 名稱的意義。
 
 ...但有個例外，一個真正的忍者永遠不會在 `"for"` 迴圈內使用 `i` 作為計數器。任何地方都行，就是這裡不可以。觀察四周看看，還有其他像是 `x` 或 `y` 這種異樣的字母呢。
 
@@ -50,7 +49,7 @@ completed.
 
 ## 使用縮寫
 
-若團隊規則禁止使用單一字母或模糊的名字 -- 盡量縮短它們，使用縮寫吧。
+若團隊規則禁止使用單一字母或模糊的名稱 -- 盡量縮短它們，使用縮寫吧。
 
 像這樣：
 
@@ -59,7 +58,7 @@ completed.
 - `browser` -> `brsr`。
 - ...等等
 
-只有真正擁有良好直覺的人才有辦法理解這些名字。盡量縮短一切事物，只有天選之人才夠格接手你的程式開發。
+只有真正擁有良好直覺的人才有辦法理解這些名稱。盡量縮短一切事物，只有天選之人才夠格接手你的程式開發。
 
 ## 突破天際的抽象化
 
@@ -70,29 +69,29 @@ completed.
 大象無形。
 ```
 
-在選擇一個名字時，試著使用最為抽象的詞，像是 `obj`、`data`、`value`、`item` 和 `elem` 等等。
+在選擇一個名稱時，試著使用最為抽象的詞，像是 `obj`、`data`、`value`、`item` 和 `elem` 等等。
 
-- **變數的理想名字是 `data`。** 在任何能用地方都用，每個變數都確實都有 *data* 不是嗎？
+- **變數的理想名稱是 `data`。** 在任何能用地方都用，每個變數都確實都有 *data* 不是嗎？
 
     ...但如果 `data` 已經被用過了怎麼辦？試著使用 `value`，它也很普遍，畢竟一個變數最終總會得到一個 *value*。
 
 - **使用變數類型命名：`str`、`num`...**
 
-    嘗試看看，新手可能會懷疑 -- 這種名字真的對成為忍者有用嗎？是的，就是會！
+    嘗試看看，新手可能會懷疑 -- 這種名稱真的對成為忍者有用嗎？是的，就是會！
 
-    確實，該變數名字依然含有意義。它說明了變數內部有些什麼：一串字串、一個數值或其它東西。但當外部使用者試著理解程式碼時，他們會驚訝地發現事實上根本不具有任何資訊！且最終將無法改變你精思熟慮過的程式碼。
+    確實，該變數名稱依然含有意義。它說明了變數內部有些什麼：一串字串、一個數值或其它東西。但當外部使用者試著理解程式碼時，他們會驚訝地發現事實上根本不具有任何資訊！且最終將無法改變你精思熟慮過的程式碼。
 
     值的類型很容易就可以經由除錯得知，但此變數的意義呢？它儲存著哪種 字串/數值？
 
     不經過良好的冥想是無法理解的！
 
-- **...但如果這種名字不夠用怎麼辦？** 加個數字就好了：`data1, item2, elem5`...
+- **...但如果這種名稱不夠用怎麼辦？** 加個數字就好了：`data1, item2, elem5`...
 
 ## 注意力測試
 
 只有真正細心的程式設計師才夠格理解你的程式碼，要如何確認？
 
-**其中一個方法 -- 使用相似的名字，像是：`date` 和 `data`。**
+**其中一個方法 -- 使用相似的名稱，像是：`date` 和 `data`。**
 
 盡可能的混合在一起。
 
@@ -105,9 +104,9 @@ completed.
 （譯者註：這則引用應是個烏龍，孔子沒有說過這句話，可上網查詢相關來源）
 ```
 
-對 *同件* 事情使用 *相似* 的名字使得生活更為有趣，並向大眾顯示出你的創意。
+對 *同件* 事情使用 *相似* 的名稱使得生活更為有趣，並向大眾顯示出你的創意。
 
-例如，函式前置。若某個函式在螢幕上顯示一段訊息 -- 使用 `display...` 開頭，像是 `displayMessage`。然後若另一個函式在螢幕上顯示別的東西，像是使用者名字，就用 `show...` 開頭（像是 `showName`）。
+例如，函式前置。若某個函式在螢幕上顯示一段訊息 -- 使用 `display...` 開頭，像是 `displayMessage`。然後若另一個函式在螢幕上顯示別的東西，像是使用者名稱，就用 `show...` 開頭（像是 `showName`）。
 
 暗示這些函式之間有些微妙的不同，而其實並沒有。
 
@@ -119,64 +118,63 @@ completed.
 
 舉個例，函式 `printPage(page)` 將會用到印表機，而函式 `printText(text)` 將會把文字放到螢幕上。讓某個不熟悉的讀者思考一下這個相似的函式名稱 `printMessage`："它會把訊息丟到哪去？印表機還是螢幕上？" 為了讓它更為耀眼，`printMessage(message)` 應該要輸出訊息到新的視窗中！
 
-## Reuse names
+## 重複使用名稱
 
-```quote author="Laozi (Tao Te Ching)"
-Once the whole is divided, the parts<br>
-need names.<br>
-There are already enough names.<br>
-One must know when to stop.
+```quote author="老子（道德經）"
+始制有名，<br>
+名亦既有，<br>
+夫亦將知止。<br>
+知止所以不殆。
 ```
 
-Add a new variable only when absolutely necessary.
+只在絕對需要時才加入新的變數。
 
-Instead, reuse existing names. Just write new values into them.
+否則，重複使用已存在的名稱。就只要對它們寫入新的值。
 
-In a function try to use only variables passed as parameters.
+在函式中試著只使用作為參數傳遞的變數。
 
-That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. The purpose is to develop the intuition and memory of a person reading the code. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
+這樣做變數 *現在* 的值到底是什麼會變得很難確定，也會不知道它從哪來的。這麼做的目的是為了開發閱讀程式碼的人的直覺和記性。直覺不佳的人必須一行一行分析程式碼，並追蹤每段程式碼分枝的變化。
 
-**An advanced variant of the approach is to covertly (!) replace the value with something alike in the middle of a loop or a function.**
+**這種方法的進階變化是偷偷地（！）在像是迴圈或函式之中換掉它的值。**
 
-For instance:
+舉個例：
 
 ```js
 function ninjaFunction(elem) {
-  // 20 lines of code working with elem
+  // 20 行程式碼用來處理 elem
 
   elem = clone(elem);
 
-  // 20 more lines, now working with the clone of the elem!
+  // 另外的 20 行，用來處理複製後的 elem！
 }
 ```
 
-A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that they're working with a clone!
+想要在函式第二部分使用 `elem` 的程式夥伴會非常驚訝... 只有在除錯檢查完程式碼後，他們才會發現原來他們是在使用複製體！
 
-Seen in code regularly. Deadly effective even against an experienced ninja.
+這經常在程式碼中看到，即使是對於經驗豐富的忍者來說也是非常致命。
 
-## Underscores for fun
+## 底線的樂趣
 
-Put underscores `_` and `__` before variable names. Like `_name` or `__value`. It would be great if only you knew their meaning. Or, better, add them just for fun, without particular meaning at all. Or different meanings in different places.
+在變數名稱前使用底線 `_` 和 `__`，像是 `_name` 或 `__value`。若只有你知道它們的意義就太讚了，或者更棒的是，加上去只是為了樂趣，根本沒有特別的意義存在，或是在不同的地方就有不一樣的意義。
 
-You kill two rabbits with one shot. First, the code becomes longer and less readable, and the second, a fellow developer may spend a long time trying to figure out what the underscores mean.
+你一槍殺死了兩隻兔子耶。首先，程式碼變得更長且更不易讀了，再來，開發夥伴會花很長的時間試圖理解底線的意義。
 
-A smart ninja puts underscores at one spot of code and evades them at other places. That makes the code even more fragile and increases the probability of future errors.
+一個聰明的忍者會把底線放在某處，然後刻意避免在其他地方使用。這會讓程式碼更為脆弱且增加未來出錯的機會。
 
-## Show your love
+## 展現你的熱情
 
-Let everyone see how magnificent your entities are! Names like `superElement`, `megaFrame` and `niceItem` will definitely enlighten a reader.
+讓大家看看你是多麼的氣壯山河！像是 `superElement`、`megaFrame` 和 `niceItem` 這種名稱，一定可以達到啟發讀者的功效。
 
-Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two of their paid working time.
+從某方面來看，這樣確實有寫下些什麼：`super..`、`mega..`、`nice..`，但從另一方面來看 -- 毫無細節可言。讀者也許得在上班時間花一兩個小時冥想，來尋找背後隱藏的意義。
 
+## 重疊外部變數
 
-## Overlap outer variables
-
-```quote author="Guan Yin Zi"
-When in the light, can't see anything in the darkness.<br>
-When in the darkness, can see everything in the light.
+```quote author="關尹子"
+夫處明者，不見暗中一物，<br>
+而處暗者，能見明中區事。
 ```
 
-Use same names for variables inside and outside a function. As simple. No efforts to invent new names.
+將函式的內部與外部變數都使用一樣的名稱。很簡單，也不用花時間創造新名稱。
 
 ```js
 let *!*user*/!* = authenticateUser();
@@ -186,52 +184,51 @@ function render() {
   ...
   ...many lines...
   ...
-  ... // <-- a programmer wants to work with user here and...
+  ... // <-- 某個程式設計師想在這裡使用 user，然後...
   ...
 }
 ```
 
-A programmer who jumps inside the `render` will probably fail to notice that there's a local `user` shadowing the outer one.
+一個跳進 `render` 內的程式設計師，可能會沒注意到有個區域的 `user` 隱蔽了外部的變數。
 
-Then they'll try to work with `user` assuming that it's the external variable, the result of `authenticateUser()`... The trap is sprung! Hello, debugger...
+然後他們會試圖將 `user` 視為外部變數 `authenticateUser()` 的結果來使用... 翻開覆蓋的陷阱卡！哈囉，除錯器...
 
+## 副作用（Side-effects）無所不在！
 
-## Side-effects everywhere!
+有些函式看起來不改變任何東西，像是 `isReady()`、`checkPermission()`、`findTags()`... 他們被設想為執行計算、找出並回傳資料，而不改變內部的任何東西，換句話說就是沒有 "副作用（side-effects）"。
 
-There are functions that look like they don't change anything. Like `isReady()`, `checkPermission()`, `findTags()`... They are assumed to carry out calculations, find and return the data, without changing anything outside of them. In other words, without "side-effects".
+**有個真正漂亮的技巧，就是在他們的主要任務之外，再加個 "有用的" 動作。**
 
-**A really beautiful trick is to add a "useful" action to them, besides the main task.**
+當你的同事看到一個名為 `is..`、`check..` 或 `find...` 的函式改變了某些東西時，他的臉上一定會充滿迷惑 -- 絕對能拓展你理性的界線。
 
-An expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
+**另一個給人驚喜的方式是回傳非標準的結果。**
 
-**Another way to surprise is to return a non-standard result.**
+展現你原始的想法！讓 `checkPermission` 呼叫不回傳 `true/false`，而是回傳某個包含檢查結果的複雜物件。
 
-Show your original thinking! Let the call of `checkPermission` return not `true/false`, but a complex object with the results of the check.
+那些試圖寫下 `if (checkPermission(..))` 的開發者，會懷疑為什麼這麼寫不起作用。告訴他們："看文件！"，然後把這篇文章丟給他們。
 
-Those developers who try to write `if (checkPermission(..))`, will wonder why it doesn't work. Tell them: "Read the docs!". And give this article.
+## 強大的函式！
 
-
-## Powerful functions!
-
-```quote author="Laozi (Tao Te Ching)"
-The great Tao flows everywhere,<br>
-both to the left and to the right.
+```quote author="老子（道德經）"
+大道泛兮，<br>
+其可左右。
 ```
 
-Don't limit the function by what's written in its name. Be broader.
+別讓名稱限制了函式，變得更廣泛吧。
 
-For instance, a function `validateEmail(email)` could (besides checking the email for correctness) show an error message and ask to re-enter the email.
+舉個例，函式 `validateEmail(email)` 可以（除了檢查 email 是否正確之外）顯示錯誤訊息並要求重新輸入 email。
 
-Additional actions should not be obvious from the function name. A true ninja coder will make them not obvious from the code as well.
+額外的動作不該明顯出現在函式名稱中，真正的忍者程式人員會使它們在程式碼中也不這麼顯眼。
 
-**Joining several actions into one protects your code from reuse.**
+**把多個動作合併成一個以避免你的程式碼被重複使用。**
 
-Imagine, another developer wants only to check the email, and not output any message. Your function  `validateEmail(email)` that does both will not suit them. So they won't break your meditation by asking anything about it.
+想像一下，別的開發者只想要檢查 email 而不要輸出任何訊息時，你的函式 `validateEmail(email)` 做這麼多事就不適合他們啦。所以他們才不會在你冥想的時候來問你問題。
 
-## Summary
+## 總結
 
-All "pieces of advice" above are from the real code... Sometimes, written by experienced developers. Maybe even more experienced than you are ;)
+上述的 "這些建議" 都由實際的程式碼得來... 有時甚至是由有經驗的開發者寫下的，甚至是比你更有經驗的人 ;)
 
-- Follow some of them, and your code will become full of surprises.
-- Follow many of them, and your code will become truly yours, no one would want to change it.
-- Follow all, and your code will become a valuable lesson for young developers looking for enlightenment.
+- 遵循部分，你的程式碼會變得充滿驚奇。
+- 遵循多數，你的程式碼會真正成為你的程式碼，沒有人會想改變它。
+- 遵循全部，你的程式碼將成為年輕開發者尋求啟發的寶貴案例。
+
