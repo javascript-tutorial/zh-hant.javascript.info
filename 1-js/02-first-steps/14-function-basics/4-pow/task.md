@@ -2,9 +2,9 @@ importance: 4
 
 ---
 
-# Function pow(x,n)
+# 函式 pow(x, n)
 
-Write a function `pow(x,n)` that returns `x` in power `n`. Or, in other words, multiplies `x` by itself `n` times and returns the result.
+寫一個函式 `pow(x, n)`，用以回傳 `x` 的 `n` 次方。換句話說，將 `x` 自乘 `n` 次並回傳其結果。
 
 ```js
 pow(3, 2) = 3 * 3 = 9
@@ -12,8 +12,9 @@ pow(3, 3) = 3 * 3 * 3 = 27
 pow(1, 100) = 1 * 1 * ...* 1 = 1
 ```
 
-Create a web-page that prompts for `x` and `n`, and then shows the result of `pow(x,n)`.
+建立一個網頁，分別跳出提示輸入 `x` 和 `n` 的 prompts，並顯示 `pow(x, n)` 的結果。
 
 [demo]
 
-P.S. In this task the function should support only natural values of `n`: integers up from `1`.
+註：在本課題中函式應該要只支援自然數 `n`：從 `1` 開始向上數的整數。
+

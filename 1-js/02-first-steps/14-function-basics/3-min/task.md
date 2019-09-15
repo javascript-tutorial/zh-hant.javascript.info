@@ -2,11 +2,11 @@ importance: 1
 
 ---
 
-# Function min(a, b)
+# 函式 min(a, b)
 
-Write a function `min(a,b)` which returns the least of two numbers `a` and `b`.
+寫出一個函式 `min(a, b)`，用以回傳 `a` 和 `b` 兩個數值中的最小者。
 
-For instance:
+舉個例：
 
 ```js
 min(2, 5) == 2
