@@ -151,8 +151,13 @@ JavaScript 支援以下運算子：
 條件運算（Conditional）
 ： 唯一具有三個參數的操作： `cond ? resultA : resultB`. 如果 `cond` 是真值，則回傳 `resultA`否則回傳 `resultB`。
 
+<<<<<<< HEAD
 邏輯運算子（Logical operators）
 ： 邏輯的 AND `&&` 和 OR `||` 執行短路核定，然後回傳停止時的值（不一定為 `true`/`false`）。邏輯的 NOT `!` 轉換操作運算元成布林類型，並回傳相反的值。
+=======
+Logical operators
+: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped (not necessary `true`/`false`). Logical NOT `!` converts the operand to boolean type and returns the inverse value.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 比較運算子（Comparisons）
 ： 相等性檢查 `==` 將不同類型的值轉換成數值（除了 `null` 和 `undefined`，它們除了彼此相等外，不跟任何人相等），所以這些是相等的：

@@ -26,7 +26,11 @@
     alert( y - x ); // 2，二元減號運算子套用減法
     ```
 
+<<<<<<< HEAD
     正式地說，上例中的兩個運算子使用同一個符號，但意義卻完全不同：一元負號運算子（單一個運算元，正負轉換）和二元減號運算子（兩個運算元，一對一的數值減法）。
+=======
+    Formally, in the examples above we have two different operators that share the same symbol: the negation operator, a unary operator that reverses the sign, and the subtraction operator, a binary operator that subtracts one number from another.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 ## 字串連接，二元運算子 +
 

@@ -124,15 +124,25 @@ alert( Boolean(" ") ); // 空白，也是 true（任何非空字串都是 true�
 ```
 ````
 
+<<<<<<< HEAD
 ## 總結
 
 三種最為廣泛使用的類型轉換是：轉字串、轉數值和轉布林。
+=======
+## Summary
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 **`字串轉換`** -- 用於當我們輸出某些東西時，可使用 `String(value)` 來轉換，原生值的字串轉換通常是很直觀的。
 
+<<<<<<< HEAD
 **`數值轉換`** -- 用於數學運算，可使用 `Number(value)` 來轉換。
 
 按照以下規則轉換：
+=======
+**`String Conversion`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+
+**`Numeric Conversion`** -- Occurs in math operations. Can be performed with `Number(value)`.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 | 值 | 會變成... |
 |-------|-------------|
@@ -141,7 +151,11 @@ alert( Boolean(" ") ); // 空白，也是 true（任何非空字串都是 true�
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | 字串 "依原樣" 讀取並忽略頭尾空白，若為空字串則為 `0`，有錯誤則成為 `NaN`。 |
 
+<<<<<<< HEAD
 **`布林轉換`** -- 用於邏輯運算，可使用 `Boolean(value)` 來轉換。
+=======
+**`Boolean Conversion`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 規則是：
 
