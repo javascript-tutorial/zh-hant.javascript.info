@@ -1,54 +1,53 @@
 
 # Polyfills
 
-The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+JavaScript 語言穩定發展。有關該語言的新建議會定期出現，對其進行分析，如果認為有價值，則將其新增到 <https://tc39.github.io/ecma262/> 的列表中，然後進展至 [規範](http://www.ecma-international.org/publications/standards/Ecma-262.htm)。
 
-Teams behind JavaScript engines have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
+JavaScript 引擎背後的團隊對於首先實現什麼有自己的想法。他們可能會決定實現草案中的提議，並推延規範中已經存在的規範，因為它們不那麼有趣或更難做。
 
-So it's quite common for an engine to implement only the part of the standard.
+因此，引擎僅實現部分標準是很普遍的。
 
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+<https://kangax.github.io/compat-table/es6/> 是一個很好的頁面，可以看到目前對語言功能的支援狀態（它很大，我們還有很多要研究的內容）。
 
 ## Babel
 
-When we use modern features of the language, some engines may fail to support such code. Just as said, not all features are implemented everywhere.
+當我們使用語言的現代功能時，某些引擎可能無法支援這類型的程式碼。就像所說的那樣，並非所有功能都在各處實現。
 
-Here Babel comes to the rescue.
+Babel 來這裡進行解救。
 
-[Babel](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites modern JavaScript code into the previous standard.
+[Babel](https://babeljs.io) 是一個 [transpiler](https://zh.wikipedia.org/wiki/%E6%BA%90%E5%88%B0%E6%BA%90%E7%BC%96%E8%AF%91%E5%99%A8)。它將現代的 JavaScript 程式碼重寫成之前的標準。
 
-Actually, there are two parts in Babel:
+實際上，Babel 有兩個部分：
 
-1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that very easy to integrate into development process.
+1. 首先，是 transpiler 程序，該程序重寫程式碼。開發人員在自己的電腦上運行它。它將程式碼重寫為較舊的標準。然後將程式碼交付給用戶的網站。諸如 [webpack](http://webpack.github.io/) 之類的現代專案建置系統提供了每次程式碼變更時自動運型 transpiler 的方法，因此極易整合到開發過程。
 
-2. Second, the polyfill.
+2. 第二，polyfill。
 
-    New language features may include new built-in functions and syntax constructs.
-    The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
+    新的語言功能可能包括新的內置函數和語法構件。
+    Transpiler 重寫程式碼，將語法構件轉換為較舊的語法。但是對於新的內置函數，我們需要實現它們。JavaScript 是一種高度動態的語言，腳本可以新增／修改任何函式，以便它們按照現代標準運行。
 
-    A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
+    更新／增加新功能的腳本稱為 "polyfill"。 它 "填補" 了差距，並增加了缺少的實現。
 
-    Two interesting polyfills are:
-    - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
-    - [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+    兩個有趣的 polyfill 是：
+    - [core js](https://github.com/zloirock/core-js) 支援很多功能，允許僅包含所需的功能。
+    - [polyfill.io](http://polyfill.io) 服務根據功能和使用者的瀏覽器提供帶有 polyfills 的腳本。
 
-So, if we're going to use modern language features, a transpiler and a polyfill are necessary.
+因此，如果我們要使用現代語言功能，則需要 transpiler 和 polyfill。
 
-## Examples in the tutorial
-
+## 教學中的範例
 
 ````online
-Most examples are runnable at-place, like this:
+大多數範例都可以在原地運行，如下所示：
 
 ```js run
-alert('Press the "Play" button in the upper-right corner to run');
+alert('按右上角的 "播放" 按鈕運行');
 ```
 
-Examples that use modern JS will work only if your browser supports it.
+只有您的瀏覽器支援時，使用現代 JS 的範例才有效。
 ````
 
 ```offline
-As you're reading the offline version, in PDF examples are not runnable. In EPUB some of them can run.
+在閱讀離線版本時，PDF 中的範例不可運行。在 EPUB 其中有一些可以運行。
 ```
 
-Google Chrome is usually the most up-to-date with language features, good to run bleeding-edge demos without any transpilers, but other modern browsers also work fine.
+Google Chrome 通常有最新的語言功能，可以很好地運行尖端的演示，而無需任何 transpiler，但是其他現代瀏覽器也可以正常運作。
