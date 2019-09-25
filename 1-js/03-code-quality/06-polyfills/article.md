@@ -15,7 +15,7 @@ JavaScript 引擎背後的團隊對於首先實現什麼有自己的想法。他
 
 Babel 來這裡進行解救。
 
-[Babel](https://babeljs.io) 是一個 [transpiler](https://zh.wikipedia.org/wiki/%E6%BA%90%E5%88%B0%E6%BA%90%E7%BC%96%E8%AF%91%E5%99%A8)。它將現代的 JavaScript 程式碼重寫成之前的標準。
+[Babel](https://babeljs.io) 是一個 [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)。它將現代的 JavaScript 程式碼重寫成之前的標準。
 
 實際上，Babel 有兩個部分：
 
