@@ -13,7 +13,7 @@ JavaScript 引擎背後的團隊對於首先實現什麼有自己的想法。他
 
 當我們使用語言的現代功能時，某些引擎可能無法支援這類型的程式碼。就像所說的那樣，並非所有功能都在各處實現。
 
-Babel 來這裡進行解救。
+Babel 是一帖良方。
 
 [Babel](https://babeljs.io) 是一個 [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)。它將現代的 JavaScript 程式碼重寫成之前的標準。
 
