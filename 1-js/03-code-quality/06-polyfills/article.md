@@ -1,7 +1,7 @@
 
 # Polyfills
 
-JavaScript 語言穩定發展。有關該語言的新建議會定期出現，對其進行分析，如果認為有價值，則將其新增到 <https://tc39.github.io/ecma262/> 的列表中，然後進展至 [規範](http://www.ecma-international.org/publications/standards/Ecma-262.htm)。
+JavaScript 語言穩定發展。有關該語言的新提案會定期出現，他們會被分析，而且如果被認為有價值，則會新增到 <https://tc39.github.io/ecma262/> 的列表中，然後進展至 [規格](http://www.ecma-international.org/publications/standards/Ecma-262.htm)。
 
 JavaScript 引擎背後的團隊對於首先實現什麼有自己的想法。他們可能會決定實現草案中的提議，並推延規範中已經存在的規範，因為它們不那麼有趣或更難做。
 
