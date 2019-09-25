@@ -7,7 +7,7 @@ JavaScript 引擎背後的團隊對於首先實現什麼有自己的想法。他
 
 因此，引擎僅實現部分標準是很普遍的。
 
-<https://kangax.github.io/compat-table/es6/> 是一個很好的頁面，可以看到目前對語言功能的支援狀態（它很大，我們還有很多要研究的內容）。
+<https://kangax.github.io/compat-table/es6/> 是一個很好的頁面，可以看到目前對語言功能的支援狀態（它很多，我們還有很多要研究）。
 
 ## Babel
 
