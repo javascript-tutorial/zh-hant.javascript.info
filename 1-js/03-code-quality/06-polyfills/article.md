@@ -40,7 +40,7 @@ Babel 來這裡進行解救。
 大多數範例都可以在原地運行，如下所示：
 
 ```js run
-alert('按右上角的 "播放" 按鈕運行');
+alert('Press the "Play" button in the upper-right corner to run');
 ```
 
 只有您的瀏覽器支援時，使用現代 JS 的範例才有效。
