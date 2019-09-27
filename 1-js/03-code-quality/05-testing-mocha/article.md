@@ -1,42 +1,42 @@
-# Automated testing with Mocha
+# 使用 Mocha 自動化測試
 
-Automated testing will be used in further tasks, and it's also widely used in real projects.
+自動化測試將會在未來的任務中被使用，且也會在真實專案上被廣泛地使用。
 
-## Why we need tests?
+## 為什麼我們需要測試？
 
-When we write a function, we can usually imagine what it should do: which parameters give which results.
+當我們寫下一個函式，我們通常可以想像它應該要做些什麼：哪些參數會給出哪些結果。
 
-During development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
+在開發中，我們可以經由執行它得到的結果來跟預期做比較，並檢查該函式。例如，我們可以在主控台中這樣做。
 
-If something is wrong -- then we fix the code, run again, check the result -- and so on till it works.
+若有東西不對勁 -- 那我們會修復程式碼、再次執行並檢查結果 -- 等等事情直到它運作正常。
 
-But such manual "re-runs" are imperfect.
+但這種手動 "重新執行" 並不完美。
 
-**When testing a code by manual re-runs, it's easy to miss something.**
+**當經由手動重新執行來測試一段程式碼時，很容易就會漏掉東西。**
 
-For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
+舉個例，我們要建立一個函式 `f` 時，寫下一些程式碼並進行測試：`f(1)` 可以運作，但 `f(2)` 不運作。我們修復程式碼，現在 `f(2)` 可以運作了。看起來完成了嗎？但我們忘記重新再測一次 `f(1)`，那也許會導致錯誤。
 
-That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
+這是非常典型的案例。當我們開發某些東西時，會在心中保有很多可能的使用情境。但很難預期程式設計師會在每次更動後，都手動去檢查全部。所以很容易會變成修好一個卻壞另一個的情況。
 
-**Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected.**
+**自動測試意味著，測試是在程式碼之外被分開寫下的。它們會以多種方式執行我們的函式，並跟將結果跟預期做比較。**
 
-## Behavior Driven Development (BDD)
+## 行為驅動開發（Behavior Driven Development, BDD）
 
-Let's start with a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD.
+讓我們從一個稱為 [行為驅動開發（Behavior Driven Development）](http://en.wikipedia.org/wiki/Behavior-driven_development) ，或簡稱 BDD，這樣的技術開始吧。
 
-**BDD is three things in one: tests AND documentation AND examples.**
+**BDD 將三件事合一：測試、文件、範例。**
 
-To understand BDD, we'll examine a practical case of development.
+為了理解 BDD，我們要來檢視一個開發過程的實際案例
 
-## Development of "pow": the spec
+## "pow" 的開發：規格
 
-Let's say we want to make a function `pow(x, n)` that raises `x` to an integer power `n`. We assume that `n≥0`.
+若我們想要建立一個函式 `pow(x, n)` 來算 x 的整數 `n` 次方，假設 `n≥0`。
 
-That task is just an example: there's the `**` operator in JavaScript that can do that, but here we concentrate on the development flow that can be applied to more complex tasks as well.
+這個任務就只是個例子而已：JavaScript 有個 `**` 運算子可以做這件事，但這邊我們專注於開發的流程，這樣也可以套用在更複雜的任務上。
 
-Before creating the code of `pow`, we can imagine what the function should do and describe it.
+在建立 `pow` 的程式碼之前，我們想像該函式應該要做什麼並描述它。
 
-Such description is called a *specification* or, in short, a spec, and contains descriptions of use cases together with tests for them, like this:
+這樣的描述被稱為 *規格（specification）*，或簡稱 spec，包含著使用情境的描述與它們的測試，像這樣：
 
 ```js
 describe("pow", function() {
@@ -48,95 +48,95 @@ describe("pow", function() {
 });
 ```
 
-A spec has three main building blocks that you can see above:
+從上面你可以發現一份規格有三個主要的建構區塊：
 
 `describe("title", function() { ... })`
-: What functionality we're describing. In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+: 代表我們正在描述什麼樣的功能。在我們的例子中描述的是 `pow` 這個函式。用來組合 "workers" -- 也就是 `it` 區塊。
 
 `it("use case description", function() { ... })`
-: In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
+: 在 `it` 的標題中，我們使用 *人類可讀的方式* 來描述特定的使用情境，而第二個引數是用來測試它的函式。
 
 `assert.equal(value1, value2)`
-: The code inside `it` block, if the implementation is correct, should execute without errors.
+: 在 `it` 區塊中的程式碼。若其實作正確，應該要執行無誤。
 
-    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`. There are other types of comparisons and checks, that we'll add later.
+    函式 `assert.*` 用來檢查 `pow` 是否按照期望運作。在此我們使用其中的一種 -- `assert.equal`，它會比較引數們並在不相等時宣告錯誤，這邊它檢查了 `pow(2, 3)` 的結果是否等於 `8`。還有其它比較和檢查的類型，我們晚點會再加進來。
 
-The specification can be executed, and it will run the test specified in `it` block. We'll see that later.
+這份規格可以被執行，然後它會運行 `it` 區塊中的測試，我們晚點就會看到。
 
-## The development flow
+## 開發流程
 
-The flow of development usually looks like this:
+開發流程通常看起來像這樣：
 
-1. An initial spec is written, with tests for the most basic functionality.
-2. An initial implementation is created.
-3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
-4. Now we have a working initial implementation with tests.
-5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
-6. Go to 3, update the implementation till tests give no errors.
-7. Repeat steps 3-6 till the functionality is ready.
+1. 寫下最初規格，測試最為基本的功能。
+2. 建立最初實作。
+3. 要檢查它是否運作，我們執行測試框架 [Mocha](http://mochajs.org/)（很快就有更多細節）來運行規格。當功能尚未完成時，錯誤會被顯示出來，我們得持續修正直到一切運作正常為止。
+4. 現在我們有一份經過測試可運作的實作了。
+5. 我們加入更多使用情境到規格中，也許某些在目前的實作中尚未支援，所以測試將會失敗。
+6. 回到 3，更新實作直到測試無誤為止。
+7. 重複步驟 3-6 直到功能齊全為止。
 
-So, the development is *iterative*. We write the spec, implement it, make sure tests pass, then write more tests, make sure they work etc. At the end we have both a working implementation and tests for it.
+所以，開發是 *迭代的*。我們寫下規格、實作它、保證通過測試、然後再寫更多測試、確認它們無誤等等。最後我們將擁有運行正常的實作與其測試。
 
-Let's see this development flow in our practical case.
+在我們的實際例子中來看看這個開發流程。
 
-The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+第一步已經完成了：對於 `pow` 我們已經有初始的規格。現在，在開始實作之前，來用些 JavaScript 函式庫運行測試，看看它們是否運作正常（全部都會失敗）。
 
-## The spec in action
+## 規格動作
 
-Here in the tutorial we'll be using the following JavaScript libraries for tests:
+在教程中我們將使用以下 JavaScript 函式庫做測試：
 
-- [Mocha](http://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
-- [Chai](http://chaijs.com) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
-- [Sinon](http://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
+- [Mocha](http://mochajs.org/) -- 核心框架：它提供包含 `describe` 和 `it` 的常見測試函式，與運行測試的主函式。
+- [Chai](http://chaijs.com) -- 有許多斷言的函式庫。它可以使用很多不同的斷言，現在我們只需要 `assert.equal`。
+- [Sinon](http://sinonjs.org/) -- 該函式庫可監控函式、模擬內建函式與其它功能，我們稍後會需要它。
 
-These libraries are suitable for both in-browser and server-side testing. Here we'll consider the browser variant.
+這些函式庫用於瀏覽器端或是伺服器端的測試都很適合，在此我們用在瀏覽器上。
 
-The full HTML page with these frameworks and `pow` spec:
+含有這些框架與 `pow` 規格的完整 HTML 頁面：
 
 ```html src="index.html"
 ```
 
-The page can be divided into five parts:
+該頁面可被分為四個部分：
 
-1. The `<head>` -- add third-party libraries and styles for tests.
-2. The `<script>` with the function to test, in our case -- with the code for `pow`.
-3. The tests -- in our case an external script `test.js` that has `describe("pow", ...)` from above.
-4. The HTML element `<div id="mocha">` will be used by Mocha to output results.
-5. The tests are started by the command `mocha.run()`.
+1. `<head>` -- 增加測試的第三方函式庫與樣式。
+2. `<script>` 內要被測試的函式，在我們的例子中是 -- `pow` 的程式碼。
+3. 測試 -- 在我們的例子中是外部腳本 `test.js`，包含上述的 `describe("pow", ...)`。
+4. HTML 元素 `<div id="mocha">` 將被用於輸出 Mocha 的結果。
+5. 測試將由命令 `mocha.run()` 啟動。
 
-The result:
+結果：
 
 [iframe height=250 src="pow-1" border=1 edit]
 
-As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
+目前，測試是失敗的，有個錯誤存在。這符合邏輯：我們只有一個空函式 `pow`，所以 `pow(2, 3)` 回傳 `undefined` 而非 `8`。
 
-For the future, let's note that there are more high-level test-runners, like [karma](https://karma-runner.github.io/) and others, that make it easy to autorun many different tests.
+未來，留意還有更多高層次的測試工具，像是 [karma](https://karma-runner.github.io/) 和其它，可以簡單地自動執行多種測試。
 
-## Initial implementation
+## 初始實作
 
-Let's make a simple implementation of `pow`, for tests to pass:
+為了讓測試通過，來簡單實作一下 `pow` 吧：
 
 ```js
 function pow(x, n) {
-  return 8; // :) we cheat!
+  return 8; // :) 我們作個弊！
 }
 ```
 
-Wow, now it works!
+哇喔，現在它運作了！
 
 [iframe height=250 src="pow-min" border=1 edit]
 
-## Improving the spec
+## 改進規格
 
-What we've done is definitely a cheat. The function does not work: an attempt to calculate `pow(3,4)` would give an incorrect result, but tests pass.
+我們做的事絕對是作弊，函式不會有作用：嘗試計算 `pow(3, 4)` 就會給出不對的結果，但測試卻通過了。
 
-...But the situation is quite typical, it happens in practice. Tests pass, but the function works wrong. Our spec is imperfect. We need to add more use cases to it.
+...然而這種情況卻是相當典型的，在實際中常發生。測試通過，但函式運行錯誤。我們的規格不完美，需要為它增加更多的使用情境。
 
-Let's add one more test to check that `pow(3, 4) = 81`.
+來多加一個測試檢查 `pow(3, 4) = 81` 吧。
 
-We can select one of two ways to organize the test here:
+這裡我們可以兩個方法選一個來組織測試：
 
-1. The first variant -- add one more `assert` into the same `it`:
+1. 第一種 -- 多加一個 `assert` 到同樣的 `it` 內：
 
     ```js
     describe("pow", function() {
@@ -150,7 +150,7 @@ We can select one of two ways to organize the test here:
 
     });
     ```
-2. The second -- make two tests:
+2. 第二種 -- 製作兩個測試：
 
     ```js
     describe("pow", function() {
@@ -166,27 +166,27 @@ We can select one of two ways to organize the test here:
     });
     ```
 
-The principal difference is that when `assert` triggers an error, the `it` block immediately terminates. So, in the first variant if the first `assert` fails, then we'll never see the result of the second `assert`.
+原則上的不同在於當 `assert` 觸發錯誤時，`it` 區塊會立刻終止。所以，第一種寫法中，若第一個 `assert` 失敗了，那我們將永遠看不到第二個 `assert` 的結果。
 
-Making tests separate is useful to get more information about what's going on, so the second variant is better.
+讓測試分開對於獲取更多資訊是有幫助的，所以第二種寫法會更好。
 
-And besides that, there's one more rule that's good to follow.
+此外，還有一個規則最好要遵守。
 
-**One test checks one thing.**
+**一個測試檢查一件事。**
 
-If we look at the test and see two independent checks in it, it's better to split it into two simpler ones.
+如果我們查看測試並發現兩個完全獨立的檢查，那最好將它拆分為兩個更簡單的測試。
 
-So let's continue with the second variant.
+所以，讓我們繼續用第二種寫法。
 
-The result:
+結果：
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `27`.
+如我們所預期，第二個測試失敗了。當然，我們的函式總是回傳 `8`，然而 `assert` 預期的是 `27`。
 
-## Improving the implementation
+## 改進實作
 
-Let's write something more real for tests to pass:
+讓我們寫些更真實的東西讓測試通過：
 
 ```js
 function pow(x, n) {
@@ -200,7 +200,7 @@ function pow(x, n) {
 }
 ```
 
-To be sure that the function works well, let's test it for more values. Instead of writing `it` blocks manually, we can generate them in `for`:
+要確認函式運作正常，我們來測試更多的值。除了手動寫下 `it` 區塊以外，我們可以在 `for` 內生成它們：
 
 ```js
 describe("pow", function() {
@@ -219,15 +219,15 @@ describe("pow", function() {
 });
 ```
 
-The result:
+結果：
 
 [iframe height=250 src="pow-3" edit border="1"]
 
-## Nested describe
+## 巢狀 describe
 
-We're going to add even more tests. But before that let's note that the helper function `makeTest` and `for` should be grouped together. We won't need `makeTest` in other tests, it's needed only in `for`: their common task is to check how `pow` raises into the given power.
+我們要來增加更多測試，但在那之前，注意輔助函式 `makeTest` 和 `for` 應該要被組合再一起。我們不會在其它測試中用到 `makeTest`，這只在 `for` 中需要而已：它們共同的任務就是檢查 `pow` 如何提升給予的冪次。
 
-Grouping is done with a nested `describe`:
+利用巢狀 `describe` 可以完成組合：
 
 ```js
 describe("pow", function() {
@@ -251,20 +251,20 @@ describe("pow", function() {
   });
 */!*
 
-  // ... more tests to follow here, both describe and it can be added
+  // ... 從這可以寫更多的測試， describe 和 it 皆可加入
 });
 ```
 
-The nested `describe` defines a new "subgroup" of tests. In the output we can see the titled indentation:
+巢狀 `describe` 定義一個新的測試 "子群組"。在輸出中我們可以看到有著標題的縮排：
 
 [iframe height=250 src="pow-4" edit border="1"]
 
-In the future we can add more `it` and `describe` on the top level with helper functions of their own, they won't see `makeTest`.
+未來我們可以在最上層使用自己的輔助函式加入更多的 `it` 和 `describe`，它們不會看到 `makeTest`。
 
-````smart header="`before/after` and `beforeEach/afterEach`"
-We can setup `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.
+````smart header="`before/after` 和 `beforeEach/afterEach`"
+我們可以設定 `before/after` 在函式運行測試 前/後 執行，且也可用 `beforeEach/afterEach` 函式在 *每個* `it` 前/後 執行。
 
-For instance:
+舉個例：
 
 ```js no-beautify
 describe("test", function() {
@@ -281,7 +281,7 @@ describe("test", function() {
 });
 ```
 
-The running sequence will be:
+運行順序將會是：
 
 ```
 Testing started – before all tests (before)
@@ -294,20 +294,20 @@ After a test – exit a test   (afterEach)
 Testing finished – after all tests (after)
 ```
 
-[edit src="beforeafter" title="Open the example in the sandbox."]
+[edit src="beforeafter" title="在沙盒模式中開啟範例。"]
 
-Usually, `beforeEach/afterEach` and `before/after` are used to perform initialization, zero out counters or do something else between the tests (or test groups).
+通常，`beforeEach/afterEach` 和 `before/after` 被用於執行初始化、歸零計數器、或是做些測試（測試群組）之間額外要做的事情。
 ````
 
-## Extending the spec
+## 延伸規格
 
-The basic functionality of `pow` is complete. The first iteration of the development is done. When we're done celebrating and drinking champagne -- let's go on and improve it.
+`pow` 基礎的功能已完成，第一次開發迭代已經做完了。當我們慶祝且喝完香檳後 -- 來繼續改進它吧。
 
-As it was said, the function `pow(x, n)` is meant to work with positive integer values `n`.
+如它所述，函式 `pow(x, n)` 意味著運作在正整數 `n` 之上。
 
-To indicate a mathematical error, JavaScript functions usually return `NaN`. Let's do the same for invalid values of `n`.
+要指出數學錯誤，JavaScript 函式通常回傳 `NaN`，我們來為無效的 `n` 值做同樣的事吧。
 
-Let's first add the behavior to the spec(!):
+先加入這行為到規格內(!)：
 
 ```js
 describe("pow", function() {
@@ -329,26 +329,26 @@ describe("pow", function() {
 });
 ```
 
-The result with new tests:
+新測試的結果：
 
 [iframe height=530 src="pow-nan" edit border="1"]
 
-The newly added tests fail, because our implementation does not support them. That's how BDD is done: first we write failing tests, and then make an implementation for them.
+新加入的測試失敗了，因為我們的實作尚未支援它們。這就是 BDD 如何作用的：首先我們寫下失敗的測試，然後再完成它們的實作。
 
-```smart header="Other assertions"
-Please note the assertion `assert.isNaN`: it checks for `NaN`.
+```smart header="其它斷言"
+請注意斷言 `assert.isNaN`：它用於確認 `NaN`。
 
-There are other assertions in [Chai](http://chaijs.com) as well, for instance:
+[Chai](http://chaijs.com) 中也有其它斷言，例如：
 
-- `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
-- `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
-- `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
-- `assert.isTrue(value)` -- checks that `value === true`
-- `assert.isFalse(value)` -- checks that `value === false`
-- ...the full list is in the [docs](http://chaijs.com/api/assert/)
+- `assert.equal(value1, value2)` -- 確認相等 `value1 == value2`。
+- `assert.strictEqual(value1, value2)` -- 確認嚴格相等 `value1 === value2`。
+- `assert.notEqual`, `assert.notStrictEqual` -- 上述的相反檢查。
+- `assert.isTrue(value)` -- 確認 `value === true`
+- `assert.isFalse(value)` -- 確認 `value === false`
+- ...完整的列表在 [文件](http://chaijs.com/api/assert/)
 ```
 
-So we should add a couple of lines to `pow`:
+所以我們應該在 `pow` 多加幾行：
 
 ```js
 function pow(x, n) {
@@ -367,43 +367,44 @@ function pow(x, n) {
 }
 ```
 
-Now it works, all tests pass:
+現在它可以運作了，所有測試都通過：
 
 [iframe height=300 src="pow-full" edit border="1"]
 
-[edit src="pow-full" title="Open the full final example in the sandbox."]
+[edit src="pow-full" title="在沙盒中打開最後完整的例子。"]
 
 ## Summary
 
-In BDD, the spec goes first, followed by implementation. At the end we have both the spec and the code.
+在 BDD 中，規格先行，實作在後，最後規格與程式碼並具。
 
-The spec can be used in three ways:
+規格可以三種方式被使用：
 
-1. As **Tests** - they guarantee that the code works correctly.
-2. As **Docs** -- the titles of `describe` and `it` tell what the function does.
-3. As **Examples** -- the tests are actually working examples showing how a function can be used.
+1. 作為 **測試** - 它們保證程式碼運作正確。
+2. 作為 **文件** -- `describe` 和 `it` 的標題說明了函式在做什麼。
+3. 作為 **範例** -- 測試實際上運行範例來顯示函式如何被使用。
 
-With the spec, we can safely improve, change, even rewrite the function from scratch and make sure it still works right.
+有著規格，我們可以安全的改進、更動、甚至重頭寫函式，且保證其依然運作正確。
 
-That's especially important in large projects when a function is used in many places. When we change such a function, there's just no way to manually check if every place that uses it still works right.
+當函式被用在大型專案中的多處時更是特別重要。當我們改變一個函式，是沒辦法只用手動檢查是否各個使用它的地方都運作順利的。
 
-Without tests, people have two ways:
+沒有測試時，會有兩種作法：
 
-1. To perform the change, no matter what. And then our users meet bugs, as we probably fail to check something manually.
-2. Or, if the punishment for errors is harsh, as there are no tests, people become afraid to modify such functions, and then the code becomes outdated, no one wants to get into it. Not good for development.
+1. 無論如何就是更改。然後我們的使用者遇到錯誤，因為我們也許在手動測試某些東西時失敗了。
+2. 或者，若錯誤的懲罰很嚴重時，因為沒有測試，人們會變得畏懼修改這些函式，進而程式碼變得過時且沒人想動它，這對開發來說很不好。
 
-**Automatic testing helps to avoid these problems!**
+**自動化測試有助於避免這些問題！**
 
-If the project is covered with tests, there's just no such problem. After any changes, we can run tests and see a lot of checks made in a matter of seconds.
+若專案被測試保護著，就不會有這些問題了。在任何修改之後，我們可以執行測試並在幾秒內看到一大多檢查。
 
-**Besides, a well-tested code has better architecture.**
+**此外，測試良好的程式碼會有著更加的架構。**
 
-Naturally, that's because auto-tested code is easier to modify and improve. But there's also another reason.
+理所當然地，這是因為被自動測試的程式碼更易於修改增進，但也有著其它的原因。
 
-To write tests, the code should be organized in such a way that every function has a clearly described task, well-defined input and output. That means a good architecture from the beginning.
+要寫測試，程式碼應該要用某種方式組織起來，該方式會讓每個函式有著清晰的任務描述，與定義良好的輸入輸出。這代表著從一開始就有良好的程式架構。
 
-In real life that's sometimes not that easy. Sometimes it's difficult to write a spec before the actual code, because it's not yet clear how it should behave. But in general writing tests makes development faster and more stable.
+在現實生活中也許沒那麼簡單，有時候在真的寫程式碼之前，很難寫下其規格，因為它該有的行為還沒那麼清楚。但一般來說寫測試可以使得開發更快更穩。
 
-Later in the tutorial you will meet many tasks with tests baked-in. So you'll see more practical examples.
+在稍後的教程中，你會遇到很多包含測試的課題，所以你可以看到更多實際的例子。
 
-Writing tests requires good JavaScript knowledge. But we're just starting to learn it. So, to settle down everything, as of now you're not required to write tests, but you should already be able to read them even if they are a little bit more complex than in this chapter.
+寫測試需要良好的 JavaScript 知識，但我們才正要開始學習它。所以，為了學完所有事情，在這之前你還不會被要求寫測試，但你應該要已經有能力閱讀它們，就算它們看起來比本章中更為複雜些。
+
