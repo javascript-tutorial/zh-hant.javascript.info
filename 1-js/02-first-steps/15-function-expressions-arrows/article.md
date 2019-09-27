@@ -1,8 +1,8 @@
-# Function expressions and arrows
+# 函式表達式和箭頭函式
 
-In JavaScript, a function is not a "magical language structure", but a special kind of value.
+在 JavaScript 中，函式不是一個神奇的語言結構，而是一種特殊的值。
 
-The syntax that we used before is called a *Function Declaration*:
+我們之前所使用的語法稱為 *函式宣告（Function Declaration）*：
 
 ```js
 function sayHi() {
@@ -10,9 +10,9 @@ function sayHi() {
 }
 ```
 
-There is another syntax for creating a function that is called a *Function Expression*.
+有另一種創建函式的語法，稱之為 *函式表達式（Function Expression）*。
 
-It looks like this:
+寫法如下：
 
 ```js
 let sayHi = function() {
@@ -20,11 +20,12 @@ let sayHi = function() {
 };
 ```
 
-Here, the function is created and assigned to the variable explicitly, like any other value. No matter how the function is defined, it's just a value stored in the variable `sayHi`.
+在這邊，函式被創建，並像其他值ㄧ樣，明確地指定給一個變數。
+無論函式是如何被定義的，它只是一個儲存於變數 `sayHi` 的值。
 
-The meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
+這兩段程式碼範例的意思是相同的："創造一個函式，並將其放入變數 `sayHi`"。
 
-We can even print out that value using `alert`:
+我們甚至可以利用 `alert` 將其值印出：
 
 ```js run
 function sayHi() {
@@ -32,14 +33,15 @@ function sayHi() {
 }
 
 *!*
-alert( sayHi ); // shows the function code
+alert( sayHi ); // 顯現函數程式碼
 */!*
 ```
 
-Please note that the last line does not run the function, because there are no parentheses after `sayHi`. There are programming languages where any mention of a function name causes its execution, but JavaScript is not like that.
+請注意最後一行程式碼並沒有執行函式，因為 `sayHi` 後沒有括號。有些程式語言中，提到函式名稱時就會觸發執行，但 JavaScript 並非如此。
 
-In JavaScript, a function is a value, so we can deal with it as a value. The code above shows its string representation, which is the source code.
+在 JavaScript 中，函式是一個值，所以我們可以將其當成值對待。上述的程式碼顯示了函式的字串表示式，也就是其原始碼。
 
+的確，函式是一個特殊的值，
 Surely, a function is a special values, in the sense that we can call it like `sayHi()`.
 
 But it's still a value. So we can work with it like with other kinds of values.
