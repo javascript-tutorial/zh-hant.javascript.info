@@ -1,60 +1,59 @@
+# 物件（Objects）
 
-# Objects
+如我們從 <info:types> 所知，JavaScript 內有七種資料類型。其中六種被稱為 "原生（primitive）"，因為它們的值只包含了單一種東西（是個字串或數值或什麼的）。
 
-As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+相對的，物件被用來儲存使用鍵配對的多種資料群集與更為複雜的實體。在 JavaScript，物件幾乎滲入該語言的各個方面，所以我們必須在更深入其它主題前先理解物件。
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+物件可以經由花括號 `{…}` 與一些可選的 *屬性（properties）* 來建立。一個屬性也是一組 "鍵（key）：值（value）" 配對，其中 `key` 是一串字串（也被稱為 "屬性名稱（property name）"），而 `value` 可以是任何東西。
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
-
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+我們可以把物件想成一個存放簽名檔案的櫃子，每段資料經由鍵存放於對應的檔案中，要透過檔案的名稱尋找檔案或 增加/移除 檔案都很容易。
 
 ![](object.svg)
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+一個空物件（"空櫃子"）可以使用兩種語法的其中一種來建立：
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let user = new Object(); // "物件建構子（object constructor）" 語法
+let user = {};  // "物件字面值（object literal）" 語法
 ```
 
 ![](object-user-empty.svg)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+通常會使用花括號 `{...}`，這種宣告被稱為 *物件字面值（object literal）*。
 
-## Literals and properties
+## 文字與屬性
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+我們可以以 "鍵：值" 的方式立刻放入某些屬性到 `{...}` 內：
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let user = {     // 一個物件
+  name: "John",  // 經由 "name" 鍵，存放值 "John"
+  age: 30        // 經由 "age" ，存放值 30
 };
 ```
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+屬性有一個鍵（也被稱為 "名稱（name）" 或 "識別符（identifier）"）於分號 `":"` 之前，並在其右側有著它的值。
 
-In the `user` object, there are two properties:
+在 `user` 物件中，有兩個屬性：
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+1. 第一個屬性有著名稱 `"name"` 與值 `"John"`。
+2. 第二個有著名稱 `"age"` 與值 `30`。
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+產生的 `user` 物件可以被想成一個櫃子有著兩份被標為 "name" 與 "age" 的簽名檔案。
 
 ![user object](object-user.svg)
 
-We can add, remove and read files from it any time.
+我們可以在任意時間增加、移除或讀取檔案。
 
-Property values are accessible using the dot notation:
+屬性值可以使用點號（dot notation）來存取：
 
 ```js
-// get property values of the object:
+// 獲得物件的屬性值：
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-The value can be of any type. Let's add a boolean one:
+值可以是任意類型，來加一個布林看看：
 
 ```js
 user.isAdmin = true;
@@ -62,7 +61,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
-To remove a property, we can use `delete` operator:
+要移除一個屬性，我們可以用 `delete` 運算子：
 
 ```js
 delete user.age;
@@ -70,40 +69,42 @@ delete user.age;
 
 ![user object 3](object-user-delete.svg)
 
-We can also use multiword property names, but then they must be quoted:
+我們也可以用多重詞彙作為屬性名稱，但它們必須置於引號內：
 
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // multiword property name must be quoted
+  "likes birds": true  // 多重詞彙屬性名稱必須置於引號內
 };
 ```
 
 ![](object-user-props.svg)
 
 
-The last property in the list may end with a comma:
+列表中的最後一個屬性可以用逗號結尾：
+
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
 
-## Square brackets
+這被稱為 "尾部逗號（trailing comma）" 或 "懸掛逗號（hanging comma）"，可以使得 增加/移除/移動 屬性更為簡單，因為每一行都很相似。
 
-For multiword properties, the dot access doesn't work:
+## 方括號
+
+對於多重詞彙屬性，無法使用句點來存取：
 
 ```js run
-// this would give a syntax error
+// 這樣會語法錯誤
 user.likes birds = true
 ```
 
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+這是因為句點需要鍵是個有效的變數識別符，也就是：沒有空格和其它某些限制。
 
-There's an alternative "square bracket notation" that works with any string:
+作為替代，"方括號" 可用在任意字串上：
 
 ```js run
 let user = {};
@@ -118,20 +119,20 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+至此所有東西都沒問題了，請注意括號內的字串要置於引號內（哪種引號都可以）。
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+方括號也提供能以表達式的結果來獲取屬性名稱的方法 -- 相對於文字字串 -- 像是下面這樣由變數獲取：
 
 ```js
 let key = "likes birds";
 
-// same as user["likes birds"] = true;
+// 和 user["likes birds"] = true; 相同
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+在這裡，變數 `key` 可於執行期間被計算出來，或者經由使用者輸入得知。然後我們再使用它來存取屬性，這給了我們很大的彈性。
 
-For instance:
+舉個例：
 
 ```js run
 let user = {
@@ -141,11 +142,11 @@ let user = {
 
 let key = prompt("What do you want to know about the user?", "name");
 
-// access by variable
-alert( user[key] ); // John (if enter "name")
+// 經由變數存取
+alert( user[key] ); // John （若輸入 "name"）
 ```
 
-The dot notation cannot be used in a similar way:
+點號則不能用類似的方式：
 
 ```js run
 let user = {
@@ -157,40 +158,41 @@ let key = "name";
 alert( user.key ) // undefined
 ```
 
-### Computed properties
+### 計算屬性（Computed properties）
 
-We can use square brackets in an object literal. That's called *computed properties*.
+我們可以在物件字面值使用方括號，這被稱為 *計算屬性（computed properties）*。
 
-For instance:
+舉個例：
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit]: 5, // 屬性的名稱由變數 fruit 而來
 */!*
 };
 
-alert( bag.apple ); // 5 if fruit="apple"
+alert( bag.apple ); // 5，若 fruit="apple"
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+計算屬性的含義很簡單：`[fruit]` 代表著屬性名稱是由 `fruit` 而來。
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+所以，若訪問者輸入 `"apple"`，則 `bag` 就會變成 `{apple: 5}`。
 
-Essentially, that works the same as:
+實際上，這麼做也一樣：
+
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// take property name from the fruit variable
+// 屬性名稱由 fruit 變數而來
 bag[fruit] = 5;
 ```
 
-...But looks nicer.
+...但看起來更讚。
 
-We can use more complex expressions inside square brackets:
+我們可以在方括號內使用較為複雜的表達式：
 
 ```js
 let fruit = 'apple';
@@ -199,16 +201,14 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+方括號比點號更為強大，它允許任意屬性名稱和變數，但寫起來也較累贅。
 
-So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+所以大多時候，當屬性名稱已知且單純時，用句點就好，而若我們需要某些較複雜的東西時，再轉用方括號即可。
 
+````smart header="保留字可被允許用於屬性名稱"
+變數不能使用語言保留字作為名稱，像是 "for"、"let"、"return" 等等。
 
-
-````smart header="Reserved words are allowed as property names"
-A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
-
-But for an object property, there's no such restriction. Any name is fine:
+但對於物件屬性而言，沒有這樣的限制，所有名稱都可以：
 
 ```js run
 let obj = {
@@ -220,38 +220,37 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
+基本上，任何名稱都是允許的，但只有一個特例：`__proto__`，這是因為歷史因素而被特別對待。舉個例，我們不能將它設為非物件的值：
 
 ```js run
 let obj = {};
 obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], didn't work as intended
+alert(obj.__proto__); // [object Object]，與預期的不同
 ```
 
-As we see from the code, the assignment to a primitive `5` is ignored.
+如同我們由程式碼看到的，對其指定原生值 `5` 被忽略了。
 
-That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+若我們試圖在物件儲存任意鍵值配對，並允許訪問者指定其鍵，將會變成錯誤甚至漏洞的來源。
 
-In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+在這個例子中，訪問者想選擇 `__proto__` 作為鍵，但指定的邏輯就會失效（如上所顯示）。
 
-There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+有個辦法可以使物件視 `__proto__` 為一般的屬性，這我們晚點會提到，但首先我們需要知道更多關於物件的內容。
 
-There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
+也存在另一種資料結構 [Map](info:map-set)，我們將於章節 <info:map-set> 中學到，能夠支援任意的鍵。
 ````
 
+## 屬性值簡寫
 
-## Property value shorthand
+在真正寫程式時我們常使用現存的變數作為屬性名稱的值。
 
-In real code we often use existing variables as values for property names.
-
-For instance:
+舉個例：
 
 ```js run
 function makeUser(name, age) {
   return {
     name: name,
     age: age
-    // ...other properties
+    // ...其它屬性
   };
 }
 
@@ -259,102 +258,102 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
+上面的例子中，屬性和變數有著一樣的名稱。這種從變數建立屬性的使用情境非常常見，因此有個特別的 *屬性值簡寫* 讓它更簡短。
 
-Instead of `name:name` we can just write `name`, like this:
+我們可以只用 `name` 而非 `name:name`，像這樣：
 
 ```js
 function makeUser(name, age) {
 *!*
   return {
-    name, // same as name: name
-    age   // same as age: age
+    name, // 和 name: name 相同
+    age   // 和 age: age 相同
     // ...
   };
 */!*
 }
 ```
 
-We can use both normal properties and shorthands in the same object:
+我們可以在同一個物件內同時使用常規屬性和簡寫：
 
 ```js
 let user = {
-  name,  // same as name:name
+  name,  // 和 name:name 相同
   age: 30
 };
 ```
 
-## Existence check
+## 存在性確認
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
+有個值得注意的物件功能是我們可以存取任意屬性，就算屬性不存在也不會有任何錯誤！存取一個不存在的屬性只會回傳 `undefined`，這提供了一個非常常見的方式來檢測屬性是否存在 -- 取得它並跟 undefined 做比較：
 
 ```js run
 let user = {};
 
-alert( user.noSuchProperty === undefined ); // true means "no such property"
+alert( user.noSuchProperty === undefined ); // true 代表 "沒有這個屬性"
 ```
 
-There also exists a special operator `"in"` to check for the existence of a property.
+同樣還有一個特殊的運算子 `"in"` 用來確認屬性是否存在。
 
-The syntax is:
+語法是：
+
 ```js
 "key" in object
 ```
 
-For instance:
+舉個例：
 
 ```js run
 let user = { name: "John", age: 30 };
 
-alert( "age" in user ); // true, user.age exists
-alert( "blabla" in user ); // false, user.blabla doesn't exist
+alert( "age" in user ); // true，user.age 存在
+alert( "blabla" in user ); // false，user.blabla 不存在
 ```
 
-Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
+請注意 `in` 的左側必須要是個 *屬性名稱*，通常是個置於引號內的字串。
 
-If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
+若我們忽略引號，代表將使用某個變數包含的實際名稱來測試。舉個例：
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true, takes the name from key and checks for such property
+alert( *!*key*/!* in user ); // true，名稱由 key 而來，並檢查該屬性
 ```
 
-````smart header="Using \"in\" for properties that store `undefined`"
-Usually, the strict comparison `"=== undefined"` check the property existance just fine. But there's a special case when it fails, but `"in"` works correctly.
+````smart header="對儲存 `undefined` 的屬性使用 \"in\""
+通常，使用嚴格比較 `"=== undefined"` 來確認屬性是否存在是沒問題的，然而有個特殊情況這麼做會失敗，但 `"in"` 能正確運作。
 
-It's when an object property exists, but stores `undefined`:
+就是當物件屬性存在，卻儲存著 `undefined` 時：
 
 ```js run
 let obj = {
   test: undefined
 };
 
-alert( obj.test ); // it's undefined, so - no such property?
+alert( obj.test ); // 這是 undefined，所以屬性不存在？
 
-alert( "test" in obj ); // true, the property does exist!
+alert( "test" in obj ); // true，該屬性存在！
 ```
 
+在上面的程式碼中，屬性 `obj.test` 技術上來說是存在的，所以 `in` 運算子運作正確。
 
-In the code above, the property `obj.test` technically exists. So the `in` operator works right.
-
-Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+類似的情況非常少發生，因為 `undefined` 通常不會被指定，我們對於 "未知" 或 "空白" 的值大多會使用 `null`，所以 `in` 運算子可以算是程式碼的過客。
 ````
 
-## The "for..in" loop
+## "for..in" 迴圈
 
-To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
+要走遍物件的所有鍵，有個特殊的迴圈型式可用： `for..in`。這是完全不同於我們曾經讀過的 `for(;;)` 的構造。
 
-The syntax:
+語法：
 
 ```js
 for (key in object) {
-  // executes the body for each key among object properties
+  // 對每個物件中的 key 屬性執行程式碼本體
 }
 ```
 
-For instance, let's output all properties of `user`:
+舉個例，來輸出 `user` 的所有屬性：
 
 ```js run
 let user = {
@@ -371,10 +370,9 @@ for (let key in user) {
 }
 ```
 
-Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
+要注意所有 "for" 構造皆允許我們在迴圈內部宣告迴圈變數，像是這裡的 `let key`。
 
-Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
-
+同樣地，我們這裡可以使用另一個變數名稱而不用 `key`。例如，`"for (let prop in obj)"` 也很廣泛地使用。
 
 ### Ordered like an object
 
