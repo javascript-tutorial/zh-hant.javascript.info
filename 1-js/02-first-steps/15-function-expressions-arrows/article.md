@@ -170,19 +170,20 @@ ask(
 
 ## 函式表達式（Function Expression）與函式宣告式（Function Declaration）
 
-Let's formulate the key differences between Function Declarations and Expressions.
+讓我們來闡述函式表達式與函式宣告式的關鍵差異。
 
-First, the syntax: how to differentiate between them in the code.
+首先是語法：如何在程式碼中區別他們。
 
-- *Function Declaration:* a function, declared as a separate statement, in the main code flow.
+- *函式宣告：* 一個函式，在主程式碼中以單獨述語宣告。
 
     ```js
-    // Function Declaration
+    // 函數宣告式
     function sum(a, b) {
       return a + b;
     }
     ```
-- *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression" `=`:
+
+- *函式表達式：* 一個函式，在一個表達式或另一個語法結構中創建。這邊的例子，函式在指定運算表達符號 `=` 的右側被創建：
 
     ```js
     // Function Expression
@@ -191,9 +192,9 @@ First, the syntax: how to differentiate between them in the code.
     };
     ```
 
-The more subtle difference is *when* a function is created by the JavaScript engine.
+更多細微的差別在於 JavaScript 引擎在何時創建函式。
 
-**A Function Expression is created when the execution reaches it and is usable only from that moment.**
+**函式表達式在程式執行到達時創建，並從那時候起才可以使用。**
 
 Once the execution flow passes to the right side of the assignment `let sum = function…` -- here we go, the function is created and can be used (assigned, called, etc. ) from now on.
 
