@@ -1,6 +1,6 @@
 # 物件（Objects）
 
-如我們從 <info:types> 所知，JavaScript 內有七種資料類型。其中六種被稱為 "原生（primitive）"，因為它們的值只包含了單一種東西（是個字串或數值或什麼的）。
+如我們從 <info:types> 所知，JavaScript 內有七種資料類型。其中六種被稱為 "原生類型（primitive）"，因為它們的值只包含了單一種東西（是個字串或數值或什麼的）。
 
 相對的，物件被用來儲存使用鍵配對的多種資料群集與更為複雜的實體。在 JavaScript，物件幾乎滲入該語言的各個方面，所以我們必須在更深入其它主題前先理解物件。
 
@@ -374,13 +374,13 @@ for (let key in user) {
 
 同樣地，我們這裡可以使用另一個變數名稱而不用 `key`。例如，`"for (let prop in obj)"` 也很廣泛地使用。
 
-### Ordered like an object
+### 像物件一樣排序
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+物件是否有序？換句話說，若我們巡迴物件，是否所有屬性都能同樣以當初加入的順序取得呢？我們能依賴這性質嗎？
 
-The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
+簡短的答案是："特異的順序"：整數屬性為排序過的，其它則按照加入時的順序，細節在底下。
 
-As an example, let's consider an object with the phone codes:
+讓我們來考慮某個含有電話國碼的物件作為例子：
 
 ```js run
 let codes = {
@@ -398,48 +398,48 @@ for (let code in codes) {
 */!*
 ```
 
-The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
+此物件被用來建議一個選項清單給使用者，假若我們正在建立以德國用戶為主的網站，那我們也許想要 `49` 為清單第一個選項。
 
-But if we run the code, we see a totally different picture:
+但若我們執行程式，我們會看到完全不同的情景：
 
-- USA (1) goes first
-- then Switzerland (41) and so on.
+- USA (1) 最先出現。
+- 然後是 Switzerland (41) 和其它等等。
 
-The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
+因為電話國碼是整數，它們將會以升序出現。所以我們看到 `1, 41, 44, 49`。
 
-````smart header="Integer properties? What's that?"
-The "integer property" term here means a string that can be converted to-and-from an integer without a change.
+````smart header="整數屬性？那是什麼？"
+這邊的 "整數屬性" 詞彙代表著某種字串，可以在不被變更的情況下轉換為整數。
 
-So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
+所以，"49" 是整數屬性名稱，因為當它被轉成整數值再轉回來時，依然保持一樣。但 "+49" 和 "1.2" 就不行：
 
 ```js run
-// Math.trunc is a built-in function that removes the decimal part
-alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
-alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
-alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+// Math.trunc 是用來移除小數點部份的內建函式
+alert( String(Math.trunc(Number("49"))) ); // "49"，一樣，是整數屬性
+alert( String(Math.trunc(Number("+49"))) ); // "49"，跟 "+49" 不一樣 ⇒  非整數屬性
+alert( String(Math.trunc(Number("1.2"))) ); // "1"，跟 "1.2" 不一樣 ⇒ 非整數屬性
 ```
 ````
 
-...On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+...另一方面，若鍵並非整數，則它們會以加入時的順序被列出，舉個例：
 
 ```js run
 let user = {
   name: "John",
   surname: "Smith"
 };
-user.age = 25; // add one more
+user.age = 25; // 多加一個
 
 *!*
-// non-integer properties are listed in the creation order
+// 非整數屬性為以加入時的順序被列出
 */!*
 for (let prop in user) {
   alert( prop ); // name, surname, age
 }
 ```
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
+所以，要修正電話國碼的問題，我們可以經由讓國碼變為非整數來 "作弊"，在每個國碼之前加上一個正號 `"+"` 即可。
 
-Like this:
+像這樣：
 
 ```js run
 let codes = {
@@ -455,30 +455,30 @@ for (let code in codes) {
 }
 ```
 
-Now it works as intended.
+現在它們會如預期般的運作了。
 
-## Copying by reference
+## 依照參考複製（Copying by reference）
 
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+物件與原生類型之間有個本質上的差異，就是物件是 "依照參考（by reference）" 被儲存和複製。
 
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+原生值如：字串、數值、布林 -- 都是 "以完整的值" 被 指定/複製 的。
 
-For instance:
+舉個例：
 
 ```js
 let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independent variables, each one is storing the string `"Hello!"`.
+結果是我們得到兩個完全獨立的變數，每個都存著字串 `"Hello!"`。
 
 ![](variable-copy-value.svg)
 
-Objects are not like that.
+物件與這不同。
 
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**變數儲存的不只物件本身，還有它的 "記憶體位址（address in memory）"，換句話說就是對於它的 "參考（reference）"**
 
-Here's the picture for the object:
+這是關於物件的圖：
 
 ```js
 let user = {
@@ -488,25 +488,25 @@ let user = {
 
 ![](variable-contains-reference.svg)
 
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
+這在裡，物件被儲存在記憶體某處，且變數 `user` 擁有一個對於它的 "參考"。
 
-**When an object variable is copied -- the reference is copied, the object is not duplicated.**
+**當物件的變數被複製時 -- 只有參考被複製了，但物件並沒有被複製。**
 
-If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
+若我們想像物件為一個櫃子，則變數就是它的鑰匙。複製變數時重鑄了另一把鑰匙，但並不是櫃子本身。
 
-For instance:
+舉個例：
 
 ```js no-beautify
 let user = { name: "John" };
 
-let admin = user; // copy the reference
+let admin = user; // 複製參考
 ```
 
-Now we have two variables, each one with the reference to the same object:
+現在我們有兩個變數，每個都參考至同樣的物件：
 
 ![](variable-copy-reference.svg)
 
-We can use any variable to access the cabinet and modify its contents:
+我們可以使用任意變數來存取櫃子並修改其內容：
 
 ```js run
 let user = { name: 'John' };
@@ -514,46 +514,46 @@ let user = { name: 'John' };
 let admin = user;
 
 *!*
-admin.name = 'Pete'; // changed by the "admin" reference
+admin.name = 'Pete'; // 經由 "admin" 參考來更改
 */!*
 
-alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
+alert(*!*user.name*/!*); // 'Pete'，從 "user" 的參考可以看到變動
 ```
 
-The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
+上面的例子演示了此處只有一個物件存在。像是我們有一個櫃子與兩把鑰匙，在使用其中一把 (`admin`) 來存取後，我們晚點用另一把 (`user`) 時就可以看到變化。
 
-### Comparison by reference
+### 依照參考比較（Comparison by reference）
 
-The equality `==` and strict equality `===` operators for objects work exactly the same.
+相等 `==` 和嚴格相等 `===` 運算子對物件來說運作起來都一樣。
 
-**Two objects are equal only if they are the same object.**
+**兩個物件只有在它們是同一個物件時才會相等。**
 
-For instance, if two variables reference the same object, they are equal:
+舉個例，若兩個變數參考至同一個物件，它們會是相等的：
 
 ```js run
 let a = {};
-let b = a; // copy the reference
+let b = a; // 複製參考
 
-alert( a == b ); // true, both variables reference the same object
+alert( a == b ); // true，兩個變數參考至同一個物件
 alert( a === b ); // true
 ```
 
-And here two independent objects are not equal, even though both are empty:
+而這邊兩個獨立的物件就不相等，就算兩者皆為空也是：
 
 ```js run
 let a = {};
-let b = {}; // two independent objects
+let b = {}; // 兩個獨立物件
 
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
+對於像是 `obj1 > obj2` 的比較或是與原生類型的比較 `obj == 5`，物件會被轉換為原生類型，我們很快會學習到物件轉換是如何運作的。但老實說，這種比較極少會需要，且通常是程式寫錯的結果。
 
-### Const object
+### 常數物件
 
-An object declared as `const` *can* be changed.
+物件被宣告為 `const` *可以* 被改變。
 
-For instance:
+舉個例：
 
 ```js run
 const user = {
@@ -567,9 +567,9 @@ user.age = 25; // (*)
 alert(user.age); // 25
 ```
 
-It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes only value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
+看起來 `(*)` 這行會導致錯誤，但沒有，那完全不會有問題。這是因為 `const` 只固定了 `user` 本身的值，而這邊 `user` 始終都儲存了同一份物件的參考。`(*)` 行 *進入* 物件，它沒有重新指定 `user`。
 
-The `const` would give an error if we try to set `user` to something else, for instance:
+若我們試著設定`user` 給其它東西時，`const` 將會產生錯誤，舉個例：
 
 ```js run
 const user = {
@@ -577,26 +577,26 @@ const user = {
 };
 
 *!*
-// Error (can't reassign user)
+// 錯誤（不能重新指定 user）
 */!*
 user = {
   name: "Pete"
 };
 ```
 
-...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-descriptors>.
+...但若我們想建立常數物件屬性怎麼辦？怎麼做才可以讓 `user.age = 25` 產生錯誤。這也是有可能的，我們將會在章節 <info:property-descriptors> 中提到怎麼做。
 
-## Cloning and merging, Object.assign
+## 複製與合併，Object.assign
 
-So, copying an object variable creates one more reference to the same object.
+所以，複製某物件變數會多建立一個對相同物件的參考。
 
-But what if we need to duplicate an object? Create an independent copy, a clone?
+但若我們需要複製整個物件呢？怎麼建立獨立的複本，克隆體？
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed. Copying by reference is good most of the time.
+這也是可行的，但稍微有點難度，因為 JavaScript 中沒有內建方法來做到這件事。事實上，很少需要這樣做，依照參考複製在大多時候就很好用了。
 
-But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
+但若我們真的需要這麼做，那我們需要建立一個新的物件，並經由迭代現存物件的屬性並在原生類型層面上進行複製，才能複製其整體結構，
 
-Like this:
+像這樣：
 
 ```js run
 let user = {
@@ -605,32 +605,33 @@ let user = {
 };
 
 *!*
-let clone = {}; // the new empty object
+let clone = {}; // 新的空物件
 
-// let's copy all user properties into it
+// 來對其複製整個 user 的屬性吧
 for (let key in user) {
   clone[key] = user[key];
 }
 */!*
 
-// now clone is a fully independent clone
-clone.name = "Pete"; // changed the data in it
+// 現在 clone 是個完整的獨立克隆體了
+clone.name = "Pete"; // 改變它的資料
 
-alert( user.name ); // still John in the original object
+alert( user.name ); // 原本的物件內依然是 John
 ```
 
-Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
+我們也可以使用 [Object.assign](mdn:js/Object/assign) 方法來處理。
 
-The syntax is:
+語法是：
 
 ```js
 Object.assign(dest, [src1, src2, src3...])
 ```
 
-- Arguments `dest`, and `src1, ..., srcN` (can be as many as needed) are objects.
-- It copies the properties of all objects `src1, ..., srcN` into `dest`. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns `dest`.
+- 引數 `dest`，和 `src1, ..., srcN`（需要幾個都可以）皆為物件。
+- 它會複製所有 `src1, ..., srcN` 物件的屬性到 `dest` 中。換句話說，從第二個位置開始的所有引數的屬性將會被複製到第一個引數內，然後回傳 `dest`。
 
-For instance, we can use it to merge several objects into one:
+舉個例，我們可以使用它來合併多個物件成一個：
+
 ```js
 let user = { name: "John" };
 
@@ -638,25 +639,25 @@ let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
 *!*
-// copies all properties from permissions1 and permissions2 into user
+// 從 permissions1 和 permissions2 複製所有屬性到 user 中
 Object.assign(user, permissions1, permissions2);
 */!*
 
-// now user = { name: "John", canView: true, canEdit: true }
+// 現在 user = { name: "John", canView: true, canEdit: true }
 ```
 
-If the receiving object (`user`) already has the same named property, it will be overwritten:
+若接收的物件（`user`）已經有同樣名稱的屬性，則將會被覆蓋：
 
 ```js
 let user = { name: "John" };
 
-// overwrite name, add isAdmin
+// 覆蓋 name，加入 isAdmin
 Object.assign(user, { name: "Pete", isAdmin: true });
 
-// now user = { name: "Pete", isAdmin: true }
+// 現在 user = { name: "Pete", isAdmin: true }
 ```
 
-We also can use `Object.assign` to replace the loop for simple cloning:
+我們也可以使用 `Object.assign` 來替換簡易複製之中的迴圈：
 
 ```js
 let user = {
@@ -669,11 +670,12 @@ let clone = Object.assign({}, user);
 */!*
 ```
 
-It copies all properties of `user` into the empty object and returns it. Actually, the same as the loop, but shorter.
+它複製 `user` 內的所有屬性到空物件中並回傳，事實上與迴圈相同，但更簡短。
 
-Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
+至此我們只假設 `user` 的所有屬性皆為原生類型，但屬性也可以是其它物件的參考，這樣要怎麼做呢？
 
-Like this:
+像這樣：
+
 ```js run
 let user = {
   name: "John",
@@ -686,9 +688,10 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
-Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
+現在要複製 `clone.sizes = user.sizes` 就有所不足了，因為 `user.sizes` 是一個物件，它將會依照參考來複製，因此 `clone` 和 `user` 將會共享同一個 sizes：
 
-Like this:
+像這樣：
+
 ```js run
 let user = {
   name: "John",
@@ -700,49 +703,48 @@ let user = {
 
 let clone = Object.assign({}, user);
 
-alert( user.sizes === clone.sizes ); // true, same object
+alert( user.sizes === clone.sizes ); // true，同一個物件
 
-// user and clone share sizes
-user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, see the result from the other one
+// user 和 clone 共享 sizes
+user.sizes.width++;       // 從某邊改變某個屬性
+alert(clone.sizes.width); // 51，將會從另一邊看到結果
 ```
 
-To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+要修正的話，我們應該使用複製迴圈來檢查每個 `user[key]` 的值，且若是個物件，則將它的架構也一起複製下來，這被稱為 "深層複製（deep cloning）"。
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+已經有標準的演算法可以處理上述或更複雜情境中的深層複製，叫做 [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data)。為了不要重新發明輪子，我們可以從 JavsScript 函式庫 [lodash](https://lodash.com) 中使用它的一個可行實作，其方法名為 [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep)。
 
+## 總結
 
+物件具有些特殊特性的關聯矩陣。
 
-## Summary
+它們儲存屬性（鍵值配對），其中：
+- 屬性鍵必須為字串或符號（symbols）（通常為字串）。
+- 值可以為任意類型。
 
-Objects are associative arrays with several special features.
+要存取屬性，我們可以使用：
+- 點號：`obj.property`。
+- 方括號 `obj["property"]`。方括號允許鍵由某個變數而來，像是 `obj[varWithKey]`。
 
-They store properties (key-value pairs), where:
-- Property keys must be strings or symbols (usually strings).
-- Values can be of any type.
+額外操作：
+- 要刪除屬性：`delete obj.prop`。
+- 要確認某個鍵的屬性是否存在：`"key" in obj`。
+- 要迭代整個物件：`for (let key in obj)` 迴圈。
 
-To access a property, we can use:
-- The dot notation: `obj.property`.
-- Square brackets notation `obj["property"]`. Square brackets allow to take the key from a variable, like `obj[varWithKey]`.
+物件經由參考被被指定與複製，換句話說，變數儲存的並非 "物件值"，而是值的 "參考"（記憶體位址）。所以複製該變數或將它作為函式引數傳遞都只會複製參考，而非物件。所有經由複製的參考所做的操作（像是 新增/移除 屬性），都會在同一個物件上進行。
 
-Additional operators:
-- To delete a property: `delete obj.prop`.
-- To check if a property with the given key exists: `"key" in obj`.
-- To iterate over an object: `for (let key in obj)` loop.
+要建立一份 "真正的複本"（克隆體），我們可以使用 `Object.assign` 或 [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep)。
 
-Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object. All operations via copied references (like adding/removing properties) are performed on the same single object.
+我們這章所學到的都被稱為 "普通物件（plain object）" 或就叫 `物件（Object）`。
 
-To make a "real copy" (a clone) we can use `Object.assign` or  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+JavaScript 中還有更多其它種類的物件：
 
-What we've studied in this chapter is called a "plain object", or just `Object`.
+- `Array` 用來儲存有序的資料群集，
+- `Date` 用來儲存日期與時間的資訊，
+- `Error` 用來儲存關於錯誤的資訊。
+- ...等等。
 
-There are many other kinds of objects in JavaScript:
+它們有著自身的特殊特性，我們晚點會讀到。有時候人們說了像是 "矩陣類型" 或 "日期類型"，但正式上這些都沒有自己的類型，而是屬於一個 "物件" 資料類型，且以多種方式對其延伸。
 
-- `Array` to store ordered data collections,
-- `Date` to store the information about the date and time,
-- `Error` to store the information about an error.
-- ...And so on.
+JavaScript 中的物件非常強大，在這裡我們只粗略描述其超巨大主題的外貌。我們將會在教程接下來的部分內，密切使用物件並學習更多關於它們的知識。
 
-They have their special features that we'll study later. Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
-
-Objects in JavaScript are very powerful. Here we've just scratched the surface of a topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.

@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Hello, object
+# 哈囉，物件
 
-Write the code, one line for each action:
+寫段程式碼，每個動作個一行：
 
-1. Create an empty object `user`.
-2. Add the property `name` with the value `John`.
-3. Add the property `surname` with the value `Smith`.
-4. Change the value of the `name` to `Pete`.
-5. Remove the property `name` from the object.
+1. 建立一個空物件 `user`。
+2. 加入屬性 `name` 與值 `John`。
+3. 加入屬性 `surname` 與值 `Smith`。
+4. 改變 `name` 的值為 `Pete`。
+5. 從物件中移除屬性 `name`。
 

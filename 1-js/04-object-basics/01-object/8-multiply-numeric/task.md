@@ -2,14 +2,14 @@ importance: 3
 
 ---
 
-# Multiply numeric properties by 2
+# 數值屬性都乘以 2
 
-Create a function `multiplyNumeric(obj)` that multiplies all numeric properties of `obj` by `2`.
+建立一個函式 `multiplyNumeric(obj)` 來把 `obj` 的所有數值屬性都乘以 2。
 
-For instance:
+舉個例：
 
 ```js
-// before the call
+// 在呼叫前
 let menu = {
   width: 200,
   height: 300,
@@ -18,7 +18,7 @@ let menu = {
 
 multiplyNumeric(menu);
 
-// after the call
+// 在呼叫後
 menu = {
   width: 400,
   height: 600,
@@ -26,8 +26,7 @@ menu = {
 };
 ```
 
-Please note that `multiplyNumeric` does not need to return anything. It should modify the object in-place.
+請注意 `multiplyNumeric` 不需要回傳任何東西，它應該要原地（in place）修改物件。
 
-P.S. Use `typeof` to check for a number here.
-
+註：這裡使用 `typeof` 來確認數值。
 
