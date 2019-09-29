@@ -1,12 +1,12 @@
-# Coding Style
+# 程式碼風格
 
-Our code must be as clean and easy to read as possible.
+我們的程式碼必須要盡可能乾淨易讀。
 
-That is actually the art of programming -- to take a complex task and code it in a way that is both correct and human-readable. A good code style greatly assists in that.  
+實際上這也是程式設計的藝術 -- 用正確和人眼易讀兼具的方式，寫出程式解決某個複雜的任務。
 
-## Syntax
+## 語法
 
-Here is a cheat sheet with some suggested rules (see below for more details):
+這個備忘錄含有一些建議的規則（更多細節如下）：
 
 ![](code-style.svg)
 <!--
@@ -34,57 +34,58 @@ if (n < 0) {
 
 -->
 
-Now let's discuss the rules and reasons for them in detail.
+現在來討論一下這些規則和理由的細節吧。
 
-```warn header="There are no \"you must\" rules"
-Nothing is set in stone here. These are style preferences, not religious dogmas.
+```warn header="沒有任何規則是 \"你一定得\" 採用的"
+沒有什麼規則是被刻在石頭上的，這只是風格喜好，不是宗教信條。
 ```
 
-### Curly Braces
+### 大括號
 
-In most JavaScript projects curly braces are written in "Egyptian" style with the opening brace on the same line as the corresponding keyword -- not on a new line. There should also be a space before the opening bracket, like this:
+大多數 JavaScript 專案中，大括號都採用 "Egyptian" 風格書寫，意即開括號跟對應的關鍵字位於同一行 -- 而非新的一行。開括號前面應該也要留一個空格，像這樣：
 
 ```js
 if (condition) {
-  // do this
-  // ...and that
-  // ...and that
+  // 這麼做
+  // ...還有那樣
+  // ...跟那樣
 }
 ```
 
-A single-line construct, such as `if (condition) doSomething()`, is an important edge case. Should we use braces at all?
+單行結構，如 `if (condition) doSomething()`，也是個重要的邊緣案例，我們究竟是否該使用括號？
 
-Here are the annotated variants so you can judge their readability for yourself:
+這邊有對於各種變化的解說，你可以自行判斷它們的可讀性：
 
-1. 😠 Beginners sometimes do that. Bad! Curly braces are not needed:
+1. 😠 初學者有時候這麼做。不佳！不需要大括號：
     ```js
     if (n < 0) *!*{*/!*alert(`Power ${n} is not supported`);*!*}*/!*
     ```
-2. 😠 Split to a separate line without braces. Never do that, easy to make an error when adding new lines:
+2. 😠 換到新的一行卻沒使用大括號。千萬別這麼做，這很容易在增加新的一行時出錯：
     ```js
     if (n < 0)
       alert(`Power ${n} is not supported`);
     ```
-3. 😏 One line without braces - acceptable, if it's short:
+3. 😏 單行時不使用括號 - 若內容短的話還算可以接受：
     ```js
     if (n < 0) alert(`Power ${n} is not supported`);
     ```
-4. 😃 The best variant:
+4. 😃 最棒的寫法：
     ```js
     if (n < 0) {
       alert(`Power ${n} is not supported`);
     }
     ```
 
-For a very brief code, one line is allowed, e.g. `if (cond) return null`. But a code block (the last variant) is usually more readable.
+對很短的程式碼而言，單行是允許的，像是 `if (cond) return null`。但具有程式碼區塊（最後一種寫法）通常會更為可讀。
 
-### Line Length
+### 行長度
 
-No one likes to read a long horizontal line of code. It's best practice to split them.
+沒人喜歡讀一行水平又冗長的程式碼，最佳做法是將它們拆分。
 
-For example:
+例如：
+
 ```js
-// backtick quotes ` allow to split the string into multiple lines
+// 反引號 ` 允許拆分某字串成多行
 let str = `
   Ecma International's TC39 is a group of JavaScript developers,
   implementers, academics, and more, collaborating with the community
@@ -92,7 +93,7 @@ let str = `
 `;
 ```
 
-And, for `if` statements:
+並且，對於 `if` 述語而言：
 
 ```js
 if (
@@ -104,23 +105,23 @@ if (
 }
 ```
 
-The maximum line length should be agreed upon at the team-level. It's usually 80 or 120 characters.
+最大行長度應該要在團隊層級上取得共識，通常為 80 或 120 個字元。
 
-### Indents
+### 縮排
 
-There are two types of indents:
+有兩種類型的縮排：
 
-- **Horizontal indents: 2 or 4 spaces.**
+- **水平縮排：2 或 4 個空格。**
 
-    A horizontal indentation is made using either 2 or 4 spaces or the horizontal tab symbol (key `key:Tab`). Which one to choose is an old holy war. Spaces are more common nowadays.
+    水平縮排可使用 2 或 4 個空格，或水平 tab 符號（key `key:Tab`）。要選用哪種方式早已是古老的聖戰了，現今空格較為普遍。
 
-    One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the tab symbol.
+    使用空格而非 tabs 有個好處是，空格比 tab 符號更具有縮排配置的彈性。
 
-    For instance, we can align the arguments with the opening bracket, like this:
+    舉個例，我們可以將某個開括號的引數們對其，像這樣：
 
     ```js no-beautify
     show(parameters,
-         aligned, // 5 spaces padding at the left  
+         aligned, // 左側有 5 個空格
          one,
          after,
          another
@@ -129,9 +130,9 @@ There are two types of indents:
     }
     ```
 
-- **Vertical indents: empty lines for splitting code into logical blocks.**
+- **垂直縮排：用空行分割程式碼邏輯區塊。**
 
-    Even a single function can often be divided into logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
+    即使是單個函式通常也可以被切分多個邏輯區塊。底下的例子中，變數的初始化、主要迴圈和回傳結果被垂直拆分開來：
 
     ```js
     function pow(x, n) {
@@ -145,46 +146,46 @@ There are two types of indents:
     }
     ```
 
-    Insert an extra newline where it helps to make the code more readable. There should not be more than nine lines of code without a vertical indentation.
+    在這些位置插入額外一行可以讓程式碼更具可讀性，不應該存在連續 9 行都沒有看到垂直縮排的程式碼。
 
-### Semicolons
+### 分號
 
-A semicolon should be present after each statement, even if it could possibly be skipped.
+分號應該在每個述語後出現，就算它或許可以省略。
 
-There are languages where a semicolon is truly optional and it is rarely used. In JavaScript, though, there are cases where a line break is not interpreted as a semicolon, leaving the code vulnerable to errors. See more about that in the chapter <info:structure#semicolon>.
+有些程式語言的分號是真的可選並很少使用的。但在 JavaScript 中，有些情況下斷行不會被直譯成分號，這將造成程式碼易於出錯，參考章節 <info:structure#semicolon> 可以看到更多內容。
 
-If you're an experienced JavaScript programmer, you may choose a no-semicolon code style like [StandardJS](https://standardjs.com/). Otherwise, it's best to use semicolons to avoid possible pitfalls. The majority of developers put semicolons.
+若你是個有經驗的 JavaScript 程式設計師，你可以選擇無分號的程式碼風格，像是 [StandardJS](https://standardjs.com/)，否則最好是使用分號來避免可能的陷阱。大多數的開發者都會使用分號。
 
-### Nesting Levels
+### 巢狀層級
 
-Try to avoid nesting code too many levels deep.
+試著避免使用太多層的巢狀程式碼。
 
-For example, in the loop, it's sometimes a good idea to use the [`continue`](info:while-for#continue) directive to avoid extra nesting.
+例如，在迴圈中使用 [`continue`](info:while-for#continue) 指令有時候是個避免巢狀的好辦法。
 
-For example, instead of adding a nested `if` conditional like this:
+舉個例，不像這樣使用巢狀 `if` 條件式：
 
 ```js
 for (let i = 0; i < 10; i++) {
   if (cond) {
-    ... // <- one more nesting level
+    ... // <- 多一層巢狀層級
   }
 }
 ```
 
-We can write:
+我們可以這樣寫：
 
 ```js
 for (let i = 0; i < 10; i++) {
   if (!cond) *!*continue*/!*;
-  ...  // <- no extra nesting level
+  ...  // <- 沒有額外巢狀層級
 }
 ```
 
-A similar thing can be done with `if/else` and `return`.
+`if/else` 與 `return` 也可以做到類似的事。
 
-For example, two constructs below are identical.
+例如，底下兩種結構是相同的。
 
-Option 1:
+選擇一：
 
 ```js
 function pow(x, n) {
@@ -202,7 +203,7 @@ function pow(x, n) {
 }
 ```
 
-Option 2:
+選擇二：
 
 ```js
 function pow(x, n) {
@@ -221,16 +222,16 @@ function pow(x, n) {
 }
 ```
 
-The second one is more readable because the "special case" of `n < 0` is handled early on. Once the check is done we can move on to the "main" code flow without the need for additional nesting.
+第二種選擇更具可讀性，因為 `n < 0` 的 "特別情況" 已被提前處理。一旦完成檢查，我們就可以繼續移動到 "主" 程式碼流程中，而不需要額外的巢狀結構。
 
-## Function Placement
+## 函式位置
 
-If you are writing several "helper" functions and the code that uses them, there are three ways to organize the functions.
+若你正在寫些 "輔助（helper）" 函式與使用它們的程式碼，有三種組織函式的方式。
 
-1. Declare the functions *above* the code that uses them:
+1. 在使用它們的程式碼 *上方*，宣告這些函式：
 
     ```js
-    // *!*function declarations*/!*
+    // *!*函式宣告*/!*
     function createElement() {
       ...
     }
@@ -243,20 +244,20 @@ If you are writing several "helper" functions and the code that uses them, there
       ...
     }
 
-    // *!*the code which uses them*/!*
+    // *!*使用函式的程式碼*/!*
     let elem = createElement();
     setHandler(elem);
     walkAround();
     ```
-2. Code first, then functions
+2. 先寫程式碼，再寫函式
 
     ```js
-    // *!*the code which uses the functions*/!*
+    // *!*使用函式的程式碼*/!*
     let elem = createElement();
     setHandler(elem);
     walkAround();
 
-    // --- *!*helper functions*/!* ---
+    // --- *!*輔助函式*/!* ---
     function createElement() {
       ...
     }
@@ -269,54 +270,54 @@ If you are writing several "helper" functions and the code that uses them, there
       ...
     }
     ```
-3. Mixed: a function is declared where it's first used.
+3. 混合用法：函式在第一次被使用時宣告。
 
-Most of time, the second variant is preferred.
+大多數時候，第二種做法較為適合。
 
-That's because when reading code, we first want to know *what it does*. If the code goes first, then it becomes clear from the start. Then, maybe we won't need to read the functions at all, especially if their names are descriptive of what they actually do.
+因為當閱讀程式碼時，我們首先希望知道 *它做了什麼*。如果程式碼在前，那一開始就會很清楚在做什麼。而且或許我們根本不需要閱讀這些函式，尤其是當它們的名字已清楚描述了它們做了什麼時。
 
-## Style Guides
+## 風格指南
 
-A style guide contains general rules about "how to write" code, e.g. which quotes to use, how many spaces to indent, the maximal line length, etc. A lot of minor things.
+風格指南包括了 "如何撰寫" 程式碼的通用規則，像是使用哪一種引號、縮排要多少空格和最大行長度，等等的小細節。
 
-When all members of a team use the same style guide, the code looks uniform, regardless of which team member wrote it.
+當團隊所有成員都使用同樣的程式碼指南，不論哪一個是哪個成員寫的程式碼，都將具有一致性。
 
-Of course, a team can always write their own style guide, but usually there's no need to. There are many existing guides to choose from.
+當然，團隊隨時可以寫下它們自身的風格指南，但通常它們不需要這麼做，已經有許多既存的風格可以選擇。
 
-Some popular choices:
+一些受歡迎的選擇：
 
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
-- (plus many more)
+- （還有許多）
 
-If you're a novice developer, start with the cheat sheet at the beginning of this chapter. Then you can browse other style guides to pick up more ideas and decide which one you like best.
+若你是個初學開發者，先從本章最前面的備忘錄開始。然後你可以瀏覽其它風格指南來獲得些想法，並決定你最喜歡的一個。
 
-## Automated Linters
+## 自動化 Linters
 
-Linters are tools that can automatically check the style of your code and make improving suggestions.
+Linters 是可以自動檢查你程式碼風格，並給予改進建議的工具。
 
-The great thing about them is that style-checking can also find some bugs, like typos in variable or function names. Because of this feature, using a linter is recommended even if you don't want to stick to one particular "code style".
+它們有個很棒的地方是，在檢查風格時也可能找到些問題（bugs），像是變數或函式名字拼錯之類的。因為這個特性，就算你不想遵守某種特定的 "風格指南"，也建議你要使用 linter。
 
-Here are some well-known linting tools:
+這些是知名的 linting 工具：
 
-- [JSLint](http://www.jslint.com/) -- one of the first linters.
-- [JSHint](http://www.jshint.com/) -- more settings than JSLint.
-- [ESLint](http://eslint.org/) -- probably the newest one.
+- [JSLint](http://www.jslint.com/) -- 第一批的 linter 之一。
+- [JSHint](http://www.jshint.com/) -- 可以比 JSLint 做更多設定。
+- [ESLint](http://eslint.org/) -- 也許是目前最新的一個。
 
-All of them can do the job. The author uses [ESLint](http://eslint.org/).
+以上皆可，作者是使用 [ESLint](http://eslint.org/)。
 
-Most linters are integrated with many popular editors: just enable the plugin in the editor and configure the style.
+大部分 linters 都有和熱門的編輯器整合：只要在編輯器內啟用插件並設置風格即可。
 
-For instance, for ESLint you should do the following:
+舉個例，對 ESLint 而言你只要按照下面步驟：
 
-1. Install [Node.js](https://nodejs.org/).
-2. Install ESLint with the command `npm install -g eslint` (npm is a JavaScript package installer).
-3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
-4. Install/enable the plugin for your editor that integrates with ESLint. The majority of editors have one.
+1. 安裝 [Node.js](https://nodejs.org/)。
+2. 使用命令 `npm install -g eslint` 安裝 ESLint（npm 是 JavaScript 的套件安裝工具）。
+3. 在你 JavaScript 專案的根目錄（包含你所有檔案的那個資聊夾），建立一個名為 `.eslintrc` 的配置檔。
+4. 安裝/啟用 ESLint 整合在你編輯器內的插件，大多數編輯器都會有。
 
-Here's an example of an `.eslintrc` file:
+這是 `.eslintrc` 檔案的例子：
 
 ```js
 {
@@ -333,16 +334,17 @@ Here's an example of an `.eslintrc` file:
 }
 ```
 
-Here the directive `"extends"` denotes that the configuration is based on the "eslint:recommended" set of settings. After that, we specify our own.
+`extends` 這個指令表示配置是基於 "eslint:recommended" 來設定，此外我們還制定了自己的規則。
 
-It is also possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
+或者也可以從網路下載風格規則集合並延伸使用，查看 <http://eslint.org/docs/user-guide/getting-started> 以了解更多安裝細節。
 
-Also certain IDEs have built-in linting, which is convenient but not as customizable as ESLint.
+甚至某些特定 IDEs 很方便的內建 linting，但不像 ESLint 那樣可以自行客製化。
 
-## Summary
+## 總結
 
-All syntax rules described in this chapter (and in the style guides referenced) aim to increase the readability of your code. All of them are debatable.
+所有本章提到的語法規則（和風格指南）都只是為了增加你程式碼的可讀性，所以全都是可以再討論的。
 
-When we think about writing "better" code, the questions we should ask ourselves are: "What makes the code more readable and easier to understand?" and "What can help us avoid errors?" These are the main things to keep in mind when choosing and debating code styles.
+當我們思考怎樣寫出 "更好的" 程式碼時，我們應該自問："怎樣才能讓程式碼更為易讀好理解呢？" 和 "什麼能夠讓我們避免產生錯誤？" 這些都是選擇討論用什麼程式碼風格時，必須保持在心中最重要的事。
 
-Reading popular style guides will allow you to keep up to date with the latest ideas about code style trends and best practices.
+閱讀熱門的風格指南可以讓你跟上最新的程式碼風格潮流與最佳做法。
+
