@@ -196,19 +196,19 @@ ask(
 
 **函式表達式在程式執行到達時創建，並從那時候起才可以使用。**
 
-Once the execution flow passes to the right side of the assignment `let sum = function…` -- here we go, the function is created and can be used (assigned, called, etc. ) from now on.
+一但執行到指定運算 `let sum = function...` 的右側，該函式就會被創建並可以被使用（指定、呼叫，等等）。
 
-Function Declarations are different.
+函式宣告式則不同。
 
-**A Function Declaration can be called earlier than it is defined.**
+**函式宣告式的呼叫可以早於其宣告**
 
-For example, a global Function Declaration is visible in the whole script, no matter where it is.
+舉例來說，一個全域函式宣告式的作用域包含整個腳本，無論它在腳本中的何處。
 
-That's due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
+這是由於內部的演算法。當 JavaScript 準備運行腳本時，它會先找尋其中的全域函式宣告式，並將其創建。我們可以將其視為 "初始化階段"。
 
-And after all Function Declarations are processed, the code is executed. So it has access to these functions.
+在所有函式宣告式都處理完後，程式碼才開始執行。所以這些函式可以被存取。
 
-For example, this works:
+例如下面的例子，這樣是可以正常運行的：
 
 ```js run refresh untrusted
 *!*
@@ -220,9 +220,9 @@ function sayHi(name) {
 }
 ```
 
-The Function Declaration `sayHi` is created when JavaScript is preparing to start the script and is visible everywhere in it.
+函式宣告 `sayHi` 在 JavaScript 準備啟動腳本時被創建，並且在任何地方都是可視的。
 
-...If it were a Function Expression, then it wouldn't work:
+...如果它是一個函式表達式，它就無法正常執行：
 
 ```js run refresh untrusted
 *!*
@@ -234,20 +234,20 @@ let sayHi = function(name) {  // (*) no magic any more
 };
 ```
 
-Function Expressions are created when the execution reaches them. That would happen only in the line `(*)`. Too late.
+函式表達式在程式執行到時才會被創建。也就是只會在 line `(*)` 發生，為時已晚。
 
-Another special feature of Function Declarations is their block scope.
+函式宣告式另一個特別的功能是他們的區塊作用域。
 
-**In strict mode, when a Function Declaration is within a code block, it's visible everywhere inside that block. But not outside of it.**
+**嚴格模式下，當一個函式宣告式在一個程式碼區塊中時，它在區塊內的任何地方都是可視的，區塊外則不可視。**
 
-For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get during runtime. And then we plan to use it some time later.
+例如，讓我們想像我們需要宣告一個函式 `welcome()`，它依賴一個我們在執行時間才能取得的變數 `age`，且我們隨後會在某些時候用到該變數。
 
-If we use Function Declaration, it won't work as intended:
+如果我們使用函式宣告式，以下程式碼不會如願運作：
 
 ```js run
 let age = prompt("What is your age?", 18);
 
-// conditionally declare a function
+// 根據條件判斷來宣告不同內容的函式
 if (age < 18) {
 
   function welcome() {
@@ -262,30 +262,30 @@ if (age < 18) {
 
 }
 
-// ...use it later
+// ...在稍後使用
 *!*
 welcome(); // Error: welcome is not defined
 */!*
 ```
 
-That's because a Function Declaration is only visible inside the code block in which it resides.
+這是因為函式宣告式的作用域侷限於其所在的程式碼區塊內。
 
-Here's another example:
+這裡是另一個範例：
 
 ```js run
-let age = 16; // take 16 as an example
+let age = 16; // 拿 16 作為例子
 
 if (age < 18) {
 *!*
-  welcome();               // \   (runs)
+  welcome();               // \   (運行)
 */!*
                            //  |
   function welcome() {     //  |  
-    alert("Hello!");       //  |  Function Declaration is available
-  }                        //  |  everywhere in the block where it's declared
+    alert("Hello!");       //  |  函式宣告式在其宣告的區塊內的任何地方都可被存取
+  }                        //  |
                            //  |
 *!*
-  welcome();               // /   (runs)
+  welcome();               // /   (運行)
 */!*
 
 } else {
@@ -295,19 +295,19 @@ if (age < 18) {
   }
 }
 
-// Here we're out of curly braces,
-// so we can not see Function Declarations made inside of them.
+// 在這裡，我們在大括弧外面，
+// 所以我們無法看見在括弧內創建的函式宣告式
 
 *!*
 welcome(); // Error: welcome is not defined
 */!*
 ```
 
-What can we do to make `welcome` visible outside of `if`?
+我們該怎麼做才能讓 `welcome` 在 `if` 外可視？
 
-The correct approach would be to use a Function Expression and assign `welcome` to the variable that is declared outside of `if` and has the proper visibility.
+正確的做法會是使用函式表達式，然後將 `welcome` 指定給一個宣告在 `if` 外部，且具有正確可視性的變數。
 
-This code works as intended:
+這段程式碼能如願執行：
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -333,7 +333,7 @@ welcome(); // ok now
 */!*
 ```
 
-Or we could simplify it even further using a question mark operator `?`:
+或是我們可以用問號運算子 `?` 來進一步簡化它：
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -348,16 +348,15 @@ welcome(); // ok now
 ```
 
 
-```smart header="When to choose Function Declaration versus Function Expression?"
-As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
+```smart header="何時選擇函式宣告式或函式表達式？"
+根據經驗，當我們需要宣告函式時，首先考慮的是函式宣告式語法。對於管理我們的程式碼上，它給了我們更多的自由，因為我們可以在這些函式被宣告前呼叫他們。
 
-That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…}`. Function Declarations are more "eye-catching".
+在可讀性上也更好，在程式碼中找尋 `function f(...) {...}` 比起 `let f = function(...) {...}` 更簡單。函式宣告式更能 "抓住我們的眼球"。
 
-...But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we've just seen an example), then Function Expression should be used.
+...但如果函式宣告式由於某些原因不適合我們，或是我們需要條件式宣告（我們剛剛才看過例子），那就應該使用韓式表達式。
 ```
 
-
-## Arrow functions [#arrow-functions]
+## 箭頭函式（Arrow functions） [#箭頭函式]
 
 There's one more very simple and concise syntax for creating functions, that's often better than Function Expressions. It's called "arrow functions", because it looks like this:
 
