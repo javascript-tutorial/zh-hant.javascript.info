@@ -17,6 +17,7 @@ undefined + 1 = NaN // (6)
 " \t \n" - 2 = -2 // (7)
 ```
 
+<<<<<<< HEAD
 1. 字串的加法 `"" + 1` 會轉換 `1` 為字串：`"" + 1 = "1"`，然後得到 `"1" + 0` 再利用一樣的規則。
 2. 減法 `-`（就像多數數學運算）只能用在數值上，它將空字串 `""` 轉成 `0`。
 3. 字串的加法會將數值 `5` 視為字串接在其後。
@@ -25,3 +26,12 @@ undefined + 1 = NaN // (6)
 6. `undefined` 經由數值轉換變成 `NaN`。
 7. 在字串被轉成數值時，頭尾的空白字元們都會被截斷。這整個字串就只包含了空白字元們，如 `\t`、`\n` 和 "常規" 的空白，所以跟空字串一樣會變成 `0`。
 
+=======
+1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
+2. The subtraction `-` (like most math operations) only works with numbers, it converts an empty string `""` to `0`.
+3. The addition with a string appends the number `5` to the string.
+4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
+5. `null` becomes `0` after the numeric conversion.
+6. `undefined` becomes `NaN` after the numeric conversion.
+7. Space characters, are trimmed off string start and end when a string is converted to a number. Here the whole string consists of space characters, such as `\t`, `\n` and a "regular" space between them. So, similarly to an empty string, it becomes `0`.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea

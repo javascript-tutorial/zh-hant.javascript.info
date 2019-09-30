@@ -60,7 +60,11 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
     //--></script>
     ```
 
+<<<<<<< HEAD
     此用法在現代的 JavaScript 已不復見。這些註解是為了替不支援 `<script>` 標籤的瀏覽器隱藏 JavaScript 程式碼。而由於近 15 年來的瀏覽器都支援 JavaScript，你可以用這種註解來分辨真正過時的程式碼。
+=======
+    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 
 ## 外部腳本
