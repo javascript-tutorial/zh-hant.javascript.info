@@ -32,7 +32,7 @@ function sayHi() {
 }
 
 *!*
-alert( sayHi ); // 顯現函數程式碼
+alert( sayHi ); // 顯現函式程式碼
 */!*
 ```
 
