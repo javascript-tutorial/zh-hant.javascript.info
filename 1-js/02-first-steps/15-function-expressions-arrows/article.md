@@ -358,16 +358,16 @@ welcome(); // ok now
 
 ## 箭頭函式（Arrow functions） [#箭頭函式]
 
-There's one more very simple and concise syntax for creating functions, that's often better than Function Expressions. It's called "arrow functions", because it looks like this:
+創建函式還有一個非常簡潔的語法，通常比韓式表達式更好。它被稱為 "箭頭函式"，因為它看起來像這樣：
 
 
 ```js
 let func = (arg1, arg2, ...argN) => expression
 ```
 
-...This creates a function `func` that has arguments `arg1..argN`, evaluates the `expression` on the right side with their use and returns its result.
+...這會創建一個接受引數 `arg1...argN` 的函式 `func`，運行右側的 `expression` 並回傳結果。
 
-In other words, it's roughly the same as:
+換句話說，它大致與此相同：
 
 ```js
 let func = function(arg1, arg2, ...argN) {
@@ -375,14 +375,14 @@ let func = function(arg1, arg2, ...argN) {
 };
 ```
 
-...But much more concise.
+...但更加簡潔。
 
-Let's see an example:
+讓我們來看個例子：
 
 ```js run
 let sum = (a, b) => a + b;
 
-/* The arrow function is a shorter form of:
+/* 箭頭函式是簡短版的：
 
 let sum = function(a, b) {
   return a + b;
@@ -393,10 +393,10 @@ alert( sum(1, 2) ); // 3
 
 ```
 
-If we have only one argument, then parentheses around parameters can be omitted, making that even shorter:
+如果我們只有一個引數，那麼引述旁的括號可以省略，讓它更短：
 
 ```js run
-// same as
+// 如同
 // let double = function(n) { return n * 2 }
 *!*
 let double = n => n * 2;
@@ -405,7 +405,7 @@ let double = n => n * 2;
 alert( double(3) ); // 6
 ```
 
-If there are no arguments, parentheses should be empty (but they should be present):
+如果沒有任何引數，括號應該是空的（但他們應該被保留）：
 
 ```js run
 let sayHi = () => alert("Hello!");
@@ -413,9 +413,9 @@ let sayHi = () => alert("Hello!");
 sayHi();
 ```
 
-Arrow functions can be used in the same way as Function Expressions.
+箭頭函式的使用情境與函式宣告式相同。
 
-For instance, here's the rewritten example with `welcome()`:
+比如，這邊是重寫 `welcome()` 的例子：
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -427,48 +427,48 @@ let welcome = (age < 18) ?
 welcome(); // ok now
 ```
 
-Arrow functions may appear unfamiliar and not very readable at first, but that quickly changes as the eyes get used to the structure.
+在剛開始使用箭頭函式時，可能會覺得不熟悉且閱讀性不那麼好，但習慣這種結構後，情況會迅速改變。
 
-They are very convenient for simple one-line actions, when we're just too lazy to write many words.
+他們對於簡單的單行動作非常方便，尤其當我們發懶不想寫太多文字時。
 
-```smart header="Multiline arrow functions"
+```smart header="多行箭頭函式"
 
-The examples above took arguments from the left of `=>` and evaluated the right-side expression with them.
+上述的範例拿 `=>` 左側的引數並在右側的表達式中使用它們。
 
-Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in curly braces. Then use a normal `return` within them.
+有時我們需要一些更複雜的東西，像是多個表達式或是述語。這也是可能的，但我們應該用大括弧將它們括起來。然後在其中使用普通的 `return`。
 
-Like this:
+像這樣：
 
 ```js run
-let sum = (a, b) => {  // the curly brace opens a multiline function
+let sum = (a, b) => {  // 大括弧開啟多行函式
   let result = a + b;
 *!*
-  return result; // if we use curly braces, use return to get results
+  return result; // 如果我們使用大括弧，用回傳來取得結果
 */!*
 };
 
 alert( sum(1, 2) ); // 3
 ```
 
-```smart header="More to come"
-Here we praised arrow functions for brevity. But that's not all! Arrow functions have other interesting features. We'll return to them later in the chapter <info:arrow-functions>.
+```smart header="將有更多"
+這裡我們簡短稱讚了箭頭函式。但那不是全部！箭頭函式還有其他有趣的功能。我們稍後將在章節 <info:arrow-functions> 中回頭學習它們。
 
-For now, we can already use arrow functions for one-line actions and callbacks.
+目前，我們已經可以在單行動作與回呼中使用箭頭函式。
 ```
 
-## Summary
+## 總結
 
-- Functions are values. They can be assigned, copied or declared in any place of the code.
-- If the function is declared as a separate statement in the main code flow, that's called a "Function Declaration".
-- If the function is created as a part of an expression, it's called a "Function Expression".
-- Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
-- Function Expressions are created when the execution flow reaches them.
+- 函式是值。他們可以被指定、複製或在程式碼中任何地方被宣告。
+- 如果函式在主程式碼中以單獨的述語宣告，則稱為 "函式宣告式"。
+- 如果函式作為表達式的一部分被創建，則稱為 "函式表達式"。
+- 函式宣告式在程式碼區塊執行前被處理。他們在區塊內任何地方都是可視的。
+- 函式表達式在執行流程到達它們時被創建。
 
-In most cases when we need to declare a function, a Function Declaration is preferable, because it is visible prior to the declaration itself. That gives us more flexibility in code organization, and is usually more readable.
+在大多數情況下，當我們需要宣告一個函式時，我們偏好採用函式宣告式，因為它讓函式在宣告前就是可視的。這給了我們很多組織程式碼的彈性，通常也具有較佳的可讀性。
 
-So we should use a Function Expression only when a Function Declaration is not fit for the task. We've seen a couple of examples of that in this chapter, and will see more in the future.
+所以我們應該只在函式宣告式不適合任務時才採用函式表達式。我們在這章節中已經看到一些例子，將來會看到更多。
 
-Arrow functions are handy for one-liners. They come in two flavors:
+箭頭函式對於單行動作來說非常方便。以下是它的兩個特點：
 
-1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
-2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
+1. 沒有大括號：`(...args) => expression` -- 右側是一個表達式：函式執行它並回傳結果。
+2. 有大括號：`(...args) => { body }` -- 括號允許我們在韓式內撰寫多行述語，但我們需要一個明確的 `return` 來回傳一些東西。
