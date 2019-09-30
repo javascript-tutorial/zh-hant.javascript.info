@@ -1,23 +1,24 @@
-# JavaScript specials
+# JavaScript 特性
 
-This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
+本章節簡要的回顧一下我們到目前為止所學的，並特別著重在一些細節上。
 
-## Code structure
+## 程式碼結構
 
-Statements are delimited with a semicolon:
+
+述語（Statements）用分號隔開:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
 ```
 
-Usually, a line-break is also treated as a delimiter, so that would also work:
+通常，換行符號也被視為分隔符號， 因此也能這樣分隔述語：
 
 ```js run no-beautify
 alert('Hello')
 alert('World')
 ```
 
-That's called "automatic semicolon insertion". Sometimes it doesn't work, for instance:
+這是所謂的 "自動分號插入"。但有時它不起作用，例如：
 
 ```js run
 alert("There will be an error after this message")
@@ -25,27 +26,28 @@ alert("There will be an error after this message")
 [1, 2].forEach(alert)
 ```
 
-Most codestyle guides agree that we should put a semicolon after each statement.
+大多數程式碼風格指南都認為我們應該在每個述語後加上分號。
 
-Semicolons are not required after code blocks `{...}` and syntax constructs with them like loops:
+在像是程式碼區塊和迴圈之類，有用到 `{...}` 的語法之後，不需要加上分號：
 
 ```js
 function f() {
-  // no semicolon needed after function declaration
+  // 函數宣告後不需要分號
 }
 
 for(;;) {
-  // no semicolon needed after the loop
+  // 迴圈述語後不需要分號
 }
 ```
 
-...But even if we can put an "extra" semicolon somewhere, that's not an error. It will be ignored.
+...但即使我們在某處放了 "額外" 的分號，這也不會造成錯誤。它會被忽略。
 
-More in: <info:structure>.
+更多資訊： <info:structure>。
 
-## Strict mode
 
-To fully enable all features of modern JavaScript, we should start scripts with `"use strict"`.
+## 嚴格模式（Strict mode）
+
+為了完全啟用現代 JavaScript 的所有功能，我們應該以 `"use strict"` 指令作為腳本開頭。
 
 ```js
 'use strict';
@@ -53,67 +55,68 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 ...
 ```
 
-The directive must be at the top of a script or at the beginning of a function body.
+該指令必須放在 JavaScript 腳本的頂部或是函數的開頭。
 
-Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
+沒有使用 `"use strict"`，一切依然能正常運行，但是某些特性會以 "兼容" 舊式的方式表現，我們通常偏好使用現代的方式。
 
-Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
+語言內有些現代功能與特性（像是我們將來要學的類別）會隱式地啟用嚴格模式。
 
-More in: <info:strict-mode>.
+更多資訊： <info:strict-mode>.
 
-## Variables
+## 變數（Variables）
 
-Can be declared using:
+可以用下列方式聲明變數：
 
 - `let`
-- `const` (constant, can't be changed)
-- `var` (old-style, will see later)
+- `const` （常數，宣告後不可改變）
+- `var` （舊的寫法，稍後會看到）
 
-A variable name can include:
-- Letters and digits, but the first character may not be a digit.
-- Characters `$` and `_` are normal, on par with letters.
-- Non-Latin alphabets and hieroglyphs are also allowed, but commonly not used.
+一個變數名稱可以包含：
+- 字母與數字，但變數名的第一個字元不能是數字。
+- 字元 `$` 和 `_` 是允許且正常的，用法同字母。
+- 非拉丁字母與象形文字也是允許的，但通常不會使用。
 
-Variables are dynamically typed. They can store any value:
+變數是會動態被賦予型別的，他們可以儲存任何的值：
 
 ```js
 let x = 5;
 x = "John";
 ```
 
-There are 7 data types:
+有 7 種資料類型：
 
-- `number` for both floating-point and integer numbers,
-- `string` for strings,
-- `boolean` for logical values: `true/false`,
-- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
-- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
-- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
+- `number` 可以是浮點數或是整數。
+- `string` 字串類型。
+- `boolean` 表達邏輯的值： `true/false`。
+- `null` -- 具有單一值 `null` 的類型，代表 "空的" 或 "不存在"。
+- `undefined` -- 具有單一值 `undefined` 的類型，代表 "未指定"。
+- `object` 與 `symbol` -- 用於複雜的資料結構和唯一識別符號，我們還沒學習這個類型。
 
-The `typeof` operator returns the type for a value, with two exceptions:
+`typeof` 運算子會回傳值的類型，但有兩個例外：
+
 ```js
-typeof null == "object" // error in the language
-typeof function(){} == "function" // functions are treated specially
+typeof null == "object" // 語言本身的錯誤
+typeof function(){} == "function" // 函式被特別對待
 ```
 
-More in: <info:variables> and <info:types>.
+更多資訊： <info:variables> 和 <info:types>。
 
-## Interaction
+## 互動（Interaction）
 
-We're using a browser as a working environment, so basic UI functions will be:
+我們使用瀏覽器作為工作環境，所以基本的 UI 功能會是：
 
 [`prompt(question, [default])`](mdn:api/Window/prompt)
-: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
+: 詢問一個 `question`，並回傳使用者輸入的內容，若使用者按下 "取消"，則回傳 `null` 。
 
 [`confirm(question)`](mdn:api/Window/confirm)
-: Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
+: 詢問一個 `question`，並提供在 Ok 與 Cancel 間進行選擇。選擇結果以 `true/false` 回傳。
 
 [`alert(message)`](mdn:api/Window/alert)
-: Output a `message`.
+: 輸出一個 `message`。
 
-All these functions are *modal*, they pause the code execution and prevent the visitor from interacting with the page until they answer.
+所有這些函式都是 *模態*，他們會暫停程式碼執行並阻擋使用者與頁面互動，直到使用者回應模態。
 
-For instance:
+舉例來說:
 
 ```js run
 let userName = prompt("Your name?", "Alice");
@@ -123,58 +126,58 @@ alert( "Visitor: " + userName ); // Alice
 alert( "Tea wanted: " + isTeaWanted ); // true
 ```
 
-More in: <info:alert-prompt-confirm>.
+更多資訊： <info:alert-prompt-confirm>.
 
-## Operators
+## 運算子（Operators）
 
-JavaScript supports the following operators:
+JavaScript 支援以下運算子：
 
-Arithmetical
-: Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
+算術運算子（Arithmetical）
+： 常規的運算子如： `* + - /`，以及取餘數操作的 `%` 和次方運算的 `**`。
 
-    The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
+    二元加號 `+` 連結字串。如果任何一個操作運算元是字串，則另一個也會被轉換成字串：
 
     ```js run
     alert( '1' + 2 ); // '12', string
     alert( 1 + '2' ); // '12', string
     ```
 
-Assignments
-: There is a simple assignment: `a = b` and combined ones like `a *= 2`.
+指定運算子（Assignments）
+： 簡單的指定： `a = b` 和結合其他運算的指定運算 `a *= 2`。
 
-Bitwise
-: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+位元操作（Bitwise）
+： 位元操作在最底層的位元層面使用 32-bit 整數： 有需要時，請參閱 [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)。
 
-Conditional
-: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
+條件運算（Conditional）
+： 唯一具有三個參數的操作： `cond ? resultA : resultB`. 如果 `cond` 是真值，則回傳 `resultA`否則回傳 `resultB`。
 
-Logical operators
-: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped (not necessary `true`/`false`). Logical NOT `!` converts the operand to boolean type and returns the inverse value.
+邏輯運算子（Logical operators）
+： 邏輯的 AND `&&` 和 OR `||` 執行短路核定，然後回傳停止時的值（不一定為 `true`/`false`）。邏輯的 NOT `!` 轉換操作運算元成布林類型，並回傳相反的值。
 
-Comparisons
-: Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
+比較運算子（Comparisons）
+： 相等性檢查 `==` 將不同類型的值轉換成數值（除了 `null` 和 `undefined`，它們除了彼此相等外，不跟任何人相等），所以這些是相等的：
 
     ```js run
     alert( 0 == false ); // true
     alert( 0 == '' ); // true
     ```
 
-    Other comparisons convert to a number as well.
+    其他的比較也會轉換成數值。
 
-    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
+    嚴格相等運算子 `===` 不會進行轉換：不同類型永遠代表不同的值。
 
-    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
+    `null` 和 `undefined` 值比較特殊：他們只在 `==` 下相等。
 
-    Greater/less comparisons compare strings character-by-character, other types are converted to a number.
+    大於/小於 的比較運算，在比較字串時，是按照字元逐一比較，其他類型則會先轉換成數值。
 
-Other operators
-: There are few others, like a comma operator.
+其他運算子
+： 有一些其他的運算子，像是逗號運算子。
 
-More in: <info:operators>, <info:comparison>, <info:logical-operators>.
+更多資訊： <info:operators>, <info:comparison>, <info:logical-operators>.
 
-## Loops
+## 迴圈
 
-- We covered 3 types of loops:
+- 我們介紹了三種類型的迴圈:
 
     ```js
     // 1
@@ -193,25 +196,25 @@ More in: <info:operators>, <info:comparison>, <info:logical-operators>.
     }
     ```
 
-- The variable declared in `for(let...)` loop is visible only inside the loop. But we can also omit `let` and reuse an existing variable.
-- Directives `break/continue` allow to exit the whole loop/current iteration. Use labels to break nested loops.
+- 在 `for(let...)` 迴圈中宣告的變數其作用域只在迴圈中但我們也能省略 `let` 並重用現有的變數。
+- 指令 `break/continue` 允許退出整個 迴圈/當前迭代。使用標籤來打破巢狀迴圈。
 
-Details in: <info:while-for>.
+更多資訊： <info:while-for>。
 
-Later we'll study more types of loops to deal with objects.
+稍後我們將會學習更多類型的迴圈來處理物件。
 
-## The "switch" construct
+## "switch" 結構
 
-The "switch" construct can replace multiple `if` checks. It uses `===` (strict equality) for comparisons.
+"switch" 結構可以取代多個 `if` 檢查。 它使用 `===` （嚴格相等） 進行比較。
 
-For instance:
+例如：
 
 ```js run
 let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-    alert("Won't work"); // the result of prompt is a string, not a number
+    alert("Won't work"); // 提示的結果是一個字串，而非數字
 
   case "18":
     alert("This works!");
@@ -222,13 +225,13 @@ switch (age) {
 }
 ```
 
-Details in: <info:switch>.
+更多資訊： <info:switch>。
 
-## Functions
+## 函式
 
-We covered three ways to create a function in JavaScript:
+我們介紹了三種在 JavaScript 中創建函式的方式：
 
-1. Function Declaration: the function in the main code flow
+1. 函式宣告: 主要程式流程中的函示
 
     ```js
     function sum(a, b) {
@@ -238,7 +241,7 @@ We covered three ways to create a function in JavaScript:
     }
     ```
 
-2. Function Expression: the function in the context of an expression
+2. 函式表達式： 表達式上下文中的函式
 
     ```js
     let sum = function(a, b) {
@@ -248,32 +251,32 @@ We covered three ways to create a function in JavaScript:
     };
     ```
 
-3. Arrow functions:
+3. 箭頭函式：
 
     ```js
-    // expression at the right side
+    // 表達式在右邊
     let sum = (a, b) => a + b;
 
-    // or multi-line syntax with { ... }, need return here:
+    // 或是帶有 { ... } 的多行語法，需要回傳：
     let sum = (a, b) => {
       // ...
       return a + b;
     }
 
-    // without arguments
+    // 沒有引數
     let sayHi = () => alert("Hello");
 
-    // with a single argument
+    // 單一引數
     let double = n => n * 2;
     ```
 
 
-- Functions may have local variables: those declared inside its body. Such variables are only visible inside the function.
-- Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
-- Functions always return something. If there's no `return` statement, then the result is `undefined`.
+- 函式可能有區域變數： 那些在函式內宣告的變數。 這類的變數其作用域只存在函式內部。
+- 參數可以有預設值：`function sum(a = 1, b = 2) {...}`。
+- 函式永遠會回傳一些東西。如果沒有 `return` 述語，則其結果為 `undefined`。
 
-Details: see <info:function-basics>, <info:function-expressions-arrows>.
+更多資訊：參見 <info:function-basics>、<info:function-expressions-arrows>。
 
-## More to come
+## 還有更多
 
-That was a brief list of JavaScript features. As of now we've studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.
+這是 JavaScript 特性的簡短概要。 截至目前，我們只學習了基礎知識。隨著教程的深入，你將會學習到 JavaScript 的更多特性與進階功能。

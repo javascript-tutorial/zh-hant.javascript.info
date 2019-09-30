@@ -2,11 +2,11 @@ importance: 4
 
 ---
 
-# Rewrite the function using '?' or '||'
+# 使用 '?' 或 '||' 改寫函式
 
-The following function returns `true` if the parameter `age` is greater than `18`.
+底下的函式中，若參數 `age` 大於 `18` 則回傳 `true`。
 
-Otherwise it asks for a confirmation and returns its result.
+否則它要求確認並回傳其結果。
 
 ```js
 function checkAge(age) {
@@ -18,9 +18,10 @@ function checkAge(age) {
 }
 ```
 
-Rewrite it, to perform the same, but without `if`, in a single line.
+改寫它，使其在沒有 `if` 的情況下，以單獨一行就可以達到同樣的操作。
 
-Make two variants of `checkAge`:
+寫出兩種 `checkAge` 的不同做法：
 
-1. Using a question mark operator `?`
-2. Using OR `||`
+1. 使用問號運算子 `?`
+2. 使用 OR `||`
+

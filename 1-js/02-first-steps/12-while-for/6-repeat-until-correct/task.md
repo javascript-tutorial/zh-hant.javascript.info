@@ -2,12 +2,13 @@ importance: 5
 
 ---
 
-# Repeat until the input is correct
+# 重複輸入，直到正確為止
 
-Write a loop which prompts for a number greater than `100`. If the visitor enters another number -- ask them to input again.
+寫一個迴圈，提示輸入一個比 `100` 還大的數字。如果訪問者輸入別的數 -- 請他重新輸入。
 
-The loop must ask for a number until either the visitor enters a number greater than `100` or cancels the input/enters an empty line.
+該迴圈必須一直請求輸入某個數字，直到訪問者輸入大於 `100` 的數，或者 取消輸入/輸入空行 為止。
 
+在此我們假設訪問者只輸入數值，本課題不需要特別實作輸入非數值的情況。
 Here we can assume that the visitor only inputs numbers. There's no need to implement a special handling for a non-numeric input in this task.
 
 [demo]
