@@ -229,7 +229,7 @@ function sayHi(name) {
 sayHi("John"); // error!
 */!*
 
-let sayHi = function(name) {  // (*) no magic any more
+let sayHi = function(name) {  // (*) 不再有神奇的事情發生
   alert( `Hello, ${name}` );
 };
 ```
