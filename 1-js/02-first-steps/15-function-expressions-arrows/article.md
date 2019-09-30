@@ -97,7 +97,7 @@ let sayHi = function() {
 
 ## 回呼函式（Callback functions）
 
-讓我們來看更多將函式以值的方式傳遞的範例。
+讓我們來看更多將函式以值的方式傳遞與使用函式表達式的範例。
 
 我們將寫一個包含三個參數的函式 `ask(question, yes, no)`：
 
