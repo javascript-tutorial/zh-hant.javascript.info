@@ -28,5 +28,5 @@ menu = {
 
 請注意 `multiplyNumeric` 不需要回傳任何東西，它應該要原地（in place）修改物件。
 
-註：這裡使用 `typeof` 來確認數值。
+註：使用 `typeof` 來辨別數值類型。
 
