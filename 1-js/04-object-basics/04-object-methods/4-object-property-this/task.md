@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Using "this" in object literal
+# 在物件字面量上使用 "this"
 
-Here the function `makeUser` returns an object.
+這個函式 `makeUser` 回傳一個物件。
 
-What is the result of accessing its `ref`? Why?
+存取它的 `ref` 會得到什麼結果呢？為什麼？
 
 ```js
 function makeUser() {
@@ -18,6 +18,6 @@ function makeUser() {
 
 let user = makeUser();
 
-alert( user.ref.name ); // What's the result?
+alert( user.ref.name ); // 結果是什麼？
 ```
 
