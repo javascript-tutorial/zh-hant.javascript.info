@@ -1,87 +1,86 @@
+# 物件轉換為原生類型
 
-# Object to primitive conversion
+當物件相加 `obj1 + obj2`、相減 `obj1 - obj2` 或使用 `alert(obj)` 印出來時會發生什麼事呢？
 
-What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
+在這種情況，物件被自動轉換為原生類型，並且操作會被執行。
 
-In that case, objects are auto-converted to primitives, and then the operation is carried out.
+在章節 <info:type-conversions> 我們已經看到數值、字串與布林等原生類型的轉換規則，但我們對於物件遺留了一些空白。現在，當我們知道方法和符號後，就該來填上它了。
 
-In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
-
-1. All objects are `true` in a boolean context. There are only numeric and string conversions.
-2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
-3. As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
+1. 所有物件在布林上下文（boolean context）中皆為 `true`，所以就只會有數值與字串的轉換。
+2. 當我們相減物件或套用數學函式時，數值轉換才會發生。舉個例，`Date` 物件（在章節 <info:date> 中會介紹）可以相減，而 `date1 - date2` 的結果是兩個日期之間的時間差。
+3. 至於字串轉換 -- 它通常發生在當我們像是 `alert(obj)` 這樣輸出物件或類似的上下文中才會發生。
 
 ## ToPrimitive
 
-We can fine-tune string and numeric conversion, using special object methods.
+我們可以使用特殊的物件方法來微調字串和數值的轉換。
 
-There are three variants of type conversion, so-called "hints", described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
+有三種類型轉換的變化，被稱為 "提示（hints）"，被描述於 [規格](https://tc39.github.io/ecma262/#sec-toprimitive) 內：
 
 `"string"`
-: For an object-to-string conversion, when we're doing an operation on an object that expects a string, like `alert`:
+: 物件至字串的轉換，當我們在物件上操作並預期得到一個字串時，像是 `alert`：
 
     ```js
-    // output
+    // 輸出
     alert(obj);
 
-    // using object as a property key
+    // 使用物件作為屬性鍵
     anotherObj[obj] = 123;
     ```
 
 `"number"`
-: For an object-to-number conversion, like when we're doing maths:
+: 物件至數值的轉換，像是當我們算數時：
 
     ```js
-    // explicit conversion
+    // 明確轉換
     let num = Number(obj);
 
-    // maths (except binary plus)
-    let n = +obj; // unary plus
+    // 數學（除了二進位加法之外）
+    let n = +obj; // 一元正號
     let delta = date1 - date2;
 
-    // less/greater comparison
+    // 大於/小於 的比較
     let greater = user1 > user2;
     ```
 
 `"default"`
-: Occurs in rare cases when the operator is "not sure" what type to expect.
+: 發生於極少情況下，當 "不確定" 運算子會預期是什麼類型時。
 
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. Or when an object is compared using `==` with a string, number or a symbol, it's also unclear which conversion should be done.
+    舉個例，二元加法 `+` 可以同時運作在字串（串接）和數值（相加）上，所以字串與數值兩者皆可使用。或當物件使用 `==` 比較字串、數值或符號時，哪種轉換會進行也很不清楚。
 
     ```js
-    // binary plus
+    // 二元加法
     let total = car1 + car2;
 
     // obj == string/number/symbol
     if (user == 1) { ... };
     ```
 
-    The greater/less operator `<>` can work with both strings and numbers too. Still, it uses "number" hint, not "default". That's for historical reasons.
+    大於/小於 運算子 `<>` 一樣可以同時作用於字串和數值上。但它使用 "number" 提示而非 "default"，這是因為歷史因素。
 
-    In practice, all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And probably we should do the same.
+    實際上，除了某種物件（`Date` 物件，我們晚點會學到），所有內建物件都實作了和 `"number"` 一樣的 `"default"` 轉換，且我們或許也該這樣做。
 
-Please note -- there are only three hints. It's that simple. There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
+請注意 -- 只有三種提示，就那麼簡單，不存在 "布林" 提示（所有物件在布林上下文中都是 `true`）等其它的。且若我們對 `"default"` 和 `"number"` 一視同仁，如同大多內建物件那樣，那將只有兩種轉換了。
 
-**To do the conversion, JavaScript tries to find and call three object methods:**
+**要做轉換時，JavaScript 試著找尋並呼叫三種物件方法：**
 
-1. Call `obj[Symbol.toPrimitive](hint)` - the method with the symbolic key `Symbol.toPrimitive` (system symbol), if such method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. 呼叫 `obj[Symbol.toPrimitive](hint)` - 若該方法存在時，會置於符號鍵 `Symbol.toPrimitive`（系統符號）之中。
+2. 否則，若提示為 `"string"`
+    - 嘗試呼叫 `obj.toString()` 和 `obj.valueOf()`，不論是哪個存在。
+3. 否則，若提示為 `"number"` 或`"default"`
+    - 嘗試呼叫 `obj.valueOf()` 和 `obj.toString()`，不論是哪個存在。
 
 ## Symbol.toPrimitive
 
-Let's start from the first method. There's a built-in symbol named `Symbol.toPrimitive` that should be used to name the conversion method, like this:
+來從第一個方法開始吧。有個內建的符號叫做 `Symbol.toPrimitive`，被用於命名轉換方法，像這樣：
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-  // must return a primitive value
-  // hint = one of "string", "number", "default"
+  // 必須回傳一個原生類型值
+  // hint = "string"、"number" 和 "default" 其中一個
 };
 ```
 
-For instance, here `user` object implements it:
+舉個例，這個 `user` 物件實作了它：
 
 ```js run
 let user = {
@@ -94,37 +93,36 @@ let user = {
   }
 };
 
-// conversions demo:
+// 轉換演示：
 alert(user); // hint: string -> {name: "John"}
 alert(+user); // hint: number -> 1000
 alert(user + 500); // hint: default -> 1500
 ```
 
-As we can see from the code, `user` becomes a self-descriptive string or a money amount depending on the conversion. The single method `user[Symbol.toPrimitive]` handles all conversion cases.
-
+如我們從程式碼所見，`user` 依據轉換類型變成描述自己的字串或錢的總量。該單一方法 `user[Symbol.toPrimitive]` 處理了所有轉換情況。
 
 ## toString/valueOf
 
-Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
+方法 `toString` 和 `valueOf` 來自古早時期。它們不是符號（那麼久之前符號根本還不存在），而是個 "正規的" 以字串命名的方法。它們提供一個替代的 "老派" 方式來實作轉換。
 
-If there's no `Symbol.toPrimitive` then JavaScript tries to find them and try in the order:
+若沒有 `Symbol.toPrimitive`，則 JavaScript 會試圖找尋它們並以這樣的順序嘗試呼叫：
 
-- `toString -> valueOf` for "string" hint.
-- `valueOf -> toString` otherwise.
+- 對於 "string" 提示，`toString -> valueOf`。
+- 否則，`valueOf -> toString`。
 
-For instance, here `user` does the same as above using a combination of `toString` and `valueOf`:
+舉個例，這個 `user` 採用 `toString` 與 `valueOf` 做了如同前述的事情：
 
 ```js run
 let user = {
   name: "John",
   money: 1000,
 
-  // for hint="string"
+  // 對於 hint="string"
   toString() {
     return `{name: "${this.name}"}`;
   },
 
-  // for hint="number" or "default"
+  // 對於 hint="number" 或 "default"
   valueOf() {
     return this.money;
   }
@@ -136,9 +134,9 @@ alert(+user); // valueOf -> 1000
 alert(user + 500); // valueOf -> 1500
 ```
 
-As we can see, the behavior is the same as the previous example with `Symbol.toPrimitive`.
+如我們所見，該行為與前一個使用 `Symbol.toPrimitive` 的例子相同。
 
-Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
+通常我們會想要單一個 "全包" 的地方來處理所有原生類型的轉換。在這個情況，我們可以只實作 `toString`，像這樣：
 
 ```js run
 let user = {
@@ -153,42 +151,42 @@ alert(user); // toString -> John
 alert(user + 500); // toString -> John500
 ```
 
-In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
+在少了 `Symbol.toPrimitive` 與 `valueOf` 的情況下，`toString` 將會處理所有原生類型的轉換。
 
-## Return types
+## 回傳類型
 
-The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
+要理解關於原生類型轉換方法，有件很重要的事就是它們不需要回傳 "被提示" 的原生類型。
 
-There is no control whether `toString()` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint "number".
+沒有限制 `toString()` 是否一定就得回傳一個字串，或 `Symbol.toPrimitive` 方法是否得對 "number" 提示回傳一個數值。
 
-The only mandatory thing: these methods must return a primitive, not an object.
+唯一強制的事情是：這些方法必須回傳原生類型，而非物件。
 
-```smart header="Historical notes"
-For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
+```smart header="歷史筆記"
+由於歷史因素，若 `toString` 或 `valueOf` 回傳一個物件時不會產生錯誤，但該值將被忽略（就像此方法不存在一樣）。那是因為古早時期在 JavaScript 中並沒有好的 "錯誤" 觀念。
 
-In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
+相對地，`Symbol.toPrimitive` *必須* 回傳一個原生類型，否則就會產生錯誤。
 ```
 
-## Further operations
+## 進一步的操作
 
-An operation that initiated the conversion gets the primitive, and then continues to work with it, applying further conversions if necessary.
+一個發起轉換的運算獲得了原生類型，然後繼續運作，並在需要時再套用進一步的轉換。
 
-For instance:
+舉個例：
 
-- Mathematical operations, except binary plus, convert the primitive to a number:
+- 數學運算，除了二元加法以外，將會轉換該原生類型為數值：
 
     ```js run
     let obj = {
-      // toString handles all conversions in the absence of other methods
+      // 在少了其他方法的情況下，toString 處理所有的轉換
       toString() {
         return "2";
       }
     };
 
-    alert(obj * 2); // 4, object converted to primitive "2", then multiplication made it a number
+    alert(obj * 2); // 4，物件被轉為原生類型 "2"，然後乘法會讓它再變成一個數值
     ```
 
-- Binary plus will concatenate strings in the same situation:
+- 二元加法在同樣情境時會連接字串：
     ```js run
     let obj = {
       toString() {
@@ -196,26 +194,27 @@ For instance:
       }
     };
 
-    alert(obj + 2); // 22 (conversion to primitive returned a string => concatenation)
+    alert(obj + 2); // 22（轉換成原生類型會回傳一個字串 => 串接）
     ```
 
-## Summary
+## 總結
 
-The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
+在許多預期使用原生類型作為值的函式和運算子中，物件轉換為原生類型是自動被呼叫的。
 
-There are 3 types (hints) of it:
-- `"string"` (for `alert` and other operations that need a string)
-- `"number"` (for maths)
-- `"default"` (few operators)
+對其有三種類型（提示）：
+- `"string"`（對於 `alert` 和其他需要字串的操作）
+- `"number"` (對於數學運算)
+- `"default"` (少數操作)
 
-The specification describes explicitly which operator uses which hint. There are very few operators that "don't know what to expect" and use the `"default"` hint. Usually for built-in objects `"default"` hint is handled the same way as `"number"`, so in practice the last two are often merged together.
+該規格明確描述哪個運算子使用哪種提示。有極少運算 "不知如何預期" 就會使用 `"default"` 提示。通常對於內建物件來說，`"default"` 提示會採用跟 `"number"` 一樣的處理方式，所以實務上後兩者會被合併在一起。
 
-The conversion algorithm is:
+轉換的演算法為：
 
-1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. 呼叫 `obj[Symbol.toPrimitive](hint)` 若該方法存在。
+2. 否則若提示為 `"string"`
+    - 嘗試 `obj.toString()` 和 `obj.valueOf`，不論是哪個存在。
+3. 否則若提示為 `"number"` 或 `"default"`
+    - 嘗試 `obj.valueOf` 和 `obj.toString()`，不論是哪個存在。
 
-In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for all conversions that return a "human-readable" representation of an object, for logging or debugging purposes.  
+實際上，對於紀錄或除錯用途而言，通常只要實作 `obj.toString()` 作為 "全包" 所有轉換的方法，使其能回傳某物件 "人類能讀懂" 的表示型式就夠了。
+
