@@ -219,7 +219,7 @@ sayHi(); // undefined
 
 在這個情況底下 `this` 在嚴格模式（strict mode）中是 `undefined`，若我們試著存取 `this.name`，就會產生錯誤。
 
-非嚴格模式（non-strict mode）內，`this` 的值在這個情況會是 *全域物件（global object）*（瀏覽器中是 `window`，我們晚點會在章節 [](info:global-object) 看到）。這個有歷史淵源的行為可使用 `"user strict"` 修正。
+非嚴格模式（non-strict mode）內，`this` 的值在這個情況會是 *全域物件（global object）*（瀏覽器中是 `window`，我們晚點會在章節 [](info:global-object) 看到）。這個有歷史淵源的行為可使用 `"use strict"` 修正。
 
 通常這種呼叫是程式編寫錯誤，若函式有 `this` 在內，它預期的是在某個物件的上下文中被呼叫。
 ````
@@ -254,7 +254,7 @@ let user = {
 user.hi(); // John（簡單的呼叫可以運作）
 
 *!*
-// 現在用同樣的名稱來呼叫 user.hi 或 user.bye
+// 現在根據名稱來決定要呼叫 user.hi 或 user.bye
 (user.name == "John" ? user.hi : user.bye)(); // 錯誤！
 */!*
 ```

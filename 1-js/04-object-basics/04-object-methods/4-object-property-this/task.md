@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# 在物件字面量上使用 "this"
+# 在物件字面值上使用 "this"
 
 這個函式 `makeUser` 回傳一個物件。
 

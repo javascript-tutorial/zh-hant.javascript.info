@@ -19,7 +19,7 @@ alert( user.ref.name ); // Error: Cannot read property 'name' of undefined
 
 此處在 `makeUser()` 中 `this` 的值是 `undefined`，因為它被視為一個函式來呼叫，而不是作為使用 "句點" 語法的一個方法。
 
-`this` 的值是對於整個函式而言的，程式碼區塊跟物件字面量皆不會影響它。
+`this` 的值是對於整個函式而言的，程式碼區塊跟物件字面值皆不會影響它。
 
 因此 `ref: this` 實際上拿到當前函式的 `this`。
 
