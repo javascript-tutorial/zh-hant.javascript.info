@@ -1,8 +1,8 @@
-Yes, it's possible.
+可以，這是有可能的。
 
-If a function returns an object then `new` returns it instead of `this`.
+若函式回傳一個物件，則 `new` 會回傳它而非 `this`。
 
-So they can, for instance, return the same externally defined object `obj`:
+所以它們可以，舉個例，回傳相同的外部定義物件 `obj`：
 
 ```js run no-beautify
 let obj = {};
@@ -12,3 +12,4 @@ function B() { return obj; }
 
 alert( new A() == new B() ); // true
 ```
+

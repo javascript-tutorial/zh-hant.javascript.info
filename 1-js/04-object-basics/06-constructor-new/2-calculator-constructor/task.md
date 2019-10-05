@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Create new Calculator
+# 建立 new Calculator
 
-Create a constructor function `Calculator` that creates objects with 3 methods:
+建立一個建構子函式 `Calculator` 來建立有著三個方法的物件：
 
-- `read()` asks for two values using `prompt` and remembers them in object properties.
-- `sum()` returns the sum of these properties.
-- `mul()` returns the multiplication product of these properties.
+- `read()` 使用 `prompt` 詢問兩個值並記憶在物件屬性內。
+- `sum()` 回傳這些屬性的加總。
+- `mul()` 回傳這些屬性的乘積。
 
-For instance:
+舉個例：
 
 ```js
 let calculator = new Calculator();
