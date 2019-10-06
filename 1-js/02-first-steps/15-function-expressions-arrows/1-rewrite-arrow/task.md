@@ -1,7 +1,7 @@
 
-# Rewrite with arrow functions
+# 用箭頭函式重寫 
 
-Replace Function Expressions with arrow functions in the code:
+用箭頭函式取代下列程式碼中的函式表達式：
 
 ```js run
 function ask(question, yes, no) {
