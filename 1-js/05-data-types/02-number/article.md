@@ -1,87 +1,86 @@
-# Numbers
+# 數值（Numbers）
 
-All numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers".
+JavaScript 中所有數值都以 64 位元格式儲存 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) ，亦被稱為 "雙精度浮點數值"。
 
-Let's expand upon what we currently know about them.
+來從我們已知的部分繼續延伸吧。
 
-## More ways to write a number
+## 更多寫下數值的方式
 
-Imagine we need to write 1 billion. The obvious way is:
+想像我們需要寫 1 個十億，最顯而易見的方式是：
 
 ```js
 let billion = 1000000000;
 ```
 
-But in real life, we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+但現實生活中，我們通常避免寫下有這麼多零的長字串，因為太容易打錯了。同樣地，我們很懶惰，我們通常只想要寫 `"1bn"` 來代表一個十億或 `"7.3bn"` 來代表七十三億，對多數的大數字而言也是同樣態度。
 
-In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+JavaScript 中，我們對於數字附加一個字母 `"e"` 用以指定零的數量來縮短一個數值：
 
 ```js run
-let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
+let billion = 1e9;  // 1 個十億，如字面所說：1 與 9 個零
 
-alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
+alert( 7.3e9 );  // 7.3 個十億 (7,300,000,000)
 ```
 
-In other words, `"e"` multiplies the number by `1` with the given zeroes count.
+換句話說，`"e"` 把該數字乘上 `1` 後面跟著指定數量的零。
 
 ```js
 1e3 = 1 * 1000
 1.23e6 = 1.23 * 1000000
 ```
 
-
-Now let's write something very small. Say, 1 microsecond (one millionth of a second):
+現在來寫些非常小的數值吧，例如 1 微秒（百萬分之一秒）：
 
 ```js
 let ms = 0.000001;
 ```
 
-Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say:
+就跟之前一樣，使用 `"e"` 會有幫助。若我們想避免明確寫下那麼多零，我們可以：
 
 ```js
-let ms = 1e-6; // six zeroes to the left from 1
+let ms = 1e-6; // 在 1 左側有六個零
 ```
 
-If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
+若我們在 `0.000001` 中數零的數量，會有 6 個，所以自然就是 `1e-6`。
 
-In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
+換句話說，`"e"` 之後的負數代表除以 1 後面跟著指定數量的零：
 
 ```js
-// -3 divides by 1 with 3 zeroes
+// -3 除以 1 後面跟著 3 個零
 1e-3 = 1 / 1000 (=0.001)
 
-// -6 divides by 1 with 6 zeroes
+// -6 除以 1 後面跟著 6 個零
 1.23e-6 = 1.23 / 1000000 (=0.00000123)
 ```
 
-### Hex, binary and octal numbers
+### 十六進位（hex）、二進位（binary）和八進位（octal）數值
 
-[Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) numbers are widely used in JavaScript to represent colors, encode characters, and for many other things. So naturally, there exists a shorter way to write them: `0x` and then the number.
+[十六進位（Hexadecimal）](https://en.wikipedia.org/wiki/Hexadecimal) 數值在 JavaScript 中被廣泛地用來表示顏色、字元編碼和其它東西。所以很自然地，它們有個更簡短的寫法：`0x` 然後接該數字。
 
-For instance:
+舉個例：
 
 ```js run
 alert( 0xff ); // 255
-alert( 0xFF ); // 255 (the same, case doesn't matter)
+alert( 0xFF ); // 255（一樣，大小寫沒差）
 ```
 
-Binary and octal numeral systems are rarely used, but also supported using the `0b` and `0o` prefixes:
-
+二進位與八進位數值系統很少被使用，但使用 `0b` 和 `0o` 前置也是支援的：
 
 ```js run
-let a = 0b11111111; // binary form of 255
-let b = 0o377; // octal form of 255
+let a = 0b11111111; // 255 的二進位
+let b = 0o377; // 255 的八進位
 
-alert( a == b ); // true, the same number 255 at both sides
+alert( a == b ); // true，兩邊都是 255 這個數值
 ```
 
-There are only 3 numeral systems with such support. For other numeral systems, we should use the function `parseInt` (which we will see later in this chapter).
+只有三種數值系統有這種支援，對於其他數值系統，我們應該要使用函式 `parseInt`（在本章晚點會看到）。
 
 ## toString(base)
 
-The method `num.toString(base)` returns a string representation of `num` in the numeral system with the given `base`.
+方法 `num.toString(base)` 回傳在給定 `base` 為基底的數值系統中，`num` 的字串表示法。
 
-For example:
+例如：
+
 ```js run
 let num = 255;
 
@@ -89,45 +88,45 @@ alert( num.toString(16) );  // ff
 alert( num.toString(2) );   // 11111111
 ```
 
-The `base` can vary from `2` to `36`. By default it's `10`.
+`base` 可以在 `2` 至 `36` 中變換，預設是 `10`。
 
-Common use cases for this are:
+常用的使用情境是：
 
-- **base=16** is used for hex colors, character encodings etc, digits can be `0..9` or `A..F`.
-- **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
-- **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example to make a short url. Can simply represent it in the numeral system with base `36`:
+- **base=16** 被用於十六進位顏色、字元編碼等，數字可以是 `0..9` 或 `A..F`。
+- **base=2** 大多用於除錯以位元為單位的操作，數字可以是 `0` 或 `1`。
+- **base=36** 是最大值，數字可以是 `0..9` 或 `A..Z`，整個拉丁字母表都被用來表示數值。對於 `36` 的一個有趣但有用的情境會發生在，當我們需要把一個長數值識別符轉為更簡短時，例如做個短 URL 的時候。使用 `36` 作為基底，可以簡單的在數值系統表示它：
 
     ```js run
     alert( 123456..toString(36) ); // 2n9c
     ```
 
-```warn header="Two dots to call a method"
-Please note that two dots in `123456..toString(36)` is not a typo. If we want to call a method directly on a number, like `toString` in the example above, then we need to place two dots `..` after it.
+```warn header="兩個句點來呼叫方法"
+請注意在 `123456..toString(36)` 中的兩個句點並非打錯字。若我們想直接在數值上呼叫像是上述的 `toString` 方法，那我們需要在其後放兩個句點 `..`。
 
-If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
+若我們只放一個句點：`123456.toString(36)`，那就會產生錯誤，因為 JavaScript 的語法中，在第一個句點之後意味著的是小數點部分。而若我們放置多於一個句點，那 JavaScript 就知道小數點部分為空，接下來的是方法。
 
-Also could write `(123456).toString(36)`.
+也可寫成 `(123456).toString(36)`。
 ```
 
-## Rounding
+## 進位（Rounding）
 
-One of the most used operations when working with numbers is rounding.
+使用數值時最常用的操作之一就是進位。
 
-There are several built-in functions for rounding:
+對於進位有幾個內建函式：
 
 `Math.floor`
-: Rounds down: `3.1` becomes `3`, and `-1.1` becomes `-2`.
+: 向下進位：`3.1` 變成 `3`，且  `-1.1` 變成 `-2`。
 
 `Math.ceil`
-: Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
+: 向上進位：`3.1` 變成 `4`，且 `-1.1` 變成 `-1`。
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: 四捨五入進位至最近的整數：`3.1` 變成 `3`、`3.6` 變成 `4` 且 `-1.1` 變成 `-1`。
 
-`Math.trunc` (not supported by Internet Explorer)
-: Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
+`Math.trunc`（Internet Explorer 不支援）
+: 不進位直接捨去小數點之後的部分：`3.1` 變成 `3`，`-1.1` 變成 `-1`。
 
-Here's the table to summarize the differences between them:
+這邊的表總結了它們之間的差異：
 
 |   | `Math.floor` | `Math.ceil` | `Math.round` | `Math.trunc` |
 |---|---------|--------|---------|---------|
@@ -136,108 +135,109 @@ Here's the table to summarize the differences between them:
 |`-1.1`|  `-2`    |   `-1`  |    `-1`  |   `-1`   |
 |`-1.6`|  `-2`    |   `-1`  |    `-2`  |   `-1`   |
 
+這些函式涵蓋處理一個數值其小數點部分的所有可能方法。但如果我們想要進位數值到小數點後 `第 n 位` 該怎麼辦？
 
-These functions cover all of the possible ways to deal with the decimal part of a number. But what if we'd like to round the number to `n-th` digit after the decimal?
+舉個例，我們有個 `1.2345` 且想要進位它到小數點後第二個數字，只得到 `1.23`。
 
-For instance, we have `1.2345` and want to round it to 2 digits, getting only `1.23`.
+有兩種方式可以做到：
 
-There are two ways to do so:
+1. 乘法和除法。
 
-1. Multiply-and-divide.
+    例如，要進位到該數值小數點後第二個數字，我們可以乘以數字 `100`，呼叫進位函式然後再除回來。
 
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
     ```js run
     let num = 1.23456;
 
     alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
-2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
+2. 方法 [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) 進位數值到小數點後第 `n` 個數字，並回傳其結果的字串表示法。
 
     ```js run
     let num = 12.34;
     alert( num.toFixed(1) ); // "12.3"
     ```
 
-    This rounds up or down to the nearest value, similar to `Math.round`:
+    這會向上或向下進位至最近的值，類似 `Math.round`：
 
     ```js run
     let num = 12.36;
     alert( num.toFixed(1) ); // "12.4"
     ```
 
-    Please note that result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
+    請注意 `toFixed` 的結果是個字串，若小數點部分比要求的還短，結尾會被添加零：
 
     ```js run
     let num = 12.34;
-    alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
+    alert( num.toFixed(5) ); // "12.34000"，加零來讓它剛好五個數字
     ```
 
-    We can convert it to a number using the unary plus or a `Number()` call: `+num.toFixed(5)`.
+    我們可以使用一元正號將它轉為數值或是呼叫 `Number()`：`+num.toFixed(5)`。
 
-## Imprecise calculations
+## 不精確計算
 
-Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
+在內部，數值使用 64 位元格式表示 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision)，所以只有 64 個位元用來儲存一個數值：其中 52 個用來儲存數字部分，11 個用來儲存小數點位置（對整數來說都是零），且 1 個位元表示正負號。
 
-If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
+若某個數值太大，它可能會溢出 64 位元的儲存空間，潛在地給出無窮大（infinity）：
 
 ```js run
 alert( 1e500 ); // Infinity
 ```
 
-What may be a little less obvious, but happens quite often, is the loss of precision.
+精度的損失稍微沒那麼明顯但卻很常發生。
 
-Consider this (falsy!) test:
+考慮這個（錯的！）測試：
 
 ```js run
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
 ```
 
-That's right, if we check whether the sum of `0.1` and `0.2` is `0.3`, we get `false`.
+沒錯，若我們確認 `0.1` 和 `0.2` 的總和是否為 `0.3`，會得到 `false`。
 
-Strange! What is it then if not `0.3`?
+奇怪吧！如果不是 `0.3` 那它是什麼？
 
 ```js run
 alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 
-Ouch! There are more consequences than an incorrect comparison here. Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their chart. The order total will be `$0.30000000000000004`. That would surprise anyone.
+哎呀！這會造成比不正確的比較更為嚴重的後果。想像一下你正在製作電子商務網站，而訪問者放入 `$0.10` 和 `$0.20` 的商品到購物車內，但訂單總額卻是 `$0.30000000000000004`，那會讓任何人都感到驚訝。
 
-But why does this happen?
+但這為什麼會發生？
 
-A number is stored in memory in its binary form, a sequence of bits - ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
+數值在記憶體中以二進位格式存放，一和零的一串位元。但像是 `0.1`、`0.2` 這樣在十進位數值系統內很簡單的小數點，實際上在二進位格式內是循環小數。
 
-In other words, what is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
+換句話說，什麼是 `0.1`？是一除以十 `1/10`，也就是十分之一，在十進位數值系統中要表示這種數值很簡單。但跟三分之一比較看看：`1/3`，就變成一個無窮循環小數了 `0.33333(3)`。
 
-So, division by powers `10` is guaranteed to work well in the decimal system, but division by `3` is not. For the same reason, in the binary numeral system, the division by powers of `2` is guaranteed to work, but `1/10` becomes an endless binary fraction.
+因此，除以 `10` 的次方數在十進位系統中保證運作良好，但除以 `3` 就不是了。同樣的原因，在二進位數值系統中，除以 `2` 的次方數保證可以運作，但 `1/10` 會變成一個無窮循環小數。
 
-There's just no way to store *exactly 0.1* or *exactly 0.2* using the binary system, just like there is no way to store one-third as a decimal fraction.
+使用二進位系統的話，並沒有儲存 *精確 0.1* 或 *精確 0.2* 的方式，就像在十進位小數中沒有儲存三分之一的方式一樣。
 
-The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", but it exists.
+IEEE-754 數值格式透過進位至最近的可能數值來解決這個問題，這些進位規則通常不會讓我們看到 "極微小精度損失"，但它確實存在。
 
-We can see this in action:
+我們這樣做就看的到：
+
 ```js run
 alert( 0.1.toFixed(20) ); // 0.10000000000000000555
 ```
 
-And when we sum two numbers, their "precision losses" add up.
+且當我們相加兩個數值時，它們的 "精度損失" 也加上去了。
 
-That's why `0.1 + 0.2` is not exactly `0.3`.
+這也是為什麼 `0.1 + 0.2` 不是剛好為 `0.3`。
 
-```smart header="Not only JavaScript"
-The same issue exists in many other programming languages.
+```smart header="不僅是 JavaScript 而已"
+同樣的問題存在許多程式語言之中。
 
-PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format.
+PHP、Java、C、Perl、Ruby 都給出同樣的結果，因為它們都以同一個數值格式為基底。
 ```
 
-Can we work around the problem? Sure, the most reliable method is to round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
+我們有辦法繞過這個問題嗎？當然，最可靠的做法就經由方法 [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) 的幫助將結果進位處理：
 
 ```js run
 let sum = 0.1 + 0.2;
 alert( sum.toFixed(2) ); // 0.30
 ```
 
-Please note that `toFixed` always returns a string. It ensures that it has 2 digits after the decimal point. That's actually convenient if we have an e-shopping and need to show `$0.30`. For other cases, we can use the unary plus to coerce it into a number:
+請注意 `toFixed` 總是回傳字串。它保證小數點後會有兩個數字。若我們有一個電子商務網站且需要顯示 `$0.30` 時，這實際上是很方便的。對於其它情境，我們可以使用一元正號以強制轉為數值：
 
 ```js run
 let sum = 0.1 + 0.2;
