@@ -12,7 +12,11 @@
 
 在 JavaScript 中建立一個變數要使用 `let` 關鍵字。
 
+<<<<<<< HEAD
 底下的述語建立（或者說：*宣告*）了一個名為 "message" 的變數：
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 ```js
 let message;
@@ -236,7 +240,11 @@ num = 5; // error: num is not defined
 const myBirthday = '18.04.1982';
 ```
 
+<<<<<<< HEAD
 使用 `const` 宣告的變數稱為 "常數"，且不可再更動，嘗試去改變它會產生錯誤：
+=======
+Variables declared using `const` are called "constants". They cannot be reassigned. An attempt to do so would cause an error:
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -288,7 +296,11 @@ const pageLoadTime = /* 載入網頁時間 */;
 
 說到變數，還有一件很重要的事。
 
+<<<<<<< HEAD
 一個變數名稱應該要有著清楚且明確的含義，用以描述儲存在內的資料。
+=======
+A variable name should have a clean, obvious meaning, describing the data that it stores.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 變數名稱是學習寫程式的過程中，最重要且困難的技巧之一。一眼掃過變數名稱就可以區分出程式碼是新手還是有經驗的老手寫的。
 

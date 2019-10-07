@@ -40,7 +40,11 @@ alert( sayHi ); // 顯現函式程式碼
 
 在 JavaScript 中，函式是一個值，所以我們可以將其當成值對待。上述的程式碼顯示了函式的字串表示式，也就是其原始碼。
 
+<<<<<<< HEAD
 的確，函式是一個特殊的值，我們可以像 `sayHi()` 這樣呼叫它。
+=======
+Surely, a function is a special value, in the sense that we can call it like `sayHi()`.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 但它依然是一個值，所以我們可以像使用其他類型的值一樣地操作它。
 

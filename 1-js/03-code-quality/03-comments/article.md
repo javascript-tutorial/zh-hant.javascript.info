@@ -174,8 +174,13 @@ function addJuice(container) {
 
 **避免註解這些：**
 
+<<<<<<< HEAD
 - 告訴你 "程式碼如何運作" 和 "它做了什麼"。
 - 只有在沒辦法讓程式碼夠簡單並具有自我描述性質的時候，才需要使用註解。
 
 註解也可以被像是 JSDoc3 之類的自動文件工具所使用：可以讀懂註解並生成 HTML 文件（或其它格式）。
+=======
+- That tell "how code works" and "what it does".
+- Put them in only if it's impossible to make the code so simple and self-descriptive that it doesn't require them.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
