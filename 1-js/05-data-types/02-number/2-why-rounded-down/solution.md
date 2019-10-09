@@ -1,31 +1,30 @@
-Internally the decimal fraction `6.35` is an endless binary. As always in such cases, it is stored with a precision loss.
+在十進位分數 `6.35` 的內部是個無窮二進位，在這種情況下，它的存放會有著精度損失。
 
-Let's see:
+來看這：
 
 ```js run
 alert( 6.35.toFixed(20) ); // 6.34999999999999964473
 ```
 
-The precision loss can cause both increase and decrease of a number. In this particular case the number becomes a tiny bit less, that's why it rounded down.
+精度損失可能會導致數值的增減，在這個特殊情況下，數值變得稍微小了點，這就是為什麼它被向下進位了。
 
-And what's for `1.35`?
+而 `1.35` 呢？
 
 ```js run
 alert( 1.35.toFixed(20) ); // 1.35000000000000008882
 ```
 
-Here the precision loss made the number a little bit greater, so it rounded up.
+精度損失讓該數值稍微大了些，所以它被向上進位。
 
-**How can we fix the problem with `6.35` if we want it to be rounded the right way?**
+**若我們想要它正確的進位，該如何修正 `6.35` 的這個問題？**
 
-We should bring it closer to an integer prior to rounding:
+我們應該在進位前讓它更靠近整數：
 
 ```js run
 alert( (6.35 * 10).toFixed(20) ); // 63.50000000000000000000
 ```
 
-Note that `63.5` has no precision loss at all. That's because the decimal part `0.5` is actually `1/2`. Fractions divided by powers of `2` are exactly represented in the binary system, now we can round it:
-
+注意這個 `63.5` 完全沒有精度損失，這是因為小數部分的 `0.5` 事實上為 `1/2`。被 `2` 的次方所除的除法可以在二進位系統中被完全表示出來，現在我們可以進位它了：
 
 ```js run
 alert( Math.round(6.35 * 10) / 10); // 6.35 -> 63.5 -> 64(rounded) -> 6.4

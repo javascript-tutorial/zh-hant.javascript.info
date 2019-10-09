@@ -244,154 +244,149 @@ let sum = 0.1 + 0.2;
 alert( +sum.toFixed(2) ); // 0.3
 ```
 
-We also can temporarily multiply the numbers by 100 (or a bigger number) to turn them into integers, do the maths, and then divide back. Then, as we're doing maths with integers, the error somewhat decreases, but we still get it on division:
+我們也可以暫時將此數乘以 100（或一個更大的數）以將其轉成整數，做完運算後再除回來。然後在我們對整數做運算時，這個問題就會稍微減輕，但我們依然會在除法時遇到：
 
 ```js run
 alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
 alert( (0.28 * 100 + 0.14 * 100) / 100); // 0.4200000000000001
 ```
 
-So, multiply/divide approach reduces the error, but doesn't remove it totally.
+所以，乘/除 的作法雖然減少錯誤，但卻不能完全消除。
 
-Sometimes we could try to evade fractions at all. Like if we're dealing with a shop, then we can store prices in cents instead of dollars. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely possible. Just round them to cut "tails" when needed.
+有時候我們可以試著完全避免分數。像是若我們在處理一個商店時，我們可以用美分而不是用美元來儲存價格。但若我們採用 30% 的折扣時怎麼辦？實際上，不太可能完全避免使用分數。就只能採取進位並在需要時切除 "尾部" 的作法了。
 
-````smart header="The funny thing"
-Try running this:
+````smart header="有趣的事情"
+試著執行這個看看：
 
 ```js run
-// Hello! I'm a self-increasing number!
+// 哈囉！我是個自主遞增的數字！
 alert( 9999999999999999 ); // shows 10000000000000000
 ```
 
-This suffers from the same issue: a loss of precision. There are 64 bits for the number, 52 of them can be used to store digits, but that's not enough. So the least significant digits disappear.
+這也來自於同樣的問題：精度損失。對於數值有 64 個位元，其中 52 個被用來存數字，但那並不夠。所以最低位的數字消失了。
 
-JavaScript doesn't trigger an error in such events. It does its best to fit the number into the desired format, but unfortunately, this format is not big enough.
+JavaScript 在這種事件下不會觸發錯誤，它會盡全力讓數值符合所需要的格式，但很不幸的，這個格式並不夠大。
 ````
 
-```smart header="Two zeroes"
-Another funny consequence of the internal representation of numbers is the existence of two zeroes: `0` and `-0`.
+```smart header="兩個零"
+另一個數值內部表現的有趣結果是，存在有兩個零：`0` 和 `-0`。
 
-That's because a sign is represented by a single bit, so every number can be positive or negative, including a zero.
+這是因為使用單一個位元來表示正負號，所以每個數值都可以為正或負，包括零。
 
-In most cases the distinction is unnoticeable, because operators are suited to treat them as the same.
+在大多情況下不會注意到有這樣的區別，因為運算子對待它們一視同仁。
 ```
 
+## 測試：isFinite 和 isNaN
 
+還記得這兩個特別的數值嗎？
 
-## Tests: isFinite and isNaN
+- `Infinity`（和 `-Infinity`）是個大於（小於）任何東西的特殊數值。
+- `NaN` 表示有錯誤產生。
 
-Remember these two special numeric values?
+它們屬於 `數值` 類型，但並非 "一般" 數值，因此有特別的函式用來確認它們：
 
-- `Infinity` (and `-Infinity`) is a special numeric value that is greater (less) than anything.
-- `NaN` represents an error.
-
-They belong to the type `number`, but are not "normal" numbers, so there are special functions to check for them:
-
-
-- `isNaN(value)` converts its argument to a number and then tests it for being `NaN`:
+- `isNaN(value)` 轉換它的引數為數值，然後測試它是否為 `NaN`：
 
     ```js run
     alert( isNaN(NaN) ); // true
     alert( isNaN("str") ); // true
     ```
 
-    But do we need this function? Can't we just use the comparison `=== NaN`? Sorry, but the answer is no. The value `NaN` is unique in that it does not equal anything, including itself:
+    但我們需要這個函式嗎？不能只用 `=== NaN` 這樣的比較嗎？抱歉，答案是不行。`NaN` 這個值很特殊，它不會跟任何東西相等，包括它自己：
 
     ```js run
     alert( NaN === NaN ); // false
     ```
 
-- `isFinite(value)` converts its argument to a number and returns `true` if it's a regular number, not `NaN/Infinity/-Infinity`:
+- `isFinite(value)` 轉換它的引數為一個數值，並在它是個普通的數值而非 `NaN/Infinity/-Infinity` 時回傳 `true`：
 
     ```js run
     alert( isFinite("15") ); // true
-    alert( isFinite("str") ); // false, because a special value: NaN
-    alert( isFinite(Infinity) ); // false, because a special value: Infinity
+    alert( isFinite("str") ); // false，因為是個特殊數值：NaN
+    alert( isFinite(Infinity) ); // false，因為是個特殊數值：Infinity
     ```
 
-Sometimes `isFinite` is used to validate whether a string value is a regular number:
-
+有時候 `isFinite` 被用來檢驗字串的值是否是個普通數值：
 
 ```js run
 let num = +prompt("Enter a number", '');
 
-// will be true unless you enter Infinity, -Infinity or not a number
+// 除非你輸入 Infinity、-Infinity 或非數值的東西，不然就會是 true
 alert( isFinite(num) );
 ```
 
-Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.  
+請注意空字串或是只有空格在內的字串，在包括 `isFinite` 在內的所有的數值函式中，都會被視為 `0`。
 
-```smart header="Compare with `Object.is`"
+```smart header="和 `Object.is` 相比"
 
-There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+有個特殊的內建方法 [Object.is](mdn:js/Object/is) 以像是 `===` 的方式來比較值，但對於這兩種邊緣案例而言會更可靠：
 
-1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's true, because internally the number has a sign bit that may be different even if all other bits are zeroes.
+1. `NaN` 適用：`Object.is(NaN, NaN) === true`，這是件好事。
+2. 值 `0` 和 `-0` 是不同的：`Object.is(0, -0) === false`，技術上來說這是對的，因為在數值內部有個正負號位元不同，就算其它位元都為零。
 
-In all other cases, `Object.is(a, b)` is the same as `a === b`.
+在其它情況下，`Object.is(a, b)` 與 `a === b` 相同。
 
-This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
+這種比較方式通常用於 JavaScript 規格內，當一個內部演算法需要比較兩個值是否完全相等時，會使用 `Object.is`（內部稱為[SameValue](https://tc39.github.io/ecma262/#sec-samevalue)）。
 ```
 
+## parseInt 和 parseFloat
 
-## parseInt and parseFloat
-
-Numeric conversion using a plus `+` or `Number()` is strict. If a value is not exactly a number, it fails:
+數值轉換使用一個正號 `+` 或 `Number()` 是嚴格的做法。若其值不完全是個數值，就會失敗：
 
 ```js run
 alert( +"100px" ); // NaN
 ```
 
-The sole exception is spaces at the beginning or at the end of the string, as they are ignored.
+唯一的例外是字串起始或結尾的空格，它們會被忽略。
 
-But in real life we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries the currency symbol goes after the amount, so we have `"19€"` and would like to extract a numeric value out of that.
+但在現實世界裡數字通常會給單位，像是 CSS 內的 `"100px"` 或 `"12pt"`。在許多國家貨幣符號也會放在數量之後，所以我們可能會有 `"19€"` 並想把其中的數值抽出來的情況。
 
-That's what `parseInt` and `parseFloat` are for.
+這就是 `parseInt` 和 `parseFloat` 要處理的。
 
-They "read" a number from a string until they can't. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
+它們從字串中盡可能 "讀取" 一個數值直到不行為止。若有錯誤，被收集的數值依然會被回傳。函式 `parseInt` 回傳整數，而 `parseFloat` 會回傳浮點數：
 
 ```js run
 alert( parseInt('100px') ); // 100
 alert( parseFloat('12.5em') ); // 12.5
 
-alert( parseInt('12.3') ); // 12, only the integer part is returned
-alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
+alert( parseInt('12.3') ); // 12，只有整數部分被回傳
+alert( parseFloat('12.3.4') ); // 12.3，第二個句點停止讀取
 ```
 
-There are situations when `parseInt/parseFloat` will return `NaN`. It happens when no digits could be read:
+有些情況 `parseInt/parseFloat` 會回傳 `NaN`，這發生在沒有任何數字可以被讀取時：
 
 ```js run
-alert( parseInt('a123') ); // NaN, the first symbol stops the process
+alert( parseInt('a123') ); // NaN，第一個符號就停止處理
 ```
 
-````smart header="The second argument of `parseInt(str, radix)`"
-The `parseInt()` function has an optional second parameter. It specifies the base of the numeral system, so `parseInt` can also parse strings of hex numbers, binary numbers and so on:
+````smart header="`parseInt(str, radix)` 的第二個引數"
+`parseInt()` 函式有個可選的第二個參數，它指定數值系統的基底，所以 `parseInt` 也可以解析十六進位、二進位等等數值的字串：
 
 ```js run
 alert( parseInt('0xff', 16) ); // 255
-alert( parseInt('ff', 16) ); // 255, without 0x also works
+alert( parseInt('ff', 16) ); // 255，沒有 0x 也行
 
 alert( parseInt('2n9c', 36) ); // 123456
 ```
 ````
 
-## Other math functions
+## 其它數學函式
 
-JavaScript has a built-in [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object which contains a small library of mathematical functions and constants.
+JavaScript 有個內建的 [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 物件包含了小型的數學函式庫與常數。
 
-A few examples:
+幾個例子：
 
 `Math.random()`
-: Returns a random number from 0 to 1 (not including 1)
+: 回傳由 0 至 1 的隨機數值（不包含 1）
 
     ```js run
     alert( Math.random() ); // 0.1234567894322
     alert( Math.random() ); // 0.5435252343232
-    alert( Math.random() ); // ... (any random numbers)
+    alert( Math.random() ); // ...（其它隨機數值）
     ```
 
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
-: Returns the greatest/smallest from the arbitrary number of arguments.
+: 回傳引數中的 最大值/最小值。
 
     ```js run
     alert( Math.max(3, 5, -10, 0, 1) ); // 5
@@ -399,36 +394,37 @@ A few examples:
     ```
 
 `Math.pow(n, power)`
-: Returns `n` raised the given power
+: 回傳 `n` 的給定次方數
 
     ```js run
-    alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
+    alert( Math.pow(2, 10) ); // 2 的 10 次方 = 1024
     ```
 
-There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object.
+在 `Math` 物件中有更多的函式與常數，包括三角函數，你可以在 [Math 的文件](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 中找到。
 
-## Summary
+## 總結
 
-To write big numbers:
+要寫一個大的數值：
 
-- Append `"e"` with the zeroes count to the number. Like: `123e6` is `123` with 6 zeroes.
-- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. That's for one-millionth or such.
+- 附加 `"e"` 與零的數量到數值後方，像是：`123e6` 是 `123` 後有 6 個零。
+- `"e"` 之後的負數會使得數值除以被 1 之後帶有給定數量的零，像是百萬分之一這樣。
 
-For different numeral systems:
+對於不同的數值系統：
 
-- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems
-- `parseInt(str, base)` parses the string `str` into an integer in numeral system with given `base`, `2 ≤ base ≤ 36`.
-- `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
+- 可以直接寫十六進位（`0x`）、八進位（`0o`）和二進位（`0b`）系統。
+- `parseInt(str, base)` 於給定 `base` 為基底的數值系統內，將字串 `str` 解析為整數，其中 `2 ≤ base ≤ 36`。
+- `num.toString(base)` 於給定 `base` 為基底的數值系統內，將數值轉換為字串。
 
-For converting values like `12pt` and `100px` to a number:
+要轉換像是 `12pt` 和 `100px` 的值為數值：
 
-- Use `parseInt/parseFloat` for the "soft" conversion, which reads a number from a string and then returns the value they could read before the error.
+- 對於 "軟性" 轉換使用 `parseInt/parseFloat`，這會從字串讀取數值且在錯誤之前回傳它盡可能讀取到的值。
 
-For fractions:
+對於分數：
 
-- Round using `Math.floor`, `Math.ceil`, `Math.trunc`, `Math.round` or `num.toFixed(precision)`.
-- Make sure to remember there's a loss of precision when working with fractions.
+- 進位使用 `Math.floor`、`Math.ceil`、`Math.trunc`、`Math.round` 或 `num.toFixed(precision)`。
+- 使用分數時，要記得會有精度損失。
 
-More mathematical functions:
+更多數學函式：
 
-- See the [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object when you need them. The library is very small, but can cover basic needs.
+- 當你需要時，查看 [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 物件，這個函式庫很小，但涵蓋基礎的需求。
+
