@@ -1,31 +1,31 @@
-# Arrays
+# 陣列（Arrays）
 
-Objects allow you to store keyed collections of values. That's fine.
+物件允許你儲存鍵配對值的群集，很好。
 
-But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc.
+但時常我們發現要的是個 *有序群集*，也就是我們有有第一、第二、第三個元素等等。例如，我們需要這樣的東西來儲存一個列表，像是：使用者、商品、HTML 元素等等。
 
-It is not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t insert a new property “between” the existing ones. Objects are just not meant for such use.
+這種情況使用物件不那麼方便，因為它沒有提供方法來管理物件的序列。我們不能在已存在的屬性 "之間" 插入某個新的屬性，物件不是被這麼用的。
 
-There exists a special data structure named `Array`, to store ordered collections.
+有個特殊的資料結構名為 `陣列（Array）`，用於儲存有序群集。
 
-## Declaration
+## 宣告
 
-There are two syntaxes for creating an empty array:
+有兩種建立空陣列的語法：
 
 ```js
 let arr = new Array();
 let arr = [];
 ```
 
-Almost all the time, the second syntax is used. We can supply initial elements in the brackets:
+絕大多數情況，都會使用第二種語法。我們可以在括號內提供初始元素們：
 
 ```js
 let fruits = ["Apple", "Orange", "Plum"];
 ```
 
-Array elements are numbered, starting with zero.
+陣列元素是編號過的，從零開始。
 
-We can get an element by its number in square brackets:
+我們可以透過在方括號內給予對應編號來獲取一個元素：
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
@@ -35,19 +35,19 @@ alert( fruits[1] ); // Orange
 alert( fruits[2] ); // Plum
 ```
 
-We can replace an element:
+我們可以替換某個元素：
 
 ```js
-fruits[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
+fruits[2] = 'Pear'; // 現在 ["Apple", "Orange", "Pear"]
 ```
 
-...Or add a new one to the array:
+...或者加入一個新的元素到該陣列中：
 
 ```js
-fruits[3] = 'Lemon'; // now ["Apple", "Orange", "Pear", "Lemon"]
+fruits[3] = 'Lemon'; // 現在 ["Apple", "Orange", "Pear", "Lemon"]
 ```
 
-The total count of the elements in the array is its `length`:
+陣列內的元素總數是它的 `length` 屬性：
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
@@ -55,7 +55,7 @@ let fruits = ["Apple", "Orange", "Plum"];
 alert( fruits.length ); // 3
 ```
 
-We can also use `alert` to show the whole array.
+我們也可以使用 `alert` 來顯示整個陣列。
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
@@ -63,24 +63,23 @@ let fruits = ["Apple", "Orange", "Plum"];
 alert( fruits ); // Apple,Orange,Plum
 ```
 
-An array can store elements of any type.
+一個陣列可以儲存任意類型的元素。
 
-For instance:
+舉個例：
 
 ```js run no-beautify
-// mix of values
+// 混合值
 let arr = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
 
-// get the object at index 1 and then show its name
+// 由索引值 1 獲取物件並顯示其 name 屬性
 alert( arr[1].name ); // John
 
-// get the function at index 3 and run it
+// 由索引值 3 獲取函式並執行它
 arr[3](); // hello
 ```
 
-
-````smart header="Trailing comma"
-An array, just like an object, may end with a comma:
+````smart header="尾部逗號"
+陣列就像物件一樣，可以以逗號結尾：
 ```js
 let fruits = [
   "Apple",
@@ -89,57 +88,56 @@ let fruits = [
 ];
 ```
 
-The "trailing comma" style makes it easier to insert/remove items, because all lines become alike.
+該 "尾部逗號" 風格讓它更容易 插入/移除 項目，因為每一行都變得很相似。
 ````
 
+## pop/push 和 shift/unshift 方法
 
-## Methods pop/push, shift/unshift
+[佇列（queue）](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) 是陣列最常見的用途之一。在計算機科學中，這代表著支援這兩種操作的有序群集元素：
 
-A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of the most common uses of an array. In computer science, this means an ordered collection of elements which supports two operations:
-
-- `push` appends an element to the end.
-- `shift` get an element from the beginning, advancing the queue, so that the 2nd element becomes the 1st.
+- `push` 附加一個元素於末端。
+- `shift` 從最前端獲得一個元素，推進該佇列，因此第二個元素變成了第一個。
 
 ![](queue.svg)
 
-Arrays support both operations.
+陣列兩種操作皆支援。
 
-In practice we need it very often. For example, a queue of messages that need to be shown on-screen.
+實際上我們很常會需要它，例如，需要在螢幕上顯示的訊息佇列。
 
-There's another use case for arrays -- the data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
+有另一種陣列的使用情境 -- 被稱為 [堆疊（stack）](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) 的資料結構。
 
-It supports two operations:
+它支援兩種操作：
 
-- `push` adds an element to the end.
-- `pop` takes an element from the end.
+- `push` 加入一個元素於末端。
+- `pop` 由末端取得一個元素。
 
-So new elements are added or taken always from the "end".
+所以新元素總是由 "末端" 被加入或取得。
 
-A stack is usually illustrated as a pack of cards: new cards are added to the top or taken from the top:
+堆疊通常被形容為一疊卡片：新的卡片被加在最頂端或由最頂端取得：
 
 ![](stack.svg)
 
-For stacks, the latest pushed item is received first, that's also called LIFO (Last-In-First-Out) principle. For queues, we have FIFO (First-In-First-Out).
+對於堆疊而言，最後被放入的物品會最早被取得，也被稱為 LIFO (Last-In-First-Out) 原則。對於佇列而言，則是 FIFO (First-In-First-Out)。
 
-Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements both to/from the beginning or the end.
+JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 加入/移除 元素 至/由 最前端或最末端都可以。
 
-In computer science the data structure that allows it is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+在計算機科學中，允許這種運作的資料結構被稱為 [雙端佇列（deque）](https://en.wikipedia.org/wiki/Double-ended_queue)。
 
-**Methods that work with the end of the array:**
+**運作於陣列末端的方法：**
 
 `pop`
-: Extracts the last element of the array and returns it:
+: 抽取陣列最後一個元素並回傳它：
 
     ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
-    alert( fruits.pop() ); // remove "Pear" and alert it
+    alert( fruits.pop() ); // 移除 "Pear" 並 alert 它
 
     alert( fruits ); // Apple, Orange
     ```
 
 `push`
-: Append the element to the end of the array:
+: 附加元素至陣列末端：
 
     ```js run
     let fruits = ["Apple", "Orange"];
@@ -149,23 +147,23 @@ In computer science the data structure that allows it is called [deque](https://
     alert( fruits ); // Apple, Orange, Pear
     ```
 
-    The call `fruits.push(...)` is equal to `fruits[fruits.length] = ...`.
+    呼叫 `fruits.push(...)` 等同於 `fruits[fruits.length] = ...`。
 
-**Methods that work with the beginning of the array:**
+**運作於陣列最前端的方法：**
 
 `shift`
-: Extracts the first element of the array and returns it:
+: 抽取陣列第一個元素並回傳它：
 
     ```js
     let fruits = ["Apple", "Orange", "Pear"];
 
-    alert( fruits.shift() ); // remove Apple and alert it
+    alert( fruits.shift() ); // 移除 Apple 並 alert 它
 
     alert( fruits ); // Orange, Pear
     ```
 
 `unshift`
-: Add the element to the beginning of the array:
+: 於陣列最前端加上該元素：
 
     ```js
     let fruits = ["Orange", "Pear"];
@@ -175,7 +173,7 @@ In computer science the data structure that allows it is called [deque](https://
     alert( fruits ); // Apple, Orange, Pear
     ```
 
-Methods `push` and `unshift` can add multiple elements at once:
+`push` 和 `unshift` 方法可以一次加入多個元素：
 
 ```js run
 let fruits = ["Apple"];
@@ -187,53 +185,53 @@ fruits.unshift("Pineapple", "Lemon");
 alert( fruits );
 ```
 
-## Internals
+## 內部情況
 
-An array is a special kind of object. The square brackets used to access a property `arr[0]` actually come from the object syntax. That's essentially the same as `obj[key]`, where `arr` is the object, while numbers are used as keys.
+陣列是一種特殊的物件。方括號被用於存取某個屬性，`arr[0]` 實際上來自於物件的語法，這本質上與 `obj[key]` 相同，其中 `arr` 是其物件，而數字則作為鍵使用。
 
-They extend objects providing special methods to work with ordered collections of data and also the `length` property. But at the core it's still an object.
+它們延伸了物件，提供特殊方法以使得有序群集資料可以運作，並給予 `length` 屬性，但其核心依然是個物件。
 
-Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object.
+要記得，JavaScript 內只有 7 種基本類型。陣列是個物件類型，因此會產生像是物件的行為。
 
-For instance, it is copied by reference:
+舉個例，它是經由參考被複製的：
 
 ```js run
 let fruits = ["Banana"]
 
-let arr = fruits; // copy by reference (two variables reference the same array)
+let arr = fruits; // 經由參考複製（兩個變數參考至同個陣列）
 
 alert( arr === fruits ); // true
 
-arr.push("Pear"); // modify the array by reference
+arr.push("Pear"); // 經由參考修改陣列
 
-alert( fruits ); // Banana, Pear - 2 items now
+alert( fruits ); // Banana, Pear - 現在有兩個物品
 ```
 
-...But what makes arrays really  special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
+...但使陣列真的變得特殊的是它們的內部表示方式。引擎試圖以連續記憶體區塊，一個接一個儲存它的元素，就像本章插圖描繪的那樣。同樣也存在其他優化方法，來讓陣列可以很快地運作。
 
-But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
+但若我們放棄以 "有序群集" 的方式來操作陣列，並開始將它視為正規物件來使用時，這些優化就都不會生效了。
 
-For instance, technically we can do this:
+舉個例，技術上我們可以這麼做：
 
 ```js
-let fruits = []; // make an array
+let fruits = []; // 建立一個陣列
 
-fruits[99999] = 5; // assign a property with the index far greater than its length
+fruits[99999] = 5; // 指定一個索引值遠大於其 length 的屬性
 
-fruits.age = 25; // create a property with an arbitrary name
+fruits.age = 25; // 以任意名稱建立一個屬性
 ```
 
-That's possible, because arrays are objects at their base. We can add any properties to them.
+這是可行的，因為陣列根本上是個物件，我們可以對它們加入任意屬性。
 
-But the engine will see that we're working with the array as with a regular object. Array-specific optimizations are not suited for such cases and will be turned off, their benefits disappear.
+但引擎會發現我們以正規物件的方式來操作陣列，陣列相關的優化將不再適用於這些情況，因此優化會被關閉，它們的優勢也就消失了。
 
-The ways to misuse an array:
+陣列的誤用方式：
 
-- Add a non-numeric property like `arr.test = 5`.
-- Make holes, like: add `arr[0]` and then `arr[1000]` (and nothing between them).
-- Fill the array in the reverse order, like `arr[1000]`, `arr[999]` and so on.
+- 增加非數值的屬性，像是 `arr.test = 5`。
+- 留洞，像是：加入 `arr[0]` 然後再 `arr[1000]`（兩者之間沒有任何東西）。
+- 以相反順序填入陣列，像是 `arr[1000]`、`arr[999]` 等等。
 
-Please think of arrays as special structures to work with the *ordered data*. They provide special methods for that. Arrays are carefully tuned inside JavaScript engines to work with contiguous ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
+請將陣列視為運作 *有序資料* 的特殊結構，它們對其提供特殊的方法。在 JavaScript 引擎內部陣列被精心調整用於連續有序資料上，請以此方式使用它們。而若你需要能夠使用任意的鍵，有很高機率你實際上需要的是一個正規物件 `{}`。
 
 ## Performance
 
