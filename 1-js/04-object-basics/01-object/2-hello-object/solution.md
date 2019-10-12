@@ -1,5 +1,4 @@
 
-
 ```js
 let user = {};
 user.name = "John";
