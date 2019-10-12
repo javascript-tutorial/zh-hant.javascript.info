@@ -1,8 +1,8 @@
-# Function expressions and arrows
+# 函式表達式和箭頭函式
 
-In JavaScript, a function is not a "magical language structure", but a special kind of value.
+在 JavaScript 中，函式不是一個 "神奇的語言結構"，而是一種特殊的值。
 
-The syntax that we used before is called a *Function Declaration*:
+我們之前所使用的語法稱為 *函式宣告（Function Declaration）*：
 
 ```js
 function sayHi() {
@@ -10,9 +10,9 @@ function sayHi() {
 }
 ```
 
-There is another syntax for creating a function that is called a *Function Expression*.
+有另一種創建函式的語法，稱之為 *函式表達式（Function Expression）*。
 
-It looks like this:
+寫法如下：
 
 ```js
 let sayHi = function() {
@@ -20,11 +20,11 @@ let sayHi = function() {
 };
 ```
 
-Here, the function is created and assigned to the variable explicitly, like any other value. No matter how the function is defined, it's just a value stored in the variable `sayHi`.
+在這邊，函式被創建，並像其他值ㄧ樣，明確地指定給一個變數。無論函式是如何被定義的，它只是一個儲存於變數 `sayHi` 的值。
 
-The meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
+這兩段程式碼範例的意思是相同的："創造一個函式，並將其放入變數 `sayHi`"。
 
-We can even print out that value using `alert`:
+我們甚至可以利用 `alert` 將其值印出：
 
 ```js run
 function sayHi() {
@@ -32,38 +32,39 @@ function sayHi() {
 }
 
 *!*
-alert( sayHi ); // shows the function code
+alert( sayHi ); // 顯現函式程式碼
 */!*
 ```
 
-Please note that the last line does not run the function, because there are no parentheses after `sayHi`. There are programming languages where any mention of a function name causes its execution, but JavaScript is not like that.
+請注意最後一行程式碼並沒有執行函式，因為 `sayHi` 後沒有括號。有些程式語言中，提到函式名稱時就會觸發執行，但 JavaScript 並非如此。
 
-In JavaScript, a function is a value, so we can deal with it as a value. The code above shows its string representation, which is the source code.
+在 JavaScript 中，函式是一個值，所以我們可以將其當成值對待。上述的程式碼顯示了函式的字串表示式，也就是其原始碼。
 
-Surely, a function is a special values, in the sense that we can call it like `sayHi()`.
+的確，函式是一個特殊的值，我們可以像 `sayHi()` 這樣呼叫它。
 
-But it's still a value. So we can work with it like with other kinds of values.
+但它依然是一個值，所以我們可以像使用其他類型的值一樣地操作它。
 
-We can copy a function to another variable:
+我們可以複製函式到其他變數：
 
 ```js run no-beautify
-function sayHi() {   // (1) create
+function sayHi() {   // (1) 創建
   alert( "Hello" );
 }
 
-let func = sayHi;    // (2) copy
+let func = sayHi;    // (2) 複製
 
-func(); // Hello     // (3) run the copy (it works)!
-sayHi(); // Hello    //     this still works too (why wouldn't it)
+func(); // Hello     // (3) 運行複製的函式（運作正常！）
+sayHi(); // Hello    //     這也能正常運作（怎麼會不行呢）
 ```
 
-Here's what happens above in detail:
+詳細解釋一下上述程式碼發生了什麼事：
 
-1. The Function Declaration `(1)` creates the function and puts it into the variable named `sayHi`.
-2. Line `(2)` copies it into the variable `func`. Please note again: there are no parentheses after `sayHi`. If there were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
-3. Now the function can be called as both `sayHi()` and `func()`.
+1. `(1)` 中使用函式宣告創建函式，並把它放入變數 `sayHi`。
+```suggestion
+2. 行 `(2)` 將其複製給變數 `func`。請注意：`sayHi` 後面沒有括號。如果有括號，`func = sayHi()` 會將 `sayHi()` *呼叫的結果* 寫入 `func`，而非 `sayHi` 函式本身。
+3. 現在 `sayHi()` 與 `func()` 都可以呼叫到同個函式。
 
-Note that we could also have used a Function Expression to declare `sayHi`, in the first line:
+注意這裡的第一行中，我們也可以使用函式表達式來宣告 `sayHi`：
 
 ```js
 let sayHi = function() {
@@ -74,11 +75,10 @@ let func = sayHi;
 // ...
 ```
 
-Everything would work the same.
+這並不影響其餘運作，一切都與先前相同。
 
-
-````smart header="Why is there a semicolon at the end?"
-You might wonder, why does Function Expression have a semicolon `;` at the end, but Function Declaration does not:
+````smart header="為何函式表達式的結尾有個分號？"
+你可能會好奇，為什麼函式表達式的結尾有個分號 `;`，而函式宣告式卻沒有：
 
 ```js
 function sayHi() {
@@ -90,27 +90,27 @@ let sayHi = function() {
 }*!*;*/!*
 ```
 
-The answer is simple:
-- There's no need for `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` etc.
-- A Function Expression is used inside the statement: `let sayHi = ...;`, as a value. It's not a code block, but rather an assignment. The semicolon `;` is recommended at the end of statements, no matter what the value is. So the semicolon here is not related to the Function Expression itself, it just terminates the statement.
+答案很簡單：
+- 在使用像是 `if { ... }`、`for { }`、`function f { }` 等的程式碼區塊與語法結構時，並不需要在結尾放上 `;`。
+- 函式表達式通常使用在述語中： `let sayHi = ...;`，像個變數。這並不是一個程式碼區塊，而是一段指定運算。不管是什麼值，建議總是在述語結尾處加上分號 `;`。所以這裡的分號與函式表達式本身沒有關係，他只是用來終止述語。
 ````
 
-## Callback functions
+## 回呼函式（Callback functions）
 
-Let's look at more examples of passing functions as values and using function expressions.
+讓我們來看更多將函式以值的方式傳遞與使用函式表達式的範例。
 
-We'll write a function `ask(question, yes, no)` with three parameters:
+我們將寫一個包含三個參數的函式 `ask(question, yes, no)`：
 
 `question`
-: Text of the question
+: question 的文字
 
 `yes`
-: Function to run if the answer is "Yes"
+: 當答案為 "Yes" 時執行的函式
 
 `no`
-: Function to run if the answer is "No"
+: 當答案為 "No" 時執行的函式
 
-The function should ask the `question` and, depending on the user's answer, call `yes()` or `no()`:
+函式應該提出 `question` 然後根據使用者的答案，呼叫 `yes()` 或是 `no()`：
 
 ```js run
 *!*
@@ -128,17 +128,17 @@ function showCancel() {
   alert( "You canceled the execution." );
 }
 
-// usage: functions showOk, showCancel are passed as arguments to ask
+// 用法: 函式 showOk、showCancel 作為參數傳入 `ask`
 ask("Do you agree?", showOk, showCancel);
 ```
 
-In practice, such functions are quite useful. The major difference between a real-life `ask` and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser, such function usually draws a nice-looking question window. But that's another story.
+實務上，類似的函式挺有用的。現實生活中的 `ask` 實作與上述範例的主要差別在於，現實中的函式用更複雜的方式與使用者互動，而不是簡單的 `confirm` （確認）。在瀏覽器中，這樣的函式通常會繪製一個漂亮的問答窗口。但那牽扯到另一個主題了。
 
-**The arguments `showOk` and `showCancel` of `ask` are called *callback functions* or just *callbacks*.**
+**`ask` 的引數 `showOk` 與 `showCancel` 稱作 *回呼函數* 或就叫 *回乎*。**
 
-The idea is that we pass a function and expect it to be "called back" later if necessary. In our case, `showOk` becomes the callback for "yes" answer, and `showCancel` for "no" answer.
+背後的想法是，我們傳遞一個函式，並期望稍後它能在必要時被 "回呼"。在我們的例子中，`showOk` 成為了 "yes" 答案的回呼，而 `showCancel` 則是對應 "no" 答案。
 
-We can use Function Expressions to write the same function much shorter:
+我們可以使用函式表達式來將其簡寫：
 
 ```js run no-beautify
 function ask(question, yes, no) {
@@ -155,34 +155,35 @@ ask(
 */!*
 ```
 
-Here, functions are declared right inside the `ask(...)` call. They have no name, and so are called *anonymous*. Such functions are not accessible outside of `ask` (because they are not assigned to variables), but that's just what we want here.
+這裡的函式直接宣告在 `ask(...)` 的呼叫內。他們沒有名字，所以被稱為 *匿名函式 (anonymous)*。這樣的函式無法在 `ask` 外被呼叫（因為沒有被分配給變數），但那正是我們目前想要的。
 
-Such code appears in our scripts very naturally, it's in the spirit of JavaScript.
+這樣的程式碼很自然地會出現在我們的腳本中，這就是 JavaScript 的精髓。
 
-```smart header="A function is a value representing an \"action\""
-Regular values like strings or numbers represent the *data*.
+```smart header="一個函式是一個代表 \"動作\" 的值"
 
-A function can be perceived as an *action*.
+字串或數字等常規值代表 *資料（data）*。
 
-We can pass it between variables and run when we want.
+一個函式可以被視為一個 *動作（action）*。
+
+我們可以在變數之間傳遞他們，並在想要時執行。
 ```
 
+## 函式表達式（Function Expression）與函式宣告式（Function Declaration）
 
-## Function Expression vs Function Declaration
+讓我們來闡述函式表達式與函式宣告式的關鍵差異。
 
-Let's formulate the key differences between Function Declarations and Expressions.
+首先是語法：如何在程式碼中區別他們。
 
-First, the syntax: how to differentiate between them in the code.
-
-- *Function Declaration:* a function, declared as a separate statement, in the main code flow.
+- *函式宣告式：* 一個函式，在主程式碼中分開宣告的述語。
 
     ```js
-    // Function Declaration
+    // 函數宣告式
     function sum(a, b) {
       return a + b;
     }
     ```
-- *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression" `=`:
+
+- *函式表達式：* 一個函式，在一個表達式或另一個語法結構中創建。這邊的例子，函式在指定運算表達符號 `=` 的右側被創建：
 
     ```js
     // Function Expression
@@ -191,23 +192,23 @@ First, the syntax: how to differentiate between them in the code.
     };
     ```
 
-The more subtle difference is *when* a function is created by the JavaScript engine.
+更多細微的差別在於 JavaScript 引擎 *何時* 創建函式。
 
-**A Function Expression is created when the execution reaches it and is usable only from that moment.**
+**函式表達式在程式執行到達時創建，並從那時候起才可以使用。**
 
-Once the execution flow passes to the right side of the assignment `let sum = function…` -- here we go, the function is created and can be used (assigned, called, etc. ) from now on.
+一旦執行到指定運算 `let sum = function...` 的右側，該函式就會被創建並從此可以被使用（指定、呼叫，等等）。
 
-Function Declarations are different.
+函式宣告式則不同。
 
-**A Function Declaration can be called earlier than it is defined.**
+**函式宣告式的呼叫可以早於其宣告**
 
-For example, a global Function Declaration is visible in the whole script, no matter where it is.
+舉例來說，一個全域函式宣告式的作用域包含整個腳本，無論它在腳本中的何處。
 
-That's due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
+這是由於內部的演算法。當 JavaScript 準備運行腳本時，它會先找尋其中的全域函式宣告式，並將其創建。我們可以將其視為 "初始化階段"。
 
-And after all Function Declarations are processed, the code is executed. So it has access to these functions.
+在所有函式宣告式都處理完後，程式碼才開始執行。所以這些函式可以被存取。
 
-For example, this works:
+例如下面的例子，這樣是可以正常運行的：
 
 ```js run refresh untrusted
 *!*
@@ -219,34 +220,34 @@ function sayHi(name) {
 }
 ```
 
-The Function Declaration `sayHi` is created when JavaScript is preparing to start the script and is visible everywhere in it.
+函式宣告 `sayHi` 在 JavaScript 準備啟動腳本時被創建，並且在任何地方都是可視的。
 
-...If it were a Function Expression, then it wouldn't work:
+...如果它是一個函式表達式，它就無法正常執行：
 
 ```js run refresh untrusted
 *!*
 sayHi("John"); // error!
 */!*
 
-let sayHi = function(name) {  // (*) no magic any more
+let sayHi = function(name) {  // (*) 不再有神奇的事情發生
   alert( `Hello, ${name}` );
 };
 ```
 
-Function Expressions are created when the execution reaches them. That would happen only in the line `(*)`. Too late.
+函式表達式在程式執行到時才會被創建。也就是只會在 line `(*)` 發生，為時已晚。
 
-Another special feature of Function Declarations is their block scope.
+函式宣告式另一個特別的功能是他們的區塊作用域。
 
-**In strict mode, when a Function Declaration is within a code block, it's visible everywhere inside that block. But not outside of it.**
+**嚴格模式下，當一個函式宣告式在一個程式碼區塊中時，它在區塊內的任何地方都是可視的，區塊外則不可視。**
 
-For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get during runtime. And then we plan to use it some time later.
+例如，讓我們想像我們需要宣告一個函式 `welcome()`，它依賴一個我們在執行時間才能取得的變數 `age`，且我們隨後會在某些時候用到該變數。
 
-If we use Function Declaration, it won't work as intended:
+如果我們使用函式宣告式，以下程式碼不會如願運作：
 
 ```js run
 let age = prompt("What is your age?", 18);
 
-// conditionally declare a function
+// 根據條件判斷來宣告不同內容的函式
 if (age < 18) {
 
   function welcome() {
@@ -261,30 +262,30 @@ if (age < 18) {
 
 }
 
-// ...use it later
+// ...在稍後使用
 *!*
 welcome(); // Error: welcome is not defined
 */!*
 ```
 
-That's because a Function Declaration is only visible inside the code block in which it resides.
+這是因為函式宣告式的作用域侷限於其所在的程式碼區塊內。
 
-Here's another example:
+這裡是另一個範例：
 
 ```js run
-let age = 16; // take 16 as an example
+let age = 16; // 拿 16 作為例子
 
 if (age < 18) {
 *!*
-  welcome();               // \   (runs)
+  welcome();               // \   (運行)
 */!*
                            //  |
   function welcome() {     //  |  
-    alert("Hello!");       //  |  Function Declaration is available
-  }                        //  |  everywhere in the block where it's declared
+alert("Hello!");       //  |  函式宣告式可被存取於
+}                        //  | 其所被宣告區塊內的任何地方
                            //  |
 *!*
-  welcome();               // /   (runs)
+  welcome();               // /   (運行)
 */!*
 
 } else {
@@ -294,19 +295,19 @@ if (age < 18) {
   }
 }
 
-// Here we're out of curly braces,
-// so we can not see Function Declarations made inside of them.
+// 在這裡，我們在大括弧外面，
+// 所以我們無法看見在括弧內創建的函式宣告式
 
 *!*
 welcome(); // Error: welcome is not defined
 */!*
 ```
 
-What can we do to make `welcome` visible outside of `if`?
+我們該怎麼做才能讓 `welcome` 在 `if` 外可視？
 
-The correct approach would be to use a Function Expression and assign `welcome` to the variable that is declared outside of `if` and has the proper visibility.
+正確的做法會是使用函式表達式，然後將 `welcome` 指定給一個宣告在 `if` 外部，且具有正確可視性的變數。
 
-This code works as intended:
+這段程式碼能如願執行：
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -332,7 +333,7 @@ welcome(); // ok now
 */!*
 ```
 
-Or we could simplify it even further using a question mark operator `?`:
+或是我們可以用問號運算子 `?` 來進一步簡化它：
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -347,27 +348,26 @@ welcome(); // ok now
 ```
 
 
-```smart header="When to choose Function Declaration versus Function Expression?"
-As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
+```smart header="何時選擇函式宣告式或函式表達式？"
+根據經驗，當我們需要宣告函式時，首先考慮的是函式宣告式語法。對於組織我們的程式碼上，它給了我們更多的自由，因為我們可以在這些函式被宣告前呼叫他們。
 
-That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…}`. Function Declarations are more "eye-catching".
+在可讀性上也更好，在程式碼中找尋 `function f(...) {...}` 比起 `let f = function(...) {...}` 更簡單。函式宣告式更能 "吸引目光"。
 
-...But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we've just seen an example), then Function Expression should be used.
+...但如果函式宣告式由於某些原因不適合我們，或是我們需要條件式宣告（我們剛剛才看過例子），那就應該使用函式表達式。
 ```
 
+## 箭頭函式（Arrow functions） [#arrow-functions]
 
-## Arrow functions [#arrow-functions]
-
-There's one more very simple and concise syntax for creating functions, that's often better than Function Expressions. It's called "arrow functions", because it looks like this:
+創建函式還有一個非常簡潔的語法，通常比函式表達式更好。它被稱為 "箭頭函式（arrow functions）"，因為它看起來像這樣：
 
 
 ```js
 let func = (arg1, arg2, ...argN) => expression
 ```
 
-...This creates a function `func` that has arguments `arg1..argN`, evaluates the `expression` on the right side with their use and returns its result.
+...這會創建一個接受引數 `arg1..argN` 的函式 `func`，運行右側的 `expression` 並回傳結果。
 
-In other words, it's roughly the same as:
+換句話說，它大致與此相同：
 
 ```js
 let func = function(arg1, arg2, ...argN) {
@@ -375,14 +375,14 @@ let func = function(arg1, arg2, ...argN) {
 };
 ```
 
-...But much more concise.
+...但更加簡潔。
 
-Let's see an example:
+讓我們來看個例子：
 
 ```js run
 let sum = (a, b) => a + b;
 
-/* The arrow function is a shorter form of:
+/* 箭頭函式是簡短版的：
 
 let sum = function(a, b) {
   return a + b;
@@ -393,10 +393,10 @@ alert( sum(1, 2) ); // 3
 
 ```
 
-If we have only one argument, then parentheses around parameters can be omitted, making that even shorter:
+如果我們只有一個引數，那麼參數旁的括號可以省略，讓它更短：
 
 ```js run
-// same as
+// 如同
 // let double = function(n) { return n * 2 }
 *!*
 let double = n => n * 2;
@@ -405,7 +405,7 @@ let double = n => n * 2;
 alert( double(3) ); // 6
 ```
 
-If there are no arguments, parentheses should be empty (but they should be present):
+如果沒有任何引數，括號應該是空的（但他們應該被保留）：
 
 ```js run
 let sayHi = () => alert("Hello!");
@@ -413,9 +413,9 @@ let sayHi = () => alert("Hello!");
 sayHi();
 ```
 
-Arrow functions can be used in the same way as Function Expressions.
+箭頭函式的使用情境與函式宣告式相同。
 
-For instance, here's the rewritten example with `welcome()`:
+比如，這邊是重寫 `welcome()` 的例子：
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -427,48 +427,48 @@ let welcome = (age < 18) ?
 welcome(); // ok now
 ```
 
-Arrow functions may appear unfamiliar and not very readable at first, but that quickly changes as the eyes get used to the structure.
+在剛開始使用箭頭函式時，可能會覺得不熟悉且閱讀性不那麼好，但習慣這種結構後，情況會迅速改變。
 
-They are very convenient for simple one-line actions, when we're just too lazy to write many words.
+他們對於簡單的單行動作非常方便，尤其當我們發懶不想寫太多文字時。
 
-```smart header="Multiline arrow functions"
+```smart header="多行箭頭函式"
 
-The examples above took arguments from the left of `=>` and evaluated the right-side expression with them.
+上述的範例拿 `=>` 左側的引數並在右側的表達式中使用它們。
 
-Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in curly braces. Then use a normal `return` within them.
+有時我們需要一些更複雜的東西，像是多個表達式或是述語。這也是可能的，但我們應該用大括弧將它們括起來。然後在其中使用普通的 `return`。
 
-Like this:
+像這樣：
 
 ```js run
-let sum = (a, b) => {  // the curly brace opens a multiline function
+let sum = (a, b) => {  // 大括弧開啟多行函式
   let result = a + b;
 *!*
-  return result; // if we use curly braces, use return to get results
+  return result; // 如果我們使用大括弧，用 return 來取得結果
 */!*
 };
 
 alert( sum(1, 2) ); // 3
 ```
 
-```smart header="More to come"
-Here we praised arrow functions for brevity. But that's not all! Arrow functions have other interesting features. We'll return to them later in the chapter <info:arrow-functions>.
+```smart header="還有更多"
+這裡我們稍微稱讚了箭頭函式。但那不是全部！箭頭函式還有其他有趣的功能。我們稍後將在章節 <info:arrow-functions> 中回頭學習它們。
 
-For now, we can already use arrow functions for one-line actions and callbacks.
+目前，我們已經可以在單行動作與回呼中使用箭頭函式。
 ```
 
-## Summary
+## 總結
 
-- Functions are values. They can be assigned, copied or declared in any place of the code.
-- If the function is declared as a separate statement in the main code flow, that's called a "Function Declaration".
-- If the function is created as a part of an expression, it's called a "Function Expression".
-- Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
-- Function Expressions are created when the execution flow reaches them.
+- 函式是值。他們可以被指定、複製或在程式碼中任何地方被宣告。
+- 如果函式在主程式碼中以分開的述語宣告，則稱為 "函式宣告式"。
+- 如果函式作為表達式的一部分被創建，則稱為 "函式表達式"。
+- 函式宣告式在程式碼區塊執行前被處理。他們在區塊內任何地方都是可視的。
+- 函式表達式在執行流程到達它們時被創建。
 
-In most cases when we need to declare a function, a Function Declaration is preferable, because it is visible prior to the declaration itself. That gives us more flexibility in code organization, and is usually more readable.
+在大多數情況下，當我們需要宣告一個函式時，我們偏好採用函式宣告式，因為它讓函式在宣告前就是可視的。這給了我們很多組織程式碼的彈性，通常也具有較佳的可讀性。
 
-So we should use a Function Expression only when a Function Declaration is not fit for the task. We've seen a couple of examples of that in this chapter, and will see more in the future.
+所以我們應該只在函式宣告式不適合任務時才採用函式表達式。我們在這章節中已經看到一些例子，將來會看到更多。
 
-Arrow functions are handy for one-liners. They come in two flavors:
+箭頭函式對於單行動作來說非常方便。以下是它的兩個樣貌：
 
-1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
-2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
+1. 沒有大括號：`(...args) => expression` -- 右側是一個表達式：函式執行它並回傳結果。
+2. 有大括號：`(...args) => { body }` -- 括號允許我們在函式內撰寫多行述語，但我們需要一個明確地 `return` 來回傳一些東西。
