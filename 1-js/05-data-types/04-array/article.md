@@ -233,49 +233,49 @@ fruits.age = 25; // 以任意名稱建立一個屬性
 
 請將陣列視為運作 *有序資料* 的特殊結構，它們對其提供特殊的方法。在 JavaScript 引擎內部陣列被精心調整用於連續有序資料上，請以此方式使用它們。而若你需要能夠使用任意的鍵，有很高機率你實際上需要的是一個正規物件 `{}`。
 
-## Performance
+## 效能
 
-Methods `push/pop` run fast, while `shift/unshift` are slow.
+`push/pop` 方法執行較快，而 `shift/unshift` 則較慢。
 
 ![](array-speed.svg)
 
-Why is it faster to work with the end of an array than with its beginning? Let's see what happens during the execution:
+為什麼操作陣列末端會比操作最前端還要更快呢？來看看執行時發生了什麼事：
 
 ```js
-fruits.shift(); // take 1 element from the start
+fruits.shift(); // 由前端取出 1 個元素
 ```
 
-It's not enough to take and remove the element with the number `0`. Other elements need to be renumbered as well.
+只取出並移除編號 `0` 的元素還不夠，其它元素也需要被重新編號。
 
-The `shift` operation must do 3 things:
+`shift` 操作必須做三件事情：
 
-1. Remove the element with the index `0`.
-2. Move all elements to the left, renumber them from the index `1` to `0`, from `2` to `1` and so on.
-3. Update the `length` property.
+1. 移除索引值為 `0` 的元素。
+2. 將所有元素向左邊移動，以索引值由 `1` 至 `0`、由 `2` 至 `1` 等等的方式來重新編號。
+3. 更新 `length` 屬性。
 
 ![](array-shift.svg)
 
-**The more elements in the array, the more time to move them, more in-memory operations.**
+**陣列裡元素越多，移動它們就越花時間，也需要更多對記憶體的操作。**
 
-The similar thing happens with `unshift`: to add an element to the beginning of the array, we need first to move existing elements to the right, increasing their indexes.
+同樣的事情發生在 `unshift` 上：要從陣列最前端加上一個元素，我們首先需要向右移動現存的元素，也就是增加它們的索引值。
 
-And what's with `push/pop`? They do not need to move anything. To extract an element from the end, the `pop` method cleans the index and shortens `length`.
+而 `push/pop` 做了什麼呢？它們不需要移動任何東西。要從末端抽取一個元素，使用 `pop` 方法清空該索引值並縮短 `length` 即可。
 
-The actions for the `pop` operation:
+`pop` 操作的動作是：
 
 ```js
-fruits.pop(); // take 1 element from the end
+fruits.pop(); // 由末端取得 1 元素
 ```
 
 ![](array-pop.svg)
 
-**The `pop` method does not need to move anything, because other elements keep their indexes. That's why it's blazingly fast.**
+**`pop` 方法不需要移動任何東西，因為其它元素依然保持它們的索引值，這也是為什麼它如此快的原因。**
 
-The similar thing with the `push` method.
+同樣的事發生在 `push` 方法上。
 
-## Loops
+## 迴圈
 
-One of the oldest ways to cycle array items is the `for` loop over indexes:
+最古早遍歷陣列元素的方式之一，是對其索引值使用 `for` 迴圈：
 
 ```js run
 let arr = ["Apple", "Orange", "Pear"];
@@ -287,20 +287,20 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
-But for arrays there is another form of loop, `for..of`:
+但對陣列而言有另一種迴圈形式，`for..of`：
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
 
-// iterates over array elements
+// 對陣列元素迭代
 for (let fruit of fruits) {
   alert( fruit );
 }
 ```
 
-The `for..of` doesn't give access to the number of the current element, just its value, but in most cases that's enough. And it's shorter.
+`for..of` 不能存取目前元素的編號，只能拿到它的值。但大多數情況這就夠了，且它更為簡短。
 
-Technically, because arrays are objects, it is also possible to use `for..in`:
+技術上來說，因為陣列是個物件，它也可以使用 `for..in`：
 
 ```js run
 let arr = ["Apple", "Orange", "Pear"];
@@ -312,22 +312,21 @@ for (let key in arr) {
 }
 ```
 
-But that's actually a bad idea. There are potential problems with it:
+但那事實上是個爛主意，這麼做有些潛在的問題：
 
-1. The loop `for..in` iterates over *all properties*, not only the numeric ones.
+1. `for..in` 迴圈對於 *所有屬性* 迭代，而非只有數值屬性。
 
-    There are so-called "array-like" objects in the browser and in other environments, that *look like arrays*. That is, they have `length` and indexes properties, but they may also have other non-numeric properties and methods, which we usually don't need. The `for..in` loop will list them though. So if we need to work with array-like objects, then these "extra" properties can become a problem.
+    在瀏覽器和其它環境中有些被稱為 "類陣列（array-like）" 的物件，它們 *看起來向陣列*。也就是說，它們有 `length` 和索引值的屬性，但它們也會有其它非數值的屬性和方法，這些通常我們不會需要，然而 `for..in` 迴圈卻會列出它們。所以若我們需要操作類陣列的物件時，這些 "額外的" 屬性就會變成問題。
 
-2. The `for..in` loop is optimized for generic objects, not arrays, and thus is 10-100 times slower. Of course, it's still very fast. The speedup may only matter in bottlenecks. But still we should be aware of the difference.
+2. `for..in` 迴圈在一般物件上被優化，但在陣列上沒有，而且會慢上10 到 100 倍。當然，它依舊很快，只有在面臨效能瓶頸時這些加速才會比較重要，但我們依然應該注意到它們的差別。
 
-Generally, we shouldn't use `for..in` for arrays.
+一般來說，我們不該對陣列使用 `for..in`。
 
+## 有關 "length" 這個字
 
-## A word about "length"
+`length` 屬性在我們修改陣列時會自動更新，精確地說，它實際上並非計數陣列中的值有幾個，而是把最大的數值索引值再加上一。
 
-The `length` property automatically updates when we modify the array. To be precise, it is actually not the count of values in the array, but the greatest numeric index plus one.
-
-For instance, a single element with a large index gives a big length:
+舉個例，若陣列只有單一元素但其有很大的索引值，也會給出很大的 length：
 
 ```js run
 let fruits = [];
@@ -336,54 +335,53 @@ fruits[123] = "Apple";
 alert( fruits.length ); // 124
 ```
 
-Note that we usually don't use arrays like that.
+要注意我們通常不會像這樣使用陣列。
 
-Another interesting thing about the `length` property is that it's writable.
+另一個關於 `length` 的有趣事情是它可以被寫入。
 
-If we increase it manually, nothing interesting happens. But if we decrease it, the array is truncated. The process is irreversible, here's the example:
+若我們手動增加它，什麼微妙的事都不會發生。但若我們減少它，那麼陣列就會被截斷。此過程是不可逆的，這邊有個例子：
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 
-arr.length = 2; // truncate to 2 elements
+arr.length = 2; // 截斷至只剩 2 個元素
 alert( arr ); // [1, 2]
 
-arr.length = 5; // return length back
-alert( arr[3] ); // undefined: the values do not return
+arr.length = 5; // 把 length 改回來
+alert( arr[3] ); // undefined：值回不來了
 ```
 
-So, the simplest way to clear the array is: `arr.length = 0;`.
-
+所以，要清除陣列最簡單的方法就是：`arr.length = 0;`。
 
 ## new Array() [#new-array]
 
-There is one more syntax to create an array:
+還有另一種建立陣列的語法：
 
 ```js
 let arr = *!*new Array*/!*("Apple", "Pear", "etc");
 ```
 
-It's rarely used, because square brackets `[]` are shorter. Also there's a tricky feature with it.
+這很少被用到，因為中括號 `[]` 較簡短，且這語法還有個微妙的特性。
 
-If `new Array` is called with a single argument which is a number, then it creates an array *without items, but with the given length*.
+若 `new Array` 使用單一數值作為引數來呼叫，那它會建立一個 *內部沒有項目而只有給定 length* 的陣列。
 
-Let's see how one can shoot themself in the foot:
+來看看這會如何拿石頭砸自己的腳：
 
 ```js run
-let arr = new Array(2); // will it create an array of [2] ?
+let arr = new Array(2); // 它會建立 [2] 這樣的陣列嗎？
 
-alert( arr[0] ); // undefined! no elements.
+alert( arr[0] ); // 是 undefined！沒有元素在內。
 
-alert( arr.length ); // length 2
+alert( arr.length ); // 但 length 是 2
 ```
 
-In the code above, `new Array(number)` has all elements `undefined`.
+在上面的程式碼中，`new Array(number)` 的所有元素都是 `undefined`。
 
-To evade such surprises, we usually use square brackets, unless we really know what we're doing.
+要避免這種驚喜，我們通常使用中括號語法就好，除非我們真的知道自己在做什麼。
 
-## Multidimensional arrays
+## 多維度陣列
 
-Arrays can have items that are also arrays. We can use it for multidimensional arrays, for example to store matrices:
+陣列內的項目也可以是陣列，我們用來它來表示多維度陣列，例如儲存矩陣：
 
 ```js run
 let matrix = [
@@ -392,15 +390,14 @@ let matrix = [
   [7, 8, 9]
 ];
 
-alert( matrix[1][1] ); // 5, the central element
+alert( matrix[1][1] ); // 5，最中央的元素
 ```
 
 ## toString
 
-Arrays have their own implementation of `toString` method that returns a comma-separated list of elements.
+陣列有它們自己的 `toString` 實作，會回傳一個以逗號分隔元素的清單。
 
-For instance:
-
+舉個例：
 
 ```js run
 let arr = [1, 2, 3];
@@ -409,7 +406,7 @@ alert( arr ); // 1,2,3
 alert( String(arr) === '1,2,3' ); // true
 ```
 
-Also, let's try this:
+同樣地，試試這個：
 
 ```js run
 alert( [] + 1 ); // "1"
@@ -417,9 +414,9 @@ alert( [1] + 1 ); // "11"
 alert( [1,2] + 1 ); // "1,21"
 ```
 
-Arrays do not have `Symbol.toPrimitive`, neither a viable `valueOf`, they implement only `toString` conversion, so here `[]` becomes an empty string, `[1]` becomes `"1"` and `[1,2]` becomes `"1,2"`.
+陣列並沒有 `Symbol.toPrimitive`，也沒有可用的 `valueOf`，它們只實作 `toString` 轉換，所以這邊的 `[]` 變成空字串、`[1]` 變成 `"1"` 而 `[1,2]` 變成 `"1,2"`。
 
-When the binary plus `"+"` operator adds something to a string, it converts it to a string as well, so the next step looks like this:
+當二元加號 `"+"` 運算子對字串加東西時，會把它也轉成字串，所以下一步看起來就像這樣：
 
 ```js run
 alert( "" + 1 ); // "1"
@@ -427,35 +424,36 @@ alert( "1" + 1 ); // "11"
 alert( "1,2" + 1 ); // "1,21"
 ```
 
-## Summary
+## 總結
 
-Array is a special kind of object, suited to storing and managing ordered data items.
+陣列是個特殊的物件，適合儲存管理有序的資料項目。
 
-- The declaration:
+- 宣告：
 
     ```js
-    // square brackets (usual)
+    // 中括號（通常用這個）
     let arr = [item1, item2...];
 
-    // new Array (exceptionally rare)
+    // new Array（極為少用）
     let arr = new Array(item1, item2...);
     ```
 
-    The call to `new Array(number)` creates an array with the given length, but without elements.
+    呼叫 `new Array(number)` 會建立一個有著指定 length 的陣列，但其內都沒有元素。
 
-- The `length` property is the array length or, to be precise, its last numeric index plus one. It is auto-adjusted by array methods.
-- If we shorten `length` manually, the array is truncated.
+- `length` 屬性是陣列長度，或更精準地說，是它的最大數值索引值再加上一。它由陣列的方法自動調整。
+- 若我們手動縮短 `length`，則陣列會被截斷。
 
-We can use an array as a deque with the following operations:
+我們可以將陣列視為雙端佇列來使用以下操作：
 
-- `push(...items)` adds `items` to the end.
-- `pop()` removes the element from the end and returns it.
-- `shift()` removes the element from the beginning and returns it.
-- `unshift(...items)` adds `items` to the beginning.
+- `push(...items)` 增加 `items` 至末端。
+- `pop()` 由末端移除元素並回傳。
+- `shift()` 由最前端移除元素並回傳。
+- `unshift(...items)` 增加 `items` 至最前端。
 
-To loop over the elements of the array:
-  - `for (let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
-  - `for (let item of arr)` -- the modern syntax for items only,
-  - `for (let i in arr)` -- never use.
+想要遍歷陣列的元素時：
+  - `for (let i=0; i<arr.length; i++)` -- 執行最快，兼容古老的瀏覽器。
+  - `for (let item of arr)` -- 只看 items 的現代化語法。
+  - `for (let i in arr)` -- 別用。
 
-We will return to arrays and study more methods to add, remove, extract elements and sort arrays in the chapter <info:array-methods>.
+我們會在章節 <info:array-methods> 中回顧陣列，並學習更多像是增加、移除、取出元素和排序陣列等的方法。
+

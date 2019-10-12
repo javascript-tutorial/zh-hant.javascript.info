@@ -1,43 +1,43 @@
-# Slow solution
+# 慢的解法
 
-We can calculate all possible subsums.
+我們可以計算所有可能的子總和。
 
-The simplest way is to take every element and calculate sums of all subarrays starting from it.
+最簡單的方法是取出每個元素並計算所有由它開始的子陣列總和。
 
-For instance, for `[-1, 2, 3, -9, 11]`:
+舉個例，如 `[-1, 2, 3, -9, 11]`：
 
 ```js no-beautify
-// Starting from -1:
+// 由 -1 開始：
 -1
 -1 + 2
 -1 + 2 + 3
 -1 + 2 + 3 + (-9)
 -1 + 2 + 3 + (-9) + 11
 
-// Starting from 2:
+// 由 2 開始：
 2
 2 + 3
 2 + 3 + (-9)
 2 + 3 + (-9) + 11
 
-// Starting from 3:
+// 由 3 開始：
 3
 3 + (-9)
 3 + (-9) + 11
 
-// Starting from -9
+// 由 -9 開始：
 -9
 -9 + 11
 
-// Starting from 11
+// 由 11 開始：
 11
 ```
 
-The code is actually a nested loop: the external loop over array elements, and the internal counts subsums starting with the current element.
+該程式碼事實上會是個巢狀迴圈：外部迴圈遍歷陣列元素，而內部的則計數由目前元素開始的子總和。
 
 ```js run
 function getMaxSubSum(arr) {
-  let maxSum = 0; // if we take no elements, zero will be returned
+  let maxSum = 0; // 若我們沒拿到元素，回傳零
 
   for (let i = 0; i < arr.length; i++) {
     let sumFixedStart = 0;
@@ -57,25 +57,25 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
-The solution has a time complexety of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
+該解法的時間複雜度為 [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation) 。換句話說，若我們增加兩倍的陣列大小，該演算法就會多花四倍的時間。
 
-For big arrays (1000, 10000 or more items) such algorithms can lead to a serious sluggishness.
+對於大陣列來說（1000、10000 或更多項目）該演算法可能導致嚴重的延遲。
 
-# Fast solution
+# 快的解法
 
-Let's walk the array and keep the current partial sum of elements in the variable `s`. If `s` becomes negative at some point, then assign `s=0`. The maximum of all such `s` will be the answer.
+我們來遍歷陣列並在變數 `s` 中維持目前的元素部分總和。若 `s` 在某個時間點變成負值，那就指定 `s=0`。所有 `s` 中的最大值將會是答案。
 
-If the description is too vague, please see the code, it's short enough:
+若這個描述太模糊了，請直接看程式碼，夠簡短了：
 
 ```js run demo
 function getMaxSubSum(arr) {
   let maxSum = 0;
   let partialSum = 0;
 
-  for (let item of arr) { // for each item of arr
-    partialSum += item; // add it to partialSum
-    maxSum = Math.max(maxSum, partialSum); // remember the maximum
-    if (partialSum < 0) partialSum = 0; // zero if negative
+  for (let item of arr) { // for..of arr 的每個 item
+    partialSum += item; // 將它加入 partialSum
+    maxSum = Math.max(maxSum, partialSum); // 記住最大值
+    if (partialSum < 0) partialSum = 0; // 若為負則指定零
   }
 
   return maxSum;
@@ -89,6 +89,7 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([-1, -2, -3]) ); // 0
 ```
 
-The algorithm requires exactly 1 array pass, so the time complexity is O(n).
+該演算法只需要遍歷陣列恰好一次，所以時間複雜度為 O(n)。
 
-You can find more detail information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words.
+你可以在這裡找到更多關於該演算法的細節資訊：[Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem)。若覺得對於它如何運作依然沒那麼明顯，請追蹤上述例子中的演算法來看看它是如何運作的，這麼做會比任何文字還要有用。
+
