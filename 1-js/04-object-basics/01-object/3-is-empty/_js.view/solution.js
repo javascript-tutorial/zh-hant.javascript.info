@@ -1,6 +1,6 @@
 function isEmpty(obj) {
   for (let key in obj) {
-    // if the loop has started, there is a property
+    // 若迴圈開始，代表有屬性存在
     return false;
   }
   return true;

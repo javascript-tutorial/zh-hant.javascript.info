@@ -1,3 +1,4 @@
-# Code quality
+# 程式碼品質
 
-This chapter explains coding practices that we'll use further in the development. 
+本章介紹我們將在未來的開發中用到的程式碼慣例。
+
