@@ -2,17 +2,17 @@ importance: 5
 
 ---
 
-# Create a calculator
+# 建立一個計算機
 
-Create an object `calculator` with three methods:
+建立一個物件 `calculator` 並有三個方法在內：
 
-- `read()` prompts for two values and saves them as object properties.
-- `sum()` returns the sum of saved values.
-- `mul()` multiplies saved values and returns the result.
+- `read()` 提示輸入（prompt）兩個值並將它們儲存到物件屬性內。
+- `sum()` 回傳儲存值的總和。
+- `mul()` 相乘儲存的值並回傳結果。
 
 ```js
 let calculator = {
-  // ... your code ...
+  // ... 你的程式碼 ...
 };
 
 calculator.read();

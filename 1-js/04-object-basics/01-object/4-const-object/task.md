@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Constant objects?
+# 常數物件？
 
-Is it possible to change an object declared with `const`? What do you think?
+有可能改變用 `const` 宣告的物件嗎？你怎麼想？
 
 ```js
 const user = {
@@ -12,7 +12,8 @@ const user = {
 };
 
 *!*
-// does it work?
+// 這能運作嗎？
 user.name = "Pete";
 */!*
 ```
+
