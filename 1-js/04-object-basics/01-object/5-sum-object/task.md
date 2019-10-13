@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Sum object properties
+# 加總物件屬性
 
-We have an object storing salaries of our team:
+我們有個物件存放著我們團隊的薪資：
 
 ```js
 let salaries = {
@@ -14,6 +14,7 @@ let salaries = {
 }
 ```
 
-Write the code to sum all salaries and store in the variable `sum`. Should be `390` in the example above.
+寫一段程式碼加總薪資並儲存在變數 `sum` 內。上面的例子應該要是 `390`。
 
-If `salaries` is empty, then the result must be `0`.
+若 `salaries` 為空，則結果必須為 `0`。
+

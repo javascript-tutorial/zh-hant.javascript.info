@@ -2,11 +2,11 @@ importance: 3
 
 ---
 
-# Explain the value of "this"
+# 解釋 "this" 的值
 
-In the code below we intend to call `user.go()` method 4 times in a row.
+底下的程式碼我們試圖連續呼叫四次 `user.go()` 方法。
 
-But calls `(1)` and `(2)` works differently from `(3)` and `(4)`. Why?
+然而呼叫 `(1)` 和 `(2)` 運作起來與 `(3)` 和 `(4)` 有所不同，為什麼？
 
 ```js run no-beautify
 let obj, method;
