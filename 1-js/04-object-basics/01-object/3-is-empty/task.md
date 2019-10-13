@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Check for emptiness
+# 檢查空物件
 
-Write the function `isEmpty(obj)` which returns `true` if the object has no properties, `false` otherwise.
+寫一個函式 `isEmpty(obj)`，若物件沒有屬性時回傳 `true`，否則回傳 `false`。
 
-Should work like that:
+應該要像這樣運作：
 
 ```js
 let schedule = {};
