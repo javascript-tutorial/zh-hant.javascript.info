@@ -2,9 +2,9 @@ importance: 2
 
 ---
 
-# Chaining
+# 鏈接呼叫（Chaining）
 
-There's a `ladder` object that allows to go up and down:
+有個 `ladder` 物件允許向上或向下：
 
 ```js
 let ladder = {
@@ -15,13 +15,13 @@ let ladder = {
   down() { 
     this.step--;
   },
-  showStep: function() { // shows the current step
+  showStep: function() { // 顯示目前階梯
     alert( this.step );
   }
 };
 ```
 
-Now, if we need to make several calls in sequence, can do it like this:
+現在，若我們需要依序發出多個呼叫，可以像這樣做：
 
 ```js
 ladder.up();
@@ -30,10 +30,11 @@ ladder.down();
 ladder.showStep(); // 1
 ```
 
-Modify the code of `up`, `down` and `showStep` to make the calls chainable, like this:
+修改 `up`、`down` 和 `showStep` 的程式碼以使得呼叫為鏈接方式，像這樣：
 
 ```js
 ladder.up().up().down().showStep(); // 1
 ```
 
-Such approach is widely used across JavaScript libraries.
+這種作法在 JavaScript 函式庫內被廣泛地使用著。
+
