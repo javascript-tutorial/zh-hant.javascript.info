@@ -12,8 +12,13 @@
 
 在這方面，JavaScript 和另一個稱為 [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) 的程式語言有很大的不同。
 
+<<<<<<< HEAD
 ```smart header="為什麼叫 <u>Java</u>Script?"
 當 JavaScript 剛誕生時原先有另一個名字： "LiveScript"。但 Java 在那時非常流行，因此被定位成一個 Java 的 "小弟" 將有助於推廣。
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 但隨著它發展，JavaScript 變成一個完全獨立的語言並有其規範 [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) ，現在它與 Java 之間沒有任何關係。
 ```

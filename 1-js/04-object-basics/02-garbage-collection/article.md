@@ -154,11 +154,19 @@ family = null;
 
 底下的 "垃圾回收" 步驟會定期被執行：
 
+<<<<<<< HEAD
 - 垃圾回收器取得根並 "標記"（記憶）它們。
 - 然後拜訪並 "標記" 根的所有參考。
 - 然後拜訪被標記的物件並標記 *它們的* 參考。所有被拜訪的物件都會被記住，因此同樣的物件將不會被二次拜訪。
 - ...當還有（由根可達的）沒被拜訪的參考時會持續如此運作。
 - 除了被標記的物件以外，其餘所有物件將被移除。
+=======
+- The garbage collector takes roots and "marks" (remembers) them.
+- Then it visits and "marks" all references from them.
+- Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
+- ...And so on until every reachable (from the roots) references are visited.
+- All objects except marked ones are removed.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 舉個例，物件結構若像這樣：
 
@@ -182,11 +190,17 @@ family = null;
 
 ![](garbage-collection-5.svg)
 
+<<<<<<< HEAD
 這就是垃圾回收器如何運作的概念。
 
 JavaScript 引擎套用許多優化來讓它跑得更快，且不影響執行。
 
 某些優化的地方：
+=======
+We can also imagine the process as spilling a huge bucket of paint from the roots, that flows through all references and marks all reachable objects. The unmarked ones are then removed.
+
+That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not affect the execution.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 - **分代回收（Generational collection）** -- 物件被分為兩個集合："舊的" 和 "新的"。很多物件快速地出現做完事情就消失，它們可被積極的清理。那些存活夠久並變得 "老舊" 的物件將會減少檢查。
 - **遞增回收（Incremental collection）** -- 若存在很多物件，且我們試著一次拜訪並標示完成，那可能會花些時間並在執行上產生看得見的延遲。所以引擎會試圖將垃圾回收拆成多個部分，然後每個部分會一個接一個被分開執行。在它們之間將需要些額外的標記來追蹤變動，但我們就可以只有些許微小而非整個很大的延遲。
@@ -194,7 +208,11 @@ JavaScript 引擎套用許多優化來讓它跑得更快，且不影響執行。
 
 還有其它垃圾回收演算法的優化與方式。儘管我想描述多點也得先停下來，因為不同引擎實作不同的調整與技巧。並且更重要的是，隨著引擎的開發會隨時變動，所以若沒有實際需要而 "事先" 知道這麼深入其實不太值得。當然，若你有著純粹有興趣想了解，那底下有些為你準備的連結。
 
+<<<<<<< HEAD
 ## 總結
+=======
+There exist other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so studying deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 主要該知道的是：
 

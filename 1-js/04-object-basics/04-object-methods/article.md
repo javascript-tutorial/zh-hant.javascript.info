@@ -60,8 +60,13 @@ user.sayHi = sayHi;
 user.sayHi(); // Hello!
 ```
 
+<<<<<<< HEAD
 ```smart header="物件導向程式設計"
 當我們寫物件的程式碼來表現實體時，被稱為 [物件導向程式設計（object-oriented programming）](https://en.wikipedia.org/wiki/Object-oriented_programming)，簡稱為："OOP"。
+=======
+```smart header="Object-oriented programming"
+When we write our code using objects to represent entities, that's called [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 OOP 是門很大的學問，本身就是個有趣的科學。要怎麼選擇正確的實體？如何組織兩者間的交互作用？這就是架構，且有些很棒的書在探討這個議題，像是 E.Gamma, R.Helm, R.Johnson, J.Vissides 的 "Design Patterns: Elements of Reusable Object-Oriented Software" 或 G.Booch 的 "Object-Oriented Analysis and Design with Applications" 等等。
 ```
@@ -168,9 +173,15 @@ admin.sayHi(); // 哎呀！在 sayHi() 內使用了舊的變數名！錯了！
 
 ## "this" 沒被綁定
 
+<<<<<<< HEAD
 JavaScript 中，關鍵字 `this` 的行為不像其它大多數程式語言一樣，它可以被用於任何函式內。
 
 底下例子不會有語法錯誤：
+=======
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function.
+
+There's no syntax error in the following example:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```js
 function sayHi() {
@@ -221,17 +232,29 @@ sayHi(); // undefined
 
 非嚴格模式（non-strict mode）內，`this` 的值在這個情況會是 *全域物件（global object）*（瀏覽器中是 `window`，我們晚點會在章節 [](info:global-object) 看到）。這個有歷史淵源的行為可使用 `"use strict"` 修正。
 
+<<<<<<< HEAD
 通常這種呼叫是程式編寫錯誤，若函式有 `this` 在內，它預期的是在某個物件的上下文中被呼叫。
+=======
+Usually such call is a programming error. If there's `this` inside a function, it expects to be called in an object context.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 ````
 
 ```smart header="未綁定 `this` 的後果"
 若你由別的程式語言而來，那你也許已經習慣了 "已綁定 `this`" 的概念，也就是某物件中定義的方法總是會將 `this` 參考至該物件。
 
+<<<<<<< HEAD
 在 JavaScript `this` 是 "自由的"，它的值會在呼叫時間（call-time）才被計算，且不取決於方法在何處被宣告，而是取決於哪個物件 "在句點之前"。
 
 執行期間才計算 `this` 的這個概念有好有壞。某方面來說，函式可以在不同物件上被重複使用，另一方面，更多的彈性也讓產生錯誤的空間更大。
 
 這邊我們的立場不是要判斷語言設計決定是好或壞，我們只要理解它如何運作，且怎麼使用好處並避免問題。
+=======
+In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what object is "before the dot".
+
+The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the other hand, the greater flexibility creates more possibilities for mistakes.
+
+Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and avoid problems.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 ```
 
 ## 內部情況：參考類型（Reference Type）

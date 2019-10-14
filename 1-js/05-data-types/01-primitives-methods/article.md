@@ -50,7 +50,11 @@ JavaScript 的建立者們面臨了這樣的一個矛盾：
 
 "物件包裝" 對於每種原生類型都不同，名為：`String`、`Number`、`Boolean` 和 `Symbol`。因此，它們提供不同的方法集合。
 
+<<<<<<< HEAD
 舉個例，有個字串方法 [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) 回傳被大寫的 `str`。
+=======
+For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 這邊是它的用法：
 

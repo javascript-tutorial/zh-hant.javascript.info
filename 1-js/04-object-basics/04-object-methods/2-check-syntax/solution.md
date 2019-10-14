@@ -11,7 +11,11 @@ let user = {
 (user.go)() // 錯誤！
 ```
 
+<<<<<<< HEAD
 大多數瀏覽器的錯誤訊息不會說明是什麼出錯。
+=======
+The error message in most browsers does not give us much of a clue about what went wrong.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 **該錯誤出現是因為，在 `user = {...}` 之後少了個分號。**
 

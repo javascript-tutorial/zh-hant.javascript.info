@@ -18,7 +18,11 @@
 
 ![](chrome-open-sources.svg)
 
+<<<<<<< HEAD
 切換按鈕 <span class="devtools" style="background-position:-168px -76px"></span> 會打開檔案分頁。
+=======
+The toggler button <span class="devtools" style="background-position:-172px -98px"></span> opens the tab with files.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 點擊它並在樹狀圖中選擇 `hello.js`，這是應該要顯示的畫面：
 
@@ -30,7 +34,11 @@
 2. **來源區域** 顯示原始碼。
 3. **資訊與控制區域** 是為了除錯使用，我們很快會探討它。
 
+<<<<<<< HEAD
 現在你可以再點擊同一個切換鈕 <span class="devtools" style="background-position:-200px -76px"></span> 來隱藏資源列表來給程式碼多一點空間。
+=======
+Now you could click the same toggler <span class="devtools" style="background-position:-172px -122px"></span> again to hide the resources list and give the code some space.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ## 主控台（Console）
 
@@ -118,10 +126,17 @@ function hello(name) {
 
 現在是時候來 *追蹤* 腳本了。
 
+<<<<<<< HEAD
 右側面板頂部有些按鈕可以使用，來用用看吧。
 
 <span class="devtools" style="background-position:-7px -76px"></span> -- 繼續執行，快捷鍵 `key:F8`。
 : 恢復執行。若沒有額外的中斷點，則執行將會繼續且除錯器不會再獲取控制。
+=======
+There are buttons for it at the top of the right panel. Let's engage them.
+<!-- https://github.com/ChromeDevTools/devtools-frontend/blob/master/front_end/Images/src/largeIcons.svg -->
+<span class="devtools" style="background-position:-146px -168px"></span> -- "Resume": continue the execution, hotkey `key:F8`.
+: Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
     這是我們點下去後會看到的：
 
@@ -129,6 +144,7 @@ function hello(name) {
 
     執行已經被恢復了，直到 `say()` 內的另一個中斷點才暫停。看一下右側 "Call Stack" 的內容，它多增加了一層呼叫，我們現在正在 `say()` 之中。
 
+<<<<<<< HEAD
 <span class="devtools" style="background-position:-137px -76px"></span> -- 下一步（執行下一行命令），但 *不會進入函式*，快捷鍵 `key:F10`。
 : 若我們點擊它，`alert` 將會顯示出來。要注意這裡的 `alert` 可以是任意函式，執行將會 "跨過（steps over）它"，忽略函式的內部。
 
@@ -143,6 +159,35 @@ function hello(name) {
 
 <span class="devtools" style="background-position:-264px -4px"></span> -- 啟用/關閉 遇到錯誤時的自動暫停功能。
 : 當啟用且開發者工具開著時，腳本錯誤將會自動暫停執行，然後我們可以分析變數來看什麼東西壞了。所以若腳本因為錯誤而掛點，我們可以打開除錯器，啟用這個選項並重新載入頁面來看看它掛在哪和當下的週遭環境是什麼。
+=======
+<span class="devtools" style="background-position:-200px -190px"></span> -- "Step": run the next command, hotkey `key:F9`.
+: Run the next statement. If we click it now, `alert` will be shown.
+
+    Clicking this again and again will step through all script statements one by one.
+
+<span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
+: Similar to the previous the "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
+
+    The "Step" command goes into it and and pauses the execution at its first line, while "Step over" executes the nested function call invisibly, skipping the function internals.
+
+    The execution is then paused immediately after that function.
+
+    That's good if we're not interested to see what happens inside the function call.
+
+<span class="devtools" style="background-position:-4px -194px"></span> -- "Step into", hotkey `key:F11`.
+: That's similar to "Step", but behaves differently in case of asynchronous function calls. If you're only starting to learn JavaScript, then you can ignore the difference, as we don't have asynchronous calls yet.
+
+    For the future, just note that "Step" command ignores async actions, such as `setTimeout` (scheduled function call), that execute later. The "Step into" goes into their code, waiting for them if necessary. See [DevTools manual](https://developers.google.com/web/updates/2018/01/devtools#async) for more details.
+
+<span class="devtools" style="background-position:-32px -194px"></span> -- "Step out": continue the execution till the end of the current function, hotkey `key:Shift+F11`.
+: Continue the execution and stop it at the very last line of the current function. That's handy when we accidentally entered a nested call using <span class="devtools" style="background-position:-200px -190px"></span>, but it does not interest us, and we want to continue to its end as soon as possible.
+
+<span class="devtools" style="background-position:-61px -74px"></span> -- enable/disable all breakpoints.
+: That button does not move the execution. Just a mass on/off for breakpoints.
+
+<span class="devtools" style="background-position:-90px -146px"></span> -- enable/disable automatic pause in case of an error.
+: When enabled, and the developer tools is open, a script error automatically pauses the execution. Then we can analyze variables to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```smart header="繼續至此（Continue to here）"
 右鍵點擊一行程式碼可以開啟有著一個非常棒選項的選單，"Continue to here"。
@@ -174,7 +219,14 @@ for (let i = 0; i < 5; i++) {
 2. `debugger` 述語。
 3. 錯誤（若開發者工具開著且按鈕 <span class="devtools" style="background-position:-264px -4px"></span> 開啟著）。
 
+<<<<<<< HEAD
 當暫停時，我們可以除錯 - 檢查變數和追蹤程式碼來看執行哪裡有問題。
+=======
+As we can see, there are three main ways to pause a script:
+1. A breakpoint.
+2. The `debugger` statements.
+3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-90px -146px"></span> is "on").
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 開發者工具有更多尚未在此被介紹的選項，完整的操作手冊在 <https://developers.google.com/web/tools/chrome-devtools>。
 

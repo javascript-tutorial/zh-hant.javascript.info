@@ -106,10 +106,17 @@ for (let i = 0; i < 3; i++) { // 顯示 0，接著 1，然後 2
 
 | 段落  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
+<<<<<<< HEAD
 | begin | `i = 0`    | 在進入迴圈時執行一次。                                      |
 | condition | `i < 3`| 每次迴圈迭代開始前檢查，若為假則迴圈停止。              |
 | body | `alert(i)`| 當條件是真值時，一直重複執行。                         |
 | step| `i++`      | 每次迭代時會在本體之後才執行。 |
+=======
+| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| step| `i++`      | Executes after the body on each iteration. |
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 一般的迴圈演算法像這樣子運行：
 
@@ -298,7 +305,11 @@ if (i > 5) {
 
 有時候我們需要一次從多個巢狀迴圈內中斷跳出。
 
+<<<<<<< HEAD
 例如底下的程式碼中，我們在 `i` 和 `j` 之間循環，從 `(0,0)` 至 `(2,2)` 提示座標 `(i, j)`：
+=======
+For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(2,2)`:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```js run no-beautify
 for (let i = 0; i < 3; i++) {

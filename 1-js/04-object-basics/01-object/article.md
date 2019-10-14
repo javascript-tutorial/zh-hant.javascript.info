@@ -710,7 +710,13 @@ user.sizes.width++;       // 從某邊改變某個屬性
 alert(clone.sizes.width); // 51，將會從另一邊看到結果
 ```
 
+<<<<<<< HEAD
 要修正的話，我們應該使用複製迴圈來檢查每個 `user[key]` 的值，且若是個物件，則將它的架構也一起複製下來，這被稱為 "深層複製（deep cloning）"。
+=======
+To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 已經有標準的演算法可以處理上述或更複雜情境中的深層複製，叫做 [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data)。為了不要重新發明輪子，我們可以從 JavsScript 函式庫 [lodash](https://lodash.com) 中使用它的一個可行實作，其方法名為 [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep)。
 

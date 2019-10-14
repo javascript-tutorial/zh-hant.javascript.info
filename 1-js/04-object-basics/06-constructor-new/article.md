@@ -27,7 +27,11 @@ alert(user.name); // Jack
 alert(user.isAdmin); // false
 ```
 
+<<<<<<< HEAD
 當函式使用 `new` 被執行時，它會依照以下步驟：
+=======
+When a function is executed with `new`, it does the following steps:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 1. 新的空物件被建立並指定到 `this`。
 2. 函式本體被執行，通常它修改了 `this`，對它加上新的屬性。
@@ -51,7 +55,11 @@ function User(name) {
 }
 ```
 
+<<<<<<< HEAD
 所以 `let user = new User("Jack")` 給了像這樣的結果：
+=======
+So `let user = new User("Jack")` gives the same result as:
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ```js
 let user = {
@@ -136,8 +144,13 @@ alert(john.name); // John
 
 但若有 `return` 述語，規則就很簡單了：
 
+<<<<<<< HEAD
 - 若 `return` 的是物件，則該物件會被回傳而非 `this`。
 - 若 `return` 的是原生類型，就會被忽略。
+=======
+- If `return` is called with an object, then the object is returned instead of `this`.
+- If `return` is called with a primitive, it's ignored.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 換句話說，`return` 的若是物件，則回傳它，其它情況下回傳的是 `this`。
 
@@ -148,10 +161,17 @@ function BigUser() {
 
   this.name = "John";
 
+<<<<<<< HEAD
   return { name: "Godzilla" };  // <-- 回傳這個物件
 }
 
 alert( new BigUser().name );  // Godzilla，得到那個物件
+=======
+  return { name: "Godzilla" };  // <-- returns this object
+}
+
+alert( new BigUser().name );  // Godzilla, got that object
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 ```
 
 這邊有個 `return` 空白的例子（或者我們可以放個原生類型在後面，也沒差）：
@@ -161,7 +181,11 @@ function SmallUser() {
 
   this.name = "John";
 
+<<<<<<< HEAD
   return; // <-- 回傳 this
+=======
+  return; // <-- returns this
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 }
 
 alert( new SmallUser().name );  // John

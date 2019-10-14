@@ -100,7 +100,11 @@ let str = "+7(903)-123-45-67";
 alert( str.replace(/\D/g, "") ); // 79031234567
 ```
 
+<<<<<<< HEAD
 ## A dot is any character
+=======
+## A dot is "any character"
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 A dot `pattern:.` is a special character class that matches "any character except a newline".
 
@@ -128,7 +132,11 @@ alert( "CS4".match(/CS.4/) ); // null, no match because there's no character for
 
 ### Dot as literally any character with "s" flag
 
+<<<<<<< HEAD
 Usually a dot doesn't match a newline character `\n`.
+=======
+By default, a dot doesn't match the newline character `\n`.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 For instance, the regexp `pattern:A.B` matches `match:A`, and then `match:B` with any character between them, except a newline `\n`:
 
@@ -144,6 +152,23 @@ That's what flag `pattern:s` does. If a regexp has it, then a dot `pattern:.` ma
 alert( "A\nB".match(/A.B/s) ); // A\nB (match!)
 ```
 
+<<<<<<< HEAD
+=======
+````warn header="Not supported in Firefox, IE, Edge"
+Check <https://caniuse.com/#search=dotall> for the most recent state of support. At the time of writing it doesn't include Firefox, IE, Edge.
+
+Luckily, there's an alternative, that works everywhere. We can use a regexp like `pattern:[\s\S]` to match "any character".
+
+```js run
+alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
+```
+
+The pattern `pattern:[\s\S]` literally says: "a space character OR not a space character". In other words, "anything". We could use another pair of complementary classes, such as `pattern:[\d\D]`, that doesn't matter.
+
+This trick works everywhere. Also we can use it if we don't want to set `pattern:s` flag, in cases when we want a regular "no-newline" dot too in the pattern.
+````
+
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 ````warn header="Pay attention to spaces"
 Usually we pay little attention to spaces. For us strings `subject:1-5` and `subject:1 - 5` are nearly identical.
 
