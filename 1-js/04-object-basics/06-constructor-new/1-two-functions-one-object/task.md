@@ -2,9 +2,9 @@ importance: 2
 
 ---
 
-# Two functions – one object
+# 兩個函式 - 一個物件
 
-Is it possible to create functions `A` and `B` such as `new A()==new B()`?
+有可能建立函式 `A` 和 `B` 使得 `new A()==new B()` 嗎？
 
 ```js no-beautify
 function A() { ... }
@@ -16,4 +16,5 @@ let b = new B;
 alert( a == b ); // true
 ```
 
-If it is, then provide an example of their code.
+若可以，提供它們程式碼的例子。
+
