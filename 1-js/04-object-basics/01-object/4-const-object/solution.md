@@ -1,8 +1,8 @@
-Sure, it works, no problem.
+當然可運作，沒問題。
 
-The `const` only protects the variable itself from changing. 
+`const` 只保護變數本身不被改變。
 
-In other words, `user` stores a reference to the object. And it can't be changed. But the content of the object can.
+換句話說，`user` 儲存物件的參考，且其無法被改變。但物件的內容卻可以改變。
 
 ```js run
 const user = {
@@ -10,10 +10,11 @@ const user = {
 };
 
 *!*
-// works
+// 可運作
 user.name = "Pete";
 */!*
 
-// error
+// 錯誤
 user = 123;
 ```
+

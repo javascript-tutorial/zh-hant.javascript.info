@@ -2,10 +2,9 @@ importance: 5
 
 ---
 
-# Can I add a string property?
+# 我可以為字串加入屬性嗎？
 
-
-Consider the following code:
+考慮以下程式碼：
 
 ```js
 let str = "Hello";
@@ -15,4 +14,5 @@ str.test = 5;
 alert(str.test);
 ```
 
-How do you think, will it work? What will be shown?
+你覺得如何，這樣行嗎？會顯示什麼？
+

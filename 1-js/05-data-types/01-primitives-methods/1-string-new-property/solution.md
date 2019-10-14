@@ -1,5 +1,4 @@
-
-Try running it:
+試著跑看看：
 
 ```js run
 let str = "Hello";
@@ -9,16 +8,17 @@ str.test = 5; // (*)
 alert(str.test);
 ```
 
-Depending on whether you have `use strict` or not, the result may be:
-1. `undefined` (no strict mode)
-2. An error (strict mode).
+根據你是否有使用 `use strict`，結果可能會是：
+1. `undefined`（沒用嚴格模式）
+2. 錯誤（嚴格模式）
 
-Why? Let's replay what's happening at line `(*)`:
+為什麼？來重播一下 `(*)` 這行發生什麼事：
 
-1. When a property of `str` is accessed, a "wrapper object" is created.
-2. In strict mode, writing into it is an error.
-3. Otherwise, the operation with the property is carried on, the object gets the `test` property, but after that the "wrapper object" disappears, so in the last line `str` has no trace of the property.
+1. 當 `str` 的屬性被存取時，"包裝物件" 被建立了。
+2. 在嚴格模式下，寫入它會造成錯誤。
+3. 否則，該屬性操作會被執行，該物件得到 `test` 的屬性，但在那之後 "包裝物件" 消失了，所以最後一行的 `str` 沒有該屬性的蹤跡。
 
-**This example clearly shows that primitives are not objects.**
+**這個例子清楚顯示原生類型並非物件。**
 
-They can't store additional data.
+它們不能儲存額外的資料。
+
