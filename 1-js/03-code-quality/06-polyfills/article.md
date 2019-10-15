@@ -1,25 +1,25 @@
 
 # Polyfills
 
-JavaScript 語言穩定發展。有關該語言的新提案會定期出現，他們會被分析，而且如果被認為有價值，則會新增到 <https://tc39.github.io/ecma262/> 的列表中，然後進展至 [規格](http://www.ecma-international.org/publications/standards/Ecma-262.htm)。
+    JavaScript 語言穩定發展。有關該語言的新提案會定期出現，他們會被分析，而且如果被認為有價值，則會新增到 <https://tc39.github.io/ecma262/> 的列表中，然後進展至 [規格](http://www.ecma-international.org/publications/standards/Ecma-262.htm)。
 
-JavaScript 引擎背後的團隊對於首先實現什麼有自己的想法。他們可能會決定先實做草案中的提案，反而推延規格中已經存在的提案，因為它們不那麼有趣或純粹只是比較難做。
+    JavaScript 引擎背後的團隊對於首先實現什麼有自己的想法。他們可能會決定先實做草案中的提案，反而推延規格中已經存在的提案，因為它們不那麼有趣或純粹只是比較難做。
 
-因此，引擎僅實現部分標準是很普遍的。
+    因此，引擎僅實現部分標準是很普遍的。
 
-<https://kangax.github.io/compat-table/es6/> 是一個很好的頁面，可以看到目前對語言功能的支援狀態（它很多，我們還有很多要研究）。
+    <https://kangax.github.io/compat-table/es6/> 是一個很好的頁面，可以看到目前對語言功能的支援狀態（它很多，我們還有很多要研究）。
 
 ## Babel
 
-當我們使用語言的現代功能時，某些引擎可能無法支援這類型的程式碼。就像之前說的，並非所有功能都在各處實現。
+    當我們使用語言的現代功能時，某些引擎可能無法支援這類型的程式碼。就像之前說的，並非所有功能都在各處實現。
 
-Babel 是一帖良方。
+    Babel 是一帖良方。
 
-[Babel](https://babeljs.io) 是一個 [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)。它將現代的 JavaScript 程式碼重寫成符合舊版的標準。
+    [Babel](https://babeljs.io) 是一個 [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)。它將現代的 JavaScript 程式碼重寫成符合舊版的標準。
 
-實際上，Babel 有兩個部分：
+    實際上，Babel 有兩個部分：
 
-1. 首先，是 transpiler 程序，該程序重寫程式碼。開發人員在自己的電腦上運行它。它將程式碼重寫為較舊的標準。然後將程式碼交付給用戶的網站。諸如 [webpack](http://webpack.github.io/) 之類的現代專案建置系統提供了每次程式碼變更時自動運行 transpiler 的方法，因此極易整合到開發過程。
+    1. 首先，是 transpiler 程序，該程序重寫程式碼。開發人員在自己的電腦上運行它。它將程式碼重寫為較舊的標準。然後將程式碼交付給用戶的網站。諸如 [webpack](http://webpack.github.io/) 之類的現代專案建置系統提供了每次程式碼變更時自動運行 transpiler 的方法，因此極易整合到開發過程。
 
 2. 第二，polyfill。
 
