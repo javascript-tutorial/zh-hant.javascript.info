@@ -4,11 +4,11 @@
 
 ## 規格書
 
-[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) 規格書包含了 JavaScript 最深入、詳細以及形式化的資訊。事實上它就定義了這門語言。
+[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) 規格書包含了 JavaScript 最深入、詳細以及形式化的資訊。它定義了這門語言。
 
 但就因為它太形式化了，一開始你會很難讀得懂。如果你需要關於這門語言最可靠的資源，來看規格書就對了，但它不太適合你拿來日常使用。
 
-每年都會有特定的新版本釋出，若想看不同的釋出版本的最新草案可以看這 <https://tc39.es/ecma262/>。
+每年都會有新規格版本釋出，這些釋出版本之間的最新規格草案在這 <https://tc39.es/ecma262/>。
 
 如果你想知道最尖端的功能，包含那些 "即將成為標準"（所謂 "stage 3"）的功能，可以看一下 <https://github.com/tc39/proposals>。
 

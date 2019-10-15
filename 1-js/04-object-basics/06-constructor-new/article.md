@@ -51,7 +51,7 @@ function User(name) {
 }
 ```
 
-所以 `let user = new User("Jack")` 給了像這樣的結果：
+所以 `let user = new User("Jack")` 給了同樣的結果：
 
 ```js
 let user = {

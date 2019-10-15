@@ -32,6 +32,7 @@
 以下是一些值得考慮的選擇：
 
 - [Atom](https://atom.io/)（跨平台，免費）。
+- [Visual Studio Code](https://code.visualstudio.com/)（跨平台，免費）.
 - [Sublime Text](http://www.sublimetext.com)（跨平台，共享軟體）。
 - [Notepad++](https://notepad-plus-plus.org/)（Windows，免費）。
 - [Vim](http://www.vim.org/) 和 [Emacs](https://www.gnu.org/software/emacs/) 也很不錯，前提是你要知道怎麼使用。
