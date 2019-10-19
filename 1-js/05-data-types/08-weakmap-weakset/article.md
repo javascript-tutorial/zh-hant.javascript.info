@@ -1,43 +1,44 @@
-# WeakMap and WeakSet
+# WeakMap 和 WeakSet
 
-As we know from the chapter <info:garbage-collection>, JavaScript engine stores a value in memory while it is reachable (and can potentially be used).
+如同我們從章節 <info:garbage-collection> 得知的，JavaScript 引擎會將可到達的（且有可能會被使用到的）值儲存在記憶體中。
 
-For instance:
+舉例來說：
+
 ```js
 let john = { name: "John" };
 
-// the object can be accessed, john is the reference to it
+// 該物件可以被存取，john 為其參考。
 
-// overwrite the reference
+// 覆寫其參考
 john = null;
 
 *!*
-// the object will be removed from memory
+// 該物件將會從記憶體中被移除
 */!*
 ```
 
-Usually, properties of an object or elements of an array or another data structure are considered reachable and kept in memory while that data structure is in memory.
+通常，一個物件的屬性，或陣列中的元素，或是其他資料結構會被視為可到達的，且當其在記憶體中時，會被保留於記憶體內。
 
-For instance, if we put an object into an array, then while the array is alive, the object will be alive as well, even if there are no other references to it.
+例如，如果我們將一個物件放入一個陣列，當此陣列還活著時，該物件也將會活著，即使沒有其他參考指向它。
 
-Like this:
+像這樣：
 
 ```js
 let john = { name: "John" };
 
 let array = [ john ];
 
-john = null; // overwrite the reference
+john = null; // 覆寫其參考
 
 *!*
-// john is stored inside the array, so it won't be garbage-collected
-// we can get it as array[0]
+// john 被儲存於陣列內，所以它不會被垃圾回收掉。
+// 我們可以透過 array[0] 來存取它。
 */!*
 ```
 
-Similar to that, if we use an object as the key in a regular `Map`, then while the `Map` exists, that object exists as well. It occupies memory and may not be garbage collected.
+類似於此，如果我們將一個物件當作一個普通 `Map` 的鍵值，當 `Map` 存在時，該物件也會存在。它會佔據記憶體，且可能不會被垃圾回收。
 
-For instance:
+例如：
 
 ```js
 let john = { name: "John" };
@@ -45,36 +46,36 @@ let john = { name: "John" };
 let map = new Map();
 map.set(john, "...");
 
-john = null; // overwrite the reference
+john = null; // 覆寫其參考
 
 *!*
-// john is stored inside the map,
-// we can get it by using map.keys()
+// john 存在於 map 內，
+// 我們可以用 map.keys() 來取得它
 */!*
 ```
 
-`WeakMap` is fundamentally different in this aspect. It doesn't prevent garbage-collection of key objects.
+`WeakMap` 在此方面有著根本上的不同。它並不會防止關鍵物件被垃圾回收。
 
-Let's see what it means on examples.
+讓我們從範例來看看這代表什麼意思。
 
 ## WeakMap
 
-The first difference from `Map` is that `WeakMap` keys must be objects, not primitive values:
+與 `Map` 的第一個差異是，`WeakMap` 一定要是物件，不能是原始類型數值：
 
 ```js run
 let weakMap = new WeakMap();
 
 let obj = {};
 
-weakMap.set(obj, "ok"); // works fine (object key)
+weakMap.set(obj, "ok"); // 正常運作 (物件當作鍵值)
 
 *!*
-// can't use a string as the key
-weakMap.set("test", "Whoops"); // Error, because "test" is not an object
+// 不能用字串當作鍵值
+weakMap.set("test", "Whoops"); // 錯誤, 因為 "test" 並非一個物件
 */!*
 ```
 
-Now, if we use an object as the key in it, and there are no other references to that object -- it will be removed from memory (and from the map) automatically.
+現在，如果我們在裡面用物件當作鍵值，且沒有其他參考指向該物件 -- 它將會自動的從記憶體中被移除（還有從 map 中移除）
 
 ```js
 let john = { name: "John" };
@@ -82,89 +83,89 @@ let john = { name: "John" };
 let weakMap = new WeakMap();
 weakMap.set(john, "...");
 
-john = null; // overwrite the reference
+john = null; // 覆寫參考
 
-// john is removed from memory!
+// john 從記憶體中被移除了！
 ```
 
-Compare it with the regular `Map` example above. Now if `john` only exists as the key of `WeakMap` -- it will be automatically deleted from the map (and memory).
+與上面普通的 `Map` 範例比較。若現在 `john` 只在 `WeakMap` 中作為鍵值存在 -- 它將會自動地從 map（和記憶體）中刪除。
 
-`WeakMap` does not support iteration and methods `keys()`, `values()`, `entries()`, so there's no way to get all keys or values from it.
+`WeakMap` 不支援迭代和方法 `keys()`、`values()`、`entries()`，所以沒有方法可以從中取得所有的鍵與值。
 
-`WeakMap` has only the following methods:
+`WeakMap` 只有下面的方法：
 
 - `weakMap.get(key)`
 - `weakMap.set(key, value)`
 - `weakMap.delete(key)`
 - `weakMap.has(key)`
 
-Why such a limitation? That's for technical reasons. If an object has lost all other references (like `john` in the code above), then it is to be garbage-collected automatically. But technically it's not exactly specified *when the cleanup happens*.
+為什麼有這樣的限制？這是為了技術上的原因。如果一個物件喪失了其他所有的參考（如上述程式碼範例中的 `john`），那它會被自動垃圾回收掉。但技術上來說，並沒有明確指定 *何時要執行清理*。
 
-The JavaScript engine decides that. It may choose to perform the memory cleanup immediately or to wait and do the cleaning later when more deletions happen. So, technically the current element count of a `WeakMap` is not known. The engine may have cleaned it up or not, or did it partially. For that reason, methods that access all keys/values are not supported.
+由 JavaScript 引擎決定。它可能選擇立即執行記憶體清掃，或是等待晚點更多的刪除發生後再執行清理。所以，技術上來說，`WeakMap` 目前的元素數量是未知的。引擎可能會清理也可能不會，或是只做一部分。出於此因，不支援能夠存取所有鍵/值的方法。
 
-Now where do we need such data structure?
+好，那麼在哪種地方我們需要這樣的資料結構呢？
 
-## Use case: additional data
+## 使用案例: 附加的資料
 
-The main area of application for `WeakMap` is an *additional data storage*.
+`WeakMap` 的主要應用領域是 *附加的資料儲存空間*。
 
-If we're working with an object that "belongs" to another code, maybe even a third-party library, and would like to store some data associated with it, that should only exist while the object is alive - then `WeakMap` is exactly what's needed.
+如果我們正在操作一個 "屬於" 其他程式碼的物件，甚至可能是一個第三方套件，然後我們想要儲存一些資料，那些資料與此相關，但只有在物件活著時存在 - 那 `WeakMap` 就是我們需要的。
 
-We put the data to a `WeakMap`, using the object as the key, and when the object is garbage collected, that data will automatically disappear as well.
+我們將資料放入一個 `WeakMap`，用物件當作鍵值，然後當物件被垃圾回收時，該資料也會自動消失。
 
 ```js
 weakMap.set(john, "secret documents");
-// if john dies, secret documents will be destroyed automatically
+// 如果 john 死了，secret documents 將會被自動消滅。
 ```
 
-Let's look at an example.
+讓我們來看一個範例。
 
-For instance, we have code that keeps a visit count for users. The information is stored in a map: a user object is the key and the visit count is the value. When a user leaves (its object gets garbage collected), we don't want to store their visit count anymore.
+例如，我們有一份程式碼，保持的使用者的訪問數量。該資訊是儲存於一個 map 中：一個 user 物件是一個鍵，而訪問數量是值。當一個使用者離開（它的物件被資料回收），我們也不會想要儲存著它的訪問數量了。
 
-Here's an example of a counting function with `Map`:
+這裡是一個帶有 `Map` 的計算函式：
 
 ```js
 // 📁 visitsCount.js
-let visitsCountMap = new Map(); // map: user => visits count
+let visitsCountMap = new Map(); // map: user => 訪問數量
 
-// increase the visits count
+// 增加訪問數量
 function countUser(user) {
   let count = visitsCountMap.get(user) || 0;
   visitsCountMap.set(user, count + 1);
 }
 ```
 
-And here's another part of the code, maybe another file using it:
+這裡是程式碼的另一部分，可能是另一份檔案在使用它：
 
 ```js
 // 📁 main.js
 let john = { name: "John" };
 
-countUser(john); // count his visits
+countUser(john); // 它的訪問數量
 countUser(john);
 
-// later john leaves us
+// 晚點 john 離開了我們
 john = null;
 ```
 
-Now `john` object should be garbage collected, but remains in memory, as it's a key in `visitsCountMap`.
+現在 `john` 物件應該要被垃圾回收，但還是存在於記憶體中，是 `visitsCountMap` 中的一個鍵。
 
-We need to clean `visitsCountMap` when we remove users, otherwise it will grow in memory indefinitely. Such cleaning can become a tedious task in complex architectures.
+當我們移除使用者時，我們需要清理 `visitsCountMap`，否則記憶體會無窮擴大。在複雜的架構中，這樣的清潔可能會是一個繁瑣乏味的任務。
 
-We can avoid it by switching to `WeakMap` instead:
+我們可以用 `WeakMap` 來取代並避免上述狀況：
 
 ```js
 // 📁 visitsCount.js
-let visitsCountMap = new WeakMap(); // weakmap: user => visits count
+let visitsCountMap = new WeakMap(); // weakmap: user => 訪問數量
 
-// increase the visits count
+// 增加訪問數量
 function countUser(user) {
   let count = visitsCountMap.get(user) || 0;
   visitsCountMap.set(user, count + 1);
 }
 ```
 
-Now we don't have to clean `visitsCountMap`. After `john` object becomes unreachable by all means except as a key of `WeakMap`, it gets removed from memory, along with the information by that key from `WeakMap`.
+現在我們不用清理 `visitsCountMap`。當 `john` 物件變得不可存取，只剩下作為 `WeakMap` 的鍵後，它從記憶體中被移除，連同那些從 `WeakMap` 的鍵得來的資訊。
 
 ## Use case: caching
 
