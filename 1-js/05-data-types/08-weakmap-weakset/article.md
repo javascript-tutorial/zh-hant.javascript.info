@@ -60,7 +60,7 @@ john = null; // 覆寫其參考
 
 ## WeakMap
 
-與 `Map` 的第一個差異是，`WeakMap` 一定要是物件，不能是原始類型數值：
+與 `Map` 的第一個差異是，`WeakMap` 一定要是物件，不能是原生類型數值：
 
 ```js run
 let weakMap = new WeakMap();
@@ -245,7 +245,7 @@ obj = null;
 
 `WeakSet` 有類似的行為：
 
-- 它類似於 `Set`，但我們只能將物件加入 `WeakSet`（原始類型不行）。
+- 它類似於 `Set`，但我們只能將物件加入 `WeakSet`（原生值不行）。
 - 當它還可從其他地方被存取時，物件就還會存在於集合中。
 - 像是 `Set`，它支援 `add`、`has` 和 `delete`，但不支援 `size`、`keys()` 且沒有迭代。
 
