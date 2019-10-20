@@ -167,20 +167,20 @@ function countUser(user) {
 
 現在我們不用清理 `visitsCountMap`。當 `john` 物件變得不可存取，只剩下作為 `WeakMap` 的鍵後，它從記憶體中被移除，連同那些從 `WeakMap` 的鍵得來的資訊。
 
-## Use case: caching
+##  使用案例: 快取（caching）
 
-Another common example is caching: when a function result should be remembered ("cached"), so that future calls on the same object reuse it.
+另一個常見的範例是快取：當一個函數的結果應該要被記得（"快取"），這樣之後呼叫相同物件時可以重複使用。
 
-We can use `Map` to store results, like this:
+我們可以用 `Map` 來存結果，像這樣：
 
 ```js run
 // 📁 cache.js
 let cache = new Map();
 
-// calculate and remember the result
+// 計算並將結果記起來
 function process(obj) {
   if (!cache.has(obj)) {
-    let result = /* calculations of the result for */ obj;
+    let result = obj /* 的計算結果 */;
 
     cache.set(obj, result);
   }
@@ -189,26 +189,26 @@ function process(obj) {
 }
 
 *!*
-// Now we use process() in another file:
+// 現在我們可以在另一個檔案中使用 process()：
 */!*
 
 // 📁 main.js
-let obj = {/* let's say we have an object */};
+let obj = {/* 假設我們有一個物件 */};
 
-let result1 = process(obj); // calculated
+let result1 = process(obj); // 計算
 
-// ...later, from another place of the code...
-let result2 = process(obj); // remembered result taken from cache
+// ...之後，從程式碼的別處
+let result2 = process(obj); // 從快取中取出紀錄的結果
 
-// ...later, when the object is not needed any more:
+// ...之後，當物件不再被需要：
 obj = null;
 
-alert(cache.size); // 1 (Ouch! The object is still in cache, taking memory!)
+alert(cache.size); // 1（哎呦！該物件還是在物件中，佔據記憶體！）
 ```
 
-For multiple calls of `process(obj)` with the same object, it only calculates the result the first time, and then just takes it from `cache`. The downside is that we need to clean `cache` when the object is not needed any more.
+針對同個物件多次呼叫 `process(obj)`，只有第一次會進行計算，之後就只從 `cache` 中取出結果。這樣做的缺點是，當物件不再被需要時，我們需要清除 `cache`。
 
-If we replace `Map` with `WeakMap`, then this problem disappears: the cached result will be removed from memory automatically after the object gets garbage collected.
+如果我們用 `WeakMap` 取代 `Map`，那這問題就不復存在了：快取結果會在物件被垃圾回收後，自動從記憶體中被移除。
 
 ```js run
 // 📁 cache.js
@@ -216,10 +216,10 @@ If we replace `Map` with `WeakMap`, then this problem disappears: the cached res
 let cache = new WeakMap();
 */!*
 
-// calculate and remember the result
+// 計算且記住結果
 function process(obj) {
   if (!cache.has(obj)) {
-    let result = /* calculate the result for */ obj;
+    let result = obj /* 的計算結果 */;
 
     cache.set(obj, result);
   }
@@ -228,30 +228,30 @@ function process(obj) {
 }
 
 // 📁 main.js
-let obj = {/* some object */};
+let obj = {/* 一些物件 */};
 
 let result1 = process(obj);
 let result2 = process(obj);
 
-// ...later, when the object is not needed any more:
+// ...之後，當物件不再被需要：
 obj = null;
 
-// Can't get cache.size, as it's a WeakMap,
-// but it's 0 or soon be 0
-// When obj gets garbage collected, cached data will be removed as well
+// 無法取得 cache.size，因為這是 WeakMp，
+// 但它會是 0 或是很快就會是 0
+// 當物件被垃圾回收，快取資料也會被一併移除。
 ```
 
 ## WeakSet
 
-`WeakSet` behaves similarly:
+`WeakSet` 有類似的行為：
 
-- It is analogous to `Set`, but we may only add objects to `WeakSet` (not primitives).
-- An object exists in the set while it is reachable from somewhere else.
-- Like `Set`, it supports `add`, `has` and `delete`, but not `size`, `keys()` and no iterations.
+- 它類似於 `Set`，但我們只能將物件加入 `WeakSet`（原始類型不行）。
+- 當它還可從其他地方被存取時，物件就還會存在於集合中。
+- 像是 `Set`，它支援 `add`、`has` 和 `delete`，但不支援 `size`、`keys()` 且沒有迭代。
 
-Being "weak", it also serves as an additional storage. But not for an arbitrary data, but rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
+身為 "weak"，它也可作為額外的儲存空間。但不是給隨意的資料使用，而是針對 "是/否" 這類的事實陳述。`WeakSet` 中的成員關係可能代表物件的某些資訊。
 
-For instance, we can add users to `WeakSet` to keep track of those who visited our site:
+舉例來說，我們可以使用者加入 `WeakSet` 來追蹤誰曾拜訪過我們的網站：
 
 ```js run
 let visitedSet = new WeakSet();
@@ -260,31 +260,31 @@ let john = { name: "John" };
 let pete = { name: "Pete" };
 let mary = { name: "Mary" };
 
-visitedSet.add(john); // John visited us
-visitedSet.add(pete); // Then Pete
-visitedSet.add(john); // John again
+visitedSet.add(john); // John 拜訪過我們
+visitedSet.add(pete); // 接著是 Pete
+visitedSet.add(john); // John 再度拜訪
 
-// visitedSet has 2 users now
+// visitedSet 現在有兩個使用者
 
-// check if John visited?
+// 檢查 John 是否拜訪過？
 alert(visitedSet.has(john)); // true
 
-// check if Mary visited?
+// 檢查 Mary 是否拜訪過？
 alert(visitedSet.has(mary)); // false
 
 john = null;
 
-// visitedSet will be cleaned automatically
+// visitedSet 將會被自動清理。
 ```
 
-The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterations, and inability to get all current content. That may appear inconvenient, but does not prevent `WeakMap/WeakSet` from doing their main job -- be an "additional" storage of data for objects which are stored/managed at another place.
+`WeakMap` 與 `WeakSet` 最值得注意的限制是缺乏迭代功能，以及無法一次取得目前所有的內容。這可能很不方便，但並不影響 `WeakMap/WeakSet` 執行他們的主要工作 -- 為在另一個地方被儲存/管理的物件提供一個 "額外" 的儲存空間來儲存其資料。
 
-## Summary
+## 總結
 
-`WeakMap` is `Map`-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
+`WeakMap` 是一個類似 `Map` 的集合，只允許用物件當作鍵，且當其關聯的值不再能夠被存取時，會跟著一同被移除。
 
-`WeakSet` is `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
+`WeakSet` 是一個類似 `Set` 的集合，只能儲存物件，且當該物件不再能夠被存取時，會跟著一同被移除。
 
-Both of them do not support methods and properties that refer to all keys or their count. Only individual operations are allowed.
+它們兩個都不支援能夠存取所有鍵或是計數值的方法或屬性。只允許個別的操作。
 
-`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, if it is only found as the key of `WeakMap` or in a `WeakSet`, it will be cleaned up automatically.
+`WeakMap` 和 `WeakSet` 被作為附加於 "主要" 物件儲存空間的 "第二個" 資料結構。一但物件從主要儲存空間中被移除，如果該物件只被當作 `WeakMap` 的鍵，或是只存在於 `WeakSet` 中，那它將會自動被清除。
