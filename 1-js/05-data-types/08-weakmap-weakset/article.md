@@ -1,6 +1,6 @@
 # WeakMap 和 WeakSet
 
-如同我們從章節 <info:garbage-collection> 得知的，JavaScript 引擎會將可存取的（且有可能會被使用到的）值儲存在記憶體中。
+如同我們從章節 <info:garbage-collection> 得知的，JavaScript 引擎會將可達的（且有可能會被使用到的）值儲存在記憶體中。
 
 舉例來說：
 
@@ -17,7 +17,7 @@ john = null;
 */!*
 ```
 
-通常，一個物件的屬性，或陣列中的元素，或是其他資料結構會被視為可存取的，且當其在記憶體中時，會被保留於記憶體內。
+通常，物件的屬性，陣列的元素或是其它資料結構，在其容器資料結構還存在記憶體中時，會被視為可達的並被持續留在記憶體中。
 
 例如，如果我們將一個物件放入一個陣列，當此陣列還活著時，該物件也將會活著，即使沒有其他參考指向它。
 
@@ -54,13 +54,13 @@ john = null; // 覆寫其參考
 */!*
 ```
 
-`WeakMap` 在此方面有著根本上的不同。它並不會防止關鍵物件被垃圾回收。
+`WeakMap` 在此方面有著根本上的不同。它並不會防止鍵值物件被垃圾回收。
 
 讓我們從範例來看看這代表什麼意思。
 
 ## WeakMap
 
-與 `Map` 的第一個差異是，`WeakMap` 一定要是物件，不能是原生類型數值：
+與 `Map` 的第一個差異是，`WeakMap` 一定要是物件，不能是原生類型值：
 
 ```js run
 let weakMap = new WeakMap();
@@ -75,7 +75,7 @@ weakMap.set("test", "Whoops"); // 錯誤, 因為 "test" 並非一個物件
 */!*
 ```
 
-現在，如果我們在裡面用物件當作鍵值，且沒有其他參考指向該物件 -- 它將會自動的從記憶體中被移除（還有從 map 中移除）
+現在，如果我們在裡面用物件當作鍵值，且沒有其他參考指向該物件 -- 它將會自動從記憶體中被移除（還有從 map 中移除）
 
 ```js
 let john = { name: "John" };
@@ -88,7 +88,7 @@ john = null; // 覆寫參考
 // john 從記憶體中被移除了！
 ```
 
-與上面普通的 `Map` 範例比較。若現在 `john` 只在 `WeakMap` 中作為鍵值存在 -- 它將會自動地從 map（和記憶體）中刪除。
+與上面普通的 `Map` 範例比較。若現在 `john` 僅存在於 `WeakMap` 的鍵之中 -- 它將會自動地從 map（和記憶體）中刪除。
 
 `WeakMap` 不支援迭代和方法 `keys()`、`values()`、`entries()`，所以沒有方法可以從中取得所有的鍵與值。
 
@@ -120,15 +120,15 @@ weakMap.set(john, "secret documents");
 
 讓我們來看一個範例。
 
-例如，我們有一份程式碼，保持的使用者的訪問數量。該資訊是儲存於一個 map 中：一個 user 物件是一個鍵，而訪問數量是值。當一個使用者離開（它的物件被資料回收），我們也不會想要儲存著它的訪問數量了。
+例如，我們有一份程式碼，用於保留使用者們訪問的次數。該資訊儲存於一個 map 中：某個 user 物件做為鍵，而訪問次數是值。當有個使用者離開（它的物件被資料回收），我們就也不想儲存它的訪問次數了。
 
-這裡是一個帶有 `Map` 的計算函式：
+這是一個使用 `Map` 的計次函式：
 
 ```js
 // 📁 visitsCount.js
-let visitsCountMap = new Map(); // map: user => 訪問數量
+let visitsCountMap = new Map(); // map: user => 訪問次數
 
-// 增加訪問數量
+// 增加訪問次數
 function countUser(user) {
   let count = visitsCountMap.get(user) || 0;
   visitsCountMap.set(user, count + 1);
@@ -141,14 +141,14 @@ function countUser(user) {
 // 📁 main.js
 let john = { name: "John" };
 
-countUser(john); // 它的訪問數量
+countUser(john); // 它的訪問次數
 countUser(john);
 
 // 晚點 john 離開了我們
 john = null;
 ```
 
-現在 `john` 物件應該要被垃圾回收，但還是存在於記憶體中，是 `visitsCountMap` 中的一個鍵。
+現在 `john` 物件應該要被垃圾回收，但卻還是作為 `visitsCountMap` 中的一個鍵存在於記憶體中。
 
 當我們移除使用者時，我們需要清理 `visitsCountMap`，否則記憶體會無窮擴大。在複雜的架構中，這樣的清潔可能會是一個繁瑣乏味的任務。
 
@@ -156,9 +156,9 @@ john = null;
 
 ```js
 // 📁 visitsCount.js
-let visitsCountMap = new WeakMap(); // weakmap: user => 訪問數量
+let visitsCountMap = new WeakMap(); // weakmap: user => 訪問次數
 
-// 增加訪問數量
+// 增加訪問次數
 function countUser(user) {
   let count = visitsCountMap.get(user) || 0;
   visitsCountMap.set(user, count + 1);
@@ -169,7 +169,7 @@ function countUser(user) {
 
 ##  使用案例: 快取（caching）
 
-另一個常見的範例是快取：當一個函數的結果應該要被記得（"快取"），這樣之後呼叫相同物件時可以重複使用。
+另一個常見的範例是快取：當一個函數的結果應該要被記憶住（"快取"），這樣之後呼叫相同物件時可以重複使用。
 
 我們可以用 `Map` 來存結果，像這樣：
 
@@ -180,7 +180,7 @@ let cache = new Map();
 // 計算並將結果記起來
 function process(obj) {
   if (!cache.has(obj)) {
-    let result = obj /* 的計算結果 */;
+    let result; // = obj 的計算結果
 
     cache.set(obj, result);
   }
@@ -203,7 +203,7 @@ let result2 = process(obj); // 從快取中取出紀錄的結果
 // ...之後，當物件不再被需要：
 obj = null;
 
-alert(cache.size); // 1（哎呦！該物件還是在物件中，佔據記憶體！）
+alert(cache.size); // 1（哎呦！該物件還是在快取中，佔據記憶體！）
 ```
 
 針對同個物件多次呼叫 `process(obj)`，只有第一次會進行計算，之後就只從 `cache` 中取出結果。這樣做的缺點是，當物件不再被需要時，我們需要清除 `cache`。
@@ -219,7 +219,7 @@ let cache = new WeakMap();
 // 計算且記住結果
 function process(obj) {
   if (!cache.has(obj)) {
-    let result = obj /* 的計算結果 */;
+    let result; // = obj 的計算結果
 
     cache.set(obj, result);
   }
@@ -251,7 +251,7 @@ obj = null;
 
 身為 "weak"，它也可作為附加的儲存空間。但不是給隨意的資料使用，而是針對 "是/否" 這類的事實陳述。`WeakSet` 中的成員關係可能代表物件的某些資訊。
 
-舉例來說，我們可以使用者加入 `WeakSet` 來追蹤誰曾拜訪過我們的網站：
+舉例來說，我們可以將使用者加入 `WeakSet` 來追蹤誰曾拜訪過我們的網站：
 
 ```js run
 let visitedSet = new WeakSet();
@@ -287,4 +287,4 @@ john = null;
 
 它們兩個都不支援能夠存取所有鍵或是計數值的方法或屬性。只允許個別的操作。
 
-`WeakMap` 和 `WeakSet` 被作為附加於 "主要" 物件儲存空間的 "第二個" 資料結構。一但物件從主要儲存空間中被移除，如果該物件只被當作 `WeakMap` 的鍵，或是只存在於 `WeakSet` 中，那它將會自動被清除。
+`WeakMap` 和 `WeakSet` 被作為附加於 "主要" 物件儲存空間的 "次要" 資料結構。一但物件從主要儲存空間中被移除，如果該物件只被當作 `WeakMap` 的鍵，或是只存在於 `WeakSet` 中，那它將會自動被清除。
