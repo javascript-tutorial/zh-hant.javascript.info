@@ -165,7 +165,7 @@ function countUser(user) {
 }
 ```
 
-現在我們不用清理 `visitsCountMap` 了。當 `john` 物件變得除了作為 `WeakMap` 的鍵值以外，其餘皆不可達的情況時，它就會連同那些從 `WeakMap` 的鍵得來的資訊，一起從記憶體中被移除。
+現在我們不用清理 `visitsCountMap` 了。當 `john` 物件變成除了作為 `WeakMap` 的鍵值以外，其餘皆不可達的情況時，它就會連同那些從 `WeakMap` 的鍵得來的資訊，一起從記憶體中被移除。
 
 ##  使用案例: 快取（caching）
 
