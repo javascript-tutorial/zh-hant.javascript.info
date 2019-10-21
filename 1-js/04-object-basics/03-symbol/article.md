@@ -50,9 +50,9 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 */!*
 ```
 
-這是一種防止混亂的 "語言防範（language guard）"，因為字串與 Symbol 有本質上的不同，不應該意外的將它們互相轉換。
+這是一種防止混亂的 "語言防範（language guard）"，因為字串與 Symbol 有本質上的不同，不應該意外地將它們互相轉換。
 
-如果我們真的想要顯示一個Symbol，我們需要在它上面明確的呼叫 `.toString()`，像這樣：
+如果我們真的想要顯示一個Symbol，我們需要在它上面明確地呼叫 `.toString()`，像這樣：
 
 ```js run
 let id = Symbol("id");
@@ -75,9 +75,9 @@ alert(id.description); // id
 
 Symbol 允許我們創建物件的 "隱藏" 屬性，其它部分的程式碼都無法意外存取到或是覆寫它。
 
-舉例來說，如果我們正在操作一個屬於第三方程式碼的 `user` 物件們。我們想要增加屬性到它們上。
+舉例來說，如果我們正在操作屬於第三方程式碼的 `user` 物件們。我們想要增加識別符到它們上。
 
-讓我們用一個 Symbol 來處理：
+讓我們用一個 Symbol 的鍵值來處理：
 
 ```js run
 let user = { // 屬於另一份程式碼
@@ -119,7 +119,7 @@ user.id = "Our id value";
 // ...另一個腳本也想使用 "id"...
 
 user.id = "Their id value"
-// Boom! 被另一個腳本給覆寫了！
+// 碰！被另一個腳本給覆寫了！
 ```
 
 ### 字面值中的符號
@@ -165,7 +165,7 @@ alert( "Direct: " + user[id] );
 
 `Object.keys(user)` 也會忽略它們。那是一般 Symbol 中 "隱藏屬性" 原則的一部分。如果另一個腳本或是一個套件在我們的物件上循環，它不會不小心存取到 Symbol 類型的屬性。
 
-相反的 [Object.assign](mdn:js/Object/assign) 同時複製字串與 Symbol 屬性：
+相反地，[Object.assign](mdn:js/Object/assign) 同時複製字串與 Symbol 屬性：
 
 
 ```js run
@@ -179,19 +179,19 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-這裡沒有悖論。就是這樣設計的。想法是當我們複製一個物件，或是合併多個物件時，我們通常想要 *所有* 屬性都被複製（包含像 `id` 這樣的 Symbol ）。
+這裡沒有矛盾，就是這樣設計的。想法是當我們複製一個物件，或是合併多個物件時，我們通常想要 *所有* 屬性都被複製（包含像 `id` 這樣的 Symbol ）。
 
 ````smart header="其它類別的屬性件值會被強行轉換成字串"
 在物件中，我們只能使用字串或 Symbol 當作鍵值。其它類型都會被轉成字串。
 
-舉例來說，當一個數字 `0` 被用來當作屬性健值時，它會變成一個字串 `"0"`：
+舉例來說，當一個數值 `0` 被用來當作屬性健值時，它會變成一個字串 `"0"`：
 
 ```js run
 let obj = {
   0: "test" // 跟 "0": "test" 一樣
 };
 
-// 兩個 alerts 都存取到同樣的屬性（數字 0 被轉換成字串 "0"）
+// 兩個 alerts 都存取到同樣的屬性（數值 0 被轉換成字串 "0"）
 alert( obj["0"] ); // test
 alert( obj[0] ); // test (同樣的屬性)
 ```
@@ -205,12 +205,12 @@ alert( obj[0] ); // test (同樣的屬性)
 
 為了從註冊表中讀取（如果不存在就創建）Symbol，請使用 `Symbol.for(key)`。
 
-該呼叫會檢查全局註冊表，若有個描述為 `key` 的 Symbol 存在，則回傳該 Symbol，否則就創建新的 Symbol `Symbol(key)` 並將其以 `key` 儲存到註冊表中。
+該呼叫會檢查全域註冊表，若有個描述為 `key` 的 Symbol 存在，則回傳該 Symbol，否則就以 `Symbol(key)` 創建新的 Symbol，並將其以 `key` 儲存到註冊表中。
 
 舉個例子：
 
 ```js run
-// 從全局註冊表中讀取
+// 從全域註冊表中讀取
 let id = Symbol.for("id"); // 如果該 Symbol 不存在，就創建它
 
 // 再次讀取它（或許從程式碼的另一個部分）
@@ -220,12 +220,12 @@ let idAgain = Symbol.for("id");
 alert( id === idAgain ); // true
 ```
 
-註冊表內的 Symbols 稱為 *全局 Symbol*。如果我們想要一個應用程序範圍內的 Symbol，可以在程式碼中隨處存取 -- 這就是它們的用途。
+註冊表內的 Symbols 稱為 *全域 Symbol*。如果我們想要一個應用程序範圍內的 Symbol，可以在程式碼中隨處存取 -- 這就是它們的用途。
 
 ```smart header="這聽起來像是 Ruby"
-在某些程式語言中，像是 Ruby，每個 Symbol 都有個名稱。
+在某些程式語言中，像是 Ruby，每個名稱都只有單一個 symbol。
 
-在 JavaScript 中，如我們所見，只有全局 Symbol 才是如此。
+在 JavaScript 中，如我們所見，只有全域 Symbol 才是如此。
 ```
 
 ### Symbol.keyFor
@@ -239,12 +239,12 @@ alert( id === idAgain ); // true
 let sym = Symbol.for("name");
 let sym2 = Symbol.for("id");
 
-// 根據名稱取得 Symbol
+// 根據 Symbol 取得名稱
 alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-`Symbol.keyFor` 在內部使用全局 Symbol 註冊表來查找 Symbol 的鍵值。所以它並不適用於非全局 Symbol。如果有一個 Symbol 不是全局的，此方法將無法找到它，並會回傳 `undefined`。
+`Symbol.keyFor` 在內部使用全域 Symbol 註冊表來查詢 Symbol 的鍵值。所以它並不適用於非全域的 Symbol。如果某個 Symbol 不是全域的，此方法將無法找到它，並會回傳 `undefined`。
 
 是說，任何 Symbol 都有 `description` 屬性。
 
@@ -255,7 +255,8 @@ let globalSymbol = Symbol.for("name");
 let localSymbol = Symbol("name");
 
 alert( Symbol.keyFor(globalSymbol) ); // name, 全局 symbol
-alert( Symbol.keyFor(localSymbol) ); // undefined, 非全局
+alert( Symbol.keyFor(globalSymbol) ); // name, 全域 symbol
+alert( Symbol.keyFor(localSymbol) ); // undefined, 非全域
 
 alert( localSymbol.description ); // name
 ```
@@ -264,7 +265,7 @@ alert( localSymbol.description ); // name
 
 JavaScript 內部存在許多 "系統" Symbol，我們可以使用它們來微調物件的各種方面。
 
-它們列在[熟悉的 symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols) 表的規格中：
+它們列在規格中的 [Well-known symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols) 表格內：
 
 - `Symbol.hasInstance`
 - `Symbol.isConcatSpreadable`
@@ -272,15 +273,15 @@ JavaScript 內部存在許多 "系統" Symbol，我們可以使用它們來微�
 - `Symbol.toPrimitive`
 - ...等等。
 
-例如，`Symbol.toPrimitive` 允許我們將物件描述為原始值轉換。我們很快就會看到它的使用。
+例如，`Symbol.toPrimitive` 允許我們將物件描述為原生值轉換。我們很快就會看到怎麼使用它。
 
 當我們研讀相應的語言特性時，也將會更熟悉其它 Symbol。
 
 ## 總結
 
-`Symbol` 是唯一識別符號的原始類別。
+`Symbol` 是用於標示唯一識別符號的原生類別。
 
-Symbol 使用 `Symbol()` 與一個可選的敘述作為參數來創建。
+Symbol 使用 `Symbol()` 與一個可選的敘述（名稱）作為參數來創建。
 
 Symbol 永遠是不同的值，即使它們擁有相同的名稱。如果我們想要同名的 Symbol 也相等，那我們應該使用全局註冊表：`Symbol.for(key)` 回傳（如果需要的話創建）一個以 `key` 作為名稱的全局 Symbol。針對相同的 `key` 以 `Symbol.for` 進行多次呼叫，都會回傳相通的 Symbol。
 
@@ -291,6 +292,6 @@ Symbol 有兩個主要使用場景：
 
     所以我們可以使用 Symbol 屬性， "秘密地" 將一些我們需要，但其它人不需要的東西藏進物件中。
 
-2. JavaScript 內部使用了許多系統 Symbol，這些 Symbol 可以以 `Symbol.*` 被存取。我們可以使用它們來更改一些內建的行為。舉例來說，在後面的教學我們將會在 [迭代](info:iterable) 中使用 `Symbol.iterator`，設定 [物件轉換原始值](info:object-toprimitive) 時使用 `Symbol.toPrimitive`，等等
+2. JavaScript 內部使用了許多系統 Symbol，以類似 `Symbol.*` 的形式被存取。我們可以使用它們來更改一些內建的行為。舉例來說，在之後的教程我們將會在 [迭代（iterables）](info:iterable) 中使用 `Symbol.iterator`，設定 [物件轉換原生值（object-to-primitive conversion）](info:object-toprimitive) 時使用 `Symbol.toPrimitive`，等等。
 
 從技術上來說，Symbol 並非 100% 隱藏。有一個內建方法 [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) 允許我們取得所有的 Symbol。另外，還有個方法叫做 [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) 會回傳物件中的 *所有* 鍵值，包含 Symbol。所以它們並非真的被隱藏。但大多套件、內建函式和語法結構都不會使用這些方法。
