@@ -255,7 +255,6 @@ let globalSymbol = Symbol.for("name");
 let localSymbol = Symbol("name");
 
 alert( Symbol.keyFor(globalSymbol) ); // name, 全局 symbol
-alert( Symbol.keyFor(globalSymbol) ); // name, 全域 symbol
 alert( Symbol.keyFor(localSymbol) ); // undefined, 非全域
 
 alert( localSymbol.description ); // name
