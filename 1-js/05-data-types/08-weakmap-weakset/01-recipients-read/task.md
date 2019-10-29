@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Store "unread" flags
+# 儲存 "未讀" 旗標
 
-There's an array of messages:
+有一個訊息陣列：
 
 ```js
 let messages = [
@@ -14,10 +14,10 @@ let messages = [
 ];
 ```
 
-Your code can access it, but the messages are managed by someone else's code. New messages are added, old ones are removed regularly by that code, and you don't know the exact moments when it happens.
+你的程式碼可以存取它，但這些訊息是被其他人的程式碼管理著。該程式碼定期地加入新訊息，移除舊訊息，而你不知道確切何時會發生這些變化。
 
-Now, which data structure could you use to store information about whether the message "has been read"? The structure must be well-suited to give the answer "was it read?" for the given message object.
+現在，哪一種資料結構你可以用來儲存訊息 "是否已被讀取"？該結構必須非常合適地針對給定的訊息物件給出 "它被讀取了嗎" 的答案。
 
-P.S. When a message is removed from `messages`, it should disappear from your structure as well.
+註：當一個訊息從 `messages` 中被移除時，它也應該要從你的結構中消失。
 
-P.P.S. We shouldn't modify message objects, add our properties to them. As they are managed by someone else's code, that may lead to bad consequences.
+註 2：我們不應該更動訊息物件，或是增加我們自己的屬性到上面。因為它們被其他人的程式碼管理著，這樣做可能會導致壞的後果。
