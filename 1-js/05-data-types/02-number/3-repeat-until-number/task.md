@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Repeat until the input is a number
+# 重複動作直到輸入的是個數值為止
 
-Create a function `readNumber` which prompts for a number until the visitor enters a valid numeric value.
+建立一個函式 `readNumber` 以提示（prompt）輸入數值，直到訪問者真的輸入有效數值為止。
 
-The resulting value must be returned as a number.
+結果值必須以數值回傳。
 
-The visitor can also stop the process by entering an empty line or pressing "CANCEL". In that case, the function should return `null`.
+訪問者也可以透過輸入空行或按下 "CANCEL" 來停止程序。在這個情況下，函式應該要回傳 `null`。
 
 [demo]
 

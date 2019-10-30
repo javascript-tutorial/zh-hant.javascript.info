@@ -1,6 +1,6 @@
-That's because `i` would never equal `10`.
+這是因為 `i` 永遠不會等於 `10`。
 
-Run it to see the *real* values of `i`:
+執行這段來看看 `i` *真實* 的值：
 
 ```js run
 let i = 0;
@@ -10,8 +10,9 @@ while (i < 11) {
 }
 ```
 
-None of them is exactly `10`.
+它們之中沒有恰好為 `10` 的值。
 
-Such things happen because of the precision losses when adding fractions like `0.2`.
+這種事情發生於因為加上像是`0.2` 這樣的分數，而導致的精度損失。
 
-Conclusion: evade equality checks when working with decimal fractions.
+結論：在使用十進位小數時，避免相等性確認。
+
