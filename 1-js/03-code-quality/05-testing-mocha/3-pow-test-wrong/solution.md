@@ -1,14 +1,15 @@
-The test demonstrates one of the temptations a developer meets when writing tests.
+該測試演示了開發者在寫測試時遇到的某種嘗試。
 
-What we have here is actually 3 tests, but layed out as a single function with 3 asserts.
+這邊我們實際上有三個測試，但卻只用單一個函式來寫三句斷言。
 
-Sometimes it's easier to write this way, but if an error occurs, it's much less obvious what went wrong.
+有時候這種方式更容易寫，但若問題產生時，想知道是什麼出問題也就更不明顯了。
 
-If an error happens in the middle of a complex execution flow, then we'll have to figure out the data at that point. We'll actually have to *debug the test*.
+若錯誤發生在複雜執行流程的中間，那我們得知道那個時間點的資料是什麼。我們實際上就必須 *除錯該測試*。
 
-It would be much better to break the test into multiple `it` blocks with clearly written inputs and outputs.
+將測試打散為多個清楚寫下輸出輸入的 `it` 區塊會更好。
 
-Like this:
+像這樣：
+
 ```js
 describe("Raises x to power n", function() {
   it("5 in the power of 1 equals 5", function() {
@@ -25,10 +26,9 @@ describe("Raises x to power n", function() {
 });
 ```
 
-We replaced the single `it` with `describe` and a group of `it` blocks. Now if something fails we would see clearly what the data was.
+我們替換單一個 `it` 成 `describe` 並組合 `it` 區塊們。現在若有東西失敗了，我們將可以清楚看出資料是什麼。
 
-Also we can isolate a single test and run it in standalone mode by writing `it.only` instead of `it`:
-
+同樣地，我們可以經由寫下 `it.only` 而非 `it`，以分離單一測試並在獨立模式中執行它：
 
 ```js
 describe("Raises x to power n", function() {
@@ -37,7 +37,7 @@ describe("Raises x to power n", function() {
   });
 
 *!*
-  // Mocha will run only this block
+  // Mocha 將只運行這個區塊
   it.only("5 in the power of 2 equals 25", function() {
     assert.equal(pow(5, 2), 25);
   });
@@ -48,3 +48,4 @@ describe("Raises x to power n", function() {
   });
 });
 ```
+
