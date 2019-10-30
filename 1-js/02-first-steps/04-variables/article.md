@@ -236,7 +236,7 @@ num = 5; // error: num is not defined
 const myBirthday = '18.04.1982';
 ```
 
-使用 `const` 宣告的變數稱為 "常數"，且不可再更動，嘗試去改變它會產生錯誤：
+使用 `const` 宣告的變數稱為 "常數"，它們不可再被重新指定，嘗試去指定的話會產生錯誤：
 
 ```js run
 const myBirthday = '18.04.1982';

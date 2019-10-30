@@ -1,17 +1,17 @@
-# Constructor, operator "new"
+# 建構子，"new" 運算子
 
-The regular `{...}` syntax allows to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+普通的 `{...}` 語法可以建立一個物件，但通常我們需要建立許多類似的物件，像是多個使用者或選單物品等等。
 
-That can be done using constructor functions and the `"new"` operator.
+這可以使用建構子函式和 `"new"` 運算子來完成。
 
-## Constructor function
+## 建構子函式
 
-Constructor functions technically are regular functions. There are two conventions though:
+建構子函式技術上是一般的函式，不過有兩個慣例：
 
-1. They are named with capital letter first.
-2. They should be executed only with `"new"` operator.
+1. 使用首個字母大寫來命名。
+2. 應該只使用 `"new"` 運算子來執行。
 
-For instance:
+舉個例：
 
 ```js run
 function User(name) {
@@ -27,31 +27,31 @@ alert(user.name); // Jack
 alert(user.isAdmin); // false
 ```
 
-When a function is executed with `new`, it does the following steps:
+當函式使用 `new` 被執行時，它會依照以下步驟：
 
-1. A new empty object is created and assigned to `this`.
-2. The function body executes. Usually it modifies `this`, adds new properties to it.
-3. The value of `this` is returned.
+1. 新的空物件被建立並指定到 `this`。
+2. 函式本體被執行，通常它修改了 `this`，對它加上新的屬性。
+3. `this` 的值被回傳。
 
-In other words, `new User(...)` does something like:
+換句話說，`new User(...)` 做了像這樣的事情：
 
 ```js
 function User(name) {
 *!*
-  // this = {};  (implicitly)
+  // this = {}; （隱性地）
 */!*
 
-  // add properties to this
+  // 加入屬性到 this 中
   this.name = name;
   this.isAdmin = false;
 
 *!*
-  // return this;  (implicitly)
+  // return this; （隱性地）
 */!*
 }
 ```
 
-So `let user = new User("Jack")` gives the same result as:
+所以 `let user = new User("Jack")` 給了同樣的結果：
 
 ```js
 let user = {
@@ -60,134 +60,134 @@ let user = {
 };
 ```
 
-Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also easy to read.
+現在若我們想要建立其它 users，可以呼叫 `new User("Ann")`、`new User("Alice")` 等等，會比每次都用字面值還要簡短，且更為易讀。
 
-That's the main purpose of constructors -- to implement reusable object creation code.
+這也是建構子主要的用途 -- 實作可重複使用的建立物件程式碼。
 
-Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+再注意一下 -- 技術上，任何函式都可以作為建構子被使用。也就是：任何函式都可以使用 `new` 來運行，且它會執行上述的演算法。而 "首個字母大寫" 是個共識，來更清楚地表示該函式要使用 `new` 來運行。
 
 ````smart header="new function() { ... }"
-If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
+若我們有許多行關於建立單一個複雜物件的程式碼，我們可以包裝它們在建構子函式內，像這樣：
 
 ```js
 let user = new function() {
   this.name = "John";
   this.isAdmin = false;
 
-  // ...other code for user creation
-  // maybe complex logic and statements
-  // local variables etc
+  // ...其它建立 user 的程式碼
+  // 也許有複雜的邏輯跟述語
+  // 或是區域變數等
 };
 ```
 
-The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+該建構子不能被再次呼叫，因為它還沒存在任何地方，就只是被建立並呼叫了而已。所以這個技巧主要用於封裝程式碼以建構單一物件，未來不會重複使用。
 ````
 
-## Constructor mode test: new.target
+## 建構子模式測試：new.target
 
-```smart header="Advanced stuff"
-The syntax from this section is rarely used, skip it unless you want to know everything.
+```smart header="進階議題"
+這個部分的語法很少被使用，除非你想知道所有東西，不然可以省略這部分。
 ```
 
-Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
+在函式中，我們可以使用一個特殊的 `new.target` 屬性，來確認它是否經由 `new` 被呼叫。
 
-It is empty for regular calls and equals the function if called with `new`:
+對於常規呼叫而言它會是空的，而若使用 `new` 呼叫則會相等於該函式：
 
 ```js run
 function User() {
   alert(new.target);
 }
 
-// without "new":
+// 沒使用 "new"：
 *!*
 User(); // undefined
 */!*
 
-// with "new":
+// 使用 "new":
 *!*
 new User(); // function User { ... }
 */!*
 ```
 
-That can be used inside the function to know whether it was called with `new`, "in constructor mode", or without it, "in regular mode".
+這可以在函式內部使用，來知道是透過 `new`（"在建構子模式"）呼叫的，還是沒有（"在常規模式"）。
 
-We can also make both `new` and regular calls to do the same, like this:
+我們也可以讓 `new` 與常規呼叫做一樣的事，像這樣：
 
 ```js run
 function User(name) {
-  if (!new.target) { // if you run me without new
-    return new User(name); // ...I will add new for you
+  if (!new.target) { // 若不是透過 new 執行
+    return new User(name); // ...那就來用 new 吧
   }
 
   this.name = name;
 }
 
-let john = User("John"); // redirects call to new User
+let john = User("John"); // 重新導向呼叫 new User
 alert(john.name); // John
 ```
 
-This approach is sometimes used in libraries to make the syntax more flexible. So that people may call the function with or without `new`, and it still works.
+這個做法有時會在函式庫中被使用，來使得語法更為彈性，所以人們不論是否透過 `new` 來呼叫函式都可以運作。
 
-Probably not a good thing to use everywhere though, because omitting `new` makes it a bit less obvious what's going on. With `new` we all know that the new object is being created.
+到處這麼做也許不是件好事，因為省略 `new` 會使得發生了什麼事變得更不明顯一些，用了 `new` 可以讓我們知道有新物件被建立了。
 
-## Return from constructors
+## 由建構子回傳
 
-Usually, constructors do not have a `return` statement. Their task is to write all necessary stuff into `this`, and it automatically becomes the result.
+通常，建構子不會有 `return` 述語。它們的任務是將所有需要的東西寫入 `this`，並自動變成結果。
 
-But if there is a `return` statement, then the rule is simple:
+但若有 `return` 述語，規則就很簡單了：
 
-- If `return` is called with object, then it is returned instead of `this`.
-- If `return` is called with a primitive, it's ignored.
+- 若 `return` 的是物件，則該物件會被回傳而非 `this`。
+- 若 `return` 的是原生類型，就會被忽略。
 
-In other words, `return` with an object returns that object, in all other cases `this` is returned.
+換句話說，`return` 的若是物件，則回傳它，其它情況下回傳的是 `this`。
 
-For instance, here `return` overrides `this` by returning an object:
+舉個例，這邊的 `return` 回傳一個物件覆蓋了 `this`：
 
 ```js run
 function BigUser() {
 
   this.name = "John";
 
-  return { name: "Godzilla" };  // <-- returns this object
+  return { name: "Godzilla" };  // <-- 回傳這個物件
 }
 
-alert( new BigUser().name );  // Godzilla, got that object
+alert( new BigUser().name );  // Godzilla，得到那個物件
 ```
 
-And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
+這邊有個 `return` 空白的例子（或者我們可以放個原生類型在後面，也沒差）：
 
 ```js run
 function SmallUser() {
 
   this.name = "John";
 
-  return; // <-- returns this
+  return; // <-- 回傳 this
 }
 
 alert( new SmallUser().name );  // John
 ```
 
-Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
+通常建構子不會有 `return` 述語，這邊我們提到回傳物件的這個特殊行為主要是為了完整性而言。
 
-````smart header="Omitting parentheses"
-By the way, we can omit parentheses after `new`, if it has no arguments:
+````smart header="省略括號"
+順帶一提，若沒有引數的話，我們可以在 `new` 之後省略括號：
 
 ```js
-let user = new User; // <-- no parentheses
-// same as
+let user = new User; // <-- 沒有括號
+// 跟這一樣
 let user = new User();
 ```
 
-Omitting parentheses here is not considered a "good style", but the syntax is permitted by specification.
+這樣省略括號不被認為是一種 "良好風格"，但規格准許這種語法。
 ````
 
-## Methods in constructor
+## 建構子中的方法
 
-Using constructor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, and what to put in it.
+使用建構子函式來建立物件可以給予很多的彈性，建構子函式可帶參數來定義如何建構物件，且要放些什麼在裡面。
 
-Of course, we can add to `this` not only properties, but methods as well.
+當然，我們不只可以將屬性加到 `this`，也可以加入方法。
 
-For instance, `new User(name)` below creates an object with the given `name` and the method `sayHi`:
+舉個例，底下的 `new User(name)` 用給予的 `name` 和 `sayHi` 方法來建立一個物件：
 
 ```js run
 function User(name) {
@@ -212,19 +212,20 @@ john = {
 */
 ```
 
-To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+要建立複雜的物件，有個更進階的語法，[類別（classes）](info:classes)，我們晚點會提到。
 
-## Summary
+## 總結
 
-- Constructor functions or, briefly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
-- Constructor functions should only be called using `new`. Such a call implies a creation of empty `this` at the start and returning the populated one at the end.
+- 建構子函式，或簡稱建構子，是常規函式，但有個共識是使用首個字母大寫來命名。
+- 建構子函式只應該被 `new` 所呼叫，這種呼叫意味著一開始建立一個空的 `this`，並在最後回傳填好資料的物件。
 
-We can use constructor functions to make multiple similar objects.
+我們可以使用建構子函式來產生多個相似的物件。
 
-JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+JavaScript 對於許多語言內建的物件都有提供建構子函式：像是 `Date` 之於日期、`Set` 之於集合和其它我們預計會學習到的東西。
 
-```smart header="Objects, we'll be back!"
-In this chapter we only cover the basics about objects and constructors. They are essential for learning more about data types and functions in the next chapters.
+```smart header="物件，我們會再回來！"
+這章我們只介紹關於物件與建構子的基礎。它們對於接下來的章節要學習的，更多關於資料類型與函式等內容來說很重要。
 
-After we learn that, we return to objects and cover them in-depth in the chapters <info:prototypes> and <info:classes>.
+在我們學完那些東西，我們會回到物件並在章節 <info:prototypes> 和 <info:classes> 更深入地介紹它們。
 ```
+

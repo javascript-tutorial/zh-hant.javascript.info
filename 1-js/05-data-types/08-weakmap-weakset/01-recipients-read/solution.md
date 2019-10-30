@@ -1,6 +1,6 @@
-Let's store read messages in `WeakSet`:
+讓我們將已讀的訊息存在 `WeakSet` 中：
 
-```js
+```js run
 let messages = [
   {text: "Hello", from: "John"},
   {text: "How goes?", from: "John"},
@@ -9,35 +9,35 @@ let messages = [
 
 let readMessages = new WeakSet();
 
-// two messages have been read
+// 兩個訊息已經被讀取了
 readMessages.add(messages[0]);
 readMessages.add(messages[1]);
-// readMessages has 2 elements
+// readMessages 有兩個元素
 
-// ...let's read the first message again!
+// ...讓我們再次讀取第一個訊息！
 readMessages.add(messages[0]);
-// readMessages still has 2 unique elements
+// readMessages 依然有兩個唯一的元素
 
-// answer: was the message[0] read?
+// 回答：message[0] 是否已被讀取？
 alert("Read message 0: " + readMessages.has(messages[0])); // true
 
 messages.shift();
-// now readMessages has 1 element (technically memory may be cleaned later)
+// 現在 readMessages 只有一個元素（技術上來說，記憶體可能會在稍後才被清理）
 ```
 
-The `WeakSet` allows to store a set of messages and easily check for the existance of a message in it.
+`WeakSet` 允許儲存訊息的集合，且能簡單地檢查一個訊息是否存在於集合內。
 
-It cleans up itself automatically. The tradeoff is that we can't iterate over it,  can't get "all read messages" from it directly. But we can do it by iterating over all messages and filtering those that are in the set.
+它會自動清理自己，但代價是我們不能夠迭代它，無法直接取得 "所有已讀訊息"。但我們可以透過迭代所有訊息，並過濾掉那些存在集合中的訊息來達到同樣目的。
 
-Another, different solution could be to add a property like `message.isRead=true` to a message after it's read. As messages objects are managed by another code, that's generally discouraged, but we can use a symbolic property to avoid conflicts.
+另外一個不同的解法可以是當訊息被讀取後，增加一個屬性，像 `message.isRead=true` 到訊息中。當訊息物件被其他程式碼管理時，這樣的作法一般是不建議的，但我們可以用 Symbol 屬性來避免衝突。
 
-Like this:
+像這樣：
 ```js
-// the symbolic property is only known to our code
+// Symbol 屬性只會在我們的程式碼中被認得
 let isRead = Symbol("isRead");
 messages[0][isRead] = true;
 ```
 
-Now third-party code probably won't see our extra property.
+現在第三方程式碼可能不會看到我們的額外屬性。
 
-Although symbols allow to lower the probability of problems, using `WeakSet` is better from the architectural point of view.
+雖然 Symbol 可以降低問題發生的機率，但從架構的觀點來看，使用 `WeakSet` 是比較好的。
