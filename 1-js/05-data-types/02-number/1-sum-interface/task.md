@@ -2,10 +2,11 @@ importance: 5
 
 ---
 
-# Sum numbers from the visitor
+# 加總由訪問者輸入的數值
 
-Create a script that prompts the visitor to enter two numbers and then shows their sum.
+建立一個腳本，提示（prompt）訪問者輸入兩個數值，然後顯示它們的總和。
 
 [demo]
 
-P.S. There is a gotcha with types.
+註：類型會有個問題。
+

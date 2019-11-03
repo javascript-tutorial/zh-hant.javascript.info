@@ -2,9 +2,9 @@ importance: 4
 
 ---
 
-# An occasional infinite loop
+# 偶發的無窮迴圈
 
-This loop is infinite. It never ends. Why?
+這個迴圈是無窮的，它永不停止。為什麼？
 
 ```js
 let i = 0;

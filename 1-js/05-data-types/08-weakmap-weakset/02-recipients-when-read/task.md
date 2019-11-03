@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Store read dates
+# 儲存已讀日期
 
-There's an array of messages as in the [previous task](info:task/recipients-read). The situation is similar.
+與 [上一個課題](info:task/recipients-read) 類似的情境，存在一個訊息陣列。
 
 ```js
 let messages = [
@@ -14,8 +14,8 @@ let messages = [
 ];
 ```
 
-The question now is: which data structure you'd suggest to store the information: "when the message was read?".
+現在的問題是：你建議用哪個資料結構來儲存這樣的資訊："訊息在何時被讀取？"。
 
-In the previous task we only needed to store the "yes/no" fact. Now we need to store the date, and it should only remain in memory until the message is garbage collected.
+在前一個任務中，我們只需要儲存 "是/否" 的事實陳述，現在我們需要儲存日期，且它應該只能在訊息被垃圾回收前存在。
 
-P.S. Dates can be stored as objects of built-in `Date` class, that we'll cover later.
+註：日期可以以內建 `Date` 類別的物件來儲存，我們晚點會介紹。

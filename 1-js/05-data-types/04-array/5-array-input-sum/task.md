@@ -2,14 +2,14 @@ importance: 4
 
 ---
 
-# Sum input numbers
+# 加總輸入的數值
 
-Write the function `sumInput()` that:
+寫個函式 `SumInput()` 用於：
 
-- Asks the user for values using `prompt` and stores the values in the array.
-- Finishes asking when the user enters a non-numeric value, an empty string, or presses "Cancel".
-- Calculates and returns the sum of array items.
+- 使用 `prompt` 詢問使用者來輸入值，並儲存值到陣列中。
+- 當使用者輸入非數值的值、空字串或按下 "Cancel" 後結束詢問。
+- 計算並回傳陣列項目的加總。
 
-P.S. A zero `0` is a valid number, please don't stop the input on zero.
+註：一個零 `0` 視為有效的數值，請不要在遇到零時停止詢問輸入。
 
 [demo]
