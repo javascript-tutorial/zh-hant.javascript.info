@@ -45,21 +45,43 @@
 `"default"`
 : 發生於極少情況下，當 "不確定" 運算子會預期是什麼類型時。
 
+<<<<<<< HEAD
     舉個例，二元加法 `+` 可以同時運作在字串（串接）和數值（相加）上，所以字串與數值兩者皆可使用。或當物件使用 `==` 比較字串、數值或符號時，哪種轉換會進行也很不清楚。
 
     ```js
     // 二元加法
     let total = car1 + car2;
+=======
+    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. So if the a binary plus gets an object as an argument, it uses the `"default"` hint to convert it.
 
-    // obj == string/number/symbol
+    Also, if an object is compared using `==` with a string, number or a symbol, it's also unclear which conversion should be done, so the `"default"` hint is used.
+
+    ```js
+    // binary plus uses the "default" hint
+    let total = obj1 + obj2;
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
+
+    // obj == number uses the "default" hint
     if (user == 1) { ... };
     ```
 
+<<<<<<< HEAD
     大於/小於 運算子 `<>` 一樣可以同時作用於字串和數值上。但它使用 "number" 提示而非 "default"，這是因為歷史因素。
 
     實際上，除了某種物件（`Date` 物件，我們晚點會學到），所有內建物件都實作了和 `"number"` 一樣的 `"default"` 轉換，且我們或許也該這樣做。
 
 請注意 -- 只有三種提示，就那麼簡單，不存在 "布林" 提示（所有物件在布林上下文中都是 `true`）等其它的。且若我們對 `"default"` 和 `"number"` 一視同仁，如同大多內建物件那樣，那將只有兩種轉換了。
+=======
+    The greater and less comparison operators, such as `<` `>`, can work with both strings and numbers too. Still, they use the `"number"` hint, not `"default"`. That's for historical reasons.
+
+    In practice though, we don't need to remember these peculiar details, because all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And we can do the same.
+
+```smart header="No `\"boolean\"` hint"
+Please note -- there are only three hints. It's that simple.
+
+There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
+```
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 **要做轉換時，JavaScript 試著找尋並呼叫三種物件方法：**
 
@@ -110,7 +132,33 @@ alert(user + 500); // hint: default -> 1500
 - 對於 "string" 提示，`toString -> valueOf`。
 - 否則，`valueOf -> toString`。
 
+<<<<<<< HEAD
 舉個例，這個 `user` 採用 `toString` 與 `valueOf` 做了如同前述的事情：
+=======
+These methods must return a primitive value. If `toString` or `valueOf` returns an object, then it's ignored (same as if there were no method).
+
+By default, a plain object has following `toString` and `valueOf` methods:
+
+- The `toString` method returns a string `"[object Object]"`.
+- The `valueOf` method returns an object itself.
+
+Here's the demo:
+
+```js run
+let user = {name: "John"};
+
+alert(user); // [object Object]
+alert(user.valueOf() === user); // true
+```
+
+So if we try to use an object as a string, like in an `alert` or so, then by default we see `[object Object]`.
+
+And the default `valueOf` is mentioned here only for the sake of completeness, to avoid any confusion. As you can see, it returns the object itself, and so is ignored. Don't ask me why, that's for historical reasons. So we can assume it doesn't exist.
+
+Let's implement these methods.
+
+For instance, here `user` does the same as above using a combination of `toString` and `valueOf` instead of `Symbol.toPrimitive`:
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 ```js run
 let user = {
@@ -157,7 +205,11 @@ alert(user + 500); // toString -> John500
 
 要理解關於原生類型轉換方法，有件很重要的事就是它們不需要回傳 "被提示" 的原生類型。
 
+<<<<<<< HEAD
 沒有限制 `toString()` 是否一定就得回傳一個字串，或 `Symbol.toPrimitive` 方法是否得對 "number" 提示回傳一個數值。
+=======
+There is no control whether `toString` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint `"number"`.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 唯一強制的事情是：這些方法必須回傳原生類型，而非物件。
 
@@ -167,12 +219,23 @@ alert(user + 500); // toString -> John500
 相對地，`Symbol.toPrimitive` *必須* 回傳一個原生類型，否則就會產生錯誤。
 ```
 
+<<<<<<< HEAD
 ## 進一步的操作
 
 一個發起轉換的運算獲得了原生類型，然後繼續運作，並在需要時再套用進一步的轉換。
+=======
+## Further conversions
+
+As we know already, many operators and functions perform type conversions, e.g. multiplication `*` converts operatnds to numbers.
+
+If we pass an object as an argument, then there are two stages:
+1. The object is converted to a primitive (using the rules described above).
+2. If the resulting primitive isn't of the right type, it's converted.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 舉個例：
 
+<<<<<<< HEAD
 - 數學運算，除了二元加法以外，將會轉換該原生類型為數值：
 
     ```js run
@@ -196,6 +259,33 @@ alert(user + 500); // toString -> John500
 
     alert(obj + 2); // 22（轉換成原生類型會回傳一個字串 => 串接）
     ```
+=======
+```js run
+let obj = {
+  // toString handles all conversions in the absence of other methods
+  toString() {
+    return "2";
+  }
+};
+
+alert(obj * 2); // 4, object converted to primitive "2", then multiplication made it a number
+```
+
+1. The multiplication `obj * 2` first converts the object to primitive (that's a string `"2"`).
+2. Then `"2" * 2` becomes `2 * 2` (the string is converted to number).
+
+Binary plus will concatenate strings in the same situation, as it gladly accepts a string:
+
+```js run
+let obj = {
+  toString() {
+    return "2";
+  }
+};
+
+alert(obj + 2); // 22 ("2" + 2), conversion to primitive returned a string => concatenation
+```
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 ## 總結
 
