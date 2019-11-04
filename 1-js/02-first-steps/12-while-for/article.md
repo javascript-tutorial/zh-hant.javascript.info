@@ -211,7 +211,7 @@ for (;;) {
 
 例如，底下的迴圈詢問使用者一連串的數字，當沒有數字被輸入時將會 "中斷（breaking）"：
 
-```js
+```js run
 let sum = 0;
 
 while (true) {
