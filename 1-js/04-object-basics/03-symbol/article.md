@@ -1,31 +1,31 @@
 
-# Symbol type
+# 符號類型（Symbol Type）
 
-By specification, object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols, these two types.
+根據規格，物件屬性鍵值只可能是字串類型或符號類型。不是數值類型、不是布林類型，只有字串或符號這兩種類型。
 
-Till now we've been using only strings. Now let's see the benefits that symbols can give us.
+到目前為止，我們一直只用到字串。現在讓我們來看看 Symbol 能給我們帶來哪些好處。
 
-## Symbols
+## 符號（Symbol）
 
-A "symbol" represents a unique identifier.
+一個 "symbol" 代表唯一的識別符號。
 
-A value of this type can be created using `Symbol()`:
+可以用 `Symbol()` 來創建此類型的值：
 
 ```js
-// id is a new symbol
+// id 是一個新的 Symbol
 let id = Symbol();
 ```
 
-Upon creation, we can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
+創建後，我們可以給 Symbol 一個敘述（也稱為 Symbol 名稱），在進行除錯時大多很有用處：
 
 ```js run
-// id is a symbol with the description "id"
+// id 是一個擁有敘述 "id" 的 Symbol
 let id = Symbol("id");
 ```
 
-Symbols are guaranteed to be unique. Even if we create many symbols with the same description, they are different values. The description is just a label that doesn't affect anything.
+Symbol 保證是唯一的。即使我們創建了許多擁有相同敘述的 Symbol，它們的值還是不同的。敘述只是一個標籤，不影響任何東西。
 
-For instance, here are two symbols with the same description -- they are not equal:
+舉例來說，這裡有兩個擁有相同敘述的 Symbol -- 它們並不相等：
 
 ```js run
 let id1 = Symbol("id");
@@ -36,12 +36,12 @@ alert(id1 == id2); // false
 */!*
 ```
 
-If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. JavaScript symbols are different.
+如果你熟悉 Ruby 或是其他也同樣擁有所謂 "Symbol" 的語言 -- 請不要被誤導。 JavaScript 的 Symbol 是不一樣的。
 
-````warn header="Symbols don't auto-convert to a string"
-Most values in JavaScript support implicit conversion to a string. For instance, we can `alert` almost any value, and it will work. Symbols are special. They don't auto-convert.
+````warn header="Symbol 並不會被自動轉換成字串"
+JavaScript 中，大部分的值都支援字串的隱性轉換。例如，我們可以 `alert` 幾乎任何值，且它可以正常運作。Symbol 是特殊的。它們不會自動轉換。
 
-For instance, this `alert` will show an error:
+例如，這個 `alert` 會顯示錯誤：
 
 ```js run
 let id = Symbol("id");
@@ -50,17 +50,18 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 */!*
 ```
 
-That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
+這是一種防止混亂的 "語言防範（language guard）"，因為字串與 Symbol 有本質上的不同，不應該意外地將它們互相轉換。
 
-If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
+如果我們真的想要顯示一個Symbol，我們需要在它上面明確地呼叫 `.toString()`，像這樣：
+
 ```js run
 let id = Symbol("id");
 *!*
-alert(id.toString()); // Symbol(id), now it works
+alert(id.toString()); // Symbol(id), 現在它可以正常運作了
 */!*
 ```
 
-Or get `symbol.description` property to show the description only:
+或是取得 `symbol.description` 屬性來單純顯示敘述：
 ```js run
 let id = Symbol("id");
 *!*
@@ -70,16 +71,16 @@ alert(id.description); // id
 
 ````
 
-## "Hidden" properties
+## "隱藏（Hidden）" 屬性
 
-Symbols allow us to create "hidden" properties of an object, that no other part of code can accidentally access or overwrite.
+Symbol 允許我們創建物件的 "隱藏" 屬性，其他部分的程式碼都無法意外存取到或是覆寫它。
 
-For instance, if we're working with `user` objects, that belong to a third-party code. We'd like to add identifiers to them.
+舉例來說，如果我們正在操作屬於第三方程式碼的 `user` 物件們。我們想要增加識別符到它們上。
 
-Let's use a symbol key for it:
+讓我們用一個 Symbol 的鍵值來處理：
 
 ```js run
-let user = { // belongs to another code
+let user = { // 屬於另一份程式碼
   name: "John"
 };
 
@@ -87,16 +88,16 @@ let id = Symbol("id");
 
 user[id] = 1;
 
-alert( user[id] ); // we can access the data using the symbol as the key
+alert( user[id] ); // 我們可以用 Symbol 當作鍵值來存取資料
 ```
 
-What's the benefit of using `Symbol("id")` over a string `"id"`?
+比起用字串 `"id"`，用 `Symbol("id")` 我們可以獲得什麼好處？
 
-As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed accidentally, the third-party code probably won't even see it, so it's probably all right to do.
+當 `user` 物件屬於其他程式碼，且那些程式碼同樣會操作它時，我們不應該增加任何欄位到物件上。這樣不安全。但 Symbol 是沒辦法被意外存取的，第三方的程式碼甚至可能不會看到它，所以這麼做沒問題。
 
-Also, imagine that another script wants to have its own identifier inside `user`, for its own purposes. That may be another JavaScript library, so that the scripts are completely unaware of each other.
+此外，想像一下此時有另一個腳本想要在 `user` 內放入它們自己的識別符號，用於它們自己的目的。那可能是另一個 JavaScript 套件，所以腳本之間完全不會意識到對方的存在。
 
-Then that script can create its own `Symbol("id")`, like this:
+然後該腳本可以創建自己的 `Symbol("id")`，像這樣：
 
 ```js
 // ...
@@ -105,27 +106,27 @@ let id = Symbol("id");
 user[id] = "Their id value";
 ```
 
-There will be no conflict between our and their identifiers, because symbols are always different, even if they have the same name.
+這不會造成我們與其他腳本之間的識別符有任何衝突，因為 Symbol 永遠是不同的，即使他們有相同的名稱。
 
-...But if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
+...但如果我們用字串 `"id"` 而非 Symbol，那麼 *就會* 發生衝突：
 
 ```js run
 let user = { name: "John" };
 
-// Our script uses "id" property
+// 我們的腳本使用 "id" 屬性
 user.id = "Our id value";
 
-// ...Another script also wants "id" for its purposes...
+// ...另一個腳本也想使用 "id"...
 
 user.id = "Their id value"
-// Boom! overwritten by another script!
+// 碰！被另一個腳本給覆寫了！
 ```
 
-### Symbols in a literal
+### 字面值中的符號
 
-If we want to use a symbol in an object literal `{...}`, we need square brackets around it.
+如果我們想要在物件字面值 `{...}` 中使用 Symbol，我們需要方括號包圍它。
 
-Like this:
+像這樣：
 
 ```js
 let id = Symbol("id");
@@ -133,17 +134,18 @@ let id = Symbol("id");
 let user = {
   name: "John",
 *!*
-  [id]: 123 // not "id: 123"
+  [id]: 123 // 不是 "id: 123"
 */!*
 };
 ```
-That's because we need the value from the variable `id` as the key, not the string "id".
 
-### Symbols are skipped by for..in
+這是因為我們需要變數 `id` 的值當作鍵值，而非字串 "id"。
 
-Symbolic properties do not participate in `for..in` loop.
+### 符號在 for..in 中被跳過
 
-For instance:
+Symbol 類型的屬性並不參與 `for..in` 迴圈。
+
+例如：
 
 ```js run
 let id = Symbol("id");
@@ -154,16 +156,17 @@ let user = {
 };
 
 *!*
-for (let key in user) alert(key); // name, age (no symbols)
+for (let key in user) alert(key); // name, age（沒有 Symbol）
 */!*
 
-// the direct access by the symbol works
+// 直接存取 Symbol 是沒問題的
 alert( "Direct: " + user[id] );
 ```
 
-`Object.keys(user)` also ignores them. That's a part of the general "hiding symbolic properties" principle. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.
+`Object.keys(user)` 也會忽略它們。那是一般 Symbol 中 "隱藏屬性" 原則的一部分。如果另一個腳本或是一個套件在我們的物件上循環，它不會不小心存取到 Symbol 類型的屬性。
 
-In contrast, [Object.assign](mdn:js/Object/assign) copies both string and symbol properties:
+相反地，[Object.assign](mdn:js/Object/assign) 同時複製字串與 Symbol 屬性：
+
 
 ```js run
 let id = Symbol("id");
@@ -176,118 +179,118 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
+這裡沒有矛盾，就是這樣設計的。想法是當我們複製一個物件，或是合併多個物件時，我們通常想要 *所有* 屬性都被複製（包含像 `id` 這樣的 Symbol ）。
 
-````smart header="Property keys of other types are coerced to strings"
-We can only use strings or symbols as keys in objects. Other types are converted to strings.
+````smart header="其他類別的屬性鍵值會被強行轉換成字串"
+在物件中，我們只能使用字串或 Symbol 當作鍵值。其他類型都會被轉成字串。
 
-For instance, a number `0` becomes a string `"0"` when used as a property key:
+舉例來說，當一個數值 `0` 被用來當作屬性健值時，它會變成一個字串 `"0"`：
 
 ```js run
 let obj = {
-  0: "test" // same as "0": "test"
+  0: "test" // 跟 "0": "test" 一樣
 };
 
-// both alerts access the same property (the number 0 is converted to string "0")
+// 兩個 alerts 都存取到同樣的屬性（數值 0 被轉換成字串 "0"）
 alert( obj["0"] ); // test
-alert( obj[0] ); // test (same property)
+alert( obj[0] ); // test (同樣的屬性)
 ```
 ````
 
-## Global symbols
+## 全局符號
 
-As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
+正如我們所見，通常所有的 Symbol 都是不同的，即使它們擁有相同的名稱。但是有時候我們想要擁有相同名稱的 Symbol 被當作相同的物體。例如，我們應用程式中的不同部分想用Symbol `"id"` 存取到完全相同的屬性。
 
-To achieve that, there exists a *global symbol registry*. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
+為此，存在一個 *全域 Symbol 註冊表（global symbol registry）*。我們可以在其中創建 Symbol 並在稍後存取它們，而這確保我們每次存取相同名稱都會回傳相同的 Symbol。。
 
-In order to read (create if absent) a symbol from the registry, use `Symbol.for(key)`.
+為了從註冊表中讀取（如果不存在就創建）Symbol，請使用 `Symbol.for(key)`。
 
-That call checks the global registry, and if there's a symbol described as `key`, then returns it, otherwise creates a new symbol `Symbol(key)` and stores it in the registry by the given `key`.
+該呼叫會檢查全域註冊表，若有個描述為 `key` 的 Symbol 存在，則回傳該 Symbol，否則就以 `Symbol(key)` 創建新的 Symbol，並將其以 `key` 儲存到註冊表中。
 
-For instance:
+舉個例子：
 
 ```js run
-// read from the global registry
-let id = Symbol.for("id"); // if the symbol did not exist, it is created
+// 從全域註冊表中讀取
+let id = Symbol.for("id"); // 如果該 Symbol 不存在，就創建它
 
-// read it again (maybe from another part of the code)
+// 再次讀取它（或許從程式碼的另一個部分）
 let idAgain = Symbol.for("id");
 
-// the same symbol
+// 同樣的 Symbol
 alert( id === idAgain ); // true
 ```
 
-Symbols inside the registry are called *global symbols*. If we want an application-wide symbol, accessible everywhere in the code -- that's what they are for.
+註冊表內的 Symbols 稱為 *全域 Symbol*。如果我們想要一個應用程序範圍內的 Symbol，可以在程式碼中隨處存取 -- 這就是它們的用途。
 
-```smart header="That sounds like Ruby"
-In some programming languages, like Ruby, there's a single symbol per name.
+```smart header="這聽起來像是 Ruby"
+在某些程式語言中，像是 Ruby，每個名稱都只有單一個 symbol。
 
-In JavaScript, as we can see, that's right for global symbols.
+在 JavaScript 中，如我們所見，只有全域 Symbol 才是如此。
 ```
 
 ### Symbol.keyFor
 
-For global symbols, not only `Symbol.for(key)` returns a symbol by name, but there's a reverse call: `Symbol.keyFor(sym)`, that does the reverse: returns a name by a global symbol.
+對於全域 Symbol，不止有 `Symbol.for(key)` 可以根據某個名稱回傳其 Symbol，還有個反向呼叫，`Symbol.keyFor(sym)` 做反過來的事：根據一個全域 Symbol 回傳其名稱。
 
-For instance:
+例如：
 
 ```js run
-// get symbol by name
+// 根據名稱取得 Symbol
 let sym = Symbol.for("name");
 let sym2 = Symbol.for("id");
 
-// get name by symbol
+// 根據 Symbol 取得名稱
 alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and return `undefined`.
+`Symbol.keyFor` 在內部使用全域 Symbol 註冊表來查詢 Symbol 的鍵值。所以它並不適用於非全域的 Symbol。如果某個 Symbol 不是全域的，此方法將無法找到它，並會回傳 `undefined`。
 
-That said, any symbols have `description` property.
+是說，任何 Symbol 都有 `description` 屬性。
 
-For instance:
+例如：
 
 ```js run
 let globalSymbol = Symbol.for("name");
 let localSymbol = Symbol("name");
 
-alert( Symbol.keyFor(globalSymbol) ); // name, global symbol
-alert( Symbol.keyFor(localSymbol) ); // undefined, not global
+alert( Symbol.keyFor(globalSymbol) ); // name, 全局 symbol
+alert( Symbol.keyFor(localSymbol) ); // undefined, 非全域
 
 alert( localSymbol.description ); // name
 ```
 
-## System symbols
+## 系統符號
 
-There exist many "system" symbols that JavaScript uses internally, and we can use them to fine-tune various aspects of our objects.
+JavaScript 內部存在許多 "系統" Symbol，我們可以使用它們來微調物件的各種方面。
 
-They are listed in the specification in the [Well-known symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols) table:
+它們列在規格中的 [Well-known symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols) 表格內：
 
 - `Symbol.hasInstance`
 - `Symbol.isConcatSpreadable`
 - `Symbol.iterator`
 - `Symbol.toPrimitive`
-- ...and so on.
+- ...等等。
 
-For instance, `Symbol.toPrimitive` allows us to describe object to primitive conversion. We'll see its use very soon.
+例如，`Symbol.toPrimitive` 允許我們將物件描述為原生值轉換。我們很快就會看到怎麼使用它。
 
-Other symbols will also become familiar when we study the corresponding language features.
+當我們研讀相應的語言特性時，也將會更熟悉其他 Symbol。
 
-## Summary
+## 總結
 
-`Symbol` is a primitive type for unique identifiers.
+`Symbol` 是用於標示唯一識別符號的原生類別。
 
-Symbols are created with `Symbol()` call with an optional description (name).
+Symbol 使用 `Symbol()` 與一個可選的敘述（名稱）作為參數來創建。
 
-Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(key)` returns (creates if needed) a global symbol with `key` as the name. Multiple calls of `Symbol.for` with the same `key` return exactly the same symbol.
+Symbol 永遠是不同的值，即使它們擁有相同的名稱。如果我們想要同名的 Symbol 也相等，那我們應該使用全域註冊表：`Symbol.for(key)` 回傳（如果需要的話創建）一個以 `key` 作為名稱的全域 Symbol。以相同的 `key` 用 `Symbol.for` 多次進行呼叫，都會回傳完全相同的 Symbol。
 
-Symbols have two main use cases:
+Symbol 有兩個主要使用場景：
 
-1. "Hidden" object properties.
-    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
+1. "隱藏" 物件屬性。
+    如果我們想要增加一個屬性到 "屬於" 其他腳本或是套件的物件之中，我們可以創建一個 Symbol 並用它當作屬性的鍵值。Symbol 屬性不會出現在 `for..in` 中，所以他不會不小心被其他屬性一起處理。此外它也不能被直接存取，因為其他腳本不擁有我們的 Symbol。所以該屬性將會被保護，以防意外被存取或覆寫。
 
-    So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
+    所以我們可以使用 Symbol 屬性， "秘密地" 將一些我們需要，但其他人不需要的東西藏進物件中。
 
-2. There are many system symbols used by JavaScript which are accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](info:iterable), `Symbol.toPrimitive` to setup [object-to-primitive conversion](info:object-toprimitive) and so on.
+2. JavaScript 內部使用了許多系統 Symbol，以類似 `Symbol.*` 的形式被存取。我們可以使用它們來更改一些內建的行為。舉例來說，在之後的教程我們將會在 [迭代（iterables）](info:iterable) 中使用 `Symbol.iterator`，設定 [物件轉換原生值（object-to-primitive conversion）](info:object-toprimitive) 時使用 `Symbol.toPrimitive`，等等。
 
-Technically, symbols are not 100% hidden. There is a built-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows us to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in functions and syntax constructs don't use these methods.
+從技術上來說，Symbol 並非 100% 隱藏。有一個內建方法 [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) 允許我們取得所有的 Symbol。另外，還有個方法叫做 [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) 會回傳物件中的 *所有* 鍵值，包含 Symbol。所以它們並非真的被隱藏。但大多套件、內建函式和語法結構都不會使用這些方法。
