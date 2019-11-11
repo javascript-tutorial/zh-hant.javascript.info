@@ -1,4 +1,8 @@
+<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
 # 函式表達式和箭頭函式
+=======
+# Function expressions
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md
 
 在 JavaScript 中，函式不是一個 "神奇的語言結構"，而是一種特殊的值。
 
@@ -356,6 +360,7 @@ welcome(); // ok now
 ...但如果函式宣告式由於某些原因不適合我們，或是我們需要條件式宣告（我們剛剛才看過例子），那就應該使用函式表達式。
 ```
 
+<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
 ## 箭頭函式（Arrow functions） [#arrow-functions]
 
 創建函式還有一個非常簡潔的語法，通常比函式表達式更好。它被稱為 "箭頭函式（arrow functions）"，因為它看起來像這樣：
@@ -457,6 +462,9 @@ alert( sum(1, 2) ); // 3
 ```
 
 ## 總結
+=======
+## Summary
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md
 
 - 函式是值。他們可以被指定、複製或在程式碼中任何地方被宣告。
 - 如果函式在主程式碼中以分開的述語宣告，則稱為 "函式宣告式"。
@@ -466,9 +474,13 @@ alert( sum(1, 2) ); // 3
 
 在大多數情況下，當我們需要宣告一個函式時，我們偏好採用函式宣告式，因為它讓函式在宣告前就是可視的。這給了我們很多組織程式碼的彈性，通常也具有較佳的可讀性。
 
+<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
 所以我們應該只在函式宣告式不適合任務時才採用函式表達式。我們在這章節中已經看到一些例子，將來會看到更多。
 
 箭頭函式對於單行動作來說非常方便。以下是它的兩個樣貌：
 
 1. 沒有大括號：`(...args) => expression` -- 右側是一個表達式：函式執行它並回傳結果。
 2. 有大括號：`(...args) => { body }` -- 括號允許我們在函式內撰寫多行述語，但我們需要一個明確地 `return` 來回傳一些東西。
+=======
+So we should use a Function Expression only when a Function Declaration is not fit for the task. We've seen a couple of examples of that in this chapter, and will see more in the future.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md

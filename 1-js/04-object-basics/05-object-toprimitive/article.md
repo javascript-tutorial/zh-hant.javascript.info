@@ -120,8 +120,13 @@ alert(user + 500); // hint: default -> 1500
 
 每個物件會有下列預設的 `toString` 與 `valueOf` 方法：
 
+<<<<<<< HEAD
 - `toString` 方法回傳一個字串 `"[object Object]"`。
 - `valueOf` 方法回傳物件自身。
+=======
+- The `toString` method returns a string `"[object Object]"`.
+- The `valueOf` method returns the object itself.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 
 在此演示一下：
 
@@ -197,7 +202,11 @@ alert(user + 500); // toString -> John500
 
 ## 進一步的轉換
 
+<<<<<<< HEAD
 如同我們所知的，許多運算子與函式都會做類型轉換，像是：乘法 `*` 會轉換運算元為數值。
+=======
+As we know already, many operators and functions perform type conversions, e.g. multiplication `*` converts operands to numbers.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 
 若我們傳入一個物件作為引數，那將會進行兩個步驟：
 1. 物件被轉為原生值（使用上述的規則）。

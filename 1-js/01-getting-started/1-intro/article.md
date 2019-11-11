@@ -38,7 +38,11 @@
 2. 接著轉換（"編譯"）腳本為機器語言
 3. 然後機器語言極快地執行
 
+<<<<<<< HEAD
 引擎會對流程中每個階段進行優化。甚至會在執行時監看編譯好的腳本，分析其資料流並以此再優化為機器碼，由此腳本可以快速地執行。
+=======
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 ```
 
 ## 瀏覽器中的 JavaScript 可以做什麼？
