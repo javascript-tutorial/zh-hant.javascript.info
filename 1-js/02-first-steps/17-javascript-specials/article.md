@@ -275,7 +275,7 @@ switch (age) {
 - 參數可以有預設值：`function sum(a = 1, b = 2) {...}`。
 - 函式永遠會回傳一些東西。如果沒有 `return` 述語，則其結果為 `undefined`。
 
-更多資訊：參見 <info:function-basics>、<info:function-expressions-arrows>。
+更多資訊：參見 <info:function-basics>、<info:arrow-functions-basics>。
 
 ## 還有更多
 
