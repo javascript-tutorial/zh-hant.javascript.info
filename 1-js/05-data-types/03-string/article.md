@@ -154,50 +154,58 @@ alert( `The backslash: \\` ); // The backslash: \
 ## String length 字串長度
 
 The `length` property has the string length:
+`length` 屬性，表示了一個字串的長度：
 
 ```js run
 alert( `My\n`.length ); // 3
 ```
 
 Note that `\n` is a single "special" character, so the length is indeed `3`.
+注意，`\n` 為一個 "特殊" 字元，因此長度的確是 `3`。
 
-```warn header="`length` is a property"
+```warn header="`length` is a property `length` 是一個屬性"
 People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
+有其他程式語言背景的人，有時會打字錯誤，用 `str.length()` 而不是 `str.length`。那是行不通的。
 
 Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
+請注意，`str.length` 是數值屬性，而不是函數，不需在後面添加括號。
 ```
 
-## Accessing characters
+## Accessing characters 訪問字元
 
 To get a character at position `pos`, use square brackets `[pos]` or call the method [str.charAt(pos)](mdn:js/String/charAt). The first character starts from the zero position:
+要從變數 `pos` 位置中獲取一個字元，請使用方括號 `[pos]` 或調用方法 [str.charAt(pos)](mdn:js/String/charAt)。 第一個字元從零位置開始：
 
 ```js run
 let str = `Hello`;
 
-// the first character
+// the first character 第一個字元
 alert( str[0] ); // H
 alert( str.charAt(0) ); // H
 
-// the last character
+// the last character 最後一個字元
 alert( str[str.length - 1] ); // o
 ```
 
 The square brackets are a modern way of getting a character, while `charAt` exists mostly for historical reasons.
+使用方括號，是獲取字元的現代化方式，而 `charAt` 的存在主要出於歷史性原因。
 
 The only difference between them is that if no character is found, `[]` returns `undefined`, and `charAt` returns an empty string:
+它們之間的唯一區別是，如果找不到字元，則 `[]` 將返回 `undefined`，而 `charAt` 返回一個空字串：
 
 ```js run
 let str = `Hello`;
 
 alert( str[1000] ); // undefined
-alert( str.charAt(1000) ); // '' (an empty string)
+alert( str.charAt(1000) ); // '' (an empty string 一個空字串)
 ```
 
 We can also iterate over characters using `for..of`:
+我們也可以使用 `for..of` 來迭代過每個字元
 
 ```js run
 for (let char of "Hello") {
-  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc // char 會被替換成 "H"，然後是 "e"，然後是 "l" 等等)
 }
 ```
 
