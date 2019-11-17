@@ -1,10 +1,10 @@
 # Strings 字串
 
 In JavaScript, the textual data is stored as strings. There is no separate type for a single character.
-在 JavaScript 中，文字數據被存為字串類型。 並沒有針對單個字元有其他類型。
+在 JavaScript 中，文字數據被存為字串類型。並沒有針對單個字元做不同分類。
 
 The internal format for strings is always [UTF-16](https://en.wikipedia.org/wiki/UTF-16), it is not tied to the page encoding.
-字串的內部格式，始終為 [UTF-16]（https://en.wikipedia.org/wiki/UTF-16），與頁面編碼不相關。
+字串的內部格式，始終為 [UTF-16](https://en.wikipedia.org/wiki/UTF-16)，與頁面編碼不相關。
 
 
 ## Quotes 引號
@@ -13,7 +13,7 @@ Let's recall the kinds of quotes.
 讓我們回想一下引號的種類。
 
 Strings can be enclosed within either single quotes, double quotes or backticks:
-字串可以用單引號 (single quotes)、雙引號 (double quotes) 或反引號 (backticks) 引起來：
+字串可以用單引號、雙引號或反引號引起來：
 
 ```js
 let single = 'single-quoted';
@@ -23,7 +23,7 @@ let backticks = `backticks`;
 ```
 
 Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
-單引號和雙引號基本是相同的。但是，反引號，允許我們在在字串中嵌入表達式， 像這樣 `${…}` 將表達式包裹起來：
+單引號和雙引號本質是相同的。但反引號允許我們像這樣 `${…}` 將表達式包裹起來，嵌入在字串中：
 
 ```js run
 function sum(a, b) {
@@ -34,7 +34,7 @@ alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
 ```
 
 Another advantage of using backticks is that they allow a string to span multiple lines:
-使用反引號的另一個優點，是它們是允許字串跨越多行：
+使用反引號的另一個優點，是它們是允許在字串中直接換行：
 
 ```js run
 let guestList = `Guests:
@@ -47,10 +47,10 @@ alert(guestList); // a list of guests, multiple lines // 客人名單，多行
 ```
 
 Looks natural, right? But single or double quotes do not work this way.
-看起來自然吧？ 但是單、雙引號不能這樣做。
+看起來很自然吧？ 但是單、雙引號不能這樣做。
 
 If we use them and try to use multiple lines, there'll be an error:
-如果我們使用單引號或雙引號來跨越多行，將會出現錯誤：
+如果我們使用單引號或雙引號時直接換行，將會出現錯誤：
 
 ```js run
 let guestList = "Guests: // Error: Unexpected token ILLEGAL 錯誤：意外的語彙單元 非法
@@ -72,16 +72,16 @@ It is still possible to create multiline strings with single and double quotes b
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
 
-alert(guestList); // a multiline list of guests 多行來賓列表
+alert(guestList); // a multiline list of guests 多行的來賓列表
 ```
 
 For example, these two lines are equal, just written differently:
-例如， 這兩行是相同的，只是寫法不同：
+例如， 這兩行描述是相同的，只是書寫方式不同：
 
 ```js run
-let str1 = "Hello\nWorld"; // two lines using a "newline symbol" 呈現兩行。使用了一個 "換行符"。
+let str1 = "Hello\nWorld"; // two lines using a "newline symbol" 使用一個 "換行符" 創建的兩行字串。
 
-// two lines using a normal newline and backticks 呈現兩行。使用反引號，此處換行會被採用。
+// two lines using a normal newline and backticks 使用反引號、直接換行所創建的兩行字串。
 let str2 = `Hello
 World`;
 
@@ -102,9 +102,9 @@ Here's the full list:
 |`\\`|Backslash 反斜槓|
 |`\t`|Tab 製表跳格|
 |`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. 倒退，換頁，垂直製表跳格 -- 為保持兼容性，目前已不被使用。|
-|`\xXX`|Unicode character with the given hexadecimal unicode `XX`, e.g. `'\x7A'` is the same as `'z'`. 為十六進制 unicode 寫法的 Unicode 字元 `XX`，例如 `'\x7A'` 與 `'z'` 相同。|
-|`\uXXXX`|A unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. 為一個十六進制數字 "XXXX" 表示的 unicode 符號，使用 UTF-16 編碼，十六進制數字必須是 4 個。例如 `\u00A9` -- 為 unicode 版權符號 `©`。|
-|`\u{X…XXXXXX}` (1 to 6 hex characters 1 到 6 碼的十六進制字元)|A unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two unicode symbols, taking 4 bytes. This way we can insert long codes. 用指定 UTF-32 編碼的 unicode 符號。因為有些稀有字元是兩個 unicode 符號，佔用 4 個字節。這樣做，我們可插入長的程式碼。|
+|`\xXX`|Unicode character with the given hexadecimal unicode `XX`, e.g. `'\x7A'` is the same as `'z'`. 一個 Unicode 字元，`XX` 為十六進制 unicode 字元，例如 `'\x7A'` 與 `'z'` 相同。|
+|`\uXXXX`|A unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. 一個 unicode 符號，以 UTF-16 編碼的十六進制代碼 "XXXX" 表示，例如 `\u00A9` -- 為 unicode 版權符號 `©`，十六進制數字必須是 4 個。|
+|`\u{X…XXXXXX}` (1 to 6 hex characters 1 到 6 個十六進制字元)|A unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two unicode symbols, taking 4 bytes. This way we can insert long codes. 用給定 UTF-32 編碼的 unicode 符號。因為有些稀有字元是兩個 unicode 符號，佔用 4 個字節。這樣我們可以插入長串的程式碼。|
 
 Examples with unicode:
 unicode 的例子：
@@ -119,7 +119,7 @@ All special characters start with a backslash character `\`. It is also called a
 所有特殊字元均以反斜槓字元 `\` 開頭。也稱為 "跳脫字元"。
 
 We might also use it if we wanted to insert a quote into the string.
-若想將引號安插在字串中，也可以使用它。
+當我們想在字串中安插引號，也可以使用它。
 
 For instance:
 例如：
@@ -132,20 +132,20 @@ As you can see, we have to prepend the inner quote by the backslash `\'`, becaus
 就像你看到的，我們必須在內部的引號前加上反斜槓 `\`，否則它將結束字串。
 
 Of course, only to the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
-當然，只有跟結束引號相同的引號才需要跳脫。因此，作為更優雅的解決方案，我們可以轉為使用雙引號或反引號：
+當然，只有跟那個封閉引號相同的引號，才需要跳脫。因此，作為更優雅的解決方案，我們可以轉為使用雙引號或反引號：
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
 ```
 
 Note that the backslash `\` serves for the correct reading of the string by JavaScript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
-請注意，反斜槓 `\` 是為了使 JavaScript 正確讀取字串，然後就消失了。 儲存的字串中沒有 `\`。你可以在上面的 `alert` 範例中，清楚地看到這點。
+請注意，反斜槓 `\` 是為了在 JavaScript 正確讀取字串，然後就消失了。儲存的字串中沒有 `\`。你可以在上面的 `alert` 範例中，清楚地看到這點。
 
 But what if we need to show an actual backslash `\` within the string?
 但若我們需要在字串中顯示實際的反斜槓 `\` 怎麼辦？
 
 That's possible, but we need to double it like `\\`:
-這是可行的，我們加倍它，像這樣 `\\`：
+這是可行的，我們只需將它像這樣書寫兩次 `\\`：
 
 ```js run
 alert( `The backslash: \\` ); // The backslash: \
