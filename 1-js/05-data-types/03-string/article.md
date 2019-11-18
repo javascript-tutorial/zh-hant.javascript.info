@@ -23,7 +23,7 @@ let backticks = `backticks`;
 ```
 
 Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
-單引號和雙引號本質是相同的。但反引號允許我們像這樣 `${…}` 將表達式包裹起來，嵌入在字串中：
+單引號和雙引號本質是相同的。但反引號允許我們像這樣 `${…}`將表達式包裹，嵌入到字串中：
 
 ```js run
 function sum(a, b) {
