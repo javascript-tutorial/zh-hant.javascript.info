@@ -209,32 +209,37 @@ for (let char of "Hello") {
 }
 ```
 
-## Strings are immutable
+## Strings are immutable 字符串不可變
 
 Strings can't be changed in JavaScript. It is impossible to change a character.
+JavaScript中，字串不能被更改。 一個字元都無法更改。
 
 Let's try it to show that it doesn't work:
+讓我們試著改變字串，以證明它不起作用：
 
 ```js run
 let str = 'Hi';
 
-str[0] = 'h'; // error
-alert( str[0] ); // doesn't work
+str[0] = 'h'; // error 錯誤
+alert( str[0] ); // doesn't work 不起作用
 ```
 
 The usual workaround is to create a whole new string and assign it to `str` instead of the old one.
+通常的解決方法是創建一個全新的字串，再將它分配給 `str` 替換掉舊的字串。
 
 For instance:
+例如：
 
 ```js run
 let str = 'Hi';
 
-str = 'h' + str[1]; // replace the string
+str = 'h' + str[1]; // replace the string 替換字串
 
 alert( str ); // hi
 ```
 
 In the following sections we'll see more examples of this.
+在以下章節中，我們將看到更多例子。
 
 ## Changing the case
 
