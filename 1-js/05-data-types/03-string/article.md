@@ -241,9 +241,9 @@ alert( str ); // hi
 In the following sections we'll see more examples of this.
 在以下章節中，我們將看到更多例子。
 
-## Changing the case
+## Changing the case 改變大小寫
 
-Methods [toLowerCase()](mdn:js/String/toLowerCase) and [toUpperCase()](mdn:js/String/toUpperCase) change the case:
+[toLowerCase()](mdn:js/String/toLowerCase) 方法和 [toUpperCase()](mdn:js/String/toUpperCase) 方法可以改變大小寫：
 
 ```js run
 alert( 'Interface'.toUpperCase() ); // INTERFACE
@@ -251,35 +251,42 @@ alert( 'Interface'.toLowerCase() ); // interface
 ```
 
 Or, if we want a single character lowercased:
+或者，我們想要一個小寫字元
 
 ```js
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
-## Searching for a substring
+## Searching for a substring 搜尋一個子字串
 
 There are multiple ways to look for a substring within a string.
+查詢一個字串當中的子字串，有很多方法。
 
 ### str.indexOf
 
 The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
+第一個方法是 [str.indexOf(substr, pos)](mdn:js/String/indexOf)。
 
 It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
+它在 `str` 中尋找 `substr`，從我們指定的位置 `pos` 開始找，若找到，則回傳該匹配字串的索引位置；若沒找到，找到則回傳 `-1`。
 
 For instance:
+例如：
 
 ```js run
 let str = 'Widget with id';
 
-alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
-alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
+alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning // 0， 因為一開始 'Widget' 就被找到
+alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive // -1，沒找到，搜尋是對大小寫敏感的。
 
-alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
+alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id) // 1， "id" 在索引位置 "1" 處就被找到 (..idget 中的 id) 。
 ```
 
 The optional second parameter allows us to search starting from the given position.
+第二個參數是可選的，允許我們從指定的位置開始找。
 
 For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
+舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從 `2` 開始找。
 
 ```js run
 let str = 'Widget with id';
@@ -288,11 +295,12 @@ alert( str.indexOf('id', 2) ) // 12
 ```
 
 If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
+如果我們好奇所有的位置，我們可以在一個迴圈中用 `indexOf`。每一次新呼叫，都發生在前一個找到的位置之後。
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
 
-let target = 'as'; // let's look for it
+let target = 'as'; // let's look for it // 我們來找它
 
 let pos = 0;
 while (true) {
@@ -300,11 +308,12 @@ while (true) {
   if (foundPos == -1) break;
 
   alert( `Found at ${foundPos}` );
-  pos = foundPos + 1; // continue the search from the next position
+  pos = foundPos + 1; // continue the search from the next position // 從下一個位置繼續找
 }
 ```
 
 The same algorithm can be layed out shorter:
+相同的算法，可以寫得更短：
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
@@ -321,22 +330,28 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```smart header="`str.lastIndexOf(substr, position)`"
 There is also a similar method [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
 
+還有一個類似的方法 [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) ，它是從字串末端開始搜尋。
+
 It would list the occurrences in the reverse order.
+它列出的事件，順序會是相反的。
 ```
 
 There is a slight inconvenience with `indexOf` in the `if` test. We can't put it in the `if` like this:
+在 `if` 測試中，`indexOf` 會有一些不便。 我們不能像這樣，將它放在 `if` 中：
 
 ```js run
 let str = "Widget with id";
 
 if (str.indexOf("Widget")) {
-    alert("We found it"); // doesn't work!
+    alert("We found it"); // doesn't work! // 沒有作用!
 }
 ```
 
 The `alert` in the example above doesn't show because `str.indexOf("Widget")` returns `0` (meaning that it found the match at the starting position). Right, but `if` considers `0` to be `false`.
+上面範例中的 `alert` 沒有顯示，因為 `str.indexOf("Widget")` 回傳 `0`（意思是在起始位置就匹配成功）。是的，但是 `if` 認為 `0` 是 `false` 值。
 
 So, we should actually check for `-1`, like this:
+所以我們實際上應該去檢查 `-1` ，像這樣：
 
 ```js run
 let str = "Widget with id";
@@ -344,48 +359,58 @@ let str = "Widget with id";
 *!*
 if (str.indexOf("Widget") != -1) {
 */!*
-    alert("We found it"); // works now!
+    alert("We found it"); // works now! // 現在可以運作了！
 }
 ```
 
-#### The bitwise NOT trick
+#### The bitwise NOT trick 按位（bitwise）NOT 技巧
 
 One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+這裡使用一個古老的技巧， [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` 運算子。它將數字轉換為一個 32 位元 （32-bit）的整數（如果有小數點則全部捨棄），然後反轉它的二進製表示中的所有位元。
 
 In practice, that means a simple thing: for 32-bit integers `~n` equals `-(n+1)`.
+在實踐中，這意味著一件簡單的事情：對於 32 位元整數來說 `~n` 與 `-(n+1)` 完全相同。
 
 For instance:
+例如：
 
 ```js run
-alert( ~2 ); // -3, the same as -(2+1)
-alert( ~1 ); // -2, the same as -(1+1)
-alert( ~0 ); // -1, the same as -(0+1)
+alert( ~2 ); // -3, the same as -(2+1) // -3, 等同 -(2+1)
+alert( ~1 ); // -2, the same as -(1+1) // -2, 等同 -(1+1)
+alert( ~0 ); // -1, the same as -(0+1) // -1, 等同 -(0+1)
 *!*
-alert( ~-1 ); // 0, the same as -(-1+1)
+alert( ~-1 ); // 0, the same as -(-1+1) // 0, 等同 -(-1+1)
 */!*
 ```
 
 As we can see, `~n` is zero only if `n == -1` (that's for any 32-bit signed integer `n`).
+如我們看到的，只有當 `n==-1` 時 `~n` 是零 （that's for any 32-bit signed integer `n` 適用於任何 32 位元，有符號的整數 `n`）
 
 So, the test `if ( ~str.indexOf("...") )` is truthy only if the result of `indexOf` is not `-1`. In other words, when there is a match.
+所以，測試 `if ( ~str.indexOf("...") )` 會是 truthy，只有 `indexOf` 結果不是 `-1` 時。 換句話說，其他的都是符合的。
 
 People use it to shorten `indexOf` checks:
+大家用它做縮寫的 `indexOf` 檢查：
 
 ```js run
 let str = "Widget";
 
 if (~str.indexOf("Widget")) {
-  alert( 'Found it!' ); // works
+  alert( 'Found it!' ); // works // 可行
 }
 ```
 
 It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
+通常不建議以不直覺的方式使用語言特性，但是這種特殊技巧，在舊程式碼中已廣泛使用，因此我們應該理解它。
 
 Just remember: `if (~str.indexOf(...))` reads as "if found".
+只要記住：`if (~str.indexOf(...))` 讀作 "if found"。
 
 To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check is correct only if a string is not that long.
+確切地說，由於大數字被 `〜` 運算子截斷為 32 位元，因此存在其他給出 `0` 的數字，最小的數字為 `〜4294967295 = 0`。那使得，只有當字串不那麼長時，檢查才是正確的。
 
 Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
+現在，我們只能在舊程式碼中看到此技巧，因為現代 JavaScript 提供了 `.includes` 方法（見下文）。
 
 ### includes, startsWith, endsWith
 
