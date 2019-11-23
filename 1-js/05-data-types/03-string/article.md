@@ -412,11 +412,13 @@ To be precise though, as big numbers are truncated to 32 bits by `~` operator, t
 Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
 現在，我們只能在舊程式碼中看到此技巧，因為現代 JavaScript 提供了 `.includes` 方法（見下文）。
 
-### includes, startsWith, endsWith
+### includes, startsWith, endsWith （包含...，用...開始，用...結束）
 
 The more modern method [str.includes(substr, pos)](mdn:js/String/includes) returns `true/false` depending on whether `str` contains `substr` within.
+更現代的方法 [str.includes(substr, pos)](mdn:js/String/includes) 會根據 `str` 中是否包含 `substr` 來回傳 `true/false`。
 
 It's the right choice if we need to test for the match, but don't need its position:
+如果我們要測試它是否吻合，但不需要知道位置，此為正確的選擇：
 
 ```js run
 alert( "Widget with id".includes("Widget") ); // true
@@ -425,35 +427,41 @@ alert( "Hello".includes("Bye") ); // false
 ```
 
 The optional second argument of `str.includes` is the position to start searching from:
+`str.includes` 的第二個參數是可選的，代表開始搜尋的位置：
 
 ```js run
 alert( "Widget".includes("id") ); // true
-alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
+alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id" // false, 從索引位置 3 開始搜尋，不會找到 "id"
 ```
 
 The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js/String/endsWith) do exactly what they say:
+方法 [str.startsWith](mdn:js/String/startsWith) 和 [str.endsWith](mdn:js/String/endsWith) 完全如它們所說：
 
 ```js run
-alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
-alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
+alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid" // true, "Widget" 用 "Wid" 開始
+alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get" // true, "Widget" 以 "get" 結尾
 ```
 
-## Getting a substring
+## Getting a substring 取得一個子字串
 
 There are 3 methods in JavaScript to get a substring: `substring`, `substr` and `slice`.
+JavaScript 有三個取得子字串的方法：`substring`, `substr` 和 `slice`。
 
-`str.slice(start [, end])`
-: Returns the part of the string from `start` to (but not including) `end`.
+`str.slice(start [, end])` :
+Returns the part of the string from `start` to (but not including) `end`.
+回傳該字串從 `start` 到（但不包含）`end` 的部分。
 
     For instance:
+    例如：
 
     ```js run
     let str = "stringify";
-    alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
-    alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+    alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5) // 'strin', 子字串為從字串位置 0 到 5 (但不包含 5)
+    alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0 // 's', 從 0 到 1, 但不包含 1，所以只有位置位於 0 的字元。
     ```
 
     If there is no second argument, then `slice` goes till the end of the string:
+    若沒有第二個參數，那麼 `slice` 將取值到字串末尾。
 
     ```js run
     let str = "st*!*ringify*/!*";
@@ -461,65 +469,74 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     ```
 
     Negative values for `start/end` are also possible. They mean the position is counted from the string end:
+    `start/end` 也可能是負值，它代表該位置是從字串末尾開始計算的。
 
     ```js run
     let str = "strin*!*gif*/!*y";
-
-    // start at the 4th position from the right, end at the 1st from the right
+    // start at the 4th position from the right, end at the 1st from the right // 開始為從右邊算起第四個位置，結尾為從右邊算起第一個位置。
     alert( str.slice(-4, -1) ); // 'gif'
     ```
 
-`str.substring(start [, end])`
-: Returns the part of the string *between* `start` and `end`.
+`str.substring(start [, end])` :
+Returns the part of the string *between* `start` and `end`.
+回傳該字串 `start` 和 `end` *之間* 的部分。
 
     This is almost the same as `slice`, but it allows `start` to be greater than `end`.
+    它幾乎與 `slice` 一樣，但它允許 `start` 可以大於 `end`。
 
     For instance:
+    例如：
 
     ```js run
     let str = "st*!*ring*/!*ify";
 
-    // these are same for substring
+    // these are same for substring // 這些寫法對 substring 來說是一樣的
     alert( str.substring(2, 6) ); // "ring"
     alert( str.substring(6, 2) ); // "ring"
 
-    // ...but not for slice:
+    // ...but not for slice: // 但對於 slice 來說是不一樣的：
     alert( str.slice(2, 6) ); // "ring" (the same)
     alert( str.slice(6, 2) ); // "" (an empty string)
-
     ```
 
     Negative arguments are (unlike slice) not supported, they are treated as `0`.
+    負值的參數是不被支援的（不同於 slice），它們被視為 `0`。
 
-`str.substr(start [, length])`
-: Returns the part of the string from `start`, with the given `length`.
+`str.substr(start [, length])`:
+Returns the part of the string from `start`, with the given `length`.
+回傳該字串從 `start` 到給定 `length` 的部分。
 
     In contrast with the previous methods, this one allows us to specify the `length` instead of the ending position:
+    與之前的方法相比，此方法使我們可以指定 `length` 而不是結束位置。
 
     ```js run
     let str = "st*!*ring*/!*ify";
-    alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
+    alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters // 'ring'，從位置 2 開始，取 4 個字元
     ```
 
     The first argument may be negative, to count from the end:
+    第一個參數可以是負的，從結尾算起：
 
     ```js run
     let str = "strin*!*gi*/!*fy";
-    alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
+    alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters // 'gi', 從位置 4 開始取 2 個字元
     ```
 
 Let's recap these methods to avoid any confusion:
+讓我們回顧一下這些方法，以免混淆：
 
-| method | selects... | negatives |
+| method 方法 | selects... 選擇器 | negatives 負號參數 |
 |--------|-----------|-----------|
-| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
-| `substring(start, end)` | between `start` and `end` | negative values mean `0` |
-| `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
+| `slice(start, end)` | from `start` to `end` (not including `end`) 從 `start` 到 `end` (不包含 `end`) | allows negatives 允許負號參數 |
+| `substring(start, end)` | between `start` and `end` `start` 與 `end` 之間 | negative values mean `0` 負號參數視為 `0`|
+| `substr(start, length)` | from `start` get `length` characters 從 `start` 取 `length` 個字元 | allows negative `start` 允許 `start` 為負數 |
 
-```smart header="Which one to choose?"
+```smart header="Which one to choose? 使用哪一個？"
 All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
+它們都可以勝任工作。從形式上看，`substr` 有個小缺點：它不是在 JavaScript 的核心規範中被描述，而是寫在附件 B 中，它涵蓋了主要由於歷史因素而存在的瀏覽器特性。因此，非瀏覽器環境可能無法支持它，但實際上它在任何地方都可運作。
 
 Of the other two variants, `slice` is a little bit more flexible, it allows negative arguments and shorter to write. So, it's enough to remember solely `slice` of these three methods.
+另外兩個變種，`slice` 更靈活一點，它允許負號參數，且寫得短些。所以只要記住這三個方法中的 `slice` 就夠了。
 ```
 
 ## Comparing strings
