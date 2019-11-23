@@ -268,7 +268,7 @@ The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 第一個方法是 [str.indexOf(substr, pos)](mdn:js/String/indexOf)。
 
 It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
-它在 `str` 中尋找 `substr`，從我們指定的位置 `pos` 開始找，若找到，則回傳該匹配字串的索引位置；若沒找到，找到則回傳 `-1`。
+它在 `str` 中尋找 `substr`，從我們給定的位置 `pos` 開始找，若找到，則回傳該匹配字串的索引位置；若沒找到，找到則回傳 `-1`。
 
 For instance:
 例如：
@@ -283,7 +283,7 @@ alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with 
 ```
 
 The optional second parameter allows us to search starting from the given position.
-第二個參數是可選的，允許我們從指定的位置開始找。
+第二個參數是可選的，允許我們從給定的位置開始找。
 
 For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
 舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從 `2` 開始找。
@@ -507,7 +507,7 @@ Returns the part of the string from `start`, with the given `length`.
 回傳該字串從 `start` 到給定 `length` 的部分。
 
     In contrast with the previous methods, this one allows us to specify the `length` instead of the ending position:
-    與之前的方法相比，此方法使我們可以指定 `length` 而不是結束位置。
+    與之前的方法相比，此方法使我們可以指定一個 `length` 而不是結束位置。
 
     ```js run
     let str = "st*!*ring*/!*ify";
