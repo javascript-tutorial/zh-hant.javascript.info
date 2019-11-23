@@ -539,54 +539,63 @@ Of the other two variants, `slice` is a little bit more flexible, it allows nega
 另外兩個變種，`slice` 更靈活一點，它允許負號參數，且寫得短些。所以只要記住這三個方法中的 `slice` 就夠了。
 ```
 
-## Comparing strings
+## Comparing strings 比對字串
 
 As we know from the chapter <info:comparison>, strings are compared character-by-character in alphabetical order.
+如同我們從 <info:comparison值的比較> 章節了解到的，字串是按字母順序逐字比較。
 
 Although, there are some oddities.
+不過，也有些奇怪之處。
 
-1. A lowercase letter is always greater than the uppercase:
+1. A lowercase letter is always greater than the uppercase: 小寫字母總是大於大寫字母：
 
     ```js run
     alert( 'a' > 'Z' ); // true
     ```
 
-2. Letters with diacritical marks are "out of order":
+2. Letters with diacritical marks are "out of order": 有變音標記字母是 "不正常" 的：
 
     ```js run
     alert( 'Österreich' > 'Zealand' ); // true
     ```
 
     This may lead to strange results if we sort these country names. Usually people would expect `Zealand` to come after `Österreich` in the list.
+    這可能導致奇怪的結果，如果我們排序這些國名，一般人們會認為列表中 `Zealand` 會排在 `Österreich` 之後。
 
 To understand what happens, let's review the internal representation of strings in JavaScript.
+為了明白發生什麼事，我們回顧一下 JavaScript 中，字串的內部表現形式。
 
 All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code. There are special methods that allow to get the character for the code and back.
+所有字串都是用 [UTF-16](https://en.wikipedia.org/wiki/UTF-16) 編碼的。即：每一個字元都有一個對應的數字代碼。有一些特殊的方法可以獲取代碼表示的字符，以及字符對應的代碼。
 
-`str.codePointAt(pos)`
-: Returns the code for the character at position `pos`:
+`str.codePointAt(pos)`：
+Returns the code for the character at position `pos`:
+回傳位於 `pos` 字元的代碼：
 
     ```js run
-    // different case letters have different codes
+    // different case letters have different codes // 字母大小寫有不同的代碼
     alert( "z".codePointAt(0) ); // 122
     alert( "Z".codePointAt(0) ); // 90
     ```
 
-`String.fromCodePoint(code)`
-: Creates a character by its numeric `code`
+`String.fromCodePoint(code)`：
+Creates a character by its numeric `code`
+用字元的代碼數字 `code` 創建字元
 
     ```js run
     alert( String.fromCodePoint(90) ); // Z
     ```
 
     We can also add unicode characters by their codes using `\u` followed by the hex code:
+    我們也可以透過字元代碼來添加 unicode 字元，在 `\u` 後面接該十六進制代碼：
 
     ```js run
-    // 90 is 5a in hexadecimal system
+    // 90 is 5a in hexadecimal system // 在十六進制系統中 90 為 5a
     alert( '\u005a' ); // Z
     ```
 
 Now let's see the characters with codes `65..220` (the latin alphabet and a little bit extra) by making a string of them:
+現在我們來看代碼 `60..220` 的字元（拉丁字母和一些額外的字元）方法是用它們創建一個字串：
 
 ```js run
 let str = '';
@@ -600,15 +609,20 @@ alert( str );
 ```
 
 See? Capital characters go first, then a few special ones, then lowercase characters, and `Ö` near the end of the output.
+看到沒？先是大寫字元，然後是一些特殊字元，然後是小寫字元，而 `Ö` 幾乎是最後輸出。
 
 Now it becomes obvious why `a > Z`.
+現在很明顯為什麼 `a > Z`。
 
 The characters are compared by their numeric code. The greater code means that the character is greater. The code for `a` (97) is greater than the code for `Z` (90).
+字元通過它們的數字代碼進行比較。代碼較大表示該字元較大。 `a` 代碼 (97) 大於 `Z` 代碼 (90)。
 
 - All lowercase letters go after uppercase letters because their codes are greater.
+- 所有小寫字母都在大寫字母後面，因為它們的代碼更大。
 - Some letters like `Ö` stand apart from the main alphabet. Here, it's code is greater than anything from `a` to `z`.
+- 一些字母像是 `Ö` 與主要字母分開。在這裏，他的代碼比從 `a` 到 `z` 的任何字元代碼都大。
 
-### Correct comparisons
+### Correct comparisons 正確的比較
 
 The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
 
