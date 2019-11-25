@@ -625,26 +625,36 @@ The characters are compared by their numeric code. The greater code means that t
 ### Correct comparisons 正確的比較
 
 The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
+執行字串比較，"正確的" 算法比看起來更複雜，因為不同語言的字母是不同的。
 
 So, the browser needs to know the language to compare.
+所以，瀏覽器需要知道要比較的語言。
 
 Luckily, all modern browsers (IE10- requires the additional library [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+幸運的是，所有現代瀏覽器（IE10 -- 需要額外的函式庫 [Intl.JS](https://github.com/andyearnshaw/Intl.js/) 來支援國際化標準 [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf)）。
 
 It provides a special method to compare strings in different languages, following their rules.
+它提供一種特殊方法來比較不同的語言的字串，遵循它們的規則。
 
 The call [str.localeCompare(str2)](mdn:js/String/localeCompare) returns an integer indicating whether `str` is less, equal or greater than `str2` according to the language rules:
+呼叫 [str.localeCompare(str2)](mdn:js/String/localeCompare) 會根據語言的規則回傳一個整數，該整數能表明 `str` 是小於、相等或大於 `str2`。
 
 - Returns a negative number if `str` is less than `str2`.
+- 若 `str` 小於 `str2`，回傳負數
 - Returns a positive number if `str` is greater than `str2`.
+- 若 `str` 大於 `str2`，回傳正數
 - Returns `0` if they are equivalent.
+- 若它們相等，則回傳 `0`
 
 For instance:
+例如：
 
 ```js run
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
 This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
+這個方法實際上在 [the documentation 此文件](mdn:js/String/localeCompare) 指定了兩個額外的參數，它允許指定語言（預設會在環境中獲取語言，字母順序會根據語言不同）並設定額外規則，像是區分大小寫，或是否將 `"a"` 和 `"á"` 視為相同等等。
 
 ## Internals, Unicode
 
