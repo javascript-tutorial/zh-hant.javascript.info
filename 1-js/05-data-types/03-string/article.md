@@ -313,7 +313,7 @@ while (true) {
 ```
 
 The same algorithm can be layed out shorter:
-相同的算法，可以寫得更短：
+相同的演算法，可以寫得更短：
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
@@ -625,7 +625,7 @@ The characters are compared by their numeric code. The greater code means that t
 ### Correct comparisons 正確的比較
 
 The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
-執行字串比較，"正確的" 算法比看起來更複雜，因為不同語言的字母是不同的。
+執行字串比較，"正確的" 演算法比看起來更複雜，因為不同語言的字母是不同的。
 
 So, the browser needs to know the language to compare.
 所以，瀏覽器需要知道要比較的語言。
@@ -722,52 +722,64 @@ You will find more ways to deal with surrogate pairs later in the chapter <info:
 稍後在 <info：iterable> 一章中，您將找到更多處理代理對的方法。 可能也有專門的函式庫，但是沒有什麼足以在這裡建議的。
 
 
-### Diacritical marks and normalization
+### Diacritical marks and normalization 變音標記和標準化
 
 In many languages there are symbols that are composed of the base character with a mark above/under it.
+在許多語言中，有些符號是由帶有上標記或下標記的基本字元組成。
 
 For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the UTF-16 table. But not all of them, because there are too many possible combinations.
+例如，字母 `a` 可以是下列的基本字元：`àáâäãåā`。最常見的 "複合" 字元在 UTF-16 表中有自己的代碼。但並非全部，因為可能的組合太多。
 
 To support arbitrary compositions, UTF-16 allows us to use several unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
+為了支援任意組合，UTF-16 允許我們去使用幾個 unicode 字元：基本字元緊跟著一個或多個 "裝飾" 它的 "標記" 字元。
 
 For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
+例如，若我們有 `S` 後面跟著特殊 "上標點（dot above）" 字元（代碼 `\u0307`）這顯示為 Ṡ。
 
 ```js run
 alert( 'S\u0307' ); // Ṡ
 ```
 
 If we need an additional mark above the letter (or below it) -- no problem, just add the necessary mark character.
+如果我們需要在字母上方（或字母下方）附加一個標記 -- 沒問題，只需添加必要的標記字元即可。
 
 For instance, if we append a character "dot below" (code `\u0323`), then we'll have "S with dots above and below": `Ṩ`.
+例如，如果我們再加一個 "下標點（dot below）" 字元（代碼 `\u0323`），那麼我們將得到有上方和下方都有帶點的 `S`：`Ṩ`。
 
 For example:
+例如：
 
 ```js run
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
 
 This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different unicode compositions.
+這提供了極大的靈活性，但還有個有趣的問題：兩個字元在視覺上可能看來相同，但是用不同的 unicode 組合表示。
 
 For instance:
+例如：
 
 ```js run
-let s1 = 'S\u0307\u0323'; // Ṩ, S + dot above + dot below
-let s2 = 'S\u0323\u0307'; // Ṩ, S + dot below + dot above
+let s1 = 'S\u0307\u0323'; // Ṩ, S + dot above + dot below // Ṩ, S + 上標點 + 下標點
+let s2 = 'S\u0323\u0307'; // Ṩ, S + dot below + dot above // Ṩ, S + 下標點 + 上標點
 
 alert( `s1: ${s1}, s2: ${s2}` );
 
-alert( s1 == s2 ); // false though the characters look identical (?!)
+alert( s1 == s2 ); // false though the characters look identical (?!) // false 儘管字元看起來是相同的 (?!)
 ```
 
 To solve this, there exists a "unicode normalization" algorithm that brings each string to the single "normal" form.
+為了解決這個問題，有一種 "unicode 標準化（unicode normalization）" 演算法，將每個字串轉換為單個 "常規" 格式。
 
 It is implemented by [str.normalize()](mdn:js/String/normalize).
+他透過 [str.normalize()](mdn:js/String/normalize) 實作。
 
 ```js run
 alert( "S\u0307\u0323".normalize() == "S\u0323\u0307".normalize() ); // true
 ```
 
 It's funny that in our situation `normalize()` actually brings together a sequence of 3 characters to one: `\u1e68` (S with two dots).
+我們遇到好玩的現象，`normalize()` 實際將三字元的序列聚集成一個： `\u1e68`（有兩個點的 S）。
 
 ```js run
 alert( "S\u0307\u0323".normalize().length ); // 1
@@ -776,8 +788,10 @@ alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
 In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so UTF-16 creators included it in the main table and gave it the code.
+事實上，這並非總是如此。原因是 `Ṩ` 符號 "足夠常見"，因此 UTF-16 創建者將其包含在主表中並提供代碼。
 
 If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
+如果你想了解有關規範化規則和變體的更多信息 -- 它們在 Unicode 標準的附錄中有所描述：[Unicode Normalization Forms](http://www.unicode.org/reports/tr15/)，但對於大多數實際目的來說，本節的信息就足夠了。
 
 ## Summary
 
