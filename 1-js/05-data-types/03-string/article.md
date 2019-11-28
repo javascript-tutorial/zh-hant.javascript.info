@@ -793,21 +793,33 @@ In reality, this is not always the case. The reason being that the symbol `Ṩ` 
 If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
 如果你想了解有關規範化規則和變體的更多信息 -- 它們在 Unicode 標準的附錄中有所描述：[Unicode Normalization Forms](http://www.unicode.org/reports/tr15/)，但對於大多數實際目的來說，本節的信息就足夠了。
 
-## Summary
+## Summary 總結
 
 - There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
+- 有 3 種類型的引號。 反引號允許字串換行，並嵌入表達式 `$ {…}`。
 - Strings in JavaScript are encoded using UTF-16.
+- 字串在 JavaScript 中都是使用 UTF-16 編碼。
 - We can use special characters like `\n` and insert letters by their unicode using `\u...`.
+- 我們可以使用像 `\n` 的特殊字元，還能通過 `\u...` 操作 unicode 來插入字母。
 - To get a character, use: `[]`.
+- 取得字元使用：`[]`
 - To get a substring, use: `slice` or `substring`.
+- 取得子字串使用：`slice` 或 `substring`。
 - To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
+- 字串的大小寫轉換，使用：`toLowerCase/toUpperCase`。
 - To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
+- 要搜尋一個子字串，使用： `indexOf`，或 `includes/startsWith/endsWith` 來做簡單的確認。
 - To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+- 要依據語言比較字串時使用：`localeCompare`，否則將使用字元編碼比較
 
 There are several other helpful methods in strings:
+關於字串，其他ㄧ些有用的方法：
 
 - `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
+- `str.trim()` -- 移除 ("trims") 字串前後的空格。
 - `str.repeat(n)` -- repeats the string `n` times.
+- `str.repeat(n)` -- 重複該字串 `n` 次。
 - ...and more to be found in the [manual](mdn:js/String).
-
+- ...更多內容請參考 [manual 手冊](mdn:js/String).
 Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
+字符串也有使用正則表達式進行 搜索/替換 的方法。但這是個大主題，因此，將在一個單獨的教程章節 <info:regular-expressions> 中說明。
