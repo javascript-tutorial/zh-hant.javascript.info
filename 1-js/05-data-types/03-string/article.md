@@ -1,19 +1,15 @@
-# Strings 字串
+# 字串（String）
 
-In JavaScript, the textual data is stored as strings. There is no separate type for a single character.
-在 JavaScript 中，文字數據被存為字串類型。並沒有針對單個字元做不同分類。
+在 JavaScript 中，文字數據被存為字串（String）類型，並沒有針對單個字元另外分類。
 
-The internal format for strings is always [UTF-16](https://en.wikipedia.org/wiki/UTF-16), it is not tied to the page encoding.
-字串的內部格式，始終為 [UTF-16](https://en.wikipedia.org/wiki/UTF-16)，與頁面編碼不相關。
+字串的內部格式始終為 [UTF-16](https://en.wikipedia.org/wiki/UTF-16)，與頁面編碼無關。
 
 
-## Quotes 引號
+## 引號
 
-Let's recall the kinds of quotes.
 讓我們回想一下引號的種類。
 
-Strings can be enclosed within either single quotes, double quotes or backticks:
-字串可以用單引號、雙引號或反引號引起來：
+字串可以被單引號、雙引號或反引號前後包圍：
 
 ```js
 let single = 'single-quoted';
@@ -22,8 +18,7 @@ let double = "double-quoted";
 let backticks = `backticks`;
 ```
 
-Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
-單引號和雙引號本質是相同的。但反引號允許我們像這樣 `${…}`將表達式包裹，嵌入到字串中：
+單引號和雙引號本質是相同的。但反引號允許我們包裹表達式，像這樣 `${…}`，將表達式嵌入在字串中：
 
 ```js run
 function sum(a, b) {
@@ -33,8 +28,7 @@ function sum(a, b) {
 alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
 ```
 
-Another advantage of using backticks is that they allow a string to span multiple lines:
-使用反引號的另一個優點，是它們是允許在字串中直接換行：
+使用反引號的另一個優點，是它們是允許多行字串：
 
 ```js run
 let guestList = `Guests:
@@ -43,25 +37,21 @@ let guestList = `Guests:
  * Mary
 `;
 
-alert(guestList); // a list of guests, multiple lines // 客人名單，多行
+alert(guestList); // 客人名單，多行
 ```
 
-Looks natural, right? But single or double quotes do not work this way.
 看起來很自然吧？ 但是單、雙引號不能這樣做。
 
-If we use them and try to use multiple lines, there'll be an error:
-如果我們使用單引號或雙引號時直接換行，將會出現錯誤：
+如果我們使用單引號或雙引號時做換行，將會出現錯誤：
 
 ```js run
-let guestList = "Guests: // Error: Unexpected token ILLEGAL 錯誤：意外的語彙單元 非法
+let guestList = "Guests: // 錯誤：意料之外的令牌（標記、符號） 不合法（Unexpected token ILLEGAL）
   * John";
 ```
 
-Single and double quotes come from ancient times of language creation when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
 單引號和雙引號來自創造語言的遠古時代，當時沒有考慮對多行字串的需求。 反引號出現得較晚，因此用途更廣。
 
-Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This is called "tagged templates". This feature makes it easier to implement custom templating, but is rarely used in practice. You can read more about it in the [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
-反引號還允許我們在第一個反引號之前，指定 "模板功能 (template function)"。 語法為 <code>func&#96;string&#96;</code>。 函數 `func` 會被自動調用，接收字串和嵌入式表達式並處理他們，這稱為 "標記模板 (tagged templates)"。 此功能使實現自定義模板更加容易，但很少在實踐中使用。您可以在 [手冊](mdn:/JavaScript/Reference/Template_literals#Tagged_templates) 中了解更多信息。
+反引號還允許我們，在第一個反引號前指定 "模板功能 (template function)"。 語法為 <code>func&#96;string&#96;</code>。 函數 `func` 會被自動調用，接收字串和嵌入式表達式並處理他們，這稱為 "標記模板 (tagged templates)"。 此功能使實現自定義模板更加容易，但很少在實踐中使用。您可以在 [手冊](mdn:/JavaScript/Reference/Template_literals#Tagged_templates) 中了解更多信息。
 
 
 ## Special characters 特殊的角色
