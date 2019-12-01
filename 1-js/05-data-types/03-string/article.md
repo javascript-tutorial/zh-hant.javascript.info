@@ -257,7 +257,7 @@ Or, if we want a single character lowercased:
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
-## Searching for a substring 搜尋一個子字串
+## Searching for a substring 檢索一個子字串
 
 There are multiple ways to look for a substring within a string.
 查詢一個字串當中的子字串，有很多方法。
@@ -277,13 +277,13 @@ For instance:
 let str = 'Widget with id';
 
 alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning // 0， 因為一開始 'Widget' 就被找到
-alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive // -1，沒找到，搜尋是對大小寫敏感的。
+alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive // -1，沒找到，檢索是對大小寫敏感的。
 
 alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id) // 1， "id" 在索引位置 "1" 處就被找到 (..idget 中的 id) 。
 ```
 
 The optional second parameter allows us to search starting from the given position.
-第二個參數是可選的，允許我們從給定的位置開始找。
+第二個參數是可選的，允許我們從給定的位置開始檢索。
 
 For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
 舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從 `2` 開始找。
@@ -308,7 +308,7 @@ while (true) {
   if (foundPos == -1) break;
 
   alert( `Found at ${foundPos}` );
-  pos = foundPos + 1; // continue the search from the next position // 從下一個位置繼續找
+  pos = foundPos + 1; // continue the search from the next position // 從下一個位置繼續檢索
 }
 ```
 
@@ -330,7 +330,7 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```smart header="`str.lastIndexOf(substr, position)`"
 There is also a similar method [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
 
-還有一個類似的方法 [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) ，它是從字串末端開始搜尋。
+還有一個類似的方法 [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) ，它是從字串末端開始檢索。
 
 It would list the occurrences in the reverse order.
 它列出的事件，順序會是相反的。
@@ -427,11 +427,11 @@ alert( "Hello".includes("Bye") ); // false
 ```
 
 The optional second argument of `str.includes` is the position to start searching from:
-`str.includes` 的第二個參數是可選的，代表開始搜尋的位置：
+`str.includes` 的第二個參數是可選的，代表開始檢索的位置：
 
 ```js run
 alert( "Widget".includes("id") ); // true
-alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id" // false, 從索引位置 3 開始搜尋，不會找到 "id"
+alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id" // false, 從索引位置 3 開始檢索，不會找到 "id"
 ```
 
 The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js/String/endsWith) do exactly what they say:
@@ -822,4 +822,4 @@ There are several other helpful methods in strings:
 - ...and more to be found in the [manual](mdn:js/String).
 - ...更多內容請參考 [manual 手冊](mdn:js/String).
 Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
-字符串也有使用正則表達式進行 搜索/替換 的方法。但這是個大主題，因此，將在一個單獨的教程章節 <info:regular-expressions> 中說明。
+字符串也有使用正則表達式進行 檢索/替換 的方法。但這是個大主題，因此，將在一個單獨的教程章節 <info:regular-expressions> 中說明。
