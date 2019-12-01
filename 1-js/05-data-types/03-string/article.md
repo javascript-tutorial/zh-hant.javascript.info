@@ -49,7 +49,7 @@ let guestList = "Guests: // 錯誤：意料之外的令牌（標記、符號） 
   * John";
 ```
 
-單引號和雙引號來自創造語言的遠古時代，當時沒有考慮對多行字串的需求。 反引號出現得較晚，因此用途更廣。
+單引號和雙引號來自創造語言的古早時代，當時沒有考慮對多行字串的需求。 反引號出現得較晚，因此用途更廣。
 
 反引號還允許我們，在第一個反引號前指定 "模板功能 (template function)"。 語法為 <code>func&#96;string&#96;</code>。 函數 `func` 會被自動調用，接收字串和嵌入式表達式並處理他們，這稱為 "標記模板 (tagged templates)"。 此功能使實現自定義模板更加容易，但很少在實踐中使用。您可以在 [手冊](mdn:/JavaScript/Reference/Template_literals#Tagged_templates) 中了解更多信息。
 
