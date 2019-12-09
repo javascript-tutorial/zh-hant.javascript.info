@@ -41,7 +41,11 @@ alert("some code");
 ```warn header="沒有取消 `use strict` 的方式"
 沒有像是 `"no use strict"` 之類使得引擎回復舊行為的指令
 
+<<<<<<< HEAD
 一旦我們開啟嚴格模式，就不能回頭。
+=======
+Once we enter strict mode, there's no going back.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 ```
 
 ## 瀏覽器主控台
