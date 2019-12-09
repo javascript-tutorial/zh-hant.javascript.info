@@ -56,85 +56,72 @@ let guestList = "Guests: // 錯誤：意料之外的令牌（標記、符號） 
 
 ## Special characters 特殊的角色
 
-It is still possible to create multiline strings with single and double quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
-單、雙引號仍然可建立多行的字串，用所謂的 "換行符 (newline character)"，寫為 `\n`，表示換行。
+用單、雙引號仍能建立多行的字串，透過所謂的 "換行符 (newline character)"，寫為 `\n`，表示換行：
 
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
 
-alert(guestList); // a multiline list of guests 多行的來賓列表
+alert(guestList); // 一個多行的來賓列表
 ```
 
-For example, these two lines are equal, just written differently:
-例如， 這兩行描述是相同的，只是書寫方式不同：
+例如， 這兩行做法是相同的，只是書寫方式不同：
 
 ```js run
-let str1 = "Hello\nWorld"; // two lines using a "newline symbol" 使用一個 "換行符" 創建的兩行字串。
+let str1 = "Hello\nWorld"; // 使用一個 "換行符" 創建的兩行字串
 
-// two lines using a normal newline and backticks 使用反引號、直接換行所創建的兩行字串。
+// 使用反引號並且正常進行換行所創建的兩行字串
 let str2 = `Hello
 World`;
 
-alert(str1 == str2); // true 兩者相等
+alert(str1 == str2); // true
 ```
 
-There are other, less common "special" characters.
 還有其他一些不太常見的 "特殊" 字元。
 
-Here's the full list:
-這是完整列表：
+這裡是完整的列表：
 
-| Character 字元 | Description 描述 |
+| 字元 | 描述 |
 |-----------|-------------|
-|`\n`|New line 換行、新行|
-|`\r`|Carriage return: not used alone. Windows text files use a combination of two characters `\r\n` to represent a line break. 回車：不單獨使用。 Windows 純文字檔使用兩個字元組合 `\r\n` 來表示換行。 |
-|`\'`, `\"`|Quotes 引號|
-|`\\`|Backslash 反斜槓|
-|`\t`|Tab 製表跳格|
-|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. 倒退，換頁，垂直製表跳格 -- 為保持兼容性，目前已不被使用。|
-|`\xXX`|Unicode character with the given hexadecimal unicode `XX`, e.g. `'\x7A'` is the same as `'z'`. 一個 Unicode 字元，`XX` 為十六進制 unicode 字元，例如 `'\x7A'` 與 `'z'` 相同。|
-|`\uXXXX`|A unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. 一個 unicode 符號，以 UTF-16 編碼的十六進制代碼 "XXXX" 表示，例如 `\u00A9` -- 為 unicode 版權符號 `©`，十六進制數字必須是 4 個。|
-|`\u{X…XXXXXX}` (1 to 6 hex characters 1 到 6 個十六進制字元)|A unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two unicode symbols, taking 4 bytes. This way we can insert long codes. 用給定 UTF-32 編碼的 unicode 符號。因為有些稀有字元是兩個 unicode 符號，佔用 4 個字節。這樣我們可以插入長串的程式碼。|
+|`\n`| 換行、新行|
+|`\r`| 回車：不單獨使用。 Windows 純文字檔案使用兩個字元組合 `\r\n` 來表示換行。 |
+|`\'`, `\"`| 引號。|
+|`\\`| 反斜槓。|
+|`\t`| Tab 製表跳格。|
+|`\b`, `\f`, `\v`| 倒退，跳頁，垂直製表跳格 -- 為保持兼容性，目前已不被使用。|
+|`\xXX`| 一個 Unicode 字元，`XX` 為十六進制的 unicode，例如 `'\x7A'` 與 `'z'` 相同。|
+|`\uXXXX`| 一個 unicode 符號，`XXXX` 為以 UTF-16 編碼的十六進制代碼，例如 `\u00A9` -- 為 unicode 版權符號 `©`，十六進制數字必須是 4 個。|
+|`\u{X…XXXXXX}` (1 到 6 個十六進制字元)| 用給定的 UTF-32 編碼的 unicode 符號。因為有些稀有字元是兩個 unicode 符號，佔用 4 個字節。這樣我們可以插入長串的程式碼。|
 
-Examples with unicode:
 unicode 的例子：
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long unicode) 一個少見的中文象形文字（長 unicode）
-alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long unicode) 一個笑臉符號（另一個長 unicode）
+alert( "\u{20331}" ); // 佫, 一個少見的中文象形文字（長的 unicode）
+alert( "\u{1F60D}" ); // 😍, 一個笑臉符號（另一個長的 unicode）
 ```
 
-All special characters start with a backslash character `\`. It is also called an "escape character".
 所有特殊字元均以反斜槓字元 `\` 開頭。也稱為 "跳脫字元"。
 
-We might also use it if we wanted to insert a quote into the string.
 當我們想在字串中安插引號，也可以使用它。
 
-For instance:
 例如：
 
 ```js run
-alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus! (Walrus: 海象)
+alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 ```
 
-As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
 就像你看到的，我們必須在內部的引號前加上反斜槓 `\`，否則它將結束字串。
 
-Of course, only to the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
-當然，只有跟那個封閉引號相同的引號，才需要跳脫。因此，作為更優雅的解決方案，我們可以轉為使用雙引號或反引號：
+當然，只有跟該封閉引號相同的引號才需要跳脫。因此，作為更優雅的解決方案，我們可以轉為使用雙引號或反引號：
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
 ```
 
-Note that the backslash `\` serves for the correct reading of the string by JavaScript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
-請注意，反斜槓 `\` 是為了在 JavaScript 正確讀取字串，然後就消失了。儲存的字串中沒有 `\`。你可以在上面的 `alert` 範例中，清楚地看到這點。
+請注意，反斜槓 `\` 是為了使 JavaScript 正確讀取字串，然後就消失。儲存的字串中沒有 `\`。你可以在上面的 `alert` 範例中，清楚地看到這點。
 
-But what if we need to show an actual backslash `\` within the string?
 但若我們需要在字串中顯示實際的反斜槓 `\` 怎麼辦？
 
-That's possible, but we need to double it like `\\`:
 這是可行的，我們只需將它像這樣書寫兩次 `\\`：
 
 ```js run
