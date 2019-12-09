@@ -18,7 +18,7 @@ let double = "double-quoted";
 let backticks = `backticks`;
 ```
 
-單引號和雙引號本質是相同的。但反引號允許我們包裹表達式，像這樣 `${…}`，將表達式嵌入在字串中：
+單引號和雙引號本質是相同的。但反引號允許我們把表達式包裹起來，像這樣 `${…}`，然後嵌入字串中：
 
 ```js run
 function sum(a, b) {
