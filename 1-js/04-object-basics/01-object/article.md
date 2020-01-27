@@ -321,8 +321,13 @@ let key = "age";
 alert( *!*key*/!* in user ); // true，名稱由 key 而來，並檢查該屬性
 ```
 
+<<<<<<< HEAD
 ````smart header="對儲存 `undefined` 的屬性使用 \"in\""
 通常，使用嚴格比較 `"=== undefined"` 來確認屬性是否存在是沒問題的，然而有個特殊情況這麼做會失敗，但 `"in"` 能正確運作。
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 就是當物件屬性存在，卻儲存著 `undefined` 時：
 
