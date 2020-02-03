@@ -18,8 +18,13 @@ let id = Symbol();
 
 創建後，我們可以給 Symbol 一個敘述（也稱為 Symbol 名稱），在進行除錯時大多很有用處：
 
+<<<<<<< HEAD
 ```js run
 // id 是一個擁有敘述 "id" 的 Symbol
+=======
+```js
+// id is a symbol with the description "id"
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 let id = Symbol("id");
 ```
 
