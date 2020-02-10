@@ -159,8 +159,8 @@ function pow(x, n) {
         assert.equal(pow(2, 3), 8);
       });
 
-      it("3 raised to power 3 is 27", function() {
-        assert.equal(pow(3, 3), 27);
+      it("3 raised to power 4 is 81", function() {
+        assert.equal(pow(3, 4), 81);
       });
 
     });
@@ -182,7 +182,11 @@ function pow(x, n) {
 
 [iframe height=250 src="pow-2" edit border="1"]
 
+<<<<<<< HEAD
 如我們所預期，第二個測試失敗了。當然，我們的函式總是回傳 `8`，然而 `assert` 預期的是 `27`。
+=======
+As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ## 改進實作
 

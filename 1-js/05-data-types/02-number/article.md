@@ -1,8 +1,18 @@
 # 數值（Numbers）
 
+<<<<<<< HEAD
 JavaScript 中所有數值都以 64 位元格式儲存 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) ，亦被稱為 "雙精度浮點數值"。
 
 來從我們已知的部分繼續延伸吧。
+=======
+In modern JavaScript, there are two types of numbers:
+
+1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
+
+2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+
+So here we'll talk about regular numbers. Let's expand our knowledge of them.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ## 更多寫下數值的方式
 
@@ -29,13 +39,21 @@ alert( 7.3e9 );  // 7.3 個十億 (7,300,000,000)
 1.23e6 = 1.23 * 1000000
 ```
 
+<<<<<<< HEAD
 現在來寫些非常小的數值吧，例如 1 微秒（百萬分之一秒）：
+=======
+Now let's write something very small. Say, 1 microsecond (one millionth of a second):
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ```js
 let ms = 0.000001;
 ```
 
+<<<<<<< HEAD
 就跟之前一樣，使用 `"e"` 會有幫助。若我們想避免明確寫下那麼多零，我們可以：
+=======
+Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say the same as:
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 ```js
 let ms = 1e-6; // 在 1 左側有六個零
@@ -271,17 +289,27 @@ JavaScript 在這種事件下不會觸發錯誤，它會盡全力讓數值符合
 ```smart header="兩個零"
 另一個數值內部表現的有趣結果是，存在有兩個零：`0` 和 `-0`。
 
+<<<<<<< HEAD
 這是因為使用單一個位元來表示正負號，所以每個數值都可以為正或負，包括零。
+=======
+That's because a sign is represented by a single bit, so it can be set or not set for any number including a zero.
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 在大多情況下不會注意到有這樣的區別，因為運算子對待它們一視同仁。
 ```
 
+<<<<<<< HEAD
 ## 測試：isFinite 和 isNaN
 
 還記得這兩個特別的數值嗎？
 
 - `Infinity`（和 `-Infinity`）是個大於（小於）任何東西的特殊數值。
 - `NaN` 表示有錯誤產生。
+=======
+## Tests: isFinite and isNaN
+
+Remember these two special numeric values?
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 它們屬於 `數值` 類型，但並非 "一般" 數值，因此有特別的函式用來確認它們：
 
@@ -406,10 +434,17 @@ JavaScript 有個內建的 [Math](https://developer.mozilla.org/en/docs/Web/Java
 
 要寫一個大的數值：
 
+<<<<<<< HEAD
 - 附加 `"e"` 與零的數量到數值後方，像是：`123e6` 是 `123` 後有 6 個零。
 - `"e"` 之後的負數會使得數值除以 1 的後面帶有給定數量的零，像是百萬分之一這樣。
 
 對於不同的數值系統：
+=======
+To write numbers with many zeroes:
+
+- Append `"e"` with the zeroes count to the number. Like: `123e6` is the same as `123` with 6 zeroes `123000000`.
+- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. E.g. `123e-6` means `0.000123` (`123` millionths).
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 - 可以直接寫十六進位（`0x`）、八進位（`0o`）和二進位（`0b`）系統。
 - `parseInt(str, base)` 於給定 `base` 為基底的數值系統內，將字串 `str` 解析為整數，其中 `2 ≤ base ≤ 36`。
