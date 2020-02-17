@@ -18,8 +18,13 @@ let id = Symbol();
 
 創建後，我們可以給 Symbol 一個敘述（也稱為 Symbol 名稱），在進行除錯時大多很有用處：
 
+<<<<<<< HEAD
 ```js run
 // id 是一個擁有敘述 "id" 的 Symbol
+=======
+```js
+// id is a symbol with the description "id"
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 let id = Symbol("id");
 ```
 
@@ -181,6 +186,7 @@ alert( clone[id] ); // 123
 
 這裡沒有矛盾，就是這樣設計的。想法是當我們複製一個物件，或是合併多個物件時，我們通常想要 *所有* 屬性都被複製（包含像 `id` 這樣的 Symbol ）。
 
+<<<<<<< HEAD
 ````smart header="其他類別的屬性鍵值會被強行轉換成字串"
 在物件中，我們只能使用字串或 Symbol 當作鍵值。其他類型都會被轉成字串。
 
@@ -198,6 +204,9 @@ alert( obj[0] ); // test (同樣的屬性)
 ````
 
 ## 全局符號
+=======
+## Global symbols
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 正如我們所見，通常所有的 Symbol 都是不同的，即使它們擁有相同的名稱。但是有時候我們想要擁有相同名稱的 Symbol 被當作相同的物體。例如，我們應用程式中的不同部分想用Symbol `"id"` 存取到完全相同的屬性。
 
@@ -244,7 +253,11 @@ alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
+<<<<<<< HEAD
 `Symbol.keyFor` 在內部使用全域 Symbol 註冊表來查詢 Symbol 的鍵值。所以它並不適用於非全域的 Symbol。如果某個 Symbol 不是全域的，此方法將無法找到它，並會回傳 `undefined`。
+=======
+The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and returns `undefined`.
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 是說，任何 Symbol 都有 `description` 屬性。
 

@@ -10,9 +10,15 @@ message = 123456;
 
 若允許這麼做的程式語言，稱其具有 "動態類型（dynamically typed）"，意思是變數不會綁定任一種資料類型。
 
+<<<<<<< HEAD
 JavaScript 中有七種基礎的資料類型，在此我們會稍微介紹下它們，然後在接下來的章節中我們會逐一介紹其細節：
 
 ## 數值（A number）
+=======
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+
+## Number
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 ```js
 let n = 123;
@@ -63,14 +69,42 @@ n = 12.345;
 
 我們會在章節 <info:number> 中看到更多使用數值的方式。
 
+<<<<<<< HEAD
 ## 字串（A string）
+=======
+## BigInt
+
+In JavaScript, the "number" type cannot represent integer values larger than <code>2<sup>53</sup></code> (or less than <code>-2<sup>53</sup></code> for negatives), that's a technical limitation caused by their internal representation. That's about 16 decimal digits, so for most purposes the limitation isn't a problem, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+
+`BigInt` type was recently added to the language to represent integers of arbitrary length.
+
+A `BigInt` is created by appending `n` to the end of an integer literal:
+
+```js
+// the "n" at the end means it's a BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+
+```smart header="Compatability issues"
+Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+```
+
+## String
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 JavaScript 中的字串（string）必須被引號（quotes）所環繞。
 
 ```js
 let str = "Hello";
+<<<<<<< HEAD
 let str2 = 'Single quotes are ok too（單引號也可以）';
 let phrase = `can embed ${str}（字串可被 \${內嵌}）`;
+=======
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 ```
 
 在 JavaScript 中，有三種引號。
@@ -79,7 +113,11 @@ let phrase = `can embed ${str}（字串可被 \${內嵌}）`;
 2. 單引號：`'Hello'`。
 3. 反引號：<code>&#96;Hello&#96;</code>。
 
+<<<<<<< HEAD
 單雙引號都是 "簡易的" 引號，在 JavaScript 中它們沒有差異。
+=======
+Double and single quotes are "simple" quotes. There's practically no difference between them in JavaScript.
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 反引號是 "功能擴展" 引號，讓我們可以在字串中利用 `${...}` 嵌入變數或是表達式，例如：
 
@@ -102,13 +140,22 @@ alert( "the result is ${1 + 2}" ); // the result is ${1 + 2}（雙引號什麼�
 
 我們會在章節 <info:string> 中介紹更多細節。
 
+<<<<<<< HEAD
 ```smart header="不存在 *字元（character）* 類型"
 在一些語言中，單一字元有個特殊的 "字元" 類型，像是在 C 語言或是 Java 中的 `char`。
+=======
+```smart header="There is no *character* type."
+In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is called "char".
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 在 JavaScript 中沒有這種類型，只有一種 `字串` 類型。一串字串可以只有一個或擁有多個字元在內。
 ```
 
+<<<<<<< HEAD
 ## 布林（A boolean）（邏輯類型）
+=======
+## Boolean (logical type)
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 布林（boolean）類型只有兩種值：`true` 和 `false`。
 
@@ -199,6 +246,8 @@ typeof undefined // "undefined"
 
 typeof 0 // "number"
 
+typeof 10n // "bigint"
+
 typeof true // "boolean"
 
 typeof "foo" // "string"
@@ -225,6 +274,7 @@ typeof alert // "function"（3）
 3. `typeof alert` 的結果是 `function`，因為 `alert` 是個函式。我們會在接下來的章節中學到函式，並了解 JavaScript 中沒有 "function" 這個特殊的類型。函式屬於物件類型的一種，但 `typeof` 視它們為不同兩者並回傳 `function`。這不那麼正確，但在實作中卻很方便。
 
 
+<<<<<<< HEAD
 ## 總結
 
 在 JavaScript 中有 7 種基礎資料類型：
@@ -238,6 +288,20 @@ typeof alert // "function"（3）
 - `symbol` 用於獨特的識別符。
 
 `typeof` 運算子讓我們確認變數中儲存的類型。
+=======
+## Summary
+
+There are 8 basic data types in JavaScript.
+
+- `number` for numbers of any kind: integer or floating-point, integers are limited by ±2<sup>53</sup>.
+- `bigint` is for integer numbers of arbitrary length.
+- `string` for strings. A string may have one or more characters, there's no separate single-character type.
+- `boolean` for `true`/`false`.
+- `null` for unknown values -- a standalone type that has a single value `null`.
+- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+- `object` for more complex data structures.
+- `symbol` for unique identifiers.
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 - 兩種格式：`typeof x` 或 `typeof(x)`。
 - 回傳一個類型名稱的字串，像是 `"string"`。
