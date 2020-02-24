@@ -64,7 +64,11 @@ user.sayHi(); // Hello!
 ```smart header="物件導向程式設計"
 當我們使用物件寫程式碼來表現實體時，被稱為 [物件導向程式設計（object-oriented programming）](https://en.wikipedia.org/wiki/Object-oriented_programming)，簡稱為："OOP"。
 
+<<<<<<< HEAD
 OOP 是門很大的學問，本身就是個有趣的科學。要怎麼選擇正確的實體？如何組織兩者間的交互作用？這就是架構，且有些很棒的書在探討這個議題，像是 E.Gamma, R.Helm, R.Johnson, J.Vissides 的 "Design Patterns: Elements of Reusable Object-Oriented Software" 或 G.Booch 的 "Object-Oriented Analysis and Design with Applications" 等等。
+=======
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 ```
 
 ### 方法簡寫

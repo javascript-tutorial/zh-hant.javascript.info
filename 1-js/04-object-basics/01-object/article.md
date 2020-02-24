@@ -102,7 +102,13 @@ let user = {
 user.likes birds = true
 ```
 
+<<<<<<< HEAD
 這是因為句點需要鍵是個有效的變數識別符，也就是：沒有空格和其它某些限制。
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` и `_` are allowed).
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 作為替代，"方括號" 可用在任意字串上：
 
@@ -205,6 +211,7 @@ let bag = {
 
 所以大多時候，當屬性名稱已知且單純時，用句點就好，而若我們需要某些較複雜的東西時，再轉用方括號即可。
 
+<<<<<<< HEAD
 ````smart header="保留字可被允許用於屬性名稱"
 變數不能使用語言保留字作為名稱，像是 "for"、"let"、"return" 等等。
 
@@ -242,6 +249,11 @@ alert(obj.__proto__); // [object Object]，與預期的不同
 ## 屬性值簡寫
 
 在真正寫程式時我們常使用現存的變數作為屬性名稱的值。
+=======
+## Property value shorthand
+
+In real code we often use existing variables as values for property names.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 舉個例：
 
@@ -283,7 +295,67 @@ let user = {
 };
 ```
 
+<<<<<<< HEAD
 ## 存在性確認
+=======
+## Property names limitations
+
+Property names (keys) must be either strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+**Reserved words are allowed as property names.**
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction. Any name is fine:
+
+```js run
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+We can use any string as a key, but there's a special property named `__proto__` that gets special treatment for historical reasons.
+
+For instance, we can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+The nature of `__proto__` will be revealed in detail later in the chapter [](info:prototype-inheritance).
+
+As for now, it's important to know that such behavior of `__proto__` can become a source of bugs and even vulnerabilities if we intend to store user-provided keys in an object.
+
+The problem is that a visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+
+There are two workarounds for the problem:
+1. Modify the object's behavior to treat `__proto__` as a regular property. We'll learn how to do it in the chapter [](info:prototype-methods).
+2. Using [Map](info:map-set) data structure which supports arbitrary keys. We'll learn it in the chapter <info:map-set>.
+
+## Property existence test, "in" operator
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 有個值得注意的物件功能是我們可以存取任意屬性，就算屬性不存在也不會有任何錯誤！存取一個不存在的屬性只會回傳 `undefined`，這提供了一個非常常見的方式來檢測屬性是否存在 -- 取得它並跟 undefined 做比較：
 
@@ -321,8 +393,13 @@ let key = "age";
 alert( *!*key*/!* in user ); // true，名稱由 key 而來，並檢查該屬性
 ```
 
+<<<<<<< HEAD
 ````smart header="對儲存 `undefined` 的屬性使用 \"in\""
 通常，使用嚴格比較 `"=== undefined"` 來確認屬性是否存在是沒問題的，然而有個特殊情況這麼做會失敗，但 `"in"` 能正確運作。
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 就是當物件屬性存在，卻儲存著 `undefined` 時：
 

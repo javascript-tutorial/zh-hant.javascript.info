@@ -255,7 +255,7 @@ for (let i = 0; i < 10; i++) {
 ````smart header="`continue` 指令有助於減少巢狀結構"
 一個顯示奇數的迴圈也可以長這樣：
 
-```js
+```js run
 for (let i = 0; i < 10; i++) {
 
   if (i % 2) {
@@ -267,7 +267,11 @@ for (let i = 0; i < 10; i++) {
 
 從技術角度上來看，這跟上面的例子是等效的。確實，我們可以將程式碼包裝在一個 `if` 區塊內，而不使用 `continue`。
 
+<<<<<<< HEAD
 但這麼做有副作用，它會建立多一層的巢狀結構（大括號內的 `alert` 呼叫）。若 `if` 內的程式碼不只短短幾行，就會降低整體的可讀性。
+=======
+But as a side-effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 ````
 
 ````warn header="不能在 '?' 右側使用 `break/continue`"
