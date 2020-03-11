@@ -54,7 +54,7 @@ let guestList = "Guests: // 錯誤：意料之外的令牌（標記、符號） 
 反引號還允許我們，在第一個反引號前指定 "模板功能 (template function)"。 語法為 <code>func&#96;string&#96;</code>。 函數 `func` 會被自動調用，接收字串和嵌入式表達式並處理他們，這稱為 "標記模板 (tagged templates)"。 此功能使實現自定義模板更加容易，但很少在實踐中使用。您可以在 [手冊](mdn:/JavaScript/Reference/Template_literals#Tagged_templates) 中了解更多信息。
 
 
-## Special characters 特殊的角色
+## 特殊字元
 
 用單、雙引號仍能建立多行的字串，透過所謂的 "換行符 (newline character)"，寫為 `\n`，表示換行：
 
@@ -128,97 +128,84 @@ alert( `I'm the Walrus!` ); // I'm the Walrus!
 alert( `The backslash: \\` ); // The backslash: \
 ```
 
-## String length 字串長度
+## 字串長度
 
-The `length` property has the string length:
 `length` 屬性，表示了一個字串的長度：
 
 ```js run
 alert( `My\n`.length ); // 3
 ```
 
-Note that `\n` is a single "special" character, so the length is indeed `3`.
 注意，`\n` 為一個 "特殊" 字元，因此長度的確是 `3`。
 
-```warn header="`length` is a property `length` 是一個屬性"
-People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
+```warn header="`length` 是一個屬性"
 有其他程式語言背景的人，有時會打字錯誤，用 `str.length()` 而不是 `str.length`。那是行不通的。
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
 請注意，`str.length` 是數值屬性，而不是函數，不需在後面添加括號。
 ```
 
-## Accessing characters 訪問字元
+## 訪問字元
 
-To get a character at position `pos`, use square brackets `[pos]` or call the method [str.charAt(pos)](mdn:js/String/charAt). The first character starts from the zero position:
-要從變數 `pos` 位置中獲取一個字元，請使用方括號 `[pos]` 或調用方法 [str.charAt(pos)](mdn:js/String/charAt)。 第一個字元從零位置開始：
+在位置 `pos` 取一個字元，請使用方括號 `[pos]` 或調用方法 [str.charAt(pos)](mdn:js/String/charAt)。 第一個字元是由位置零開始：
 
 ```js run
 let str = `Hello`;
 
-// the first character 第一個字元
+// 第一個字元
 alert( str[0] ); // H
 alert( str.charAt(0) ); // H
 
-// the last character 最後一個字元
+// 最後一個字元
 alert( str[str.length - 1] ); // o
 ```
 
-The square brackets are a modern way of getting a character, while `charAt` exists mostly for historical reasons.
 使用方括號，是獲取字元的現代化方式，而 `charAt` 的存在主要出於歷史性原因。
 
-The only difference between them is that if no character is found, `[]` returns `undefined`, and `charAt` returns an empty string:
 它們之間的唯一區別是，如果找不到字元，則 `[]` 將返回 `undefined`，而 `charAt` 返回一個空字串：
 
 ```js run
 let str = `Hello`;
 
 alert( str[1000] ); // undefined
-alert( str.charAt(1000) ); // '' (an empty string 一個空字串)
+alert( str.charAt(1000) ); // '' (一個空字串)
 ```
 
-We can also iterate over characters using `for..of`:
 我們也可以使用 `for..of` 來迭代過每個字元
 
 ```js run
 for (let char of "Hello") {
-  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc // char 會被替換成 "H"，然後是 "e"，然後是 "l" 等等)
+  alert(char); // H,e,l,l,o (char 會被替換成 "H"，然後是 "e"，然後是 "l" 等等)
 }
 ```
 
-## Strings are immutable 字符串不可變
+## 字串不可變
 
-Strings can't be changed in JavaScript. It is impossible to change a character.
 JavaScript中，字串不能被更改。 一個字元都無法更改。
 
-Let's try it to show that it doesn't work:
 讓我們試著改變字串，以證明它不起作用：
 
 ```js run
 let str = 'Hi';
 
-str[0] = 'h'; // error 錯誤
-alert( str[0] ); // doesn't work 不起作用
+str[0] = 'h'; // 錯誤
+alert( str[0] ); // 不起作用
 ```
 
-The usual workaround is to create a whole new string and assign it to `str` instead of the old one.
 通常的解決方法是創建一個全新的字串，再將它分配給 `str` 替換掉舊的字串。
 
-For instance:
 例如：
 
 ```js run
 let str = 'Hi';
 
-str = 'h' + str[1]; // replace the string 替換字串
+str = 'h' + str[1]; // 替換字串
 
 alert( str ); // hi
 ```
 
-In the following sections we'll see more examples of this.
 在以下章節中，我們將看到更多例子。
 
-## Changing the case 改變大小寫
+## 改變大小寫
 
 [toLowerCase()](mdn:js/String/toLowerCase) 方法和 [toUpperCase()](mdn:js/String/toUpperCase) 方法可以改變大小寫：
 
@@ -227,43 +214,36 @@ alert( 'Interface'.toUpperCase() ); // INTERFACE
 alert( 'Interface'.toLowerCase() ); // interface
 ```
 
-Or, if we want a single character lowercased:
-或者，我們想要一個小寫字元
+或者，我們想要一個單獨的小寫字元：
 
 ```js
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
-## Searching for a substring 檢索一個子字串
+## 檢索一個子字串
 
-There are multiple ways to look for a substring within a string.
 查詢一個字串當中的子字串，有很多方法。
 
 ### str.indexOf
 
-The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 第一個方法是 [str.indexOf(substr, pos)](mdn:js/String/indexOf)。
 
-It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
-它在 `str` 中尋找 `substr`，從我們給定的位置 `pos` 開始找，若找到，則回傳該匹配字串的索引位置；若沒找到，找到則回傳 `-1`。
+它在 `str` 中尋找 `substr`，從給定的位置 `pos` 開始找，找到則回傳該匹配字串的索引位置；沒找到則回傳 `-1`。
 
-For instance:
 例如：
 
 ```js run
 let str = 'Widget with id';
 
-alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning // 0， 因為一開始 'Widget' 就被找到
-alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive // -1，沒找到，檢索是對大小寫敏感的。
+alert( str.indexOf('Widget') ); // 0， 因為一開始 'Widget' 就被找到
+alert( str.indexOf('widget') ); // -1，沒找到，檢索是有區分大小寫的。
 
-alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id) // 1， "id" 在索引位置 "1" 處就被找到 (..idget 中的 id) 。
+alert( str.indexOf("id") ); // 1, "id" 在索引位置 "1" 處就被找到 (..idget 中的 id) 。
 ```
 
-The optional second parameter allows us to search starting from the given position.
 第二個參數是可選的，允許我們從給定的位置開始檢索。
 
-For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
-舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從 `2` 開始找。
+舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從位置 `2` 開始找。
 
 ```js run
 let str = 'Widget with id';
@@ -271,13 +251,12 @@ let str = 'Widget with id';
 alert( str.indexOf('id', 2) ) // 12
 ```
 
-If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
 如果我們好奇所有的位置，我們可以在一個迴圈中用 `indexOf`。每一次新呼叫，都發生在前一個找到的位置之後。
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
 
-let target = 'as'; // let's look for it // 我們來找它
+let target = 'as'; // 我們來找它
 
 let pos = 0;
 while (true) {
@@ -285,11 +264,10 @@ while (true) {
   if (foundPos == -1) break;
 
   alert( `Found at ${foundPos}` );
-  pos = foundPos + 1; // continue the search from the next position // 從下一個位置繼續檢索
+  pos = foundPos + 1; // 從下一個位置繼續檢索
 }
 ```
 
-The same algorithm can be layed out shorter:
 相同的演算法，可以寫得更短：
 
 ```js run
@@ -305,29 +283,23 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```
 
 ```smart header="`str.lastIndexOf(substr, position)`"
-There is also a similar method [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
-
 還有一個類似的方法 [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) ，它是從字串末端開始檢索。
 
-It would list the occurrences in the reverse order.
 它列出的事件，順序會是相反的。
 ```
 
-There is a slight inconvenience with `indexOf` in the `if` test. We can't put it in the `if` like this:
 在 `if` 測試中，`indexOf` 會有一些不便。 我們不能像這樣，將它放在 `if` 中：
 
 ```js run
 let str = "Widget with id";
 
 if (str.indexOf("Widget")) {
-    alert("We found it"); // doesn't work! // 沒有作用!
+    alert("We found it"); // 沒有作用!
 }
 ```
 
-The `alert` in the example above doesn't show because `str.indexOf("Widget")` returns `0` (meaning that it found the match at the starting position). Right, but `if` considers `0` to be `false`.
 上面範例中的 `alert` 沒有顯示，因為 `str.indexOf("Widget")` 回傳 `0`（意思是在起始位置就匹配成功）。是的，但是 `if` 認為 `0` 是 `false` 值。
 
-So, we should actually check for `-1`, like this:
 所以我們實際上應該去檢查 `-1` ，像這樣：
 
 ```js run
@@ -336,7 +308,7 @@ let str = "Widget with id";
 *!*
 if (str.indexOf("Widget") != -1) {
 */!*
-    alert("We found it"); // works now! // 現在可以運作了！
+    alert("We found it"); // 現在可以運作了！
 }
 ```
 
@@ -799,4 +771,4 @@ There are several other helpful methods in strings:
 - ...and more to be found in the [manual](mdn:js/String).
 - ...更多內容請參考 [manual 手冊](mdn:js/String).
 Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
-字符串也有使用正則表達式進行 檢索/替換 的方法。但這是個大主題，因此，將在一個單獨的教程章節 <info:regular-expressions> 中說明。
+字串也有使用正則表達式進行 檢索/替換 的方法。但這是個大主題，因此，將在一個單獨的教程章節 <info:regular-expressions> 中說明。
