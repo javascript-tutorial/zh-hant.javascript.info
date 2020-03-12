@@ -530,101 +530,77 @@ alert( str );
 
 ### Correct comparisons 正確的比較
 
-The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
-執行字串比較，"正確的" 演算法比看起來更複雜，因為不同語言的字母是不同的。
+執行字串比較，"正確" 的演算法比看起來更複雜，因為不同語言的字母是不同的。
 
-So, the browser needs to know the language to compare.
-所以，瀏覽器需要知道要比較的語言。
+所以，瀏覽器需要知道要比較的語言是什麼。
 
-Luckily, all modern browsers (IE10- requires the additional library [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
 幸運的是，所有現代瀏覽器（IE10 -- 需要額外的函式庫 [Intl.JS](https://github.com/andyearnshaw/Intl.js/) 來支援國際化標準 [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf)）。
 
 It provides a special method to compare strings in different languages, following their rules.
-它提供一種特殊方法來比較不同的語言的字串，遵循它們的規則。
+它提供一種特殊方法來比較不同的語言的字串，遵循語言的規則。
 
-The call [str.localeCompare(str2)](mdn:js/String/localeCompare) returns an integer indicating whether `str` is less, equal or greater than `str2` according to the language rules:
 呼叫 [str.localeCompare(str2)](mdn:js/String/localeCompare) 會根據語言的規則回傳一個整數，該整數能表明 `str` 是小於、相等或大於 `str2`。
 
-- Returns a negative number if `str` is less than `str2`.
 - 若 `str` 小於 `str2`，回傳負數
-- Returns a positive number if `str` is greater than `str2`.
 - 若 `str` 大於 `str2`，回傳正數
-- Returns `0` if they are equivalent.
 - 若它們相等，則回傳 `0`
 
-For instance:
 例如：
 
 ```js run
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
-這個方法實際上在 [the documentation 此文件](mdn:js/String/localeCompare) 指定了兩個額外的參數，它允許指定語言（預設會在環境中獲取語言，字母順序會根據語言不同）並設定額外規則，像是區分大小寫，或是否將 `"a"` 和 `"á"` 視為相同等等。
+這個方法實際上在 [此文件](mdn:js/String/localeCompare) 指定了兩個額外的參數，它允許指定語言（預設會在環境中獲取語言，字母順序會根據語言不同）並設定額外規則，像是區分大小寫，或是否將 `"a"` 和 `"á"` 視為相同等等。
 
-## Internals, Unicode 內部結構，Unicode
+## 內部的, Unicode
 
-```warn header="Advanced knowledge 進階知識"
-The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or hieroglyphic characters or other rare symbols.
+```warn header="進階知識"
 本節將深入字串內部。 如果您打算處理表情符號，稀有的數學或像形文字或其他稀有符號，則此知識對您很有用。
 
-You can skip the section if you don't plan to support them.
 如果您不打算為其提供支援，可以跳過本節。
 ```
 
 ### Surrogate pairs 代理對
 
-All frequently used characters have 2-byte codes. Letters in most european languages, numbers, and even most hieroglyphs, have a 2-byte representation.
 所有常用字元都有 2 位元代碼。大多數歐洲語言、數字甚至大多象形文字的字母都有一個 2 位元的表現形式。
 
-But 2 bytes only allow 65536 combinations and that's not enough for every possible symbol. So rare symbols are encoded with a pair of 2-byte characters called "a surrogate pair".
 但 2 位元組只允許 65536 種組合，對一切可能的符號，這還遠遠不夠。所以稀有符號使用一個成對的，稱作 "代理對（a surrogate pair）" 的 2 位元字元編碼。
 
-The length of such symbols is `2`:
 這些符號的長度是 `2`：
 
 ```js run
-alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X // 2，大寫數學符號 X
-alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY // 2，笑到流淚的表情
-alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph // 2，一個罕見中國象形字
+alert( '𝒳'.length ); // 2, 大寫數學符號 X
+alert( '😂'.length ); // 2, 笑到流淚的表情
+alert( '𩷶'.length ); // 2, 一個罕見中國象形字
 ```
 
-Note that surrogate pairs did not exist at the time when JavaScript was created, and thus are not correctly processed by the language!
 請注意，JavaScript 創建時，代理對並不存在，因此 JavaScript 無法正確處理！
 
-We actually have a single symbol in each of the strings above, but the `length` shows a length of `2`.
 每個上面的字串，我們實際有的是單獨的符號，但 `length` 長度是 `2`。
 
-`String.fromCodePoint` and `str.codePointAt` are few rare methods that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
 `String.fromCodePoint` 和 `str.codePointAt` 都是少數處理代理對的罕見方法。在它們之前，只有  [String.fromCharCode](mdn:js/String/fromCharCode) 和 [str.charCodeAt](mdn:js/String/charCodeAt) 這些方法。這些方法是實際上與 `fromCodePoint/codePointAt` 相同，但不適用於代理對。
 
-Getting a symbol can be tricky, because surrogate pairs are treated as two characters:
 獲取一個符號可能很棘手，因為代理對被視為兩個字元。
 
 ```js run
-alert( '𝒳'[0] ); // strange symbols... // 奇怪的符號...
-alert( '𝒳'[1] ); // ...pieces of the surrogate pair // ...代理對的片段
+alert( '𝒳'[0] ); // 奇怪的符號...
+alert( '𝒳'[1] ); // ...代理對的片段
 ```
 
-Note that pieces of the surrogate pair have no meaning without each other. So the alerts in the example above actually display garbage.
 注意，代理對若缺少另外一部分就沒有意義。所以上面範例中的 alert 實際是顯示亂碼。
 
-Technically, surrogate pairs are also detectable by their codes: if a character has the code in the interval of `0xd800..0xdbff`, then it is the first part of the surrogate pair. The next character (second part) must have the code in interval `0xdc00..0xdfff`. These intervals are reserved exclusively for surrogate pairs by the standard.
 技術角度來說，代理對可以用它們的代碼檢測到：如果一個字元代碼在 `0xd800..0xdbff` 之間，那它就是代碼對的第一個部分。下一個字元（第二部分）代碼必須在 `0xdc00..0xdfff` 之間。這些區間是依據標準專門為代理對保留的。
 
-
-In the case above:
 在上述案例中：
 
 ```js run
-// charCodeAt is not surrogate-pair aware, so it gives codes for parts
 // charCodeAt 不認得代理對（surrogate-pair），因此給出代碼的片段
 
-alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, between 0xd800 and 0xdbff // d835, 在 0xd800 和 0xdbff 之間
-alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, between 0xdc00 and 0xdfff // dcb3, 在 0xdc00 和 0xdfff 之間
+alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, 在 0xd800 和 0xdbff 之間
+alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, 在 0xdc00 和 0xdfff 之間
 ```
 
-You will find more ways to deal with surrogate pairs later in the chapter <info:iterable>. There are probably special libraries for that too, but nothing famous enough to suggest here.
 稍後在 <info：iterable> 一章中，您將找到更多處理代理對的方法。 可能也有專門的函式庫，但是沒有什麼足以在這裡建議的。
 
 
