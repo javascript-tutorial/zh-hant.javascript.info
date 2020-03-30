@@ -121,7 +121,11 @@ let fruits = [
 
 JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 加入/移除 元素 至/由 最前端或最末端都可以。
 
+<<<<<<< HEAD
 在計算機科學中，允許這種運作的資料結構被稱為 [雙端佇列（deque）](https://en.wikipedia.org/wiki/Double-ended_queue)。
+=======
+In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 
 **運作於陣列末端的方法：**
 
