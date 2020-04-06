@@ -141,8 +141,12 @@ function countUser(user) {
 // 📁 main.js
 let john = { name: "John" };
 
+<<<<<<< HEAD
 countUser(john); // 它的訪問次數
 countUser(john);
+=======
+countUser(john); // count his visits
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 // 晚點 john 離開了我們
 john = null;

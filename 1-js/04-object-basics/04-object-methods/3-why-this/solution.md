@@ -4,7 +4,13 @@
 
 2. 同樣地，括號在此不變更操作順序，句點無論如何都會先執行。
 
+<<<<<<< HEAD
 3. 此處我們有個更為複雜的呼叫 `(expression).method()`。這個呼叫就像被拆成兩行一樣：
+=======
+2. The same, parentheses do not change the order of operations here, the dot is first anyway.
+
+3. Here we have a more complex call `(expression).method()`. The call works as if it were split into two lines:
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
     ```js no-beautify
     f = obj.go; // 計算表達式

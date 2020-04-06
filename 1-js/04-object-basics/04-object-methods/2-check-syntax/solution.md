@@ -34,5 +34,9 @@ let user = {
 (user.go)() // John
 ```
 
+<<<<<<< HEAD
 請注意在圍繞著 `(user.go)` 的括號在這時根本沒作用。通常它們用在設定操作的順序，但此處的句點 `.` 無論如何都會先運行，所以沒效果。只有分號這件事較重要。
 
+=======
+Please note that parentheses around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622

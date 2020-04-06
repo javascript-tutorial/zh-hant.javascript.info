@@ -83,6 +83,7 @@ let x = 5;
 x = "John";
 ```
 
+<<<<<<< HEAD
 有 7 種資料類型：
 
 - `number` 可以是浮點數或是整數。
@@ -93,6 +94,17 @@ x = "John";
 - `object` 與 `symbol` -- 用於複雜的資料結構和唯一識別符號，我們還沒學習這個類型。
 
 `typeof` 運算子會回傳值的類型，但有兩個例外：
+=======
+There are 8 data types:
+
+- `number` for both floating-point and integer numbers,
+- `bigint` for integer numbers of arbitrary length,
+- `string` for strings,
+- `boolean` for logical values: `true/false`,
+- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
+- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
+- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 ```js
 typeof null == "object" // 語言本身的錯誤

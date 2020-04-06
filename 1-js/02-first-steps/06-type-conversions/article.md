@@ -1,6 +1,10 @@
 # 類型轉換
 
+<<<<<<< HEAD
 大多時候，運算子和函式會自動轉換給予它們的值為正確類型。
+=======
+Most of the time, operators and functions automatically convert the values given to them to the right type.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 例如，`alert` 自動將任何值轉換成字串並顯示，數學運算子會把值轉換成數值。
 
@@ -81,6 +85,7 @@ alert( Number(false) );       // 0
 
 請注意 `null` 和 `undefined` 的行為在此處不同：`null` 會變成零，而 `undefined` 會變成 `NaN`。
 
+<<<<<<< HEAD
 ````smart header="加法 '+' 連接字串們"
 幾乎所有數學運算子都會將值轉成數值，而加法 `+` 是個值得一提的例外。如果加法某側運算元是個字串，另一側將也會被轉換成字串。
 
@@ -93,6 +98,9 @@ alert( '1' + 2 ); // '12'（左側為字串）
 
 這只發生在當至少一側的引數是字串時，否則值都會被轉為數值。
 ````
+=======
+Most mathematical operators also perform such conversion, we'll see that in the next chapter.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 ## Boolean Conversion
 

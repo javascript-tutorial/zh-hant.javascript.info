@@ -137,17 +137,30 @@ JavaScript 中有許多運算子，每個運算子都有個對應的優先權號
 | 優先權 | 名稱 | 符號 |
 |------------|------|------|
 | ... | ... | ... |
+<<<<<<< HEAD
 | 16 | 一元正號 | `+` |
 | 16 | 一元負號 | `-` |
 | 14 | 乘法 | `*` |
 | 14 | 除法 | `/` |
 | 13 | 加法 | `+` |
 | 13 | 減法 | `-` |
+=======
+| 17 | unary plus | `+` |
+| 17 | unary negation | `-` |
+| 15 | multiplication | `*` |
+| 15 | division | `/` |
+| 13 | addition | `+` |
+| 13 | subtraction | `-` |
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 | ... | ... | ... |
 | 3 | 指定 | `=` |
 | ... | ... | ... |
 
+<<<<<<< HEAD
 我們可以看到，"一元正號運算子" 有著優先權號碼 `16`，比 "加法（二元加法運算子）" 的 `13` 還高。這也是為什麼在表達式 `"+apples + +oranges"` 中，一元正號運算子比加法還要更早運作。
+=======
+As we can see, the "unary plus" has a priority of `17` which is higher than the `13` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 ## 指定運算子（Assignment）
 

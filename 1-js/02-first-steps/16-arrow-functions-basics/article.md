@@ -67,7 +67,7 @@ let welcome = (age < 18) ?
   () => alert('Hello') :
   () => alert("Greetings!");
 
-welcome(); // ok now
+welcome();
 ```
 
 在剛開始使用箭頭函式時，可能會覺得不熟悉且閱讀性不那麼好，但習慣這種結構後，情況會迅速改變。
