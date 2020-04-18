@@ -93,7 +93,7 @@ alert("There will be an error")[1, 2].forEach(alert)
 
 我們建議即使是依據換行分開的述句也要標上分號，這個規則被社群廣為採納。再次強調 -- 大多時間 *可能* 可以省略分號，但加上分號會更安全，尤其對新手而言。
 
-## 註解
+## 註解 [#code-comments]
 
 程式碼會隨著時間變得越來越複雜，有其必要加入 *註解* 來解釋程式在做什麼且為什麼這麼做。
 
@@ -135,7 +135,7 @@ alert('World');
 ```
 
 ```smart header="用熱鍵！"
-大多數編輯器中，可以按下 `key:Ctrl+/` 這個熱鍵來註解掉單行程式碼，而 `key:Ctrl+Shift+/` 可以註解多行（選取一段程式碼後按下熱鍵）。Mac 則使用 `key:Cmd` 取代 `key:Ctrl`。
+大多數編輯器中，可以按下 `key:Ctrl+/` 這個熱鍵來註解掉單行程式碼，而 `key:Ctrl+Shift+/` 可以註解多行（選取一段程式碼後按下熱鍵）。Mac 則使用 `key:Cmd` 取代 `key:Ctrl`；`key:Option` 取代 ｀key:Shift`。
 ```
 
 ````warn header="不支援巢狀註解！"

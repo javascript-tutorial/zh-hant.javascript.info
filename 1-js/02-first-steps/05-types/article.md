@@ -10,7 +10,7 @@ message = 123456;
 
 若允許這麼做的程式語言，稱其具有 "動態類型（dynamically typed）"，意思是變數不會綁定任一種資料類型。
 
-JavaScript 中有七種基礎的資料類型，在此我們會稍微介紹下它們，然後在接下來的章節中我們會逐一介紹其細節：
+JavaScript 中有八種基礎的資料類型，在此我們會稍微介紹下它們，然後在接下來的章節中我們會逐一介紹其細節：
 
 ## 數值（A number）
 
@@ -63,7 +63,26 @@ n = 12.345;
 
 我們會在章節 <info:number> 中看到更多使用數值的方式。
 
-## 字串（A string）
+## BigInt 類型
+
+在 JavaScript 中，"number" 類型沒辦法代表大於 <code>2<sup>53</sup></code> （或小於 <code>-2<sup>53</sup></code> ）的整數，這是其內部表示系統上的技術限制。這大約是 16 位十進位數字，在大多數的情況下，這個限制都不是問題，但有時我們真的需要很大的數字，例如用於密碼學或是精準度到 microsecond 的時間戳記。
+
+`BigInt` 類型最近被加入到 JavaScript 語言中，用於表示任意長度的整數。
+
+可以通過將 `n` 加入整數字面值的尾部來創建 `BigInt`：
+
+```js
+// 有個 "n" 在其尾部，代表這是一個 BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+
+```smart header="Compatability issues"
+Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+```
+
+## 字串（String）
 
 JavaScript 中的字串（string）必須被引號（quotes）所環繞。
 
@@ -108,7 +127,7 @@ alert( "the result is ${1 + 2}" ); // the result is ${1 + 2}（雙引號什麼�
 在 JavaScript 中沒有這種類型，只有一種 `字串` 類型。一串字串可以只有一個或擁有多個字元在內。
 ```
 
-## 布林（A boolean）（邏輯類型）
+## 布林（Boolean）（邏輯類型）
 
 布林（boolean）類型只有兩種值：`true` 和 `false`。
 
@@ -199,6 +218,8 @@ typeof undefined // "undefined"
 
 typeof 0 // "number"
 
+typeof 10n // "bigint"
+
 typeof true // "boolean"
 
 typeof "foo" // "string"
@@ -227,9 +248,10 @@ typeof alert // "function"（3）
 
 ## 總結
 
-在 JavaScript 中有 7 種基礎資料類型：
+在 JavaScript 中有 8 種基礎資料類型：
 
 - `number` 用於任何類型的數值：整數或浮點數。
+- `bigint` 用於任意長度的整數。
 - `string` 用於字串。一個字串可以包含一個或多個字元，但不獨立存在單一字元的類型。
 - `boolean` 用於 `true` 或 `false`。
 - `null` 用於未知的值 -- 只有一個值 `null` 的獨立類型。
