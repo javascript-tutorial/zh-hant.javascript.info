@@ -125,6 +125,7 @@ function addJuice(container) {
 將函式參數和用途寫入文件
 : 有個特殊的語法 [JSDoc](http://en.wikipedia.org/wiki/JSDoc) 可以幫函式寫文件：用途、參數和回傳值。
 
+<<<<<<< HEAD
     舉個例：
     ```js
     /**
@@ -144,6 +145,27 @@ function addJuice(container) {
     對了，很多編輯器如 [WebStorm](https://www.jetbrains.com/webstorm/) 也可以看懂它們，並且提供自動完成和一些自動程式碼檢查。
 
     同樣的，有些工具像是 [JSDoc 3](https://github.com/jsdoc3/jsdoc) 可以由註解產生 HTML 文件，你可以在 <http://usejsdoc.org/> 閱讀更多 JSDoc 的資訊。
+=======
+For instance:
+```js
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+ */
+function pow(x, n) {
+  ...
+}
+```
+
+Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+>>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
 
 為什麼任務要用這種方式處理？
 : 寫下了什麼是很重要的，但什麼 *沒被* 寫下的東西可能對於想理解發生什麼事來說更為重要。為什麼這個任務一定得使用這種方式處理？程式碼中可能得不到答案。

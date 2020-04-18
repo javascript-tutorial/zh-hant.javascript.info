@@ -255,7 +255,7 @@ for (let i = 0; i < 10; i++) {
 ````smart header="`continue` 指令有助於減少巢狀結構"
 一個顯示奇數的迴圈也可以長這樣：
 
-```js
+```js run
 for (let i = 0; i < 10; i++) {
 
   if (i % 2) {

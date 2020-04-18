@@ -18,7 +18,7 @@ let id = Symbol();
 
 創建後，我們可以給 Symbol 一個敘述（也稱為 Symbol 名稱），在進行除錯時大多很有用處：
 
-```js run
+```js
 // id 是一個擁有敘述 "id" 的 Symbol
 let id = Symbol("id");
 ```

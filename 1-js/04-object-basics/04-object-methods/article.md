@@ -60,7 +60,6 @@ user.sayHi = sayHi;
 user.sayHi(); // Hello!
 ```
 
-<<<<<<< HEAD
 ```smart header="物件導向程式設計"
 當我們使用物件寫程式碼來表現實體時，被稱為 [物件導向程式設計（object-oriented programming）](https://en.wikipedia.org/wiki/Object-oriented_programming)，簡稱為："OOP"。
 
