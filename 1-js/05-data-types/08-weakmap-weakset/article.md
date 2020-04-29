@@ -142,7 +142,6 @@ function countUser(user) {
 let john = { name: "John" };
 
 countUser(john); // 它的訪問次數
-countUser(john);
 
 // 晚點 john 離開了我們
 john = null;

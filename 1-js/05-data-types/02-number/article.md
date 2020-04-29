@@ -1,8 +1,12 @@
 # 數值（Numbers）
 
-JavaScript 中所有數值都以 64 位元格式儲存 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) ，亦被稱為 "雙精度浮點數值"。
+在現代 JavaScript 中，有兩種類型的數值：
 
-來從我們已知的部分繼續延伸吧。
+1. 一般數值以 64 位元格式儲存 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) ，亦被稱為 "雙精度浮點數值"。 這種數值是我們最常使用的類型，而我們將會在這章節中討論它。
+
+2. BigInt 數值，用來表示任意長度的整數。有時我們會需要它，因為一般數字無法超過<code>2<sup>53</sup></code> 或小於 <code>-2<sup>53</sup></code>。 由於 bigints 只用在少數幾個特殊領域，我們將用一個特殊章節來介紹它。 <info:bigint>.
+
+所以這邊我們將會討論一般數值，來從我們已知的部分繼續延伸吧。
 
 ## 更多寫下數值的方式
 
@@ -404,7 +408,7 @@ JavaScript 有個內建的 [Math](https://developer.mozilla.org/en/docs/Web/Java
 
 ## 總結
 
-要寫一個大的數值：
+要寫一個擁有許多零的數值：
 
 - 附加 `"e"` 與零的數量到數值後方，像是：`123e6` 是 `123` 後有 6 個零。
 - `"e"` 之後的負數會使得數值除以 1 的後面帶有給定數量的零，像是百萬分之一這樣。

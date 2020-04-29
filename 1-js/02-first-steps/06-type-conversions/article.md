@@ -94,7 +94,7 @@ alert( '1' + 2 ); // '12'（左側為字串）
 這只發生在當至少一側的引數是字串時，否則值都會被轉為數值。
 ````
 
-## Boolean Conversion
+# Boolean Conversion
 
 布林轉換是最簡單的一個。
 

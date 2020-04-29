@@ -211,7 +211,7 @@ Please note: the event must have the flag `cancelable: true`, otherwise the call
 
 ## Events-in-events are synchronous
 
-Usually events are processed asynchronously. That is: if the browser is processing `onclick` and in the process a new event occurs, then it awaits till `onclick` processing is finished.
+Usually events are processed asynchronously. That is: if the browser is processing `onclick` and in the process a new event occurs, then it waits until the `onclick` processing is finished.
 
 The exception is when one event is initiated from within another one.
 
@@ -236,7 +236,7 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
 
   document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 The output order is: 1 -> nested -> 2.
 
@@ -263,7 +263,7 @@ If we don't like it, we can either put the `dispatchEvent` (or other event-trigg
 
   document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `mouse.onclick`, so event handlers are totally separate.
 

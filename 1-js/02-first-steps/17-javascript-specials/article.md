@@ -83,9 +83,10 @@ let x = 5;
 x = "John";
 ```
 
-有 7 種資料類型：
+有 8 種資料類型：
 
 - `number` 可以是浮點數或是整數。
+- `bigint` 任意長度的整數。
 - `string` 字串類型。
 - `boolean` 表達邏輯的值： `true/false`。
 - `null` -- 具有單一值 `null` 的類型，代表 "空的" 或 "不存在"。
@@ -275,7 +276,7 @@ switch (age) {
 - 參數可以有預設值：`function sum(a = 1, b = 2) {...}`。
 - 函式永遠會回傳一些東西。如果沒有 `return` 述語，則其結果為 `undefined`。
 
-更多資訊：參見 <info:function-basics>、<info:function-expressions-arrows>。
+更多資訊：參見 <info:function-basics>、<info:arrow-functions-basics>。
 
 ## 還有更多
 
