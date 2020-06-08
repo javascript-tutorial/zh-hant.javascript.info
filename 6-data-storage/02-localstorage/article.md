@@ -19,7 +19,11 @@ Both storage objects provide same methods and properties:
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 
+<<<<<<< HEAD
 As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also allows to access by index with `key(index)`.
+=======
+As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also allows access by index with `key(index)`.
+>>>>>>> d35baee32dcce127a69325c274799bb81db1afd8
 
 Let's see how it works.
 
