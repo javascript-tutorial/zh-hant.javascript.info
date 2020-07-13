@@ -216,6 +216,11 @@ function getCoords(elem) {
 
   return {
     top: box.top + window.pageYOffset,
+<<<<<<< HEAD
+=======
+    right: box.right + window.pageXOffset,
+    bottom: box.bottom + window.pageYOffset,
+>>>>>>> c3a11c85e54153ebb137b5541b1d1f751c804439
     left: box.left + window.pageXOffset
   };
 }
