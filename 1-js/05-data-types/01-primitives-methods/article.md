@@ -12,7 +12,10 @@ JavaScript 允許我們像物件一樣來使用原生類型（字串、數值等
 =======
 - Is a value of a primitive type.
 - There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
+<<<<<<< HEAD
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2
 
 物件
 

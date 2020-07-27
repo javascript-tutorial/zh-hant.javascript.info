@@ -121,7 +121,11 @@ let fruits = [
 
 JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 加入/移除 元素 至/由 最前端或最末端都可以。
 
+<<<<<<< HEAD
 在計算機科學中，允許這種運作的資料結構被稱為 [雙端佇列（deque）](https://en.wikipedia.org/wiki/Double-ended_queue)。
+=======
+In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2
 
 **運作於陣列末端的方法：**
 
@@ -154,7 +158,7 @@ JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 �
 `shift`
 : 抽取陣列第一個元素並回傳它：
 
-    ```js
+    ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
     alert( fruits.shift() ); // 移除 Apple 並 alert 它
@@ -165,7 +169,7 @@ JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 �
 `unshift`
 : 於陣列最前端加上該元素：
 
-    ```js
+    ```js run
     let fruits = ["Orange", "Pear"];
 
     fruits.unshift('Apple');

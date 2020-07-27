@@ -15,7 +15,11 @@ function func() {
 func();
 ```
 
+<<<<<<< HEAD
 In this example we can observe the peculiar difference between a "non-existing" and "unitialized" variable.
+=======
+In this example we can observe the peculiar difference between a "non-existing" and "uninitialized" variable.
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2
 
 As you may have read in the article [](info:closure), a variable starts in the "uninitialized" state from the moment when the execution enters a code block (or a function). And it stays uninitalized until the corresponding `let` statement.
 
