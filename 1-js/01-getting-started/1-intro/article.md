@@ -4,7 +4,11 @@
 
 ## 什麼是 JavaScript?
 
+<<<<<<< HEAD
 *JavaScript* 最初是為了 *"賦予網頁活力"* 而創造的。
+=======
+*JavaScript* was initially created to "make web pages alive".
+>>>>>>> cdf382de4cf3ed39ca70cb7df60c4c4886f2d22e
 
 這種程式語言我們稱之為 *腳本*，它們可以被寫入網頁 HTML 中，並在頁面讀取時自動執行。
 
@@ -63,7 +67,11 @@ JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js
 
 這些限制範例如下：
 
+<<<<<<< HEAD
 - 網頁上的 JavaScript 無法讀寫、複製和執行硬碟內任意檔案。它也沒有直接存取作業系統的功能。
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> cdf382de4cf3ed39ca70cb7df60c4c4886f2d22e
 
     現代化瀏覽器允許 JavaScript 有限制地操作檔案，且只有在使用者做特定動作時提供，像是："拖曳" 一個檔案至瀏覽器視窗，或經由 `<input>` 標籤選取。
 

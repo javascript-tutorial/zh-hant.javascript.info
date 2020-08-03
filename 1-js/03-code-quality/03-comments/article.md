@@ -126,6 +126,7 @@ function addJuice(container) {
 : 有個特殊的語法 [JSDoc](http://en.wikipedia.org/wiki/JSDoc) 可以幫函式寫文件：用途、參數和回傳值。
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     舉個例：
     ```js
     /**
@@ -169,6 +170,27 @@ Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can g
 
 為什麼任務要用這種方式處理？
 : 寫下了什麼是很重要的，但什麼 *沒被* 寫下的東西可能對於想理解發生什麼事來說更為重要。為什麼這個任務一定得使用這種方式處理？程式碼中可能得不到答案。
+=======
+For instance:
+```js
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+ */
+function pow(x, n) {
+  ...
+}
+```
+
+Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+>>>>>>> cdf382de4cf3ed39ca70cb7df60c4c4886f2d22e
 
     若有多種解決任務的方法，為什麼選了這種？尤其當它並非是最明顯的一個時。
 
