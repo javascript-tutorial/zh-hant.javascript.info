@@ -1,15 +1,15 @@
 
-# Animated circle with callback
+# 使用回呼的動畫圈圈
 
-In the task <info:task/animate-circle> an animated growing circle is shown.
+在課題 <info:task/animate-circle> 中，成長的圈圈以動畫呈現。
 
-Now let's say we need not just a circle, but to show a message inside it. The message should appear *after* the animation is complete (the circle is fully grown), otherwise it would look ugly.
+現在，假設我們需要的不只是圈圈，還要在裡面顯示訊息。訊息應該要出現在動畫完成（圈圈完全地成長）*之後*，否則它看起來會很醜。
 
-In the solution of the task, the function `showCircle(cx, cy, radius)` draws the circle, but gives no way to track when it's ready.
+在該項課題的解答中，函式 `showCircle(cx, cy, radius)` 畫了圈圈，但沒有提供追蹤它完成的方法。
 
-Add a callback argument: `showCircle(cx, cy, radius, callback)` to be called when the animation is complete. The `callback` should receive the circle `<div>` as an argument.
+增加一個回呼參數：`showCircle(cx, cy, radius, callback)` 讓它在動畫完成後被呼叫。 `callback` 應該要接收圈圈的 `<div>` 作為引數。
 
-Here's the example:
+範例如下：
 
 ```js
 showCircle(150, 150, 100, div => {
@@ -18,8 +18,8 @@ showCircle(150, 150, 100, div => {
 });
 ```
 
-Demo:
+演示：
 
 [iframe src="solution" height=260]
 
-Take the solution of the task <info:task/animate-circle> as the base.
+將該課題的解答 <info:task/animate-circle> 當作基底。
