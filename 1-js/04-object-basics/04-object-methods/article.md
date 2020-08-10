@@ -63,7 +63,11 @@ user.sayHi(); // Hello!
 ```smart header="物件導向程式設計"
 當我們使用物件寫程式碼來表現實體時，被稱為 [物件導向程式設計（object-oriented programming）](https://en.wikipedia.org/wiki/Object-oriented_programming)，簡稱為："OOP"。
 
+<<<<<<< HEAD
 OOP 是門很大的學問，本身就是個有趣的科學。要怎麼選擇正確的實體？如何組織兩者間的交互作用？這就是架構，且有些很棒的書在探討這個議題，像是 E.Gamma, R.Helm, R.Johnson, J.Vissides 的 "Design Patterns: Elements of Reusable Object-Oriented Software" 或 G.Booch 的 "Object-Oriented Analysis and Design with Applications" 等等。
+=======
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ```
 
 ### 方法簡寫
@@ -234,6 +238,7 @@ sayHi(); // undefined
 這邊我們的立場不是要判斷語言設計決定是好或壞，我們只要理解它如何運作，且怎麼使用好處並避免問題。
 ```
 
+<<<<<<< HEAD
 ## 內部情況：參考類型（Reference Type）
 
 ```warn header="深入語言特性"
@@ -327,6 +332,9 @@ hi(); // 錯誤，因為 this 是 undefined
 所以，作為結果，`this` 的值只有在函式被直接使用句點 `obj.method()` 或方括號 `obj['method']()` 語法呼叫時（它們在此做一樣的事），才會經過正確地途徑傳遞下去。在之後的教程中，我們將會學習多種解決此問題的方式，像是使用 [func.bind()](/bind#solution-2-bind)。
 
 ## 箭頭函式沒有 "this"
+=======
+## Arrow functions have no "this"
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 箭頭函式很特別：它們沒有 "自己的" `this`。若我們從這種函式參考了 `this`，會從更外層的 "正常" 函式中獲取其值。
 

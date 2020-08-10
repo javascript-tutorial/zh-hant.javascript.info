@@ -534,7 +534,11 @@ alert( str );
 
 所以，瀏覽器需要知道要比較的語言是什麼。
 
+<<<<<<< HEAD
 幸運的是，所有現代瀏覽器（IE10 -- 需要額外的函式庫 [Intl.JS](https://github.com/andyearnshaw/Intl.js/)）都支援國際化標準 [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf)。
+=======
+Luckily, all modern browsers (IE10- requires the additional library [Intl.js](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA-402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 It provides a special method to compare strings in different languages, following their rules.
 它提供一種特殊方法來比較不同的語言的字串，遵循語言的規則。
