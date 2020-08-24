@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 # Variable scope
 
 JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created dynamically, passed as an argument to another function and called from a totally different place of code later.
@@ -10,6 +11,23 @@ Now let's expand our knowledge to include more complex scenarios.
 ```smart header="We'll talk about `let/const` variables here"
 In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
 
+=======
+# Variable scope, closure
+
+JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
+
+We already know that a function can access variables outside of it ("outer" variables).
+
+But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
+
+And what if a function is passed along as a parameter and called from another place of code, will it get access to outer variables at the new place?
+
+Let's expand our knowledge to understand these scenarios and more complex ones.
+
+```smart header="We'll talk about `let/const` variables here"
+In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
+
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 - In this article we'll use `let` variables in examples.
 - Variables, declared with `const`, behave the same, so this article is about `const` too.
 - The old `var` has some notable differences, they will be covered in the article <info:var>.
@@ -80,9 +98,15 @@ alert(phrase); // Error, no such variable!
 Here, after `if` finishes, the `alert` below won't see the `phrase`, hence the error.
 
 That's great, as it allows us to create block-local variables, specific to an `if` branch.
+<<<<<<< HEAD
 
 The similar thing holds true for `for` and `while` loops:
 
+=======
+
+The similar thing holds true for `for` and `while` loops:
+
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 ```js run
 for (let i = 0; i < 3; i++) {
   // the variable i is only visible inside this for
@@ -139,11 +163,19 @@ alert( counter() ); // 2
 ```
 
 Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [random number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) to generate random values for automated tests.
+<<<<<<< HEAD
 
 How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
 
 Undestanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
 
+=======
+
+How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
+
+Undestanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
+
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 ## Lexical Environment
 
 ```warn header="Here be dragons!"
@@ -183,7 +215,11 @@ Rectangles on the right-hand side demonstrate how the global Lexical Environment
 
 1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
     - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
+<<<<<<< HEAD
 2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable since this moment.
+=======
+2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 3. `phrase` is assigned a value.
 4. `phrase` changes the value.
 
@@ -286,7 +322,11 @@ Later, when `counter()` is called, a new Lexical Environment is created for the 
 
 ![](closure-makecounter-nested-call.svg)
 
+<<<<<<< HEAD
 Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where finds it and changes.
+=======
+Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 
 **A variable is updated in the Lexical Environment where it lives.**
 

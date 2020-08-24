@@ -39,7 +39,11 @@ i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 道隱無名。夫唯道，善貸且成。
 ```
 
+<<<<<<< HEAD
 另一個寫程式更快的方式是到處使用單一字母的變數名稱，像是 `a`、`b` 或 `c`。
+=======
+Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 
 短變數會像個真正的忍者處於森林中一樣，消失於程式碼之中，沒有人能夠使用編輯器的 "搜尋" 找到它們。即使有人辦得到，他們也無法 "破譯" `a` 或 `b` 名稱的意義。
 
