@@ -121,7 +121,11 @@ let fruits = [
 
 JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 加入/移除 元素 至/由 最前端或最末端都可以。
 
+<<<<<<< HEAD
 在計算機科學中，允許這種運作的資料結構被稱為 [雙端佇列（deque）](https://en.wikipedia.org/wiki/Double-ended_queue)。
+=======
+In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 **運作於陣列末端的方法：**
 
@@ -154,7 +158,7 @@ JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 �
 `shift`
 : 抽取陣列第一個元素並回傳它：
 
-    ```js
+    ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
     alert( fruits.shift() ); // 移除 Apple 並 alert 它
@@ -165,7 +169,7 @@ JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 �
 `unshift`
 : 於陣列最前端加上該元素：
 
-    ```js
+    ```js run
     let fruits = ["Orange", "Pear"];
 
     fruits.unshift('Apple');
@@ -191,7 +195,11 @@ alert( fruits );
 
 它們延伸了物件，提供特殊方法以使得有序群集資料可以運作，並給予 `length` 屬性，但其核心依然是個物件。
 
+<<<<<<< HEAD
 要記得，JavaScript 內只有 7 種基本類型。陣列是個物件類型，因此會產生像是物件的行為。
+=======
+Remember, there are only eight basic data types in JavaScript (see the [Data types](https://javascript.info/types) chapter for more info). Array is an object and thus behaves like an object.
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 舉個例，它是經由參考被複製的：
 
