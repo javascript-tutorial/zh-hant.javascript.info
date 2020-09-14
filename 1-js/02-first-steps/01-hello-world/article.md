@@ -45,8 +45,13 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 
 `<script>` 標籤尚有一些不常用的屬性，你可以在陳年的程式碼中見到它們：
 
+<<<<<<< HEAD
 `type` 屬性：<code>&lt;script <u>type</u>=...&gt;</code>
 : 在舊的 HTML4 標準中，`<script>` 標籤中的 `type` 屬性是必填的，通常它的值會是 `type="text/javascript"`，目前這個屬性已經不是必填了。而且在現今的 HTML 標準中，這個屬性的內在含義已經完全不同，現在這個屬性可以被用於 JavaScript 模組（modules），這是一個進階的主題，我們會在另外的章節詳細介紹。
+=======
+The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 `language` 屬性：<code>&lt;script <u>language</u>=...&gt;</code>
 : 這個屬性是為了表示此腳本所用的語言。在 JavaScript 如今已經變成了預設語言的情況下，這個屬性已沒有意義且不再使用了。
@@ -77,7 +82,7 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 我們也可以提供完整的 URL，例如：
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
 如果要添加多個腳本，請使用多個標籤：

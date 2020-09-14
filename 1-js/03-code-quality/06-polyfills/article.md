@@ -20,10 +20,14 @@
     實際上，Babel 有兩個部分：
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     1. 首先，是 transpiler 程序，該程序重寫程式碼。開發人員在自己的電腦上運行它。它將程式碼重寫為較舊的標準。然後將程式碼交付給用戶的網站。諸如 [webpack](http://webpack.github.io/) 之類的現代專案建置系統提供了每次程式碼變更時自動運行 transpiler 的方法，因此極易整合到開發過程。
 =======
 1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 2. 第二，polyfill。
 

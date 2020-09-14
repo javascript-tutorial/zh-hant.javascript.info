@@ -4,7 +4,11 @@
 
 ## 什麼是 JavaScript?
 
+<<<<<<< HEAD
 *JavaScript* 最初是為了 *"賦予網頁活力"* 而創造的。
+=======
+*JavaScript* was initially created to "make web pages alive".
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 這種程式語言我們稱之為 *腳本*，它們可以被寫入網頁 HTML 中，並在頁面讀取時自動執行。
 
@@ -63,7 +67,11 @@ JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js
 
 這些限制範例如下：
 
+<<<<<<< HEAD
 - 網頁上的 JavaScript 無法讀寫、複製和執行硬碟內任意檔案。它也沒有直接存取作業系統的功能。
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
     現代化瀏覽器允許 JavaScript 有限制地操作檔案，且只有在使用者做特定動作時提供，像是："拖曳" 一個檔案至瀏覽器視窗，或經由 `<input>` 標籤選取。
 
@@ -106,10 +114,18 @@ JavaScript 的語法並不符合每個人的要求，不同人想要不同功能
 
 例如這些語言：
 
+<<<<<<< HEAD
 - [CoffeeScript](http://coffeescript.org/) 是組 JavaScript 的 "語法糖"。它有更簡短的語法，可以讓我們寫出更清楚且精確的程式碼，通常 Ruby 開發者愛用。
 - [TypeScript](http://www.typescriptlang.org/) 致力於增加 "強型態確認（strict data typing）" 來簡化開發與支援複雜的系統，為微軟所開發。
 - [Flow](http://flow.org/) 同樣增加型態確認但使用不同方式，為臉書所開發。
 - [Dart](https://www.dartlang.org/) 是一種擁有自己引擎的獨立語言，它執行在非瀏覽器環境上（像是手機應用程式），但也可以轉譯成 JavaScript，為谷歌所開發。
+=======
+- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+- [Brython](https://brython.info/) is a Python transpiler to JavaScript that allow to write application in pure Python without JavaScript.
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 還有更多其他語言。當然，就算我們使用某種轉譯式語言，我們應該也要了解 JavaScript 來真正知道我們在做什麼。
 
