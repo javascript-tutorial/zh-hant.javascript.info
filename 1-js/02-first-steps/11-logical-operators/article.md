@@ -89,29 +89,46 @@ OR `||` 運算子做以下的事：
 舉個例：
 
 ```js run
+<<<<<<< HEAD
 alert( 1 || 0 ); // 1（1 是真值）
 alert( true || 'no matter what' ); //（true 是真值）
 
 alert( null || 1 ); // 1（1 是第一個真值）
 alert( null || 0 || 1 ); // 1（第一個真值）
 alert( undefined || null || 0 ); // 0（皆為虛值，回傳最後一個值）
+=======
+alert( 1 || 0 ); // 1 (1 is truthy)
+
+alert( null || 1 ); // 1 (1 is the first truthy value)
+alert( null || 0 || 1 ); // 1 (the first truthy value)
+
+alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```
 
 這導致一些跟 "純粹傳統布林限定 OR" 不太一樣的有趣用法。
 
 1. **取得一串變數或表達式中的第一個真值。**
 
+<<<<<<< HEAD
     想像我們有一串變數，之中包含著資料或者 `null/undefined`。我們要如何找到第一筆資料？
 
     我們可以使用 OR `||`:
+=======
+    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional.
+
+    Let's use OR `||` to choose the one that has the data and show it (or `anonymous` if nothing set):
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
     ```js run
-    let currentUser = null;
-    let defaultUser = "John";
+    let firstName = "";
+    let lastName = "";
+    let nickName = "SuperCoder";
 
     *!*
-    let name = currentUser || defaultUser || "unnamed";
+    alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
     */!*
+<<<<<<< HEAD
 
     alert( name ); // 選出 "John" - 第一個真值
     ```
@@ -125,30 +142,45 @@ alert( undefined || null || 0 ); // 0（皆為虛值，回傳最後一個值）
     當表達式作為第二個引數，並帶有像是變數指定等副作用（side effect）的時候，就可以很清楚地看出來。
 
     底下的例子中，`x` 沒有被給值：
+=======
+    ```
 
-    ```js run no-beautify
-    let x;
+    If all variables were falsy, `Anonymous` would show up.
 
-    *!*true*/!* || (x = 1);
+2. **Short-circuit evaluation.**
 
+    Another feature of OR `||` operator is the so-called "short-circuit" evaluation.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
+
+    It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument.
+
+    That importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
+
+<<<<<<< HEAD
     alert(x); // undefined，因為（x = 1）沒有被核定
     ```
 
     然而，若第一個引數是 `false`，`||` 將核定第二個引數，那麼賦值就會被執行：
+=======
+    In the example below, only the second message is printed:
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
     ```js run no-beautify
-    let x;
-
-    *!*false*/!* || (x = 1);
-
-    alert(x); // 1
+    *!*true*/!* || alert("not printed");
+    *!*false*/!* || alert("printed");
     ```
 
+<<<<<<< HEAD
     賦值是個很簡單的例子。也許內含副作用，但在沒被核定之前它們不會出現。
 
     如果我們所見，這種用法是 "簡短版 `if`"。第一個運算元被轉換成布林值，如果其為假，第二個運算元才被接著核定。
 
     大部分時間使用 "正規的" `if` 會比較好，能讓程式碼更容易被理解，但有時候這麼做滿方便的就是。
+=======
+    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
+
+    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## &&（AND）
 
@@ -236,7 +268,12 @@ AND `&&` 運算子的優先權比 OR `||` 還高。
 所以程式碼 `a && b || c && d` 本質上跟 `&&` 使用括號的表達式一樣：`(a && b) || (c && d)`。
 ````
 
+<<<<<<< HEAD
 跟 OR 一樣，AND `&&` 運算子有時可以取代 `if`。
+=======
+````warn header="Don't replace `if` with || or &&"
+Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 舉個例：
 
@@ -253,14 +290,18 @@ let x = 1;
 ```js run
 let x = 1;
 
-if (x > 0) {
-  alert( 'Greater than zero!' );
-}
+if (x > 0) alert( 'Greater than zero!' );
 ```
 
+<<<<<<< HEAD
 使用 `&&` 的方式看起來更簡短，但 `if` 更明顯易懂且多了那麼點可讀性。
 
 所以我們建議根據用途使用不同的程式碼建構方式：要用條件式時選 `if`，要做 AND 運算時用 `&&`。
+=======
+Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want if and use `&&` if we want AND.
+````
+
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## !（NOT）
 
