@@ -1,7 +1,13 @@
 # 忍者程式碼（Ninja code）
 
+<<<<<<< HEAD
 ```quote author="孔子"
 學而不思則罔，思而不學則殆。
+=======
+
+```quote author="Confucius (Analects)"
+Learning without thought is labor lost; thought without learning is perilous.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 ```
 
 過去的程式忍者使用這些技巧來讓程式碼維護者的心思更加敏銳。
@@ -39,7 +45,11 @@ i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 道隱無名。夫唯道，善貸且成。
 ```
 
+<<<<<<< HEAD
 另一個寫程式更快的方式是到處使用單一字母的變數名稱，像是 `a`、`b` 或 `c`。
+=======
+Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 短變數會像個真正的忍者處於森林中一樣，消失於程式碼之中，沒有人能夠使用編輯器的 "搜尋" 找到它們。即使有人辦得到，他們也無法 "破譯" `a` 或 `b` 名稱的意義。
 
@@ -99,9 +109,14 @@ i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 
 ## 聰明的同義詞
 
+<<<<<<< HEAD
 ```quote author="孔子"
 最困難的事是在黑暗的房間內尋找一隻黑貓，尤其當那裡根本沒有貓時。<br>
 （譯者註：這則引用應是個烏龍，孔子沒有說過這句話，可上網查詢相關來源）
+=======
+```quote author="Laozi (Tao Te Ching)"
+The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 ```
 
 對 *同件* 事情使用 *相似* 的名稱使得生活更為有趣，並向大眾顯示出你的創意。
