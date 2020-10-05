@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 # Variable scope
 
 JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created dynamically, passed as an argument to another function and called from a totally different place of code later.
@@ -10,6 +11,23 @@ Now let's expand our knowledge to include more complex scenarios.
 ```smart header="We'll talk about `let/const` variables here"
 In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
 
+=======
+# Variable scope, closure
+
+JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
+
+We already know that a function can access variables outside of it ("outer" variables).
+
+But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
+
+And what if a function is passed along as a parameter and called from another place of code, will it get access to outer variables at the new place?
+
+Let's expand our knowledge to understand these scenarios and more complex ones.
+
+```smart header="We'll talk about `let/const` variables here"
+In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
+
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 - In this article we'll use `let` variables in examples.
 - Variables, declared with `const`, behave the same, so this article is about `const` too.
 - The old `var` has some notable differences, they will be covered in the article <info:var>.
@@ -80,9 +98,15 @@ alert(phrase); // Error, no such variable!
 Here, after `if` finishes, the `alert` below won't see the `phrase`, hence the error.
 
 That's great, as it allows us to create block-local variables, specific to an `if` branch.
+<<<<<<< HEAD
 
 The similar thing holds true for `for` and `while` loops:
 
+=======
+
+The similar thing holds true for `for` and `while` loops:
+
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 ```js run
 for (let i = 0; i < 3; i++) {
   // the variable i is only visible inside this for
@@ -139,11 +163,19 @@ alert( counter() ); // 2
 ```
 
 Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [random number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) to generate random values for automated tests.
+<<<<<<< HEAD
 
 How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
 
 Undestanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
 
+=======
+
+How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
+
+Undestanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
+
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 ## Lexical Environment
 
 ```warn header="Here be dragons!"
@@ -183,7 +215,11 @@ Rectangles on the right-hand side demonstrate how the global Lexical Environment
 
 1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
     - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
+<<<<<<< HEAD
 2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable since this moment.
+=======
+2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 3. `phrase` is assigned a value.
 4. `phrase` changes the value.
 
@@ -286,7 +322,11 @@ Later, when `counter()` is called, a new Lexical Environment is created for the 
 
 ![](closure-makecounter-nested-call.svg)
 
+<<<<<<< HEAD
 Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where finds it and changes.
+=======
+Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
 **A variable is updated in the Lexical Environment where it lives.**
 
@@ -310,7 +350,11 @@ When on an interview, a frontend developer gets a question about "what's a closu
 
 Usually, a Lexical Environment is removed from memory with all the variables after the function call finishes. That's because there are no references to it. As any JavaScript object, it's only kept in memory while it's reachable.
 
+<<<<<<< HEAD
 ...But if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
+=======
+However, if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
 In that case the Lexical Environment is still reachable even after the completion of the function, so it stays alive.
 
@@ -329,7 +373,7 @@ let g = f(); // g.[[Environment]] stores a reference to the Lexical Environment
 // of the corresponding f() call
 ```
 
-Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. All 3 of them in the code below:
+Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. In the code below, all 3 of them:
 
 ```js
 function f() {
@@ -367,7 +411,7 @@ As we've seen, in theory while a function is alive, all outer variables are also
 
 But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's obvious from the code that an outer variable is not used -- it is removed.
 
-**An important side effect in V8 (Chrome, Opera) is that such variable will become unavailable in debugging.**
+**An important side effect in V8 (Chrome, Edge, Opera) is that such variable will become unavailable in debugging.**
 
 Try running the example below in Chrome with the Developer Tools open.
 
@@ -409,6 +453,12 @@ let g = f();
 g();
 ```
 
+<<<<<<< HEAD
 This feature of V8 is good to know. If you are debugging with Chrome/Opera, sooner or later you will meet it.
 
 That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You always can check for it by running the examples on this page.
+=======
+This feature of V8 is good to know. If you are debugging with Chrome/Edge/Opera, sooner or later you will meet it.
+
+That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
