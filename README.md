@@ -1,6 +1,10 @@
 # 現代化 JavaScript 教程繁體中文版
 
+<<<<<<< HEAD
 這個 repository 存放網站 <https://zh-hant.javascript.info> 的繁體中文翻譯版
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 **貢獻流程:**
 
@@ -32,9 +36,15 @@
 
 檔案夾中會有以下其中一種檔案：
 
+<<<<<<< HEAD
 - `index.md` 對應一個章節,
 - `article.md` 對應一篇文章,
 - `task.md` 對應一個課題 (若有解答就也會有 `solution.md` 這個檔案)
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 一個檔案將以 `# 標題` 開始，然後內文以類 Markdown 的格式用簡單編輯器即可編輯。
 
