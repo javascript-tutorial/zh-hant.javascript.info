@@ -50,7 +50,11 @@ The conversion operations are always silent, never give errors, but if the bigin
 ````smart header="The unary plus is not supported on bigints"
 The unary plus operator `+value` is a well-known way to convert `value` to a number.
 
+<<<<<<< HEAD
 On bigints it's not supported, to avoid confusion:
+=======
+In order to avoid confusion, it's not supported on bigints:
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 ```js run
 let bigint = 1n;
 
@@ -126,5 +130,9 @@ We can use such JSBI code "as is" for engines that don't support bigints and for
 
 ## References
 
+<<<<<<< HEAD
 - [MDN docs on BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
+=======
+- [MDN docs on BigInt](mdn:/JavaScript/Reference/Global_Objects/BigInt).
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 - [Specification](https://tc39.es/ecma262/#sec-bigint-objects).

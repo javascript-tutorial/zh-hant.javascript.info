@@ -2,9 +2,15 @@ importance: 3
 
 ---
 
+<<<<<<< HEAD
 # 數值屬性都乘以 2
 
 建立一個函式 `multiplyNumeric(obj)` 來把 `obj` 的所有數值屬性都乘以 2。
+=======
+# Multiply numeric property values by 2
+
+Create a function `multiplyNumeric(obj)` that multiplies all numeric property values of `obj` by `2`.
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 
 舉個例：
 

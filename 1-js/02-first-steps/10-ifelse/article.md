@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # 條件運算子：if、'?'
+=======
+# Conditional branching: if, '?'
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 
 有時候我們需要根據不同條件執行不同操作。
 
