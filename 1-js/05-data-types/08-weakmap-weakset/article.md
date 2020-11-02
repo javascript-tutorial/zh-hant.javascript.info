@@ -31,8 +31,14 @@ let array = [ john ];
 john = null; // 覆寫其參考
 
 *!*
+<<<<<<< HEAD
 // john 被儲存於陣列內，所以它不會被垃圾回收掉。
 // 我們可以透過 array[0] 來存取它。
+=======
+// the object previously referenced by john is stored inside the array 
+// therefore it won't be garbage-collected
+// we can get it as array[0]
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 */!*
 ```
 
@@ -141,7 +147,11 @@ function countUser(user) {
 // 📁 main.js
 let john = { name: "John" };
 
+<<<<<<< HEAD
 countUser(john); // 它的訪問次數
+=======
+countUser(john); // count his visits
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 // 晚點 john 離開了我們
 john = null;
