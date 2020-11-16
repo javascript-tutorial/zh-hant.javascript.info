@@ -176,22 +176,25 @@ So for each promise we get its status and `value/error`.
 If the browser doesn't support `Promise.allSettled`, it's easy to polyfill:
 
 ```js
-if(!Promise.allSettled) {
-  Promise.allSettled = function(promises) {
-    return Promise.all(promises.map(p => Promise.resolve(p).then(value => ({
-      state: 'fulfilled',
-      value
-    }), reason => ({
-      state: 'rejected',
-      reason
-    }))));
+if (!Promise.allSettled) {
+  const rejectHandler = reason => ({ status: 'rejected', reason });
+
+  const resolveHandler = value => ({ status: 'fulfilled', value });
+
+  Promise.allSettled = function (promises) {
+    const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
+    return Promise.all(convertedPromises);
   };
 }
 ```
 
 In this code, `promises.map` takes input values, turns them into promises (just in case a non-promise was passed) with `p => Promise.resolve(p)`, and then adds `.then` handler to every one.
 
+<<<<<<< HEAD
 That handler turns a successful result `value` into `{state:'fulfilled', value}`, and an error `reason` into `{state:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
+=======
+That handler turns a successful result `value` into `{status:'fulfilled', value}`, and an error `reason` into `{status:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 Now we can use `Promise.allSettled` to get the results of *all* given promises, even if some of them reject.
 
@@ -223,9 +226,15 @@ The first promise here was fastest, so it became the result. After the first set
 Methods `Promise.resolve` and `Promise.reject` are rarely needed in modern code, because `async/await` syntax (we'll cover it [a bit later](info:async-await)) makes them somewhat obsolete.
 
 We cover them here for completeness and for those who can't use `async/await` for some reason.
+<<<<<<< HEAD
 
 ### Promise.resolve
 
+=======
+
+### Promise.resolve
+
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 `Promise.resolve(value)` creates a resolved promise with the result `value`.
 
 Same as:
@@ -277,7 +286,7 @@ There are 5 static methods of `Promise` class:
 
 1. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, it becomes the error of `Promise.all`, and all other results are ignored.
 2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
-    - `state`: `"fulfilled"` or `"rejected"`
+    - `status`: `"fulfilled"` or `"rejected"`
     - `value` (if fulfilled) or `reason` (if rejected).
 3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
 4. `Promise.resolve(value)` -- makes a resolved promise with the given value.
