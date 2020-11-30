@@ -112,7 +112,11 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 就像你看到的，我們必須在內部的引號前加上反斜槓 `\`，否則它將結束字串。
 
+<<<<<<< HEAD
 當然，只有跟該封閉引號相同的引號才需要跳脫。因此，作為更優雅的解決方案，我們可以轉為使用雙引號或反引號：
+=======
+Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
@@ -241,7 +245,11 @@ alert( str.indexOf('widget') ); // -1，沒找到，檢索是有區分大小寫�
 alert( str.indexOf("id") ); // 1, "id" 在索引位置 "1" 處就被找到 (..idget 中的 id) 。
 ```
 
+<<<<<<< HEAD
 第二個參數是可選的，允許我們從給定的位置開始檢索。
+=======
+The optional second parameter allows us to start searching from a given position.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從位置 `2` 開始找。
 
@@ -314,7 +322,11 @@ if (str.indexOf("Widget") != -1) {
 
 #### 按位（bitwise）NOT 技巧
 
+<<<<<<< HEAD
 這裡使用一個古老的技巧， [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` 運算子。它將數字轉換為一個 32 位元 （32-bit）的整數（如果有小數點則全部捨棄），然後反轉它的二進製表示中的所有位元。
+=======
+One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 在實踐中，這意味著一件簡單的事情：對於 32 位元整數來說 `~n` 與 `-(n+1)` 完全相同。
 
@@ -347,7 +359,11 @@ if (~str.indexOf("Widget")) {
 
 只要記住：`if (~str.indexOf(...))` 讀作 "if found"。
 
+<<<<<<< HEAD
 確切地說，由於大數字被 `~` 運算子截斷為 32 位元，因此存在其他給出 `0` 的數字，最小的數字為 `~4294967295 = 0`。那使得，只有當字串不那麼長時，檢查才是正確的。
+=======
+To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check correct only if a string is not that long.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 現在，我們只能在舊程式碼中看到此技巧，因為現代 JavaScript 提供了 `.includes` 方法（見下文）。
 
@@ -534,7 +550,11 @@ alert( str );
 
 所以，瀏覽器需要知道要比較的語言是什麼。
 
+<<<<<<< HEAD
 幸運的是，所有現代瀏覽器（IE10 -- 需要額外的函式庫 [Intl.JS](https://github.com/andyearnshaw/Intl.js/)）都支援國際化標準 [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf)。
+=======
+Luckily, all modern browsers (IE10- requires the additional library [Intl.js](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA-402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 It provides a special method to compare strings in different languages, following their rules.
 它提供一種特殊方法來比較不同的語言的字串，遵循語言的規則。

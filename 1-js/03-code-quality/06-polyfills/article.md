@@ -20,15 +20,24 @@
     實際上，Babel 有兩個部分：
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     1. 首先，是 transpiler 程序，該程序重寫程式碼。開發人員在自己的電腦上運行它。它將程式碼重寫為較舊的標準。然後將程式碼交付給用戶的網站。諸如 [webpack](http://webpack.github.io/) 之類的現代專案建置系統提供了每次程式碼變更時自動運行 transpiler 的方法，因此極易整合到開發過程。
 =======
 1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 2. 第二，polyfill。
 
+<<<<<<< HEAD
     新的語言功能可能包括新的內置函數和語法構件。
     Transpiler 重寫程式碼，將語法構件轉換為較舊的語法。但是對於新的內置函數，我們需要實現它們。JavaScript 是一種高度動態的語言，腳本可以新增／修改任何函式，以便它們按照現代標準運行。
+=======
+    New language features may include not only syntax constructs, but also built-in functions.
+    The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 更新/增加 新功能的腳本稱為 "polyfill"。它 "填補" 了差距，並增加了缺少的實作。
 
