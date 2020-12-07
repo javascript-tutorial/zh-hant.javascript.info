@@ -286,7 +286,7 @@ function pow(x, n) {
 
 一些受歡迎的選擇：
 
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
@@ -329,7 +329,7 @@ Linters 是可以自動檢查你程式碼風格，並給予改進建議的工具
   },
   "rules": {
     "no-console": 0,
-    "indent": ["warning", 2]
+    "indent": 2
   }
 }
 ```

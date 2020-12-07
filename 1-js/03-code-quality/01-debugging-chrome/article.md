@@ -5,10 +5,14 @@
 [除錯（Debugging）](https://en.wikipedia.org/wiki/Debugging) 是在腳本中找出並修正錯誤的過程。所有現代瀏覽器和大部分的環境都支援除錯工具 -- 開發工具中特別的使用者介面，用來讓除錯更為簡單。它也可以一步步追蹤程式碼執行步驟，以看出現在到底發生什麼事。
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 在此我們會使用 Chrome，因為它具有足夠的功能，大部分其它的瀏覽器也有相似的除錯流程。
 =======
 We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 ## "Sources" 面板
 
@@ -33,6 +37,7 @@ The toggler button <span class="devtools" style="background-position:-172px -98p
 ![](chrome-tabs.svg)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 在這我們可以看到三個區域：
 
 1. **資源區域** 列出 HTML、JavaScript、CSS 和其他檔案，包含置於頁面中的圖片。Chrome 擴充套件（extensions）也可能顯示在這。
@@ -40,6 +45,13 @@ The toggler button <span class="devtools" style="background-position:-172px -98p
 3. **資訊與控制區域** 是為了除錯使用，我們很快會探討它。
 =======
 The Sources panel has 3 parts:
+=======
+The Sources panel has 3 parts:
+
+1. The **File Navigator** pane lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
+2. The **Code Editor** pane shows the source code.
+3. The **JavaScript Debugging** pane is for debugging, we'll explore it soon.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 1. The **File Navigator** pane lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
 2. The **Code Editor** pane shows the source code.

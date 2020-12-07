@@ -183,10 +183,14 @@ function pow(x, n) {
 [iframe height=250 src="pow-2" edit border="1"]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 如我們所預期，第二個測試失敗了。當然，我們的函式總是回傳 `8`，然而 `assert` 預期的是 `27`。
 =======
 As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 ## 改進實作
 
