@@ -1,6 +1,10 @@
 # 現代化 JavaScript 教程繁體中文版
 
+<<<<<<< HEAD
 這個 repository 存放網站 <https://zh-hant.javascript.info> 的繁體中文翻譯版
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 **貢獻流程:**
 
@@ -20,7 +24,11 @@
 
 🎉 感激不盡！
 
+<<<<<<< HEAD
 你的名字和貢獻量將會在翻譯釋出後，出現在 "[關於本計畫](https://zh-hant.javascript.info/about)" 頁面上。
+=======
+**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 註：完整的多國語言翻譯列表可以在 <https://javascript.info/translate> 之中找到
 
@@ -32,9 +40,15 @@
 
 檔案夾中會有以下其中一種檔案：
 
+<<<<<<< HEAD
 - `index.md` 對應一個章節,
 - `article.md` 對應一篇文章,
 - `task.md` 對應一個課題 (若有解答就也會有 `solution.md` 這個檔案)
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 一個檔案將以 `# 標題` 開始，然後內文以類 Markdown 的格式用簡單編輯器即可編輯。
 
@@ -153,6 +167,7 @@ MDN 的連結可以使用部分翻譯的版本。
 ```md
 importance: 5
 
+<<<<<<< HEAD
 ---
 ...
 ```
@@ -183,3 +198,8 @@ importance: 5
 - Len Chen [@lenchen1112](https://github.com/lenchen1112)
 - Tom Wu [@tom76kimo](https://github.com/tom76kimo)
 
+=======
+---  
+♥  
+Ilya Kantor @iliakan
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f

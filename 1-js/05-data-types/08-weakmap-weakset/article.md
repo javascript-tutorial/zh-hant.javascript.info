@@ -31,8 +31,14 @@ let array = [ john ];
 john = null; // 覆寫其參考
 
 *!*
+<<<<<<< HEAD
 // john 被儲存於陣列內，所以它不會被垃圾回收掉。
 // 我們可以透過 array[0] 來存取它。
+=======
+// the object previously referenced by john is stored inside the array
+// therefore it won't be garbage-collected
+// we can get it as array[0]
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 */!*
 ```
 
@@ -60,7 +66,11 @@ john = null; // 覆寫其參考
 
 ## WeakMap
 
+<<<<<<< HEAD
 與 `Map` 的第一個差異是，`WeakMap` 一定要是物件，不能是原生類型值：
+=======
+The first difference between `Map` and `WeakMap` is that keys must be objects, not primitive values:
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ```js run
 let weakMap = new WeakMap();
@@ -101,9 +111,15 @@ john = null; // 覆寫參考
 
 為什麼有這樣的限制？這是為了技術上的原因。如果一個物件喪失了其他所有的參考（如上述程式碼範例中的 `john`），那它會被自動垃圾回收掉。但技術上來說，並沒有明確指定 *何時要執行清理*。
 
+<<<<<<< HEAD
 由 JavaScript 引擎決定。它可能選擇立即執行記憶體清掃，或是等待晚點更多的刪除發生後再執行清理。所以，技術上來說，`WeakMap` 目前的元素數量是未知的。引擎可能會清理也可能不會，或是只做一部分。出於此因，不支援能夠存取所有鍵/值的方法。
 
 好，那麼在哪種地方我們需要這樣的資料結構呢？
+=======
+The JavaScript engine decides that. It may choose to perform the memory cleanup immediately or to wait and do the cleaning later when more deletions happen. So, technically, the current element count of a `WeakMap` is not known. The engine may have cleaned it up or not, or did it partially. For that reason, methods that access all keys/values are not supported.
+
+Now, where do we need such a data structure?
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ## 使用案例: 附加的資料
 
@@ -141,13 +157,21 @@ function countUser(user) {
 // 📁 main.js
 let john = { name: "John" };
 
+<<<<<<< HEAD
 countUser(john); // 它的訪問次數
+=======
+countUser(john); // count his visits
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 // 晚點 john 離開了我們
 john = null;
 ```
 
+<<<<<<< HEAD
 現在 `john` 物件應該要被垃圾回收，但卻還是作為 `visitsCountMap` 中的一個鍵存在於記憶體中。
+=======
+Now, `john` object should be garbage collected, but remains in memory, as it's a key in `visitsCountMap`.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 當我們移除使用者時，我們需要清理 `visitsCountMap`，否則記憶體會無窮擴大。在複雜的架構中，這樣的清潔可能會是一個繁瑣乏味的任務。
 
@@ -164,13 +188,23 @@ function countUser(user) {
 }
 ```
 
+<<<<<<< HEAD
 現在我們不用清理 `visitsCountMap` 了。當 `john` 物件變成除了作為 `WeakMap` 的鍵值以外，其餘皆不可達的情況時，它就會連同那些從 `WeakMap` 的鍵得來的資訊，一起從記憶體中被移除。
+=======
+Now we don't have to clean `visitsCountMap`. After `john` object becomes unreachable, by all means except as a key of `WeakMap`, it gets removed from memory, along with the information by that key from `WeakMap`.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ##  使用案例: 快取（caching）
 
+<<<<<<< HEAD
 另一個常見的範例是快取：當一個函數的結果應該要被記憶住（"快取"），這樣之後呼叫相同物件時可以重複使用。
 
 我們可以用 `Map` 來存結果，像這樣：
+=======
+Another common example is caching. We can store ("cache") results from a function, so that future calls on the same object can reuse it.
+
+To achieve that, we can use `Map` (not optimal scenario):
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ```js run
 // 📁 cache.js
@@ -207,7 +241,11 @@ alert(cache.size); // 1（哎呦！該物件還是在快取中，佔據記憶體
 
 針對同個物件多次呼叫 `process(obj)`，只有第一次會進行計算，之後就只從 `cache` 中取出結果。這樣做的缺點是，當物件不再被需要時，我們需要清除 `cache`。
 
+<<<<<<< HEAD
 如果我們用 `WeakMap` 取代 `Map`，那這問題就不復存在了：快取結果會在物件被垃圾回收後，自動從記憶體中被移除。
+=======
+If we replace `Map` with `WeakMap`, then this problem disappears. The cached result will be removed from memory automatically after the object gets garbage collected.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ```js run
 // 📁 cache.js
@@ -248,7 +286,11 @@ obj = null;
 - 當它還可從其他地方被存取時，物件就還會存在於集合中。
 - 像是 `Set`，它支援 `add`、`has` 和 `delete`，但不支援 `size`、`keys()` 且沒有迭代。
 
+<<<<<<< HEAD
 身為 "weak"，它也可作為附加的儲存空間。但不是給隨意的資料使用，而是針對 "是/否" 這類的事實陳述。`WeakSet` 中的成員關係可能代表物件的某些資訊。
+=======
+Being "weak", it also serves as additional storage. But not for arbitrary data, rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 舉例來說，我們可以將使用者加入 `WeakSet` 來追蹤誰曾拜訪過我們的網站：
 
@@ -276,7 +318,11 @@ john = null;
 // visitedSet 將會被自動清理。
 ```
 
+<<<<<<< HEAD
 `WeakMap` 與 `WeakSet` 最值得注意的限制是缺乏迭代功能，以及無法一次取得目前所有的內容。這可能很不方便，但並不影響 `WeakMap/WeakSet` 執行他們的主要工作 -- 為在另一個地方被儲存/管理的物件提供一個 "附加" 的儲存空間來儲存其資料。
+=======
+The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterations, and the inability to get all current content. That may appear inconvenient, but does not prevent `WeakMap/WeakSet` from doing their main job -- be an "additional" storage of data for objects which are stored/managed at another place.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ## 總結
 
@@ -284,6 +330,14 @@ john = null;
 
 `WeakSet` 是一個類似 `Set` 的集合，只能儲存物件，且當該物件不再能夠被存取時，會跟著一同被移除。
 
+<<<<<<< HEAD
 它們兩個都不支援能夠存取所有鍵或是計數值的方法或屬性。只允許個別的操作。
 
 `WeakMap` 和 `WeakSet` 被作為附加於 "主要" 物件儲存空間的 "次要" 資料結構。一但物件從主要儲存空間中被移除，如果該物件只被當作 `WeakMap` 的鍵，或是只存在於 `WeakSet` 中，那它將會自動被清除。
+=======
+Their main advantages are that they have weak reference to objects, so they can easily be removed by garbage collector.
+
+That comes at the cost of not having support for `clear`, `size`, `keys`, `values`...
+
+`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "primary" object storage. Once the object is removed from the primary storage, if it is only found as the key of `WeakMap` or in a `WeakSet`, it will be cleaned up automatically.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
