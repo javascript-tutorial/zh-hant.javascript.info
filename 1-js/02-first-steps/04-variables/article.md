@@ -79,10 +79,17 @@ let user = 'John'
   , message = 'Hello';
 ```
 
+<<<<<<< HEAD
 技術上來說，這些變化在都做一樣的事，所以這只是個人的喜好與美學而已。
 
 ````smart header="用 `var` 而非 `let`"
 在一些較舊的腳本中，你也許會發現另一個關鍵字：`var` 而非 `let`：
+=======
+Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
+
+````smart header="`var` instead of `let`"
+In older scripts, you may also find another keyword: `var` instead of `let`:
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ```js
 *!*var*/!* message = 'Hello';
@@ -136,8 +143,27 @@ alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
+<<<<<<< HEAD
 ```smart header="函數式語言（Functional languages）"
 值得注意的是，有種叫 [函式編程（functional programming）](https://en.wikipedia.org/wiki/Functional_programming) 的語言，像是 [Scala](http://www.scala-lang.org/) 或 [Erlang](http://www.erlang.org/)，禁止更改變數值。
+=======
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we should declare a variable once and then refer to it without `let`.
+````
+
+```smart header="Functional languages"
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 在這些語言中，一旦值被 "裝箱" 就永遠在那了，如果我們需要存到別的地方，這種語言強制我們建立一個新的箱子（宣告一個新變數），我們不能再使用舊的。
 
@@ -191,7 +217,11 @@ let имя = '...';
 let 我 = '...';
 ```
 
+<<<<<<< HEAD
 技術上這樣不會有問題，這些名稱都是被允許的，但國際傳統是使用英文來命名。就算我們只是寫個很小的腳本，它可能也會存活很久，到時其他國家的人也許會需要閱讀它。
+=======
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 ````
 
 ````warn header="保留字（Reserved names）"
