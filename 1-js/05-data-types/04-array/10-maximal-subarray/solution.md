@@ -57,7 +57,11 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
+<<<<<<< HEAD
 該解法的時間複雜度為 [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation) 。換句話說，若我們增加兩倍的陣列大小，該演算法就會多花四倍的時間。
+=======
+The solution has a time complexity of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 對於大陣列來說（1000、10000 或更多項目）該演算法可能導致嚴重的延遲。
 
