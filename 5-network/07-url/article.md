@@ -65,7 +65,11 @@ Here's the cheatsheet for URL components:
 ```smart header="We can pass `URL` objects to networking (and most other) methods instead of a string"
 We can use a `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere where a URL-string is expected.
 
+<<<<<<< HEAD
 Generally, `URL` object can be passed to any method instead of a string, as most method will perform the string conversion, that turns a `URL` object into a string with full URL.
+=======
+Generally, the `URL` object can be passed to any method instead of a string, as most methods will perform the string conversion, that turns a `URL` object into a string with full URL.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 ```
 
 ## SearchParams "?..."
@@ -80,7 +84,7 @@ new URL('https://google.com/search?query=JavaScript')
 
 ...But parameters need to be encoded if they contain spaces, non-latin letters, etc (more about that below).
 
-So there's URL property for that: `url.searchParams`, an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
+So there's a URL property for that: `url.searchParams`, an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
 
 It provides convenient methods for search parameters:
 
@@ -88,7 +92,7 @@ It provides convenient methods for search parameters:
 - **`delete(name)`** -- remove the parameter by `name`,
 - **`get(name)`** -- get the parameter by `name`,
 - **`getAll(name)`** -- get all parameters with the same `name` (that's possible, e.g. `?user=John&user=Pete`),
-- **`has(name)`** -- check for the existance of the parameter by `name`,
+- **`has(name)`** -- check for the existence of the parameter by `name`,
 - **`set(name, value)`** -- set/replace the parameter,
 - **`sort()`** -- sort parameters by name, rarely needed,
 - ...and it's also iterable, similar to `Map`.
@@ -145,10 +149,10 @@ If we use a string though, we need to encode/decode special characters manually.
 
 There are built-in functions for that:
 
-- [encodeURI](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI) - encodes URL as a whole.
-- [decodeURI](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI) - decodes it back.
-- [encodeURIComponent](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) - encodes a URL component, such as a search parameter, or a hash, or a pathname.
-- [decodeURIComponent](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent) - decodes it back.
+- [encodeURI](mdn:/JavaScript/Reference/Global_Objects/encodeURI) - encodes URL as a whole.
+- [decodeURI](mdn:/JavaScript/Reference/Global_Objects/decodeURI) - decodes it back.
+- [encodeURIComponent](mdn:/JavaScript/Reference/Global_Objects/encodeURIComponent) - encodes a URL component, such as a search parameter, or a hash, or a pathname.
+- [decodeURIComponent](mdn:/JavaScript/Reference/Global_Objects/decodeURIComponent) - decodes it back.
 
 A natural question is: "What's the difference between `encodeURIComponent` and `encodeURI`? When we should use either?"
 
@@ -201,7 +205,7 @@ So we should use only `encodeURIComponent` for each search parameter, to correct
 ````smart header="Encoding difference compared to `URL`"
 Classes [URL](https://url.spec.whatwg.org/#url-class) and [URLSearchParams](https://url.spec.whatwg.org/#interface-urlsearchparams) are based on the latest URI specification: [RFC3986](https://tools.ietf.org/html/rfc3986), while `encode*` functions are based on the obsolete version [RFC2396](https://www.ietf.org/rfc/rfc2396.txt).
 
-There are few differences, e.g. IPv6 addresses are encoded differently:
+There are a few differences, e.g. IPv6 addresses are encoded differently:
 
 ```js run
 // valid url with IPv6 address

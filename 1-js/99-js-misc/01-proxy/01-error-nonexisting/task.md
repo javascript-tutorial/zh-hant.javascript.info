@@ -1,8 +1,8 @@
-# Error on reading non-existant property
+# Error on reading non-existent property
 
-Usually, an attempt to read a non-existant property returns `undefined`.
+Usually, an attempt to read a non-existent property returns `undefined`.
 
-Create a proxy that throws an error for an attempt to read of a non-existant property instead.
+Create a proxy that throws an error for an attempt to read of a non-existent property instead.
 
 That can help to detect programming mistakes early.
 
@@ -27,6 +27,10 @@ user = wrap(user);
 
 alert(user.name); // John
 *!*
+<<<<<<< HEAD
 alert(user.age); // ReferenceError: Property doesn't exist "age"
+=======
+alert(user.age); // ReferenceError: Property doesn't exist: "age"
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 */!*
 ```
