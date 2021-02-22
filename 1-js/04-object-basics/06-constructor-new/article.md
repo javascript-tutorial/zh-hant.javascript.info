@@ -91,7 +91,11 @@ let user = new function() {
 
 在函式中，我們可以使用一個特殊的 `new.target` 屬性，來確認它是否經由 `new` 被呼叫。
 
+<<<<<<< HEAD
 對於常規呼叫而言它會是空的，而若使用 `new` 呼叫則會相等於該函式：
+=======
+It is undefined for regular calls and equals the function if called with `new`:
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 ```js run
 function User() {

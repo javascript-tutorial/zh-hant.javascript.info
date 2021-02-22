@@ -117,7 +117,11 @@ if (
 
     使用空格而非 tabs 有個好處是，空格比 tab 符號更具有縮排配置的彈性。
 
+<<<<<<< HEAD
     舉個例，我們可以將某個開括號的引數們對其，像這樣：
+=======
+    For instance, we can align the parameters with the opening bracket, like this:
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
     ```js no-beautify
     show(parameters,
@@ -286,7 +290,7 @@ function pow(x, n) {
 
 一些受歡迎的選擇：
 
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
@@ -329,7 +333,7 @@ Linters 是可以自動檢查你程式碼風格，並給予改進建議的工具
   },
   "rules": {
     "no-console": 0,
-    "indent": ["warning", 2]
+    "indent": 2
   }
 }
 ```

@@ -1,6 +1,10 @@
 最大的長度必須是 `maxlength`，因此我們需將其剪短一點，為省略號留岀空間。
 
+<<<<<<< HEAD
 注意，省略號實際上是一個單獨的 unicode 字元，那不是三個點。
+=======
+Note that there is actually a single Unicode character for an ellipsis. That's not three dots.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 ```js run demo
 function truncate(str, maxlength) {
