@@ -23,7 +23,11 @@ let usersById = groupById(users);
 // after the call we should have:
 
 usersById = {
+<<<<<<< HEAD
   john: {id: 'john', name: "John Smith", age: 20}
+=======
+  john: {id: 'john', name: "John Smith", age: 20},
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
   ann: {id: 'ann', name: "Ann Smith", age: 24},
   pete: {id: 'pete', name: "Pete Peterson", age: 31},
 }

@@ -14,14 +14,23 @@
 
 同樣地，假如你在開發瀏覽器相關的功能，我們也有在此教程的 [第二部分](info:browser-environment) 介紹相關的規格書。
 
+<<<<<<< HEAD
 ## 操作手冊
+=======
+Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
 
 - **MDN (Mozilla) JavaScript Reference** 是一個包含了範例以及其他資訊的操作手冊，很適合拿來獲取個別函式或是方法的深入資訊。
 
+<<<<<<< HEAD
     你可以在這裡找到 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>。
+=======
+- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
 
     不過，透過網路搜尋通常會是較好的選擇。使用在搜尋列打入 "MDN [關鍵字]" 的方式，比如你要搜尋 `parseInt` 這個函式，可以用 <https://google.com/search?q=MDN+parseInt>。
 
+<<<<<<< HEAD
 - **MSDN** – 微軟釋出的操作手冊，包含了一堆 JavaScript（通常是指 JScript）的資訊。如果你需要開發跟 Internet Explorer 有關的功能，最好參考此處： <http://msdn.microsoft.com/>。
 
     當然，我們也可以透過網路搜尋來找到我們需要的資訊，比如 "RegExp MSDN" 或是 "RegExp MSDN jscript"。
@@ -29,6 +38,9 @@
 ## 兼容表
 
 JavaScript 是一個持續開發中的語言，它定期會被加入一些新功能。
+=======
+Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for `parseInt` function.
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
 
 想知道瀏覽器或是其他引擎的支援程度，可以參考：
 

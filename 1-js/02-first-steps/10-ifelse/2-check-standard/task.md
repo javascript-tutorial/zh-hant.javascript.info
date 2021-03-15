@@ -6,7 +6,11 @@ importance: 2
 
 使用 `if..else` 結構，寫一段程式碼詢問：'What is the "official" name of JavaScript?'
 
+<<<<<<< HEAD
 如果訪問者輸入 "ECMAScript"，則輸出 "Right!"，否則 -- 輸出："Didn't know? ECMAScript!"
+=======
+If the visitor enters "ECMAScript", then output "Right!", otherwise -- output: "You don't know? ECMAScript!"
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
 
 ![](ifelse_task2.svg)
 

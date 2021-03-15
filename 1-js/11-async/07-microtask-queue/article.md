@@ -23,7 +23,11 @@ Why did the `.then` trigger afterwards? What's going on?
 
 ## Microtasks queue
 
+<<<<<<< HEAD
 Asynchronous tasks need proper management. For that, the ECMA standard specifies an internal queue `PromiseJobs`, more often referred to as the "microtask queue" (ES8 term).
+=======
+Asynchronous tasks need proper management. For that, the ECMA standard specifies an internal queue `PromiseJobs`, more often referred to as the "microtask queue" (V8 term).
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
 
 As stated in the [specification](https://tc39.github.io/ecma262/#sec-jobs-and-job-queues):
 
@@ -103,7 +107,11 @@ In the example above, `.catch` added by `setTimeout` also triggers. But it does 
 
 ## Summary
 
+<<<<<<< HEAD
 Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (ES8 term).
+=======
+Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (V8 term).
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
 
 So `.then/catch/finally` handlers are always called after the current code is finished.
 
