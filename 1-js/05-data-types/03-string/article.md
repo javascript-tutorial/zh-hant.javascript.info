@@ -53,6 +53,10 @@ let guestList = "Guests: // 錯誤：意料之外的令牌（標記、符號） 
 
 反引號還允許我們，在第一個反引號前指定 "模板功能 (template function)"。 語法為 <code>func&#96;string&#96;</code>。 函數 `func` 會被自動調用，接收字串和嵌入式表達式並處理他們，這稱為 "標記模板 (tagged templates)"。 此功能使實現自定義模板更加容易，但很少在實踐中使用。您可以在 [手冊](mdn:/JavaScript/Reference/Template_literals#Tagged_templates) 中了解更多信息。
 
+<<<<<<< HEAD
+=======
+Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This is called "tagged templates". This feature makes it easier to implement custom templating, but is rarely used in practice. You can read more about it in the [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ## 特殊字元
 
@@ -82,6 +86,7 @@ alert(str1 == str2); // true
 
 | 字元 | 描述 |
 |-----------|-------------|
+<<<<<<< HEAD
 |`\n`| 換行、新行|
 |`\r`| 回車：不單獨使用。 Windows 純文字檔案使用兩個字元組合 `\r\n` 來表示換行。 |
 |`\'`, `\"`| 引號。|
@@ -98,6 +103,24 @@ unicode 的例子：
 alert( "\u00A9" ); // ©
 alert( "\u{20331}" ); // 佫, 一個少見的中文象形文字（長的 unicode）
 alert( "\u{1F60D}" ); // 😍, 一個笑臉符號（另一個長的 unicode）
+=======
+|`\n`|New line|
+|`\r`|Carriage return: not used alone. Windows text files use a combination of two characters `\r\n` to represent a line break. |
+|`\'`, `\"`|Quotes|
+|`\\`|Backslash|
+|`\t`|Tab|
+|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
+|`\xXX`|Unicode character with the given hexadecimal Unicode `XX`, e.g. `'\x7A'` is the same as `'z'`.|
+|`\uXXXX`|A Unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a Unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
+|`\u{X…XXXXXX}` (1 to 6 hex characters)|A Unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two Unicode symbols, taking 4 bytes. This way we can insert long codes. |
+
+Examples with Unicode:
+
+```js run
+alert( "\u00A9" ); // ©
+alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long Unicode)
+alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long Unicode)
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 ```
 
 所有特殊字元均以反斜槓字元 `\` 開頭。也稱為 "跳脫字元"。
@@ -112,7 +135,11 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 就像你看到的，我們必須在內部的引號前加上反斜槓 `\`，否則它將結束字串。
 
+<<<<<<< HEAD
 當然，只有跟該封閉引號相同的引號才需要跳脫。因此，作為更優雅的解決方案，我們可以轉為使用雙引號或反引號：
+=======
+Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
@@ -241,7 +268,11 @@ alert( str.indexOf('widget') ); // -1，沒找到，檢索是有區分大小寫�
 alert( str.indexOf("id") ); // 1, "id" 在索引位置 "1" 處就被找到 (..idget 中的 id) 。
 ```
 
+<<<<<<< HEAD
 第二個參數是可選的，允許我們從給定的位置開始檢索。
+=======
+The optional second parameter allows us to start searching from a given position.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從位置 `2` 開始找。
 
@@ -314,7 +345,11 @@ if (str.indexOf("Widget") != -1) {
 
 #### 按位（bitwise）NOT 技巧
 
+<<<<<<< HEAD
 這裡使用一個古老的技巧， [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` 運算子。它將數字轉換為一個 32 位元 （32-bit）的整數（如果有小數點則全部捨棄），然後反轉它的二進製表示中的所有位元。
+=======
+One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 在實踐中，這意味著一件簡單的事情：對於 32 位元整數來說 `~n` 與 `-(n+1)` 完全相同。
 
@@ -347,7 +382,11 @@ if (~str.indexOf("Widget")) {
 
 只要記住：`if (~str.indexOf(...))` 讀作 "if found"。
 
+<<<<<<< HEAD
 確切地說，由於大數字被 `~` 運算子截斷為 32 位元，因此存在其他給出 `0` 的數字，最小的數字為 `~4294967295 = 0`。那使得，只有當字串不那麼長時，檢查才是正確的。
+=======
+To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check correct only if a string is not that long.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 現在，我們只能在舊程式碼中看到此技巧，因為現代 JavaScript 提供了 `.includes` 方法（見下文）。
 
@@ -499,7 +538,11 @@ alert( "Z".codePointAt(0) ); // 90
 alert( String.fromCodePoint(90) ); // Z
 ```
 
+<<<<<<< HEAD
 我們也可以透過字元代碼來添加 unicode 字元，在 `\u` 後面接該十六進制代碼：
+=======
+    We can also add Unicode characters by their codes using `\u` followed by the hex code:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js run
 // 在十六進制系統中 90 為 5a
@@ -528,13 +571,21 @@ alert( str );
 - 所有小寫字母都在大寫字母後面，因為它們的代碼更大。
 - 一些字母像是 `Ö` 與主要字母分開。在這裏，它的代碼比從 `a` 到 `z` 的任何字元代碼都大。
 
+<<<<<<< HEAD
 ### Correct comparisons 正確的比較
+=======
+### Correct comparisons [#correct-comparisons]
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 執行字串比較，"正確" 的演算法比看起來更複雜，因為不同語言的字母是不同的。
 
 所以，瀏覽器需要知道要比較的語言是什麼。
 
+<<<<<<< HEAD
 幸運的是，所有現代瀏覽器（IE10 -- 需要額外的函式庫 [Intl.JS](https://github.com/andyearnshaw/Intl.js/)）都支援國際化標準 [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf)。
+=======
+Luckily, all modern browsers (IE10- requires the additional library [Intl.js](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA-402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 It provides a special method to compare strings in different languages, following their rules.
 它提供一種特殊方法來比較不同的語言的字串，遵循語言的規則。
@@ -608,9 +659,13 @@ alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, 在 0xdc00 和 0xdfff 之�
 
 在許多語言中，有些符號是由帶有上標記或下標記的基本字元組成。
 
+<<<<<<< HEAD
 例如，字母 `a` 可以是下列的基本字元：`àáâäãåā`。最常見的 "複合" 字元在 UTF-16 表中有自己的代碼。但他們並非全部，因為可能的組合太多。
 
 為了支援任意組合，UTF-16 允許我們去使用幾個 unicode 字元：基本字元緊跟著一或多個 "裝飾" 它的 "標記" 字元。
+=======
+To support arbitrary compositions, UTF-16 allows us to use several Unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
 例如，若我們有 `S` 後面跟著特殊 "上標點 (dot above)" 字元（代碼 `\u0307`），顯示為 Ṡ。
@@ -629,7 +684,11 @@ alert( 'S\u0307' ); // Ṡ
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
 
+<<<<<<< HEAD
 這提供了極大的靈活性，但還有個有趣的問題：兩個字元在視覺上可能看來相同，但是用不同的 unicode 組合表示。
+=======
+This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different Unicode compositions.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 例如：
 
@@ -642,7 +701,11 @@ alert( `s1: ${s1}, s2: ${s2}` );
 alert( s1 == s2 ); // false 儘管字元看起來是相同的 (?!)
 ```
 
+<<<<<<< HEAD
 為了解決這個問題，有一種 "unicode 標準化（unicode normalization）" 演算法，將每個字串轉換為單個 "常規" 格式。
+=======
+To solve this, there exists a "Unicode normalization" algorithm that brings each string to the single "normal" form.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 他透過 [str.normalize()](mdn:js/String/normalize) 實作。
 
@@ -662,7 +725,18 @@ alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 
 如果你想了解有關規範化規則和變體的更多信息 -- 它們在 Unicode 標準的附錄中有所描述：[Unicode Normalization Forms](http://www.unicode.org/reports/tr15/)，但對於大多數實際目的來說，本節的信息就足夠了。
 
+<<<<<<< HEAD
 ## Summary 總結
+=======
+- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
+- Strings in JavaScript are encoded using UTF-16.
+- We can use special characters like `\n` and insert letters by their Unicode using `\u...`.
+- To get a character, use: `[]`.
+- To get a substring, use: `slice` or `substring`.
+- To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
+- To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
+- To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 - 有 3 種類型的引號。 反引號允許字串的換行，並在內嵌入表達式 `${…}`。
 - 字串在 JavaScript 中都是使用 UTF-16 編碼。

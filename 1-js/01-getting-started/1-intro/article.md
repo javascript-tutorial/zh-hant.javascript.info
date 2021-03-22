@@ -1,10 +1,18 @@
 # 介紹 JavaScript
 
+<<<<<<< HEAD
 一起來看看 JavaScript 有什麼特別的，我們能做些什麼，與哪些配合不錯的技術。
+=======
+Let's see what's so special about JavaScript, what we can achieve with it, and what other technologies play well with it.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ## 什麼是 JavaScript?
 
+<<<<<<< HEAD
 *JavaScript* 最初是為了 *"賦予網頁活力"* 而創造的。
+=======
+*JavaScript* was initially created to "make web pages alive".
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 這種程式語言我們稱之為 *腳本*，它們可以被寫入網頁 HTML 中，並在頁面讀取時自動執行。
 
@@ -24,9 +32,15 @@
 
 不同的引擎有不同的 "代號（codenames）"。例如：
 
+<<<<<<< HEAD
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- Chrome 和 Opera 內的引擎。
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- Firefox 內的引擎。
 - ... 還有其他代號，像是不同版本 IE 使用的 "Trident" 與 "Chakra"、微軟 Edge 的 "ChakraCore"、Safari 的 "Nitro" 與 "SquirrelFish"，等等。
+=======
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome and Opera.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
+- ...There are other codenames like "Chakra" for IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari, etc.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 上面提到的代號最好可以記住，因為這些代號常被用於網路上的開發者文章，就像我們一樣。如："V8 支援某個 X 功能"，代表該功能在 Chrome 和 Opera 上應該可以運作。
 
@@ -63,7 +77,11 @@ JavaScript 的能力很大一部分取決於執行它的環境。例如 [Node.js
 
 這些限制範例如下：
 
+<<<<<<< HEAD
 - 網頁上的 JavaScript 無法讀寫、複製和執行硬碟內任意檔案。它也沒有直接存取作業系統的功能。
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
     現代化瀏覽器允許 JavaScript 有限制地操作檔案，且只有在使用者做特定動作時提供，像是："拖曳" 一個檔案至瀏覽器視窗，或經由 `<input>` 標籤選取。
 
@@ -106,10 +124,19 @@ JavaScript 的語法並不符合每個人的要求，不同人想要不同功能
 
 例如這些語言：
 
+<<<<<<< HEAD
 - [CoffeeScript](http://coffeescript.org/) 是組 JavaScript 的 "語法糖"。它有更簡短的語法，可以讓我們寫出更清楚且精確的程式碼，通常 Ruby 開發者愛用。
 - [TypeScript](http://www.typescriptlang.org/) 致力於增加 "強型態確認（strict data typing）" 來簡化開發與支援複雜的系統，為微軟所開發。
 - [Flow](http://flow.org/) 同樣增加型態確認但使用不同方式，為臉書所開發。
 - [Dart](https://www.dartlang.org/) 是一種擁有自己引擎的獨立語言，它執行在非瀏覽器環境上（像是手機應用程式），但也可以轉譯成 JavaScript，為谷歌所開發。
+=======
+- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+- [Brython](https://brython.info/) is a Python transpiler to JavaScript that enables the writing of applications in pure Python without JavaScript.
+- [Kotlin](https://kotlinlang.org/docs/reference/js-overview.html) is a modern, concise and safe programming language that can target the browser or Node.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 還有更多其他語言。當然，就算我們使用某種轉譯式語言，我們應該也要了解 JavaScript 來真正知道我們在做什麼。
 
@@ -119,3 +146,9 @@ JavaScript 的語法並不符合每個人的要求，不同人想要不同功能
 - 至今 JavaScript 有著獨特的地位，它是在瀏覽器上最被廣泛採用的語言且與 HTML/CSS 完整整合。
 - 有許多語言可被 "轉譯" 成 JavaScript 並提供特定的功能。建議在掌握 JavaScript 後可以稍微看看。
 
+<<<<<<< HEAD
+=======
+- JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
+- Today, JavaScript has a unique position as the most widely-adopted browser language with full integration in HTML/CSS.
+- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
