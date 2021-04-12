@@ -29,7 +29,7 @@ regexp = /pattern/gmi; // 搭配旗標 g、m 和 i （等一下會講到）
 
 兩種語法主要不同之處在於一種使用斜線 `/.../`，不允許插入表達式（像是字串樣板字面值 `${...}`）。他們是完全靜態的。
 
-斜線用在當我們撰寫程式碼時，所知道的正規表達式 -- 這是最常見的情況。而 `new RegExp`，經常用在我們需要用動態產生的字串建立一個 '即時' 的正規表達式。例如：
+斜線用在當我們撰寫程式碼時，所知道的正規表達式 -- 這是最常見的情況。而 `new RegExp`，經常用在我們需要用動態產生的字串建立一個 "即時" 的正規表達式。例如：
 
 ```js
 let tag = prompt("What tag do you want to find?", "h2");
@@ -45,7 +45,7 @@ let regexp = new RegExp(`<${tag}>`); // 如果在提示窗中回答 "h2"，則�
 
 `pattern:i`：使用這個旗標會使搜尋不區分大小寫：`A` 與 `a` 不分（參見下面的範例）
 
-`pattern:g`：使用這個旗標會使搜尋查找所有匹配結果, 沒有這個的話 -- 只有第一個匹配結果會回傳。
+`pattern:g`：使用這個旗標會使搜尋查找所有匹配結果, 沒有這個的話 -- 只有第一個匹配結果會傳回。
 搜尋
 `pattern:m`：多行模式 (介紹在此章節 <info:regexp-multiline-mode>)。
 
@@ -71,7 +71,7 @@ let regexp = new RegExp(`<${tag}>`); // 如果在提示窗中回答 "h2"，則�
 
 它有3種工作模式：
 
-1. 如果正規表達式有旗標 `pattern:g`，此回傳一個全部匹配結果的陣列：
+1. 如果正規表達式有旗標 `pattern:g`，此傳回一個全部匹配結果的陣列：
     ```js run
     let str = "We will, we will rock you";
 
@@ -79,7 +79,7 @@ let regexp = new RegExp(`<${tag}>`); // 如果在提示窗中回答 "h2"，則�
     ```
     請注意兩個 `match:We` 和 `match:we` 會被找到，是因為旗標 `pattern:i` 使正規表達式不分大小寫。
 
-2. 如果沒有旗標 `pattern:g` 回傳形式會是只有第一個匹配結果的陣列，該陣列中包含一些額外資訊在屬性中，完全匹配結果在索引 `0`：
+2. 如果沒有旗標 `pattern:g` 傳回形式會是只有第一個匹配結果的陣列，該陣列中包含一些額外資訊在屬性中，完全匹配結果在索引 `0`：
     ```js run
     let str = "We will, we will rock you";
 
@@ -94,7 +94,7 @@ let regexp = new RegExp(`<${tag}>`); // 如果在提示窗中回答 "h2"，則�
     ```
     如果正規表達式的一部分在括号中，則陣列除了 `0` 外還會有其他索引。我們將在此章節介紹 <info:regexp-groups>。
 
-3. 最後，如果沒有匹配結果，會回傳 `null`（與有無 `pattern:g` 旗標無關）。
+3. 最後，如果沒有匹配結果，會傳回 `null`（與有無 `pattern:g` 旗標無關）。
     這是很重要的細節。如果沒有匹配結果，我們不會收到一個空陣列，而是收到 `null`。忘記這件事情會導致錯誤，例如：
 
     ```js run
@@ -148,7 +148,7 @@ alert( "I love HTML".replace(/HTML/, "$& and JavaScript") ); // I love HTML and 
 
 ## 測試: regexp.test
 
-`regexp.test(str)` 方法尋找至少一個匹配結果，如果有找到，回傳 `true`，反之則是 `false`。
+`regexp.test(str)` 方法尋找至少一個匹配結果，如果有找到，傳回 `true`，反之則是 `false`。
 
 ```js run
 let str = "I love JavaScript";
@@ -167,4 +167,4 @@ alert( regexp.test(str) ); // true
 - 除了旗標和特殊符號（我們等等會學到），用正規表達式來搜尋跟部份字串搜尋相同。
 - `str.match(regexp)` 方法用 `regexp` 正規表達式尋找了匹配結果在整個 `str` 字串中。
 - `str.replace(regexp, replacement)` 方法用 `regexp` 找到了匹配結果，並在 `str` 字串中使用 `placement` 字串取代。（如果是 `pattern:g` 旗標的話，會是全部匹配結果，反之只會是第一個）。
-- `regexp.test(str)` 方法尋找至少一個匹配結果，如果有找到，回傳 `true`，反之則是 `false`。
+- `regexp.test(str)` 方法尋找至少一個匹配結果，如果有找到，傳回 `true`，反之則是 `false`。
