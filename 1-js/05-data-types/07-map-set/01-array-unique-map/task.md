@@ -2,17 +2,17 @@ importance: 5
 
 ---
 
-# Filter unique array members
+# 過濾掉重複的陣列成員
 
-Let `arr` be an array.
+令 `arr` 為一個陣列。
 
-Create a function `unique(arr)` that should return an array with unique items of `arr`.
+建立一個傳回沒有重複項目的函式 `unique(arr)`。
 
-For instance:
+例如：
 
 ```js
 function unique(arr) {
-  /* your code */
+  /* 你的程式碼 */
 }
 
 let values = ["Hare", "Krishna", "Hare", "Krishna",
@@ -22,6 +22,6 @@ let values = ["Hare", "Krishna", "Hare", "Krishna",
 alert( unique(values) ); // Hare, Krishna, :-O
 ```
 
-P.S. Here strings are used, but can be values of any type.
+附註：這裡雖然是用了字串，但也要可以是任何型別。
 
-P.P.S. Use `Set` to store unique values.
+追加附註：使用 `Set` 去儲放不重複的值。

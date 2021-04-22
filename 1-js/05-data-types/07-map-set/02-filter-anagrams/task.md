@@ -2,11 +2,11 @@ importance: 4
 
 ---
 
-# Filter anagrams
+# 過濾易位構詞
 
-[Anagrams](https://en.wikipedia.org/wiki/Anagram) are words that have the same number of same letters, but in different order.
+[易位構詞](https://zh.wikipedia.org/wiki/易位構詞遊戲) 是具有相同數量字母但順序不同的單字。
 
-For instance:
+例如：
 
 ```
 nap - pan
@@ -14,9 +14,9 @@ ear - are - era
 cheaters - hectares - teachers
 ```
 
-Write a function `aclean(arr)` that returns an array cleaned from anagrams.
+撰寫一個函式 `aclean(arr)`，傳回不重複的易位構詞陣列。
 
-For instance:
+例如：
 
 ```js
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
@@ -24,5 +24,5 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
 ```
 
-From every anagram group should remain only one word, no matter which one.
+在每個易位構詞群組中，無論哪個單字，都應只保留一個單字。
 
