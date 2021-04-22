@@ -145,7 +145,7 @@ recipeMap.forEach( (value, key, map) => {
 });
 ```
 
-## Object.entries: 建立 Map 來自 Object
+## Object.entries: 從 Object 建立 Map
 
 當建立一個 `Map` 時，我們可以傳入一個鍵/值組合的陣列（或可迭代的物件）進行初始化，如下：
 
@@ -162,7 +162,7 @@ alert( map.get('1') ); // str1
 
 如果我們有一個普通的物件，並且想從該物件建立一個 `Map`，則可以使用內建方法 [Object.entries(obj)](mdn:js/Object/entries) ，傳回一個與其相同格式的鍵/值組合的陣列。
 
-所以，我們可以建立一個 map 來自物件，如下：
+所以，我們可以從物件建立一個 map，如下：
 
 ```js run
 let obj = {
@@ -180,7 +180,7 @@ alert( map.get('name') ); // John
 在這裡，`Object.entries` 傳回一個鍵/值組合的陣列：`[ ["name","John"], ["age", 30] ]`。這是 `Map` 所需要的。
 
 
-## Object.fromEntries: 建立 Object 來自 Map
+## Object.fromEntries: 從 Map 建立 Object
 
 我們已經看到如何使用 `Object.entries(obj)` 從一般物件建立 `Map`。
 
