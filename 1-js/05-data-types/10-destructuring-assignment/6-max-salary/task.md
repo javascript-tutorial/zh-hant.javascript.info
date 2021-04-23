@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# The maximal salary 
+# 最高薪水
 
-There is a `salaries` object:
+這是一個 `salaries` 物件：
 
 ```js
 let salaries = {
@@ -14,9 +14,9 @@ let salaries = {
 };
 ```
 
-Create the function `topSalary(salaries)` that returns the name of the top-paid person.
+建立函式 `topSalary(salaries)` ，傳回薪水最高的人名。
 
-- If `salaries` is empty, it should return `null`.
-- If there are multiple top-paid persons, return any of them.
+- 如果 `salaries` 是空的，那應該傳回 `null`。
+- 如果薪水最高的人有多個，傳回他們任意一個即可。
 
-P.S. Use `Object.entries` and destructuring to iterate over key/value pairs.
+備註：使用 `Object.entries` 並在迭代全部鍵/值組合處解構。
