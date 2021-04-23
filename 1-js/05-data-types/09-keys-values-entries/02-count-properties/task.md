@@ -4,7 +4,7 @@ importance: 5
 
 # Count properties
 
-Write a function `count(obj)` that returns the number of properties in the object:
+寫一個函式 `count(obj)`，該函式會傳回物件有幾個屬性。
 
 ```js
 let user = {
@@ -15,7 +15,7 @@ let user = {
 alert( count(user) ); // 2
 ```
 
-Try to make the code as short as possible.
+嘗試把程式碼盡可能的變短吧。
 
-P.S. Ignore symbolic properties, count only "regular" ones.
+備註：忽略符號的屬性，只計算 "一般的"。
 
