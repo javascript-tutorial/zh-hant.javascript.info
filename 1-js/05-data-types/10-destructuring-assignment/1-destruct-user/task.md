@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Destructuring assignment
+# 解構賦值
 
-We have an object:
+我們有個物件：
 
 ```js
 let user = {
@@ -13,18 +13,18 @@ let user = {
 };
 ```
 
-Write the destructuring assignment that reads:
+閱讀以下內容，撰寫解構賦值：
 
-- `name` property into the variable `name`.
-- `years` property into the variable `age`.
-- `isAdmin` property into the variable `isAdmin` (false, if no such property)
+- `name` 屬性變成變數 `name`.
+- `years` 屬性變成變數 `age`.
+- `isAdmin` 屬性變成變數 `isAdmin` (false, 如果沒有屬性)
 
-Here's an example of the values after your assignment:
+這是值在你指派之後的範例程式碼片段：
 
 ```js
 let user = { name: "John", years: 30 };
 
-// your code to the left side:
+// 你的程式碼會在左側：
 // ... = user
 
 alert( name ); // John

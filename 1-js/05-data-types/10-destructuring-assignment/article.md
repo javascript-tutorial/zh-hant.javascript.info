@@ -1,25 +1,25 @@
-# Destructuring assignment
+# 解構賦值（Destructuring assignment）
 
-The two most used data structures in JavaScript are `Object` and `Array`.
+在 JavaScript，兩個最常用到的資料結構是 `Object` 和 `Array`。
 
-Objects allow us to create a single entity that stores data items by key, and arrays allow us to gather data items into an ordered collection.
+物件允許我們建立一個單一實體藉由鍵值去存放資料項目，而陣列允許我們匯集資料項目到有次序的群集中。
 
-But when we pass those to a function, it may need not an object/array as a whole, but rather individual pieces.
+但當我們將它們傳遞給函式時，它可能並不需要整個物件/陣列，而是特定部份。
 
-*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. Destructuring also works great with complex functions that have a lot of parameters, default values, and so on.
+**解構賦值** 是一種允許我們 "拆開" 陣列或物件變成一些變數的特殊語法，有時這很方便。對於具有許多參數，默認值等的複雜函數，解構也非常有效。
 
-## Array destructuring
+## 陣列解構
 
-An example of how the array is destructured into variables:
+陣列如何解構為變數的範例：
 
 ```js
-// we have an array with the name and surname
+// 我們有一個包含名稱和姓氏的陣列
 let arr = ["Ilya", "Kantor"]
 
 *!*
-// destructuring assignment
-// sets firstName = arr[0]
-// and surname = arr[1]
+// 解構賦值
+// 設 firstName = arr[0]
+// 且 surname = arr[1]
 let [firstName, surname] = arr;
 */!*
 
@@ -27,18 +27,18 @@ alert(firstName); // Ilya
 alert(surname);  // Kantor
 ```
 
-Now we can work with variables instead of array members.
+現在我們可以使用變數來替換陣列成員了。
 
-It looks great when combined with `split` or other array-returning methods:
+與 `split` 或其他會傳回陣列的方法結合使用時看起來很棒：
 
 ```js
 let [firstName, surname] = "Ilya Kantor".split(' ');
 ```
 
-````smart header="\"Destructuring\" does not mean \"destructive\"."
-It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
+````smart header="\"解構\" 不是指 \"拆解\"。"
+之所以叫 "解構賦值", 是因為從複製的項目 "拆解結構" 成變數。但陣列本身並沒有被改動。
 
-It's just a shorter way to write:
+這只是一種較短的撰寫方式：
 ```js
 // let [firstName, surname] = arr;
 let firstName = arr[0];
@@ -46,24 +46,24 @@ let surname = arr[1];
 ```
 ````
 
-````smart header="Ignore elements using commas"
-Unwanted elements of the array can also be thrown away via an extra comma:
+````smart header="使用逗號忽略元素"
+陣列中不需要的元素也可以通過額外的逗號捨棄：
 
 ```js run
 *!*
-// second element is not needed
+// 第二個元素不需要
 let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 */!*
 
 alert( title ); // Consul
 ```
 
-In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items is also skipped (as there are no variables for them).
+在上面的程式碼中，陣列的第二個元素被跳過了，而第三個元素則賦值給 `title`，其餘的陣列項目也被跳過（因為沒有他們的變數）。
 ````
 
-````smart header="Works with any iterable on the right-side"
+````smart header="可用於任何在右側的可迭代物件"
 
-...Actually, we can use it with any iterable, not only arrays:
+...事實上，我們可以使用在任何可迭代物件，不只是陣列：
 
 ```js
 let [a, b, c] = "abc"; // ["a", "b", "c"]
@@ -73,11 +73,11 @@ let [one, two, three] = new Set([1, 2, 3]);
 ````
 
 
-````smart header="Assign to anything at the left-side"
+````smart header="賦值給在左側的任何東西"
 
-We can use any "assignables" at the left side.
+我們可以使用任何 "可賦值" 的東西在左側。
 
-For instance, an object property:
+例如，物件屬性：
 ```js run
 let user = {};
 [user.name, user.surname] = "Ilya Kantor".split(' ');
@@ -87,11 +87,11 @@ alert(user.name); // Ilya
 
 ````
 
-````smart header="Looping with .entries()"
+````smart header="與 .entries() 進行遍歷"
 
-In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+在前面的章節我們看到了 [Object.entries(obj)](mdn:js/Object/entries) 方法。
 
-We can use it with destructuring to loop over keys-and-values of an object:
+我們可以在物件中，鍵與值的遍歷過程中解構：
 
 ```js run
 let user = {
@@ -99,7 +99,7 @@ let user = {
   age: 30
 };
 
-// loop over keys-and-values
+// 遍歷鍵和值
 *!*
 for (let [key, value] of Object.entries(user)) {
 */!*
@@ -107,7 +107,7 @@ for (let [key, value] of Object.entries(user)) {
 }
 ```
 
-...And the same for a map:
+...map 也一樣：
 
 ```js run
 let user = new Map();
@@ -121,9 +121,9 @@ for (let [key, value] of user) {
 }
 ```
 ````
-### The rest '...'
+### 其餘部份 '...'
 
-If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
+如果我們不只取得第一個值，還想匯集所有後續的值 -- 我們可以使用三個點 `"..."` 再增加一個取得 "其餘的" 參數：
 
 ```js run
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
@@ -132,18 +132,18 @@ alert(name1); // Julius
 alert(name2); // Caesar
 
 *!*
-// Note that type of `rest` is Array.
+// 注意 `rest` 的類型是陣列。
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
 */!*
 ```
 
-The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
+`rest` 的值是剩下的陣列元素組成的陣列。我們可以使用任何其他的變數名稱取代 `rest`，只要確定其有三個點在前面而且是解構賦值的最後一個。
 
-### Default values
+### 預設值
 
-If there are fewer values in the array than variables in the assignment, there will be no error. Absent values are considered undefined:
+如果陣列中的值少於賦值中的變數，則不會有錯誤。缺少的值會被認為是未定義的：
 
 ```js run
 *!*
@@ -154,45 +154,45 @@ alert(firstName); // undefined
 alert(surname); // undefined
 ```
 
-If we want a "default" value to replace the missing one, we can provide it using `=`:
+如果我們想要 "預設" 值取代缺少的部份，我們可以使用 `=` 提供：
 
 ```js run
 *!*
-// default values
+// 預設值
 let [name = "Guest", surname = "Anonymous"] = ["Julius"];
 */!*
 
-alert(name);    // Julius (from array)
-alert(surname); // Anonymous (default used)
+alert(name);    // Julius (來自陣列)
+alert(surname); // Anonymous (預設使用)
 ```
 
-Default values can be more complex expressions or even function calls. They are evaluated only if the value is not provided.
+預設值可以是更複雜的表達式，甚至可以是函式呼叫。它們只在沒提供值的時候才求值。
 
-For instance, here we use the `prompt` function for two defaults. But it will run only for the missing one:
+例如，這裡我們對兩個預設值使用 `prompt` 函式。但其將只會執行遺失的那一個：
 
 ```js run
-// runs only prompt for surname
+// 只對 surname 執行 prompt
 let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
 
-alert(name);    // Julius (from array)
-alert(surname); // whatever prompt gets
+alert(name);    // Julius (來自陣列)
+alert(surname); // 任何從 prompt 拿到的
 ```
 
 
 
-## Object destructuring
+## 物件解構
 
-The destructuring assignment also works with objects.
+解構賦值也適用於物件。
 
-The basic syntax is:
+基本語法是：
 
 ```js
 let {var1, var2} = {var1:…, var2:…}
 ```
 
-We have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. In the simple case, that's a list of variable names in `{...}`.
+我們有一個既存的物件在右側，我們想從其中分割變數。左側包含一個對應屬性的 "樣式"。在單純的情況下，`{...}` 中是變數的列表。
 
-For instance:
+例如：
 
 ```js run
 let options = {
@@ -210,16 +210,16 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
-Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. The order does not matter. This works too:
+`options.title`、`options.width` 和 `options.height` 被賦值到對應的變數上。順序不重要，這樣也可以：
 
 ```js
-// changed the order in let {...}
+// 在 let {...} 中變更順序
 let {height, width, title} = { title: "Menu", height: 200, width: 100 }
 ```
 
-The pattern on the left side may be more complex and specify the mapping between properties and variables.
+左側的樣式可能更複雜，映射特定屬性和變數。
 
-If we want to assign a property to a variable with another name, for instance, `options.width` to go into the variable named `w`, then we can set it using a colon:
+如果我們想為一個其他名稱的變數賦值一屬性，例如，`options.width` 賦值到名為 `w` 的變數中，則我們可以使用冒號來設定：
 
 ```js run
 let options = {
@@ -242,9 +242,9 @@ alert(w);      // 100
 alert(h);      // 200
 ```
 
-The colon shows "what : goes where". In the example above the property `width` goes to `w`, property `height` goes to `h`, and `title` is assigned to the same name.
+冒號顯示 "啥 : 在這"。在上面的範例中，`w` 是屬性 `width`，`h` 是屬性 `height`，然後 `title` 則是設成了相同名稱。
 
-For potentially missing properties we can set default values using `"="`, like this:
+對於可能缺少的屬性，我們可以使用 `"="` 設定預設值，像這樣：
 
 ```js run
 let options = {
@@ -260,9 +260,9 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
-Just like with arrays or function parameters, default values can be any expressions or even function calls. They will be evaluated if the value is not provided.
+就像是陣列或函式參數，預設值可以是任何表達式，甚至是函數呼叫。它們只在沒提供值的時候才求值。
 
-In the code below `prompt` asks for `width`, but not for `title`:
+在下面的程式碼中， `prompt` 要求 `width`，還不是 `title`：
 
 ```js run
 let options = {
@@ -274,10 +274,10 @@ let {width = prompt("width?"), title = prompt("title?")} = options;
 */!*
 
 alert(title);  // Menu
-alert(width);  // (whatever the result of prompt is)
+alert(width);  // （任何從 prompt 的結果）
 ```
 
-We also can combine both the colon and equality:
+我們也可以結合冒號和等號：
 
 ```js run
 let options = {
@@ -293,7 +293,7 @@ alert(w);      // 100
 alert(h);      // 200
 ```
 
-If we have a complex object with many properties, we can extract only what we need:
+如果我們有個多屬性的複雜物件，我們可以只提取我們需要的：
 
 ```js run
 let options = {
@@ -302,19 +302,19 @@ let options = {
   height: 200
 };
 
-// only extract title as a variable
+// 只提取變數 title
 let { title } = options;
 
 alert(title); // Menu
 ```
 
-### The rest pattern "..."
+### 其餘部份的樣式 "..."
 
-What if the object has more properties than we have variables? Can we take some and then assign the "rest" somewhere?
+如果物件屬性多過我們有的變數的話？我們可以取一些，然後把 "其餘部份" 賦值到某個地方嗎？
 
-We can use the rest pattern, just like we did with arrays. It's not supported by some older browsers (IE, use Babel to polyfill it), but works in modern ones.
+我們可以使用其餘部份的樣式，就像我們使用陣列一樣。可以在現代瀏覽器使用，但一些較舊的瀏覽器不支援（IE，可用 Babel 去 polyfill）。
 
-It looks like this:
+它看起來像這樣：
 
 ```js run
 let options = {
@@ -324,57 +324,57 @@ let options = {
 };
 
 *!*
-// title = property named title
-// rest = object with the rest of properties
+// title = 叫做 title 的屬性
+// rest = 物件其餘的屬性
 let {title, ...rest} = options;
 */!*
 
-// now title="Menu", rest={height: 200, width: 100}
+// 現在 title="Menu", rest={height: 200, width: 100}
 alert(rest.height);  // 200
 alert(rest.width);   // 100
 ```
 
-````smart header="Gotcha if there's no `let`"
-In the examples above variables were declared right in the assignment: `let {…} = {…}`. Of course, we could use existing variables too, without `let`. But there's a catch.
+````smart header="抓到，如果沒有 `let`"
+在上面的範例中，變數的宣告在右邊賦值：`let {…} = {…}`。當然，我們也可以使用現有的變數，而不用 `let`。但是有個陷阱。
 
-This won't work:
+這不會動：
 ```js run
 let title, width, height;
 
-// error in this line
+// 在這行出錯
 {title, width, height} = {title: "Menu", width: 200, height: 100};
 ```
 
-The problem is that JavaScript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
+問題在於 JavaScript 對於 `{...}` 在主要程式碼的流程中（而不是在另外的表達式內部）視為程式碼區塊。這樣的程式碼區塊可用於把描述群組起來，像這樣：
 
 ```js run
 {
-  // a code block
+  // 一個程式碼區塊
   let message = "Hello";
   // ...
   alert( message );
 }
 ```
 
-So here JavaScript assumes that we have a code block, that's why there's an error. We want destructuring instead.
+因此 JavaScript 在這裡認為我們有的是一個程式碼區塊，這就是為什麼出錯的原因。我們需要改成解構。
 
-To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
+為了告訴 JavaScript 這不是程式碼區塊，我們可以將表達式包在括號 `(...)` 中：
 
 ```js run
 let title, width, height;
 
-// okay now
+// 現在可以了
 *!*(*/!*{title, width, height} = {title: "Menu", width: 200, height: 100}*!*)*/!*;
 
 alert( title ); // Menu
 ```
 ````
 
-## Nested destructuring
+## 巢狀解構
 
-If an object or an array contain other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
+如果一個物件或陣列包含其他巢狀的物件或陣列的話，我們可以用更多複雜的左側樣式去取更深的部份。
 
-In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure to extract values from them:
+在下面的 `options` 程式碼中，`size` 屬性有另一個物件，`items` 屬性則有一個陣列。從相同結構的左側賦值樣式來取值：
 
 ```js run
 let options = {
@@ -386,14 +386,14 @@ let options = {
   extra: true   
 };
 
-// destructuring assignment split in multiple lines for clarity
+// 解構賦值清晰的分割在多行
 let {
-  size: { // put size here
+  size: { // 放 size 在這
     width,
     height
   },
-  items: [item1, item2], // assign items here
-  title = "Menu" // not present in the object (default value is used)
+  items: [item1, item2], // 賦值 items 在這
+  title = "Menu" // 沒有在物件中（使用了預設值）
 } = options;
 
 alert(title);  // Menu
@@ -403,19 +403,19 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
+`options` 物件的所有屬性除了 `extra` 在左側缺少外，都賦值到對應的變數：
 
 ![](destructuring-complex.svg)
 
-Finally, we have `width`, `height`, `item1`, `item2` and `title` from the default value.
+最後，我們有 `width`、`height`、`item1`、`item2` 和預設值的 `title`。
 
-Note that there are no variables for `size` and `items`, as we take their content instead.
+注意這裡沒有 `size` 和 `items` 的變數，因為我們直接取得他們的內容。
 
-## Smart function parameters
+## 智慧型函式參數
 
-There are times when a function has many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
+有時，當函式有很多參數的話，大多數是可選的。尤其在使用者介面上。想像一個建立選單的函式。它可能有寬度、高度、標題、項目列表等。
 
-Here's a bad way to write such function:
+這裡有個不好的函式撰寫方法：
 
 ```js
 function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
@@ -423,32 +423,32 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
-In real-life, the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
+在現實生活中，如何記得參數的順序是個問題。通常 IDE 會嘗試協助我們，特別是在程式碼有好的文件時，但... 其他問題是如何呼叫一個很多預設值參數的函式。
 
-Like this?
+像這樣？
 
 ```js
-// undefined where default values are fine
+// undefined 會是預設值
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
-That's ugly. And becomes unreadable when we deal with more parameters.
+這很醜。而且當我們處理更多參數時變得不好讀。
 
-Destructuring comes to the rescue!
+解構可以助你一臂之力！
 
-We can pass parameters as an object, and the function immediately destructurizes them into variables:
+我們可以傳遞一個物件的參數，然後函式直接把他們解構成變數：
 
 ```js run
-// we pass object to function
+// 我們傳遞物件到函式
 let options = {
   title: "My menu",
   items: ["Item1", "Item2"]
 };
 
-// ...and it immediately expands it to variables
+// ...然後直接把他們展開成變數
 function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
-  // title, items – taken from options,
-  // width, height – defaults used
+  // title, items – 從 options 拿的,
+  // width, height – 預設使用
   alert( `${title} ${width} ${height}` ); // My Menu 200 100
   alert( items ); // Item1, Item2
 }
@@ -456,7 +456,7 @@ function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}
 showMenu(options);
 ```
 
-We can also use more complex destructuring with nested objects and colon mappings:
+我們也可以對巢狀物件和冒號映射使用更複雜的解構：
 
 ```js run
 let options = {
@@ -467,9 +467,9 @@ let options = {
 *!*
 function showMenu({
   title = "Untitled",
-  width: w = 100,  // width goes to w
-  height: h = 200, // height goes to h
-  items: [item1, item2] // items first element goes to item1, second to item2
+  width: w = 100,  // w 是 width
+  height: h = 200, // h 是 height
+  items: [item1, item2] // item1 是 items 第一個元素, item2 是第二個
 }) {
 */!*
   alert( `${title} ${w} ${h}` ); // My Menu 100 200
@@ -480,7 +480,7 @@ function showMenu({
 showMenu(options);
 ```
 
-The full syntax is the same as for a destructuring assignment:
+完整語法與解構賦值相同：
 ```js
 function({
   incomingProperty: varName = defaultValue
@@ -488,17 +488,17 @@ function({
 })
 ```
 
-Then, for an object of parameters, there will be a variable `varName` for property `incomingProperty`, with `defaultValue` by default.
+然後，對於是物件的參數來說，`incomingProperty` 屬性將變成 `varName` 變數，預設是 `defaultValue`。
 
-Please note that such destructuring assumes that `showMenu()` does have an argument. If we want all values by default, then we should specify an empty object:
+請注意，這種解構認為 `showMenu()` 確實有一個參數。如果我們想要全部的值都可以預設，我們應該指定一個空物件：
 
 ```js
-showMenu({}); // ok, all values are default
+showMenu({}); // 好, 所有的值都是預設
 
-showMenu(); // this would give an error
+showMenu(); // 這會給出錯誤
 ```
 
-We can fix this by making `{}` the default value for the whole object of parameters:
+我們可以用 `{}` 作為物件參數的預設值修好這個：
 
 ```js run
 function showMenu({ title = "Menu", width = 100, height = 200 }*!* = {}*/!*) {
@@ -508,26 +508,26 @@ function showMenu({ title = "Menu", width = 100, height = 200 }*!* = {}*/!*) {
 showMenu(); // Menu 100 200
 ```
 
-In the code above, the whole arguments object is `{}` by default, so there's always something to destructurize.
+在前面的程式碼中，整個參數物件預設為 `{}`，因此總會有東西可以解構。
 
-## Summary
+## 總結
 
-- Destructuring assignment allows for instantly mapping an object or array onto many variables.
-- The full object syntax:
+- 解構賦值允許即時將一個物件或陣列映射成多個變數。
+- 用於物件的完整語法：
     ```js
     let {prop : varName = default, ...rest} = object
     ```
 
-    This means that property `prop` should go into the variable `varName` and, if no such property exists, then the `default` value should be used.
+    這是指 `prop` 屬性應該變成 `varName` 變數，如果屬性不存在，則應該使用 `default` 預設值。
 
-    Object properties that have no mapping are copied to the `rest` object.
+    物件屬性有沒映射的可以複製成 `rest` 物件。
 
-- The full array syntax:
+- 用於陣列的完整語法
 
     ```js
     let [item1 = default, item2, ...rest] = array
     ```
 
-    The first item goes to `item1`; the second goes into `item2`, all the rest makes the array `rest`.
+    第一個項目變成 `item1`；第二個變成 `item2`，其餘的變成 `rest` 陣列。
 
-- It's possible to extract data from nested arrays/objects, for that the left side must have the same structure as the right one.
+- 從巢狀的陣列/物件取資料是可以的，要這麼做的話左側必須跟右側的結構一樣。
