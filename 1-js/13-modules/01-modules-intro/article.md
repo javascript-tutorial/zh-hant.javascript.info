@@ -1,32 +1,32 @@
 
-# Modules, introduction
+# 模組 (Modules) 簡介
 
-As our application grows bigger, we want to split it into multiple files, so called "modules". A module usually contains a class or a library of functions.
+當程式規模變大, 會切分成多個檔案, 每個檔案就是所謂的『模組』, 每個模組通常就包含一個類別或是函式庫。
 
-For a long time, JavaScript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple, so there was no need.
+長久以來, JavaScript 並沒有語言層次上模組語法, 這並不會造成問題, 因為原本腳本都很小也不複雜, 因此並不需要模組。
 
-But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules, special libraries to load modules on demand.
+不過腳本終究越來越複雜, 於是社群就發明了多種將程式碼組織成模組, 以及在需要時載入模組的特殊用途函式庫。
 
-For instance:
+例如：
 
-- [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- one of the most ancient module systems, initially implemented by the library [require.js](http://requirejs.org/).
-- [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- the module system created for Node.js server.
-- [UMD](https://github.com/umdjs/umd) -- one more module system, suggested as a universal one, compatible with AMD and CommonJS.
+- [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- 早期的模組系統之一, 一開始是以 [require.js](http://requirejs.org/) 函式庫的形式實作。
+- [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- Node.js 伺服器所建立的模組系統。
+- [UMD](https://github.com/umdjs/umd) -- 與 AMD 及 CommonJS 相容的另一種模組系統, 提出來作為一統模組系統的方案。
 
-Now all these slowly become a part of history, but we still can find them in old scripts.
+上述這些都以慢慢成為歷史, 但在舊的腳本中還是會看到它們的蹤跡。
 
-The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study it from now on.
+語言層次的模組系統是在 2015 年的標準中現身, 逐漸成為主流瀏覽器與 Node 都支援的功能, 因此我們要學的就是這一種模組系統。
 
-## What is a module?
+## 模組是什麼？
 
-A module is just a file. One script is one module.
+簡而言之, 模組就是單一個檔案, 單一個腳本檔就是模組。
 
-Modules can load each other and use special directives `export` and `import` to interchange functionality, call functions of one module from another one:
+模組可以相互載入, 並且使用 `export` 與 `import` 特殊指示詞來交換功能, 叫用其他模組中的函式：
 
-- `export` keyword labels variables and functions that should be accessible from outside the current module.
-- `import` allows the import of functionality from other modules.
+- `export` 關鍵字可以標示要讓模組外不能使用的變數與函式。
+- `import` 可以從其他模組中匯入功能。
 
-For instance, if we have a file `sayHi.js` exporting a function:
+舉例來說, 如果檔案 `sayHi.js` 匯出一個函式：
 
 ```js
 // 📁 sayHi.js
@@ -35,7 +35,7 @@ export function sayHi(user) {
 }
 ```
 
-...Then another file may import and use it:
+...那在在其他檔案中就可以匯入並使用這個函式：
 
 ```js
 // 📁 main.js
@@ -45,13 +45,13 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
-The `import` directive loads the module by path `./sayHi.js` relative to the current file, and assigns exported function `sayHi` to the corresponding variable.
+`import` 指示詞會載入由相對於目前檔案的 `./sayHi.js` 路徑指定的模組, 並將該模組匯出的函式 `sayHi` 匯入成對應的變數。
 
-Let's run the example in-browser.
+讓在我們在瀏覽器中執行看看這個範例。
 
-As modules support special keywords and features, we must tell the browser that a script should be treated as a module, by using the attribute `<script type="module">`.
+由於模組支援特殊的關鍵字與功能, 我們必須使用 `<script type="module">` 屬性讓瀏覽器知道這個腳本是模組。
 
-Like this:
+像是這樣：
 
 [codetabs src="say" height="140" current="index.html"]
 
