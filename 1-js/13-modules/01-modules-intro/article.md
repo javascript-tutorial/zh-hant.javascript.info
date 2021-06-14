@@ -1,9 +1,9 @@
 
 # 模組 (Modules) 簡介
 
-當程式規模變大, 會切分成多個檔案, 每個檔案就是所謂的『模組』, 每個模組通常就包含一個類別或是函式庫。
+當程式規模變大, 就會切分成多個檔案, 這每個檔案就是所謂的『模組』, 每個模組通常就包含一個類別或是函式庫。
 
-長久以來, JavaScript 並沒有語言層次上模組語法, 這並不會造成問題, 因為原本腳本都很小也不複雜, 因此並不需要模組。
+長久以來, JavaScript 在語言層次上並沒有模組的語法, 這並不會造成問題, 因為原本腳本都很小也不複雜, 因此並不需要模組。
 
 不過腳本終究越來越複雜, 於是社群就發明了多種將程式碼組織成模組, 以及在需要時載入模組的特殊用途函式庫。
 
@@ -13,7 +13,7 @@
 - [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- Node.js 伺服器所建立的模組系統。
 - [UMD](https://github.com/umdjs/umd) -- 與 AMD 及 CommonJS 相容的另一種模組系統, 提出來作為一統模組系統的方案。
 
-上述這些都以慢慢成為歷史, 但在舊的腳本中還是會看到它們的蹤跡。
+上述這些都已慢慢成為歷史, 但在舊的腳本中還是會看到它們的蹤跡。
 
 語言層次的模組系統是在 2015 年的標準中現身, 逐漸成為主流瀏覽器與 Node 都支援的功能, 因此我們要學的就是這一種模組系統。
 
@@ -23,7 +23,7 @@
 
 模組可以相互載入, 並且使用 `export` 與 `import` 特殊指示詞來交換功能, 叫用其他模組中的函式：
 
-- `export` 關鍵字可以標示要讓模組外不能使用的變數與函式。
+- `export` 關鍵字可以標示要讓模組外部使用的變數與函式。
 - `import` 可以從其他模組中匯入功能。
 
 舉例來說, 如果檔案 `sayHi.js` 匯出一個函式：
@@ -47,25 +47,25 @@ sayHi('John'); // Hello, John!
 
 `import` 指示詞會載入由相對於目前檔案的 `./sayHi.js` 路徑指定的模組, 並將該模組匯出的函式 `sayHi` 匯入成對應的變數。
 
-讓在我們在瀏覽器中執行看看這個範例。
+讓我們在瀏覽器中執行看看這個範例。
 
-由於模組支援特殊的關鍵字與功能, 我們必須使用 `<script type="module">` 屬性讓瀏覽器知道這個腳本是模組。
+由於模組支援特殊的關鍵字與功能, 我們必須使用 `<script type="module">` 屬性讓瀏覽器將這個腳本視為模組。
 
 像是這樣：
 
 [codetabs src="say" height="140" current="index.html"]
 
-The browser automatically fetches and evaluates the imported module (and its imports if needed), and then runs the script.
+瀏覽器會自動擷取並執行匯入的模組 (以及模組內匯入的模組), 然後再執行腳本。
 
-## Core module features
+## 模組的核心功能
 
-What's different in modules, compared to "regular" scripts?
+那麼模組與一般的腳本主要的差別是什麼呢？
 
-There are core features, valid both for browser and server-side JavaScript.
+不論是在瀏覽器或是伺服端 JavaScript, 模組都具有兩個主要特性。
 
-### Always "use strict"
+### 固定會套用 "use strict"
 
-Modules always `use strict`, by default. E.g. assigning to an undeclared variable will give an error.
+模組固定會套用 `use strict`, 所以如果設值給未宣告的變數就會出錯。
 
 ```html run
 <script type="module">
@@ -73,27 +73,27 @@ Modules always `use strict`, by default. E.g. assigning to an undeclared variabl
 </script>
 ```
 
-### Module-level scope
+### 模組層次的作用域
 
-Each module has its own top-level scope. In other words, top-level variables and functions from a module are not seen in other scripts.
+每個模組都有自己的頂層作用域, 也就是說, 模組內頂層的變數與函式在其他的腳本中都是看不到的。
 
-In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`, and fails:
+底下的範例匯入了兩個模組, 其中 `hello.js` 企圖使用宣告在 `user.js` 中的 `user` 變數, 因此失敗：
 
 [codetabs src="scopes" height="140" current="index.html"]
 
-Modules are expected to `export` what they want to be accessible from outside and `import` what they need.
+模組必須將要讓外界使用的項目用 `export` 匯出, 在外部腳本中比需用 `import` 匯入想要使用的項目。
 
-So we should import `user.js` into `hello.js` and get the required functionality from it instead of relying on global variables.
+因此, 我們必須將 `user.js` 匯入到 `hello.js` 中才能取得需要的功能, 而不是使用全域變數。
 
-This is the correct variant:
+正確的寫法是這樣：
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
-In the browser, independent top-level scope also exists for each `<script type="module">`:
+在瀏覽器中, 個別的 `<script type="module">` 也有自己單獨的頂層作用域：
 
 ```html run
 <script type="module">
-  // The variable is only visible in this module script
+  // 這個變數只能在這個模組腳本中使用
   let user = "John";
 </script>
 
@@ -104,15 +104,15 @@ In the browser, independent top-level scope also exists for each `<script type="
 </script>
 ```
 
-If we really need to make a window-level global variable, we can explicitly assign it to `window` and access as `window.user`. But that's an exception requiring a good reason.
+如果想要一個視窗層級的全域變數, 就必須將該變數加入到  `window` 物件, 並且用 `window.user` 來取用。不過除非有充分的理由, 否則不應該這樣用。
 
-### A module code is evaluated only the first time when imported
+### 模組只會在第一次匯入時執行一次
 
-If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
+如果在多個模組中匯入同一個模組, 它的程式碼只會在第一次匯入時執行, 所有該模組匯出的項目會提供給其他匯入同一模組的地方共用。
 
-That has important consequences. Let's look at them using examples:
+這會導致很重要的一個結果, 讓我們用範例來說明：
 
-First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
+首先, 如果執行模組的程式碼會有副作用, 像是會顯示訊息, 那麼即使匯入多次, 副作用也只會發生一次, 也就是在第一次匯入的時候：
 
 ```js
 // 📁 alert.js
@@ -120,20 +120,20 @@ alert("Module is evaluated!");
 ```
 
 ```js
-// Import the same module from different files
+// 在不同模組中匯入同一個模組
 
 // 📁 1.js
 import `./alert.js`; // Module is evaluated!
 
 // 📁 2.js
-import `./alert.js`; // (shows nothing)
+import `./alert.js`; // (不會顯示任何訊息)
 ```
 
-In practice, top-level module code is mostly used for initialization, creation of internal data structures, and if we want something to be reusable -- export it.
+實務上, 頂層模組的程式碼是用來完成初始準備工作, 建立內部的資料結構等等, 如果有想讓外部重複利用的部分, 就應該將之匯出。
 
-Now, a more advanced example.
+接著來看一個進階的範例。
 
-Let's say, a module exports an object:
+假設模組會匯出一個物件：
 
 ```js
 // 📁 admin.js
@@ -142,9 +142,9 @@ export let admin = {
 };
 ```
 
-If this module is imported from multiple files, the module is only evaluated the first time, `admin` object is created, and then passed to all further importers.
+若是在多個檔案中匯入此模組, 這個模組只會執行一次, 建立一個 `admin` 物件, 並共用於其他匯入同一模組的地方。
 
-All importers get exactly the one and only `admin` object:
+所有匯入該模組的地方用到的都是同一個 `admin` 物件:
 
 ```js
 // 📁 1.js
@@ -156,16 +156,16 @@ import {admin} from './admin.js';
 alert(admin.name); // Pete
 
 *!*
-// Both 1.js and 2.js imported the same object
-// Changes made in 1.js are visible in 2.js
+// 1.js and 2.js 匯入的是同一個物件
+// 在 1.js 做的修改在 2.js 中也會生效
 */!*
 ```
 
-So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
+讓我們複習一下, 模組只會執行一次, 建立要匯出的項目, 並在所有匯入該模組的地方共用。因此, 如果在某個地方修改了 `admin` 物件, 在其他地方也會生效。
 
-Such behavior allows us to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
+這樣的行為方式讓我們可以在第一次匯入的時候 *設定* 模組, 只要設定好屬性值一次, 其他匯入的地方就可以直接使用了。
 
-For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
+舉例來說, 在 `admin.js` 模組中可以提供特定的功能, 但讓所需的特定資料 (例如認證資訊) 由模組外部提供給 `admin` 物件：
 
 ```js
 // 📁 admin.js
@@ -176,7 +176,7 @@ export function sayHi() {
 }
 ```
 
-In `init.js`, the first script of our app, we set `admin.name`. Then everyone will see it, including calls made from inside `admin.js` itself:
+在我們程式的第一個腳本 `init.js` 中, 設定好 `admin.name`, 這樣在其他匯入相同模組的地方都會生效, 包含在 `admin.js` 自己內部也一樣：
 
 ```js
 // 📁 init.js
@@ -184,7 +184,7 @@ import {admin} from './admin.js';
 admin.name = "Pete";
 ```
 
-Another module can also see `admin.name`:
+在別的模組中一樣會看到設定好的 `admin.name`:
 
 ```js
 // 📁 other.js
@@ -197,23 +197,23 @@ sayHi(); // Ready to serve, *!*Pete*/!*!
 
 ### import.meta
 
-The object `import.meta` contains the information about the current module.
+`import.meta` 包含有目前模組的相關資訊。
 
-Its content depends on the environment. In the browser, it contains the url of the script, or a current webpage url if inside HTML:
+它的內容會隨所在環境而異, 在瀏覽器中, 包含有腳本或是在網頁的 url：
 
 ```html run height=0
 <script type="module">
-  alert(import.meta.url); // script url (url of the html page for an inline script)
+  alert(import.meta.url); // 腳本的 url (或行內腳本所在網頁的 url)
 </script>
 ```
 
-### In a module, "this" is undefined
+### "this" 在模組中沒有定義
 
-That's kind of a minor feature, but for completeness we should mention it.
+這雖然是個小差異, 不過為了完整性, 我們還是得提一下。
 
-In a module, top-level `this` is undefined.
+在模組中, 頂層的 `this` 是未定義的。
 
-Compare it to non-module scripts, where `this` is a global object:
+在非模組的腳本中, `this` 是全域的物件：
 
 ```html run height=0
 <script>
@@ -225,66 +225,66 @@ Compare it to non-module scripts, where `this` is a global object:
 </script>
 ```
 
-## Browser-specific features
+## 瀏覽器中的特別差異
 
-There are also several browser-specific differences of scripts with `type="module"` compared to regular ones.
+在瀏覽器中, 加上 `type="module"` 的腳本與一般的腳本還有一些特別的差異。
 
-You may want skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+如果您是第一次閱讀本書, 或是並不會在瀏覽器中使用 JavaScript, 可以先略過這一節的內容。
 
-### Module scripts are deferred
+### 模組腳本會被延遲執行
 
-Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](info:script-async-defer)), for both external and inline scripts.
+不論是外部還是行內模組腳本, 都 *會被* 延遲執行, 如同加上 `defer` 屬性 (會在 [](info:script-async-defer) 說明) 那樣。
 
-In other words:
-- downloading external module scripts `<script type="module" src="...">` doesn't block HTML processing, they load in parallel with other resources.
-- module scripts wait until the HTML document is fully ready (even if they are tiny and load faster than HTML), and then run.
-- relative order of scripts is maintained: scripts that go first in the document, execute first.
+也就是說：
+- 下載外部模組腳本檔案 `<script type="module" src="...">` 並不會擱置 HTML 內容的處理, 而是同時進行。
+- 模組腳本會等到 HTML 文件完全備妥 (即使模組腳本再小、載入的時間比 HTML 內容短) 才執行。
+- 模組腳本會依照它們在文件內的相對順序執行。
 
-As a side-effect, module scripts always "see" the fully loaded HTML-page, including HTML elements below them.
+這使得模組可以看到完整載入的 HTML 頁面內容, 即使是文件中在模組後面才出現的元素也一樣。
 
-For instance:
+例如：
 
 ```html run
 <script type="module">
 *!*
-  alert(typeof button); // object: the script can 'see' the button below
+  alert(typeof button); // object: 腳本可以看到下面才出現的 button
 */!*
-  // as modules are deferred, the script runs after the whole page is loaded
+  // 由於模組是延遲執行, 因此是在網頁完全載入後才執行
 </script>
 
-Compare to regular script below:
+如果和底下非模組版本的腳本相比：
 
 <script>
 *!*
-  alert(typeof button); // Error: button is undefined, the script can't see elements below
+  alert(typeof button); // Error: 由於腳本看不到出現在底下的內容, 所以 button 尚未定義
 */!*
-  // regular scripts run immediately, before the rest of the page is processed
+  // 一般腳本會在網頁其餘內容處理完之前就立即執行
 </script>
 
 <button id="button">Button</button>
 ```
 
-Please note: the second script actually runs before the first! So we'll see `undefined` first, and then `object`.
+請注意：第二個腳本會比第一個腳本先執行, 所以實際執行時, 會先看到第二個腳本顯示的 `undefined` , 然後才會看到第二個腳本顯示的 `object`。
 
-That's because modules are deferred, so we wait for the document to be processed. The regular script runs immediately, so we see its output first.
+這就是因為模組會延遲執行, 因此是等到文件處理完才會執行, 但是非模組的腳本會立刻執行, 所以我們會先看到它的輸出結果。
 
-When using modules, we should be aware that the HTML page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
+在使用模組時, 我們要體認到 HTML 內容會先顯示出來才會執行模組內的腳本, 因此使用者會在 JavaScript 應用備妥可用前先看到網頁內容, 這時有些功能可能還無法使用, 請務必在畫面上顯示『載入中』的指示, 否則就必須確認不會造成使用者的困惑。
 
-### Async works on inline scripts
+### 在行內腳本形式的模組中可以使用 Async
 
-For non-module scripts, the `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
+在非模組腳本中, `async` 屬性只能用在外部腳本, 會在載入完成後立刻執行, 不會等待其他腳本或是 HTML 文件內容完成。
 
-For module scripts, it works on inline scripts as well.
+對於模組腳本, 即使是行內腳本, 也可以套用 'async' 屬性。
 
-For example, the inline script below has `async`, so it doesn't wait for anything.
+例如以下的行內腳本就使用了 `async` 屬性, 所以並不會等待其他工作完成才執行。
 
-It performs the import (fetches `./analytics.js`) and runs when ready, even if the HTML document is not finished yet, or if other scripts are still pending.
+它會執行擷取檔案 (`./analytics.js`), 並在擷取完成後立刻執行, 而不會等待 HTML 文件處理完成, 或是其他腳本執行結束。
 
-That's good for functionality that doesn't depend on anything, like counters, ads, document-level event listeners.
+這對不需依賴其他部分的功能, 像是計數、廣告、建立文件層次的監聽器等等就很方便。
 
 ```html
-<!-- all dependencies are fetched (analytics.js), and the script runs -->
-<!-- doesn't wait for the document or other <script> tags -->
+<!-- 所有相依項目都會被擷取 (analytics.js), 然後執行腳本 -->
+<!-- 不會等待文件處理完或其他 <script> 標籤 -->
 <script *!*async*/!* type="module">
   import {counter} from './analytics.js';
 
@@ -292,41 +292,41 @@ That's good for functionality that doesn't depend on anything, like counters, ad
 </script>
 ```
 
-### External scripts
+### 外部腳本
 
-External scripts that have `type="module"` are different in two aspects:
+加上 `type="module"` 的外部腳本會有兩個不一樣的地方：
 
-1. External scripts with the same `src` run only once:
+1. 同樣 `src` 的外部腳本只會執行一次：
     ```html
-    <!-- the script my.js is fetched and executed only once -->
+    <!-- my.js 只會下載並執行一次 -->
     <script type="module" src="my.js"></script>
     <script type="module" src="my.js"></script>
     ```
 
-2. External scripts that are fetched from another origin (e.g. another site) require [CORS](mdn:Web/HTTP/CORS) headers, as described in the chapter <info:fetch-crossorigin>. In other words, if a module script is fetched from another origin, the remote server must supply a header `Access-Control-Allow-Origin` allowing the fetch.
+2. 從其他來源 (例如其他網站) 下載外部腳本需要 [CORS](mdn:Web/HTTP/CORS) 表頭, 就像在 <info:fetch-crossorigin> 這章中所提到的。換句話說, 如果要從其他來源下載模組腳本檔, 遠端伺服器就必須在回應中加入 `Access-Control-Allow-Origin` 表頭, 允許瀏覽器執行該檔案。
     ```html
-    <!-- another-site.com must supply Access-Control-Allow-Origin -->
-    <!-- otherwise, the script won't execute -->
+    <!-- 其他網站必須提供 Access-Control-Allow-Origin -->
+    <!-- 否則這個腳本就不會執行 -->
     <script type="module" src="*!*http://another-site.com/their.js*/!*"></script>
     ```
 
-    That ensures better security by default.
+    這可以在預設情況下確保較佳的安全性。
 
-### No "bare" modules allowed
+### 不允許載入沒有路徑的模組
 
-In the browser, `import` must get either a relative or absolute URL. Modules without any path are called "bare" modules. Such modules are not allowed in `import`.
+在瀏覽器中, `import` 只能用在指明相對或是絕對路徑的模組, 沒有指明路徑的模組稱為 "bare" 模組, 這種模組不能用在 `import` 中。
 
-For instance, this `import` is invalid:
+像是以下的 `import` 就不合語法：
 ```js
-import {sayHi} from 'sayHi'; // Error, "bare" module
-// the module must have a path, e.g. './sayHi.js' or wherever the module is
+import {sayHi} from 'sayHi'; // Error, "bare" 模組
+// 模組一定要指明相對或是絕對路徑
 ```
 
-Certain environments, like Node.js or bundle tools allow bare modules, without any path, as they have their own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
+在特定的環境下, 像是 Node.js 或是打包工具中, 由於它們有自己自成體系的模組搜尋方式, 因此可以不指定模組的路徑, 但瀏覽器並不支援這樣的功能。
 
-### Compatibility, "nomodule"
+### 使用 "nomodule" 維持相容性
 
-Old browsers do not understand `type="module"`. Scripts of an unknown type are just ignored. For them, it's possible to provide a fallback using the `nomodule` attribute:
+舊式的瀏覽器並不支援 `type="module"`, 只會略過未知類型的腳本, 最好可以使用 `nomodule` 屬性作為退路：
 
 ```html run
 <script type="module">
@@ -339,48 +339,48 @@ Old browsers do not understand `type="module"`. Scripts of an unknown type are j
 </script>
 ```
 
-## Build tools
+## 建置工具
 
-In real-life, browser modules are rarely used in their "raw" form. Usually, we bundle them together with a special tool such as [Webpack](https://webpack.js.org/) and deploy to the production server.
+在實務中, 我們很少直接使用原生的個別模組, 而是透過特殊的工具, 像是 [Webpack](https://webpack.js.org/) 將模組打包在一起後才部署到產品環境伺服器 (production server) 上。
 
-One of the benefits of using bundlers -- they give more control over how modules are resolved, allowing bare modules and much more, like CSS/HTML modules.
+使用打包工具的好處就是更能掌控要如何搜整模組, 包括 bare 模組以及 CSS/HTML 等不同形式的模組。
 
-Build tools do the following:
+建置工具的工作流程如下：
 
-1. Take a "main" module, the one intended to be put in `<script type="module">` in HTML.
-2. Analyze its dependencies: imports and then imports of imports etc.
-3. Build a single file with all modules (or multiple files, that's tunable), replacing native `import` calls with bundler functions, so that it works. "Special" module types like HTML/CSS modules are also supported.
-4. In the process, other transformations and optimizations may be applied:
-    - Unreachable code removed.
-    - Unused exports removed ("tree-shaking").
-    - Development-specific statements like `console` and `debugger` removed.
-    - Modern, bleeding-edge JavaScript syntax may be transformed to older one with similar functionality using [Babel](https://babeljs.io/).
-    - The resulting file is minified (spaces removed, variables replaced with shorter names, etc).
+1. 先決定一個主模組, 也就是會在 HTML 中以 `<script type="module">` 置入的模組。
+2. 分析相依關係, 依照層級匯入各個模組。
+3. 建置一個包含所有模組的單一檔案 (也可依照設定建置成多個檔案), 用打包工具的函式來取代原生的 `import`, 也支援像是 HTML/CSS 等的特殊類型模組。
+4. 在上述過程中, 也可以套用各種轉換或是最佳化的功能：
+    - 移除用不到的程式碼。
+    - 移除不會用到的匯出項目 (這稱為 "tree-shaking").
+    - 移除專門用在開發階段的敘述, 像是 `console`、 `debugger` 等。
+    - 將最新式 JavaScript 語法轉換成舊式的語法, 類似 [Babel](https://babeljs.io/) 的功能。
+    - 將最後結果的檔案盡量變小 (移除空白、將變數改用簡短的名字等等)。
 
-If we use bundle tools, then as scripts are bundled together into a single file (or few files), `import/export` statements inside those scripts are replaced by special bundler functions. So the resulting "bundled" script does not contain any `import/export`, it doesn't require `type="module"`, and we can put it into a regular script:
+如果採用打包工具, 由於會把所有的腳本包成單一 (或多個) 檔案, `import/export` 敘述會被打包工具內特殊的函式取代, 因此打包後的檔案內就不會出現 `import/export`, 也就不再需要 `type="module"` 屬性, 可以當成一般的腳本：
 
 ```html
-<!-- Assuming we got bundle.js from a tool like Webpack -->
+<!-- 假設我們已經使用像是 Webpack 打包成 bundle.js -->
 <script src="bundle.js"></script>
 ```
 
-That said, native modules are also usable. So we won't be using Webpack here: you can configure it later.
+也就是說, 即使用到原生的模組經過轉換後也可以用在不支援模組的環境。在本教學中, 我們不會使用 Webpack, 之後若有需要你可以自己設定使用。
 
-## Summary
+## 總結
 
-To summarize, the core concepts are:
+以下總結核心概念：
 
-1. A module is a file. To make `import/export` work, browsers need `<script type="module">`. Modules have several differences:
-    - Deferred by default.
-    - Async works on inline scripts.
-    - To load external scripts from another origin (domain/protocol/port), CORS headers are needed.
-    - Duplicate external scripts are ignored.
-2. Modules have their own, local top-level scope and interchange functionality via `import/export`.
-3. Modules always `use strict`.
-4. Module code is executed only once. Exports are created once and shared between importers.
+1. 模組就是一個檔案。要使用 `import/export` 需要明確加上 `<script type="module">` 屬性。模組和一般腳本的差異如下：
+    - 預設採用延遲執行。
+    - 即使是行內腳本也可以使用 async。
+    - 要從其他來源 (網域/協定/埠號) 下載外部腳本, 就必須具有CORS 表頭。
+    - 重複載入外部腳本的動作會被忽略。
+2. 模組有它自己的頂層作用域, 並且可以透過 `import/export` 與其他模組交換提供所需的功能。
+3. 模組內固定會套用 `use strict`。
+4. 模組內的程式碼只會執行一次, 匯出項目也只會建立一次, 並在其他匯入同一模組的地方共用。
 
-When we use modules, each module implements the functionality and exports it. Then we use `import` to directly import it where it's needed. The browser loads and evaluates the scripts automatically.
+應用模組時, 個別模組必須實作並匯出功能, 其他地方可以透過 `import` 直接匯入所需要的功能項目。瀏覽器會載入並自動執行模組內的腳本。
 
-In production, people often use bundlers such as [Webpack](https://webpack.js.org) to bundle modules together for performance and other reasons.
+在產品階段, 由於效能或是其他因素的考量, 通常會用像是 [Webpack](https://webpack.js.org) 這類的打包工具將多個模組打包成單一檔案。
 
-In the next chapter we'll see more examples of modules, and how things can be exported/imported.
+在下一章中, 我們會介紹更多模組的範例, 以及匯出/匯入項目的各種方法。
