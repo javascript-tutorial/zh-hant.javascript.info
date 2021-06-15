@@ -19,10 +19,14 @@
 ...
 ```
 
+<<<<<<< HEAD
 我們很快會學到函式（functions）（一種組合命令的方式），所以先說一下，注意 `"use strict"` 可以被放在函式本體的最前面，而不用是整個腳本的最前方。這麼做可以使嚴格模式（strict mode）只作用在函式之中，但通常大家都會用於整個腳本上。
 
 ````warn header="確保 \"use strict\" 至於最頂端"
 請確保 `"use strict"` 至於你腳本的最頂端，否則嚴格模式可能不會被啟用。
+=======
+Quite soon we're going to learn functions (a way to group commands), so let's note in advance that `"use strict"` can be put at the beginning of a function. Doing that enables strict mode in that function only. But usually people use it for the whole script.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 這裡嚴格模式就沒有被啟用：
 
@@ -41,16 +45,30 @@ alert("some code");
 ```warn header="沒有取消 `use strict` 的方式"
 沒有像是 `"no use strict"` 之類使得引擎回復舊行為的指令
 
+<<<<<<< HEAD
 一旦我們開啟嚴格模式，就不能回頭。
+=======
+Once we enter strict mode, there's no going back.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ```
 
 ## 瀏覽器主控台
 
+<<<<<<< HEAD
 未來當你使用瀏覽器主控台來測試功能時，請注意它並沒有預設開啟 `use strict`。
+=======
+When you use a [developer console](info:devtools) to run code, please note that it doesn't `use strict` by default.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 有時候 `use strict` 造成的不同會讓你得到不正確的結果。
 
+<<<<<<< HEAD
 你可以試著按下 `key:Shift+Enter` 來輸入多行，然後把 `use strict` 放在在最上方，像這樣：
+=======
+So, how to actually `use strict` in the console?
+
+First, you can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
 'use strict'; <Shift+Enter 換行>
@@ -60,12 +78,17 @@ alert("some code");
 
 這在大多數瀏覽器，Firefox 和 Chrome，都可以運作。
 
+<<<<<<< HEAD
 如果不行，開啟 `use strict` 最有效的方式是輸入像下面這樣的程式碼到主控台內：
+=======
+If it doesn't, e.g. in an old browser, there's an ugly, but reliable way to ensure `use strict`. Put it inside this kind of wrapper:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
 (function() {
   'use strict';
 
+<<<<<<< HEAD
   // ...你的程式碼...
 })()
 ```
@@ -82,3 +105,24 @@ alert("some code");
 2. 嚴格模式要在腳本或函式的最頂端放置 `"use strict"` 才會被開啟。有些語言功能，像是 "類別（classes）" 和 "模組（modules）" 會自動開啟嚴格模式。
 3. 所有現代化瀏覽器都支援嚴格模式。
 4. 我們建議腳本最好總是以 `"use strict"` 起始。除了非常少的指定情境以外，本教程中所有範例都預設使用嚴格模式。
+=======
+  // ...your code here...
+})()
+```
+
+## Should we "use strict"?
+
+The question may sound obvious, but it's not so.
+
+One could recommend to start scripts with `"use strict"`... But you know what's cool?
+
+Modern JavaScript supports "classes" and "modules" - advanced language structures (we'll surely get to them), that enable `use strict` automatically. So we don't need to add the `"use strict"` directive, if we use them.
+
+**So, for now `"use strict";` is a welcome guest at the top of your scripts. Later, when your code is all in classes and modules, you may omit it.**
+
+As of now, we've got to know about `use strict` in general.
+
+In the next chapters, as we learn language features, we'll see the differences between the strict and old modes. Luckily, there aren't many and they actually make our lives better.
+
+All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
