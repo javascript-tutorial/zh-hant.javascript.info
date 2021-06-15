@@ -25,7 +25,11 @@ messages.shift();
 // 現在 readMessages 只有一個元素（技術上來說，記憶體可能會在稍後才被清理）
 ```
 
+<<<<<<< HEAD
 `WeakSet` 允許儲存訊息的集合，且能簡單地檢查一個訊息是否存在於集合內。
+=======
+The `WeakSet` allows to store a set of messages and easily check for the existence of a message in it.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 它會自動清理自己，但代價是我們不能夠迭代它，無法直接取得 "所有已讀訊息"。但我們可以透過迭代所有訊息，並過濾掉那些存在集合中的訊息來達到同樣目的。
 
