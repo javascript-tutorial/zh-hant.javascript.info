@@ -12,7 +12,10 @@ JavaScript 允許我們像物件一樣來使用原生類型（字串、數值等
 =======
 - Is a value of a primitive type.
 - There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
+<<<<<<< HEAD
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 
 物件
 
@@ -44,8 +47,13 @@ john.sayHi(); // Hi buddy!
 
 JavaScript 的建立者們面臨了這樣的一個矛盾：
 
+<<<<<<< HEAD
 - 人們想對字串或數值這樣的原生類型做許多事，若能透過其方法來存取就太棒了。
 - 原生類型應該要盡可能的快速和輕量化。
+=======
+- There are many things one would want to do with a primitive like a string or a number. It would be great to access them using methods.
+- Primitives must be as fast and lightweight as possible.
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 
 解法看起來有點笨，但就是這樣：
 

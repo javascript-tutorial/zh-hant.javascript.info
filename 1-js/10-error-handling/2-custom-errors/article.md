@@ -21,9 +21,9 @@ Internally, we'll use `JSON.parse`. If it receives malformed `json`, then it thr
 
 Our function `readUser(json)` will not only read JSON, but check ("validate") the data. If there are no required fields, or the format is wrong, then that's an error. And that's not a `SyntaxError`, because the data is syntactically correct, but another kind of error. We'll call it `ValidationError` and create a class for it. An error of that kind should also carry the information about the offending field.
 
-Our `ValidationError` class should inherit from the built-in `Error` class.
+Our `ValidationError` class should inherit from the `Error` class.
 
-That class is built-in, but here's its approximate code so we can understand what we're extending:
+The `Error` class is built-in, but here's its approximate code so we can understand what we're extending:
 
 ```js
 // The "pseudocode" for the built-in Error class defined by JavaScript itself
@@ -117,15 +117,15 @@ We could also look at `err.name`, like this:
 // instead of (err instanceof SyntaxError)
 } else if (err.name == "SyntaxError") { // (*)
 // ...
-```  
+```
 
 The `instanceof` version is much better, because in the future we are going to extend `ValidationError`, make subtypes of it, like `PropertyRequiredError`. And `instanceof` check will continue to work for new inheriting classes. So that's future-proof.
 
-Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch` block only knows how to handle validation and syntax errors, other kinds (due to a typo in the code or other unknown ones) should fall through.
+Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch` block only knows how to handle validation and syntax errors, other kinds (caused by a typo in the code or other unknown reasons) should fall through.
 
 ## Further inheritance
 
-The `ValidationError` class is very generic. Many things may go wrong. The property may be absent or it may be in a wrong format (like a string value for `age`). Let's make a more concrete class `PropertyRequiredError`, exactly for absent properties. It will carry additional information about the property that's missing.
+The `ValidationError` class is very generic. Many things may go wrong. The property may be absent or it may be in a wrong format (like a string value for `age` instead of a number). Let's make a more concrete class `PropertyRequiredError`, exactly for absent properties. It will carry additional information about the property that's missing.
 
 ```js run
 class ValidationError extends Error {
@@ -216,6 +216,7 @@ Now custom errors are much shorter, especially `ValidationError`, as we got rid 
 The purpose of the function `readUser` in the code above is "to read the user data". There may occur different kinds of errors in the process. Right now we have `SyntaxError` and `ValidationError`, but in the future `readUser` function may grow and probably generate other kinds of errors.
 
 The code which calls `readUser` should handle these errors. Right now it uses multiple `if`s in the `catch` block, that check the class and handle known errors and rethrow the unknown ones.
+<<<<<<< HEAD
 
 The scheme is like this:
 
@@ -247,6 +248,39 @@ The technique that we describe here is called "wrapping exceptions".
 2. The function `readUser` will catch data reading errors that occur inside it, such as `ValidationError` and `SyntaxError`, and generate a `ReadError` instead.
 3. The `ReadError` object will keep the reference to the original error in its `cause` property.
 
+=======
+
+The scheme is like this:
+
+```js
+try {
+  ...
+  readUser()  // the potential error source
+  ...
+} catch (err) {
+  if (err instanceof ValidationError) {
+    // handle validation errors
+  } else if (err instanceof SyntaxError) {
+    // handle syntax errors
+  } else {
+    throw err; // unknown error, rethrow it
+  }
+}
+```
+
+In the code above we can see two types of errors, but there can be more.
+
+If the `readUser` function generates several kinds of errors, then we should ask ourselves: do we really want to check for all error types one-by-one every time?
+
+Often the answer is "No": we'd like to be "one level above all that". We just want to know if there was a "data reading error" -- why exactly it happened is often irrelevant (the error message describes it). Or, even better, we'd like to have a way to get the error details, but only if we need to.
+
+The technique that we describe here is called "wrapping exceptions".
+
+1. We'll make a new class `ReadError` to represent a generic "data reading" error.
+2. The function `readUser` will catch data reading errors that occur inside it, such as `ValidationError` and `SyntaxError`, and generate a `ReadError` instead.
+3. The `ReadError` object will keep the reference to the original error in its `cause` property.
+
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 Then the code that calls `readUser` will only have to check for `ReadError`, not for every kind of data reading errors. And if it needs more details of an error, it can check its `cause` property.
 
 Here's the code that defines `ReadError` and demonstrates its use in `readUser` and `try..catch`:
