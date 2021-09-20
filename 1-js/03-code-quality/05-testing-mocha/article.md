@@ -2,7 +2,11 @@
 
 自動化測試將會在未來的任務中被使用，且也會在真實專案上被廣泛地使用。
 
+<<<<<<< HEAD
 ## 為什麼我們需要測試？
+=======
+## Why do we need tests?
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 當我們寫下一個函式，我們通常可以想像它應該要做些什麼：哪些參數會給出哪些結果。
 
@@ -183,10 +187,14 @@ function pow(x, n) {
 [iframe height=250 src="pow-2" edit border="1"]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 如我們所預期，第二個測試失敗了。當然，我們的函式總是回傳 `8`，然而 `assert` 預期的是 `27`。
 =======
 As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 ## 改進實作
 
