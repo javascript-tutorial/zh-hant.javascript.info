@@ -10,6 +10,7 @@ importance: 2
 
 寫一個函式 `getMaxSubSum(arr)` 並回傳該加總值。
 
+<<<<<<< HEAD
 舉個例：
 
 ```js
@@ -19,6 +20,18 @@ getMaxSubSum([-1, 2, 3, -9, *!*11*/!*]) = 11
 getMaxSubSum([-2, -1, *!*1, 2*/!*]) = 3
 getMaxSubSum([*!*100*/!*, -9, 2, -3, 5]) = 100
 getMaxSubSum([*!*1, 2, 3*/!*]) = 6（全拿）
+=======
+For instance:
+
+```js
+getMaxSubSum([-1, *!*2, 3*/!*, -9]) == 5 (the sum of highlighted items)
+getMaxSubSum([*!*2, -1, 2, 3*/!*, -9]) == 6
+getMaxSubSum([-1, 2, 3, -9, *!*11*/!*]) == 11
+getMaxSubSum([-2, -1, *!*1, 2*/!*]) == 3
+getMaxSubSum([*!*100*/!*, -9, 2, -3, 5]) == 100
+getMaxSubSum([*!*1, 2, 3*/!*]) == 6 (take all)
+```
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 若所有項目都是負值，代表我們不要拿任何東西（子陣列為空），所以加總為零：
 

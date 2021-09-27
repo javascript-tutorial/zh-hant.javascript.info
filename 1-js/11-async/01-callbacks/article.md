@@ -3,6 +3,7 @@
 # 介紹： 回呼
 
 ```warn header="We use browser methods in examples here"
+<<<<<<< HEAD
 為了示範回呼、promise 及其他抽象概念的使用，我們將會使用一些瀏覽器的函式：更具體地說，載入腳本以及執行簡單的文件操作。
 
 如果你並不熟悉這些方法，亦或是對於範例中的使用方式感到困惑，你可能會想要閱讀[下一部分](/document)教程中的一些章節。
@@ -13,6 +14,18 @@
 許多函式是由 JavaScript 的執行環境所提供，這些函式允許你安排*非同步*的動作。換句話說，我們現在啟動的動作，將在未來的某一刻完成。
 
 舉例來說， `setTimeout` 就是一個這樣的函式。
+=======
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods: specifically, loading scripts and performing simple document manipulations.
+
+If you're not familiar with these methods, and their usage in the examples is confusing, you may want to read a few chapters from the [next part](/document) of the tutorial.
+
+Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
+```
+
+Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
+
+For instance, one such function is the `setTimeout` function.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 真實世界中，還有其它非同步動作的例子。像是載入腳本及模組（我們會在後續的章節中介紹它們）。
 
@@ -20,15 +33,24 @@
 
 ```js
 function loadScript(src) {
+<<<<<<< HEAD
   // 建立一個 <script> 標籤，然後將它加到頁面上
   // 這會讓 src 位置的腳本，開始被載入，並且在載入完成後開始執行
+=======
+  // creates a <script> tag and append it to the page
+  // this causes the script with given src to start loading and run when complete
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
 }
 ```
 
+<<<<<<< HEAD
 這新的、動態生成的標籤 `<script src="…">` 將從給予的 `src` 加到文件中。瀏覽器自動地開始載入它，並在載入完成後執行它。
+=======
+It inserts into the document a new, dynamically created, tag `<script src="…">` with the given `src`. The browser automatically starts loading it and executes when complete.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 我們可以像這樣使用這個函式：
 
@@ -108,7 +130,11 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 這被稱為〝基於回呼（callback-based）〞風格的非同步程式設計。執行某些非同步動作的函式，應該要提供一個 `callback` 引數，讓我們能在非同步函式完成時，執行我們傳入的回呼。
 
+<<<<<<< HEAD
 我們在 `loadScript` 中就是這樣做的，當然這是一個常見的方式。
+=======
+Here we did it in `loadScript`, but of course it's a general approach.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 ## 回呼中的回呼
 
@@ -145,7 +171,7 @@ loadScript('/my/script.js', function(script) {
     });
 */!*
 
-  })
+  });
 
 });
 ```
@@ -222,7 +248,7 @@ loadScript('1.js', function(error, script) {
         });
 
       }
-    })
+    });
   }
 });
 ```
@@ -255,7 +281,7 @@ loadScript('1.js', function(error, script) {
           }
         });
       }
-    })
+    });
   }
 });
 -->
@@ -295,7 +321,7 @@ function step3(error, script) {
   } else {
     // ...在所有腳本載入後執行 (*)
   }
-};
+}
 ```
 
 看到了嗎？它的功能相同，但它現在沒了過深的巢狀，因為我們將每個動作都做成獨立的全域函式。

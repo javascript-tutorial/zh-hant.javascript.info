@@ -2,7 +2,11 @@
 
 如我們從 <info:types> 所知，JavaScript 內有八種資料類型。其中七種被稱為 "原生類型（primitive）"，因為它們的值只包含了單一種東西（是個字串或數值或什麼的）。
 
+<<<<<<< HEAD
 相對的，物件被用來儲存使用鍵配對的多種資料群集與更為複雜的實體。在 JavaScript，物件幾乎滲入該語言的各個方面，所以我們必須在更深入其它主題前先理解物件。
+=======
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 物件可以經由花括號 `{…}` 與一些可選的 *屬性（properties）* 來建立。一個屬性也是一組 "鍵（key）：值（value）" 配對，其中 `key` 是一串字串（也被稱為 "屬性名稱（property name）"），而 `value` 可以是任何東西。
 
@@ -102,9 +106,15 @@ let user = {
 user.likes birds = true
 ```
 
+<<<<<<< HEAD
 JavaScript 無法理解這樣的語法。它會解析到 `user.likes`，接者遇到預期外的 `birds` 時，給予語法錯誤。
 
 這是因為句點需要鍵是個有效的變數識別符，也就是：沒有空格、不是由數值為開頭，以及不包含特殊字元（`$` 和 `_` 可被允許）。
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` and `_` are allowed).
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 作為替代，"方括號" 可用在任意字串上：
 
@@ -162,7 +172,11 @@ alert( user.key ) // undefined
 
 ### 計算屬性（Computed properties）
 
+<<<<<<< HEAD
 我們可以在物件字面值使用方括號，這被稱為 *計算屬性（computed properties）*。
+=======
+We can use square brackets in an object literal, when creating an object. That's called *computed properties*.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 舉個例：
 
@@ -203,6 +217,7 @@ let bag = {
 };
 ```
 
+<<<<<<< HEAD
 方括號比點號更為強大，它允許任意屬性名稱和變數，但寫起來也較累贅。
 
 所以大多時候，當屬性名稱已知且單純時，用句點就好，而若我們需要某些較複雜的東西時，再轉用方括號即可。
@@ -244,6 +259,13 @@ alert(obj.__proto__); // [object Object]，與預期的不同
 ## 屬性值簡寫
 
 在真正寫程式時我們常使用現存的變數作為屬性名稱的值。
+=======
+Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+
+So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+
+## Property value shorthand
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 舉個例：
 
@@ -252,7 +274,11 @@ function makeUser(name, age) {
   return {
     name: name,
     age: age,
+<<<<<<< HEAD
     // ...其它屬性
+=======
+    // ...other properties
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
   };
 }
 
@@ -268,8 +294,13 @@ alert(user.name); // John
 function makeUser(name, age) {
 *!*
   return {
+<<<<<<< HEAD
     name, // 和 name: name 相同
     age,  // 和 age: age 相同
+=======
+    name, // same as name: name
+    age,  // same as age: age
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
     // ...
   };
 */!*
@@ -286,6 +317,7 @@ let user = {
 >>>
 ```
 
+<<<<<<< HEAD
 ## 屬性值命名限制
 
 屬性值的名稱（keys）必須是字串或是符號（一種特殊類型的識別符，之後會介紹）。
@@ -346,6 +378,59 @@ alert(obj.__proto__); // [object Object] - 該值是一個物件, 不如預期�
 ## 存在性確認，"in" 運作子
 
 有個值得注意的物件功能是我們可以存取任意屬性，就算屬性不存在也不會有任何錯誤！存取一個不存在的屬性只會回傳 `undefined`，這提供了一個非常常見的方式來檢測屬性是否存在 -- 取得它並跟 undefined 做比較：
+=======
+
+## Property names limitations
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction:
+
+```js run
+// these properties are all right
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+There's a minor gotcha with a special property named `__proto__`. We can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+We'll cover the special nature of `__proto__` in [subsequent chapters](info:prototype-inheritance), and suggest the [ways to fix](info:prototype-methods) such behavior.
+
+## Property existence test, "in" operator
+
+A notable feature of objects in JavaScript, compared to many other languages, is that it's possible to access any property. There will be no error if the property doesn't exist!
+
+Reading a non-existing property just returns `undefined`. So we can easily test whether the property exists:
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 ```js run
 let user = {};
@@ -353,9 +438,13 @@ let user = {};
 alert( user.noSuchProperty === undefined ); // true 代表 "沒有這個屬性"
 ```
 
+<<<<<<< HEAD
 同樣還有一個特殊的運算子 `"in"` 用來確認屬性是否存在。
 
 語法是：
+=======
+There's also a special operator `"in"` for that.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 ```js
 "key" in object
@@ -372,17 +461,30 @@ alert( "blabla" in user ); // false，user.blabla 不存在
 
 請注意 `in` 的左側必須要是個 *屬性名稱*，通常是個置於引號內的字串。
 
+<<<<<<< HEAD
 若我們忽略引號，代表將使用某個變數包含的實際名稱來測試。舉個例：
+=======
+If we omit quotes, that means a variable, it should contain the actual name to be tested. For instance:
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
+<<<<<<< HEAD
 alert( *!*key*/!* in user ); // true，名稱由 key 而來，並檢查該屬性
 ```
 
 ````smart header="對儲存 `undefined` 的屬性使用 \"in\""
 通常，使用嚴格比較 `"=== undefined"` 來確認屬性是否存在是沒問題的，然而有個特殊情況這麼做會失敗，但 `"in"` 能正確運作。
+=======
+alert( *!*key*/!* in user ); // true, property "age" exists
+```
+
+Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
+
+Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 就是當物件屬性存在，卻儲存著 `undefined` 時：
 
@@ -396,10 +498,17 @@ alert( obj.test ); // 這是 undefined，所以屬性不存在？
 alert( "test" in obj ); // true，該屬性存在！
 ```
 
+<<<<<<< HEAD
 在上面的程式碼中，屬性 `obj.test` 技術上來說是存在的，所以 `in` 運算子運作正確。
 
 類似的情況非常少發生，因為 `undefined` 通常不會被指定，我們對於 "未知" 或 "空白" 的值大多會使用 `null`，所以 `in` 運算子可以算是程式碼的過客。
 ````
+=======
+In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+
+Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 ## "for..in" 迴圈
 
@@ -432,9 +541,13 @@ for (let key in user) {
 
 要注意所有 "for" 構造皆允許我們在迴圈內部宣告迴圈變數，像是這裡的 `let key`。
 
+<<<<<<< HEAD
 同樣地，我們這裡可以使用另一個變數名稱而不用 `key`。例如，`"for (let prop in obj)"` 也很廣泛地使用。
 
 ### 像物件一樣排序
+=======
+### Ordered like an object
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 物件是否有序？換句話說，若我們巡迴物件，是否所有屬性都能同樣以當初加入的順序取得呢？我們能依賴這性質嗎？
 
@@ -517,6 +630,7 @@ for (let code in codes) {
 
 現在它們會如預期般的運作了。
 
+<<<<<<< HEAD
 ## 依照參考複製（Copying by reference）
 
 物件與原生類型之間有個本質上的差異，就是物件是 "依照參考（by reference）" 被儲存和複製。
@@ -777,6 +891,9 @@ There's a standard algorithm for deep cloning that handles the case above and mo
 ## 總結
 
 物件具有些特殊特性的關聯矩陣。
+=======
+## Summary
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 它們儲存屬性（鍵值配對），其中：
 - 屬性鍵必須為字串或符號（symbols）（通常為字串）。
@@ -793,11 +910,15 @@ There's a standard algorithm for deep cloning that handles the case above and mo
 
 物件經由參考被被指定與複製，換句話說，變數儲存的並非 "物件值"，而是值的 "參考"（記憶體位址）。所以複製該變數或將它作為函式引數傳遞都只會複製參考，而非物件。所有經由複製的參考所做的操作（像是 新增/移除 屬性），都會在同一個物件上進行。
 
+<<<<<<< HEAD
 要建立一份 "真正的複本"（克隆體），我們可以使用 `Object.assign` 或 [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep)。
 
 我們這章所學到的都被稱為 "普通物件（plain object）" 或就叫 `物件（Object）`。
 
 JavaScript 中還有更多其它種類的物件：
+=======
+What we've studied in this chapter is called a "plain object", or just `Object`.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 - `Array` 用來儲存有序的資料群集，
 - `Date` 用來儲存日期與時間的資訊，

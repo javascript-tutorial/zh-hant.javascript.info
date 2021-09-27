@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # 條件運算子：if、'?'
+=======
+# Conditional branching: if, '?'
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 有時候我們需要根據不同條件執行不同操作。
 
@@ -68,9 +72,13 @@ if (cond) {
 
 ## "else" 語句
 
+<<<<<<< HEAD
 `if` 述語可以包含一個可選的 "else" 區塊，它會在條件為 false 時執行。
 
 例如：
+=======
+The `if` statement may contain an optional "else" block. It executes when the condition is falsy.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 ```js run
 let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
