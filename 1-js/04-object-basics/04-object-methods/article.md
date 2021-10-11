@@ -32,11 +32,19 @@ user.sayHi = function() {
 user.sayHi(); // Hello!
 ```
 
+<<<<<<< HEAD
 這邊我們已使用函式表達式來建立函式並指定為該物件的屬性 `user.sayHi`。
 
 接著可以呼叫它，使用者就會說話了！
 
 函式若為某個物件的屬性，則稱它為 *方法（method）*。
+=======
+Here we've just used a Function Expression to create a function and assign it to the property `user.sayHi` of the object.
+
+Then we can call it as `user.sayHi()`. The user can now speak!
+
+A function that is a property of an object is called its *method*.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 所以，這邊我們得到物件 `user` 的一個方法 `sayHi`。
 
@@ -63,7 +71,11 @@ user.sayHi(); // Hello!
 ```smart header="物件導向程式設計"
 當我們使用物件寫程式碼來表現實體時，被稱為 [物件導向程式設計（object-oriented programming）](https://en.wikipedia.org/wiki/Object-oriented_programming)，簡稱為："OOP"。
 
+<<<<<<< HEAD
 OOP 是門很大的學問，本身就是個有趣的科學。要怎麼選擇正確的實體？如何組織兩者間的交互作用？這就是架構，且有些很棒的書在探討這個議題，像是 E.Gamma, R.Helm, R.Johnson, J.Vissides 的 "Design Patterns: Elements of Reusable Object-Oriented Software" 或 G.Booch 的 "Object-Oriented Analysis and Design with Applications" 等等。
+=======
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 ```
 
 ### 方法簡寫
@@ -82,7 +94,11 @@ user = {
 // 物件簡寫看起來更讚，對吧？
 user = {
 *!*
+<<<<<<< HEAD
   sayHi() { // 與 "sayHi: function()" 相同
+=======
+  sayHi() { // same as "sayHi: function(){...}"
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 */!*
     alert("Hello");
   }
@@ -161,14 +177,24 @@ let user = {
 let admin = user;
 user = null; // 將其覆蓋使情況更明顯
 
+<<<<<<< HEAD
 admin.sayHi(); // 哎呀！在 sayHi() 內使用了舊的變數名！錯了！
+=======
+*!*
+admin.sayHi(); // TypeError: Cannot read property 'name' of null
+*/!*
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 ```
 
 若我們使用 `this.name` 而非 `user.name` 於 `alert` 中，則程式碼就可正常運作。
 
 ## "this" 沒被綁定
 
+<<<<<<< HEAD
 JavaScript 中，關鍵字 `this` 的行為不像其它大多數程式語言一樣，它可以被用於任何函式內。
+=======
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function, even if it's not a method of an object.
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 底下例子不會有語法錯誤：
 
@@ -234,6 +260,7 @@ sayHi(); // undefined
 這邊我們的立場不是要判斷語言設計決定是好或壞，我們只要理解它如何運作，且怎麼使用好處並避免問題。
 ```
 
+<<<<<<< HEAD
 ## 內部情況：參考類型（Reference Type）
 
 ```warn header="深入語言特性"
@@ -327,6 +354,9 @@ hi(); // 錯誤，因為 this 是 undefined
 所以，作為結果，`this` 的值只有在函式被直接使用句點 `obj.method()` 或方括號 `obj['method']()` 語法呼叫時（它們在此做一樣的事），才會經過正確地途徑傳遞下去。在之後的教程中，我們將會學習多種解決此問題的方式，像是使用 [func.bind()](/bind#solution-2-bind)。
 
 ## 箭頭函式沒有 "this"
+=======
+## Arrow functions have no "this"
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 箭頭函式很特別：它們沒有 "自己的" `this`。若我們從這種函式參考了 `this`，會從更外層的 "正常" 函式中獲取其值。
 
