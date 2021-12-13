@@ -9,7 +9,11 @@
 
 ## "script" 標籤
 
+<<<<<<< HEAD
 JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地方。
+=======
+JavaScript programs can be inserted almost anywhere into an HTML document using the `<script>` tag.
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
 舉例來說：
 
@@ -45,8 +49,13 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 
 `<script>` 標籤尚有一些不常用的屬性，你可以在陳年的程式碼中見到它們：
 
+<<<<<<< HEAD
 `type` 屬性：<code>&lt;script <u>type</u>=...&gt;</code>
 : 在舊的 HTML4 標準中，`<script>` 標籤中的 `type` 屬性是必填的，通常它的值會是 `type="text/javascript"`，目前這個屬性已經不是必填了。而且在現今的 HTML 標準中，這個屬性的內在含義已經完全不同，現在這個屬性可以被用於 JavaScript 模組（modules），這是一個進階的主題，我們會在另外的章節詳細介紹。
+=======
+The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
 `language` 屬性：<code>&lt;script <u>language</u>=...&gt;</code>
 : 這個屬性是為了表示此腳本所用的語言。在 JavaScript 如今已經變成了預設語言的情況下，這個屬性已沒有意義且不再使用了。
@@ -72,12 +81,16 @@ JavaScript 程式可以使用 `<script>` 標籤插入到 HTML 文件的任何地
 <script src="/path/to/script.js"></script>
 ```
 
+<<<<<<< HEAD
 這邊的 `/path/to/script.js` 代表從網站根目錄開始，腳本檔案的絕對路徑，我們也可以提供相對於當前頁面的相對路徑。舉例來說，`src="script.js"` 指的是目前資料夾中的一個 `"script.js"` 檔案。
+=======
+Here, `/path/to/script.js` is an absolute path to the script from the site root. One can also provide a relative path from the current page. For instance, `src="script.js"`, just like `src="./script.js"`, would mean a file `"script.js"` in the current folder.
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
 我們也可以提供完整的 URL，例如：
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
 如果要添加多個腳本，請使用多個標籤：

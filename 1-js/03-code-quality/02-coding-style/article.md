@@ -117,7 +117,11 @@ if (
 
     使用空格而非 tabs 有個好處是，空格比 tab 符號更具有縮排配置的彈性。
 
+<<<<<<< HEAD
     舉個例，我們可以將某個開括號的引數們對其，像這樣：
+=======
+    For instance, we can align the parameters with the opening bracket, like this:
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
     ```js no-beautify
     show(parameters,
@@ -286,7 +290,7 @@ function pow(x, n) {
 
 一些受歡迎的選擇：
 
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
@@ -302,11 +306,19 @@ Linters 是可以自動檢查你程式碼風格，並給予改進建議的工具
 
 這些是知名的 linting 工具：
 
+<<<<<<< HEAD
 - [JSLint](http://www.jslint.com/) -- 第一批的 linter 之一。
 - [JSHint](http://www.jshint.com/) -- 可以比 JSLint 做更多設定。
 - [ESLint](http://eslint.org/) -- 也許是目前最新的一個。
 
 以上皆可，作者是使用 [ESLint](http://eslint.org/)。
+=======
+- [JSLint](https://www.jslint.com/) -- one of the first linters.
+- [JSHint](https://jshint.com/) -- more settings than JSLint.
+- [ESLint](https://eslint.org/) -- probably the newest one.
+
+All of them can do the job. The author uses [ESLint](https://eslint.org/).
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
 大部分 linters 都有和熱門的編輯器整合：只要在編輯器內啟用插件並設置風格即可。
 
@@ -329,7 +341,7 @@ Linters 是可以自動檢查你程式碼風格，並給予改進建議的工具
   },
   "rules": {
     "no-console": 0,
-    "indent": ["warning", 2]
+    "indent": 2
   }
 }
 ```
@@ -338,7 +350,11 @@ Linters 是可以自動檢查你程式碼風格，並給予改進建議的工具
 
 或者也可以從網路下載風格規則集合並延伸使用，查看 <http://eslint.org/docs/user-guide/getting-started> 以了解更多安裝細節。
 
+<<<<<<< HEAD
 甚至某些特定 IDEs 很方便的內建 linting，但不像 ESLint 那樣可以自行客製化。
+=======
+It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/user-guide/getting-started> for more details about installation.
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
 ## 總結
 

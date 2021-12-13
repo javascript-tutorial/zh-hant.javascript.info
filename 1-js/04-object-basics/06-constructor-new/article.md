@@ -64,13 +64,21 @@ let user = {
 
 這也是建構子主要的用途 -- 實作可重複使用的建立物件程式碼。
 
+<<<<<<< HEAD
 再注意一下 -- 技術上，任何函式都可以作為建構子被使用。也就是：任何函式都可以使用 `new` 來運行，且它會執行上述的演算法。而 "首個字母大寫" 是個共識，來更清楚地表示該函式要使用 `new` 來運行。
 
 ````smart header="new function() { ... }"
 若我們有許多行關於建立單一個複雜物件的程式碼，我們可以包裝它們在建構子函式內，像這樣：
+=======
+Let's note once again -- technically, any function (except arrow functions, as they don't have `this`) can be used as a constructor. It can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+
+````smart header="new function() { ... }"
+If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this:
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
 ```js
-let user = new function() {
+// create a function and immediately call it with new
+let user = new function() { 
   this.name = "John";
   this.isAdmin = false;
 
@@ -80,7 +88,11 @@ let user = new function() {
 };
 ```
 
+<<<<<<< HEAD
 該建構子不能被再次呼叫，因為它還沒存在任何地方，就只是被建立並呼叫了而已。所以這個技巧主要用於封裝程式碼以建構單一物件，未來不會重複使用。
+=======
+This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 ````
 
 ## 建構子模式測試：new.target
@@ -91,7 +103,11 @@ let user = new function() {
 
 在函式中，我們可以使用一個特殊的 `new.target` 屬性，來確認它是否經由 `new` 被呼叫。
 
+<<<<<<< HEAD
 對於常規呼叫而言它會是空的，而若使用 `new` 呼叫則會相等於該函式：
+=======
+It is undefined for regular calls and equals the function if called with `new`:
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 
 ```js run
 function User() {
