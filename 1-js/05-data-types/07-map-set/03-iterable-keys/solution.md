@@ -1,7 +1,7 @@
 
-That's because `map.keys()` returns an iterable, but not an array.
+那是因為 `map.keys()` 傳回的是可迭代的物件，但不是一個陣列。
 
-We can convert it into an array using `Array.from`:
+我們可以轉換它變成陣列使用 `Array.from`：
 
 
 ```js run

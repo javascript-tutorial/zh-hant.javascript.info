@@ -1,95 +1,95 @@
 
-# Map and Set
+# Map and 集合
 
-Now we've learned about the following complex data structures:
+現在，我們已經了解了以下複雜的資料結構：
 
-- Objects for storing keyed collections.
-- Arrays for storing ordered collections.
+- 物件，儲放有鍵值的群集
+- 陣列，儲放有順序的群集
 
-But that's not enough for real life. That's why `Map` and `Set` also exist.
+但事實上這還不夠。這就是為什麼還有 `Map` 和 `Set`。
 
 ## Map
 
-[Map](mdn:js/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](mdn:js/Map) 是有鍵值的資料群集，就跟一個 `Object` 一樣。主要的區別是 `Map` 允許任何類型的鍵值。
 
-Methods and properties are:
+方法和屬性有：
 
-- `new Map()` -- creates the map.
-- `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
-- `map.clear()` -- removes everything from the map.
-- `map.size` -- returns the current element count.
+- `new Map()` -- 建立一個 map。
+- `map.set(key, value)` -- 儲放值藉由鍵值。
+- `map.get(key)` -- 傳回值藉由鍵值，如果 `key` 不存在於 map 則是 `undefined`。
+- `map.has(key)` -- 如果鍵值存在傳回 `true`，反之則是 `false`。
+- `map.delete(key)` -- 移除值藉由鍵值。
+- `map.clear()` -- 移除所有值。
+- `map.size` -- 傳回現在元素數量。
 
-For instance:
+例如：
 
 ```js run
 let map = new Map();
 
-map.set('1', 'str1');   // a string key
-map.set(1, 'num1');     // a numeric key
-map.set(true, 'bool1'); // a boolean key
+map.set('1', 'str1');   // 一個字串鍵值
+map.set(1, 'num1');     // 一個數值鍵值
+map.set(true, 'bool1'); // 一個布林值鍵值
 
-// remember the regular Object? it would convert keys to string
-// Map keeps the type, so these two are different:
+// 記得一般的物件嗎？它會將鍵值轉換成字串
+// map 會保持原本的型別，所以這兩者是不同的：
 alert( map.get(1)   ); // 'num1'
 alert( map.get('1') ); // 'str1'
 
 alert( map.size ); // 3
 ```
 
-As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+有此可見，不同於物件，鍵值不會轉換成字串。任何類型的鍵值都是可行的。
 
-```smart header="`map[key]` isn't the right way to use a `Map`"
-Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (no object keys and so on).
+```smart header="`map[key]` 不是 `Map` 的正確使用方法"
+雖然 `map[key]` 也會動，例如我們可以設置 `map[key] = 2`，這會將 `map` 當作一般的 JavaScript 物件，所以，會有相應的限制（物件的鍵值等等）。
 
-So we should use `map` methods: `set`, `get` and so on.
+所以我們應該使用 `map` 方法：`set`、`get` 等等。
 ```
 
-**Map can also use objects as keys.**
+**map 可以將物件作為鍵值。**
 
-For instance:
+例如：
 
 ```js run
 let john = { name: "John" };
 
-// for every user, let's store their visits count
+// 供全部用戶，讓我們來存放他們的拜訪計數
 let visitsCountMap = new Map();
 
-// john is the key for the map
+// john 是 map 的鍵值
 visitsCountMap.set(john, 123);
 
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but not for object keys.
+將物件作為鍵值是 `Map` 最著名且重要的功能之一。以字串鍵值來說，`Object` 就可以，但如果是物件的鍵值就不是了。
 
-Let's try:
+讓我們來試試：
 
 ```js run
 let john = { name: "John" };
 
-let visitsCountObj = {}; // try to use an object
+let visitsCountObj = {}; // 嘗試使用物件
 
-visitsCountObj[john] = 123; // try to use john object as the key
+visitsCountObj[john] = 123; // 嘗試使用 john 物件作為鍵值
 
 *!*
-// That's what got written!
+// 這寫入了這個！
 alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
-As `visitsCountObj` is an object, it converts all keys, such as `john` to strings, so we've got the string key `"[object Object]"`. Definitely not what we want.
+由於 `visitsCountObj` 是一個物件，他會將所有的鍵值轉換成字串（像是 `john`）因此我們得到了字串鍵值 `"[object Object]"`。 絕對不是我們所要的。
 
-```smart header="How `Map` compares keys"
-To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+```smart header="`Map` 如何比較鍵值"
+為了測試鍵值相等，`Map` 使用演算法 [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero)。它大致與嚴格等於 `===` 相同，但不同的地方是 `NaN` 視同 `NaN`。所以 `NaN` 也可以作為鍵值。
 
-This algorithm can't be changed or customized.
+這個演算法不可以被改變或自訂。
 ```
 
-````smart header="Chaining"
-Every `map.set` call returns the map itself, so we can "chain" the calls:
+````smart header="串鏈"
+每個 `map.set` 呼叫都會傳回 map 自己，所以我們可以 "串鏈" 這些呼叫：
 
 ```js
 map.set('1', 'str1')
@@ -99,15 +99,15 @@ map.set('1', 'str1')
 ````
 
 
-## Iteration over Map
+## 在 map 上迭代
 
-For looping over a `map`, there are 3 methods:
+要遍歷整個 map，有 3 個方法：
 
-- `map.keys()` -- returns an iterable for keys,
-- `map.values()` -- returns an iterable for values,
-- `map.entries()` -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+- `map.keys()` -- 傳回一個可迭代鍵值的物件，
+- `map.values()` -- 傳回一個可迭代值的物件
+- `map.entries()` -- 傳回一個可迭代條目 `[key, value]`，它可以用在 `for..of`。
 
-For instance:
+例如：
 
 ```js run
 let recipeMap = new Map([
@@ -116,41 +116,41 @@ let recipeMap = new Map([
   ['onion',    50]
 ]);
 
-// iterate over keys (vegetables)
+// 迭代全部的鍵值（蔬菜）
 for (let vegetable of recipeMap.keys()) {
   alert(vegetable); // cucumber, tomatoes, onion
 }
 
-// iterate over values (amounts)
+// 迭代全部的值（價格）
 for (let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
-// iterate over [key, value] entries
-for (let entry of recipeMap) { // the same as of recipeMap.entries()
-  alert(entry); // cucumber,500 (and so on)
+// 迭代全部的 [key, value] 條目
+for (let entry of recipeMap) { // 這等同於 recipeMap.entries()
+  alert(entry); // cucumber,500（等等）
 }
 ```
 
-```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
+```smart header="依照插入順序"
+迭代的順序與插入值的順序相同。 與一般的 `Object` 不同，`Map` 保留了此順序。
 ```
 
-Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
+除此之外，`Map` 有內建的 `forEach` 方法，類似於 `Array`：
 
 ```js
-// runs the function for each (key, value) pair
+// 執行函數時每次傳入一對鍵與值
 recipeMap.forEach( (value, key, map) => {
-  alert(`${key}: ${value}`); // cucumber: 500 etc
+  alert(`${key}: ${value}`); // cucumber: 500 等等
 });
 ```
 
-## Object.entries: Map from Object
+## Object.entries: 從 Object 建立 Map
 
-When a `Map` is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:
+當建立一個 `Map` 時，我們可以傳入一個鍵/值組合的陣列（或可迭代的物件）進行初始化，如下：
 
 ```js run
-// array of [key, value] pairs
+// [key, value] 組合的陣列
 let map = new Map([
   ['1',  'str1'],
   [1,    'num1'],
@@ -160,9 +160,9 @@ let map = new Map([
 alert( map.get('1') ); // str1
 ```
 
-If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+如果我們有一個普通的物件，並且想從該物件建立一個 `Map`，則可以使用內建方法 [Object.entries(obj)](mdn:js/Object/entries) ，傳回一個與其相同格式的鍵/值組合的陣列。
 
-So we can create a map from an object like this:
+所以，我們可以從物件建立一個 map，如下：
 
 ```js run
 let obj = {
@@ -177,14 +177,14 @@ let map = new Map(Object.entries(obj));
 alert( map.get('name') ); // John
 ```
 
-Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
+在這裡，`Object.entries` 傳回一個鍵/值組合的陣列：`[ ["name","John"], ["age", 30] ]`。這是 `Map` 所需要的。
 
 
-## Object.fromEntries: Object from Map
+## Object.fromEntries: 從 Map 建立 Object
 
-We've just seen how to create `Map` from a plain object with `Object.entries(obj)`.
+我們已經看到如何使用 `Object.entries(obj)` 從一般物件建立 `Map`。
 
-There's `Object.fromEntries` method that does the reverse: given an array of `[key, value]` pairs, it creates an object from them:
+有一個 `Object.fromEntries` 方法可以反過來：給定一個 `[key，value]` 組合的陣列，根據該陣列建立物件：
 
 ```js run
 let prices = Object.fromEntries([
@@ -193,16 +193,16 @@ let prices = Object.fromEntries([
   ['meat', 4]
 ]);
 
-// now prices = { banana: 1, orange: 2, meat: 4 }
+// 現在 prices = { banana: 1, orange: 2, meat: 4 }
 
 alert(prices.orange); // 2
 ```
 
-We can use `Object.fromEntries` to get an plain object from `Map`.
+我們可以使用 `Object.fromEntries` 從 `Map` 得到一個一般物件。
 
-E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
+例如我們將數據儲放在 `Map` 中，但是我們需要將其傳給期望使用一般物件的第三方程式碼。
 
-Here we go:
+我們開始吧：
 
 ```js run
 let map = new Map();
@@ -211,42 +211,42 @@ map.set('orange', 2);
 map.set('meat', 4);
 
 *!*
-let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+let obj = Object.fromEntries(map.entries()); // 做出一個一般物件 (*)
 */!*
 
-// done!
+// 好了！
 // obj = { banana: 1, orange: 2, meat: 4 }
 
 alert(obj.orange); // 2
 ```
 
-A call to `map.entries()` returns an array of key/value pairs, exactly in the right format for `Object.fromEntries`.
+呼叫 `map.entries()` 傳回一個鍵/值組合的陣列，與 `Object.fromEntries` 所需的格式相同。
 
-We could also make line `(*)` shorter:
+我們可以將註解有 `(*)` 那行縮短：
 ```js
-let obj = Object.fromEntries(map); // omit .entries()
+let obj = Object.fromEntries(map); // 忽略 .entries()
 ```
 
-That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
+這是一樣的的，因為 `Object.fromEntries` 期望一個可迭代物件作為參數。不一定要是陣列。而 `map` 預設迭代會使用 `map.entries()` 傳回鍵/值組合，所以我們會得到一個跟 `map` 相同鍵/值組合的物件。
 
-## Set
+## 集合
 
-A `Set` is a special type collection - "set of values" (without keys), where each value may occur only once.
+`Set` 是一種特殊的類型群集 - "值的集合" (沒有鍵值)，其中每個值只會有一個。
 
-Its main methods are:
+他主要的方法有：
 
-- `new Set(iterable)` -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
-- `set.add(value)` -- adds a value, returns the set itself.
-- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
-- `set.clear()` -- removes everything from the set.
-- `set.size` -- is the elements count.
+- `new Set(iterable)` -- 建立集合，然後如果有給 `iterable` 可迭代物件（通常是陣列），複製其值到該集合中。
+- `set.add(value)` -- 新增一個值，傳回集合自己。
+- `set.delete(value)` -- 移除該值，如果當下存在該值傳回 `true`，反之則是 `false`。
+- `set.has(value)` -- 如果該值存在於集合中傳回 `true`，反之則是 `false`。
+- `set.clear()` -- 移除所有值。
+- `set.size` -- 傳回現在元素數量。
 
-The main feature is that repeated calls of `set.add(value)` with the same value don't do anything. That's the reason why each value appears in a `Set` only once.
+主要功能是重複呼叫具有相同值的 `set.add（value)` 時不會發生任何事。這就是每個值只在 `Set` 中出現一次的原因。
 
-For example, we have visitors coming, and we'd like to remember everyone. But repeated visits should not lead to duplicates. A visitor must be "counted" only once.
+例如，我們有訪客來，然後我們想記住每個人。但是不該有重複的訪問。訪客只能被 "計入" 一次。
 
-`Set` is just the right thing for that:
+`Set` 正好是個正確的選擇：
 
 ```js run
 let set = new Set();
@@ -255,76 +255,76 @@ let john = { name: "John" };
 let pete = { name: "Pete" };
 let mary = { name: "Mary" };
 
-// visits, some users come multiple times
+// 有些用戶來拜訪多次
 set.add(john);
 set.add(pete);
 set.add(mary);
 set.add(john);
 set.add(mary);
 
-// set keeps only unique values
+// 集合只保留唯一值
 alert( set.size ); // 3
 
 for (let user of set) {
-  alert(user.name); // John (then Pete and Mary)
+  alert(user.name); // John (然後 Pete 和 Mary)
 }
 ```
 
-The alternative to `Set` could be an array of users, and the code to check for duplicates on every insertion using [arr.find](mdn:js/Array/find). But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
+`Set` 的替代方法可以是一個用戶陣列，使用 [arr.find](mdn:js/Array/find) 在每次插入時檢查重複。但是效率會很差，因為此方法遍歷整個陣列，檢查每個元素。`Set` 在內部有更好的優化進行唯一性檢查。
 
-## Iteration over Set
+## 在集合上迭代
 
-We can loop over a set either with `for..of` or using `forEach`:
+我們可以使用 `for..of` 或 `forEach` 遍歷一個集合：
 
 ```js run
 let set = new Set(["oranges", "apples", "bananas"]);
 
 for (let value of set) alert(value);
 
-// the same with forEach:
+// 同樣在 forEach:
 set.forEach((value, valueAgain, set) => {
   alert(value);
 });
 ```
 
-Note the funny thing. The callback function passed in `forEach` has 3 arguments: a `value`, then *the same value* `valueAgain`, and then the target object. Indeed, the same value appears in the arguments twice.
+有趣的是，在 `forEach` 中傳遞的回呼函式有 3 個參數：一個 `value`，然後是 **相同值** `valueAgain`，然後是目標物件。 實際上，相同的值在參數中出現兩次。
 
-That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+這是為了與 `Map` 兼容，在其中回呼傳遞的 `forEach` 具有三個參數。看起來確實有些奇怪。但是在某些情況下可以輕鬆地用 `Set` 替換 `Map`，反之亦然。
 
-The same methods `Map` has for iterators are also supported:
+也支援與 `Map` 相同的迭代器方法：
 
-- `set.keys()` -- returns an iterable object for values,
-- `set.values()` -- same as `set.keys()`, for compatibility with `Map`,
-- `set.entries()` -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+- `set.keys()` -- 傳回一個可迭代值的物件，
+- `set.values()` -- 同 `set.keys()`，為了與 `Map` 兼容，
+- `set.entries()` -- 傳回一個可迭代條目 `[value, value]`，存在是為了與 `Map` 兼容。
 
-## Summary
+## 總結
 
-`Map` -- is a collection of keyed values.
+`Map` -- 是有鍵值的資料群集。
 
-Methods and properties:
+方法和屬性有：
 
-- `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
-- `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
-- `map.clear()` -- removes everything from the map.
-- `map.size` -- returns the current element count.
+- `new Map([iterable])` -- 建立一個 map，可以有 `[key,value]` 組合的 `iterable` 可迭代物件（像是陣列）供初始化。
+- `map.set(key, value)` -- 儲放值藉由鍵值。
+- `map.get(key)` -- 傳回值藉由鍵值，如果 `key` 不存在於 map 則是 `undefined`。
+- `map.has(key)` -- 如果鍵值存在傳回 `true`，反之則是 `false`。
+- `map.delete(key)` -- 移除值藉由鍵值。
+- `map.clear()` -- 移除所有值。
+- `map.size` -- 傳回現在元素數量。
 
-The differences from a regular `Object`:
+不同於一般的 `Object`：
 
-- Any keys, objects can be keys.
-- Additional convenient methods, the `size` property.
+- 任何鍵值，物件也能當鍵值。
+- 方便的額外方法，屬性 `size`。
 
-`Set` -- is a collection of unique values.
+`Set` -- 是唯一值的群集。
 
-Methods and properties:
+方法和屬性有：
 
-- `new Set([iterable])` -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
-- `set.add(value)` -- adds a value (does nothing if `value` exists), returns the set itself.
-- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
-- `set.clear()` -- removes everything from the set.
-- `set.size` -- is the elements count.
+- `new Set(iterable)` -- 建立集合，然後如果有給 `iterable` 可迭代物件（通常是陣列），複製其值到該集合中。
+- `set.add(value)` -- 新增一個值，傳回集合自己。
+- `set.delete(value)` -- 移除該值，如果當下存在該值傳回 `true`，反之則是 `false`。
+- `set.has(value)` -- 如果該值存在於集合中傳回 `true`，反之則是 `false`。
+- `set.clear()` -- 移除所有值。
+- `set.size` -- 傳回現在元素數量。
 
-Iteration over `Map` and `Set` is always in the insertion order, so we can't say that these collections are unordered, but we can't reorder elements or directly get an element by its number.
+`Map` 和 `Set` 上的迭代始終按插入順序進行，因此我們不能說這些群集是無序的，但是我們不能對元素進行重新排序或直接按其編號獲取元素。

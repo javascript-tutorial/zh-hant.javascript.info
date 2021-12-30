@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Iterable keys
+# 可迭代鍵值
 
-We'd like to get an array of `map.keys()` in a variable and then do apply array-specific methods to it, e.g. `.push`.
+我們想在變數中獲得一個執行 `map.keys()` 後的陣列，然後使用陣列的方法，像是 `.push`。
 
-But that doesn't work:
+但那是不會動的：
 
 ```js run
 let map = new Map();
@@ -21,4 +21,4 @@ keys.push("more");
 */!*
 ```
 
-Why? How can we fix the code to make `keys.push` work?
+為什麼？我們該如何修改程式碼使 `keys.push` 能動？
