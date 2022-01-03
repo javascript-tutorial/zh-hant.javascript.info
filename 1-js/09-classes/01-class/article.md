@@ -51,7 +51,7 @@ user.sayHi();
 
 When `new User("John")` is called:
 1. A new object is created.
-2. The `constructor` runs with the given argument and assigns `this.name` to it.
+2. The `constructor` runs with the given argument and assigns it to `this.name`.
 
 ...Then we can call object methods, such as `user.sayHi()`.
 
@@ -110,7 +110,7 @@ alert(typeof User); // function
 alert(User === User.prototype.constructor); // true
 
 // The methods are in User.prototype, e.g:
-alert(User.prototype.sayHi); // alert(this.name);
+alert(User.prototype.sayHi); // the code of the sayHi method
 
 // there are exactly two methods in the prototype
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
@@ -118,7 +118,7 @@ alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
 ## Not just a syntactic sugar
 
-Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same without `class` keyword at all:
+Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same thing without using the `class` keyword at all:
 
 ```js run
 // rewriting class User in pure functions
@@ -127,7 +127,7 @@ Sometimes people say that `class` is a "syntactic sugar" (syntax that is designe
 function User(name) {
   this.name = name;
 }
-// any function prototype has constructor property by default,
+// a function prototype has "constructor" property by default,
 // so we don't need to create it
 
 // 2. Add the method to prototype
@@ -144,9 +144,9 @@ The result of this definition is about the same. So, there are indeed reasons wh
 
 Still, there are important differences.
 
-1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
+1. First, a function created by `class` is labelled by a special internal property `[[IsClassConstructor]]: true`. So it's not entirely the same as creating it manually.
 
-    And unlike a regular function, a class constructor must be called with `new`:
+    The language checks for that property in a variety of places. For example, unlike a regular function, it must be called with `new`:
 
     ```js run
     class User {
@@ -166,6 +166,7 @@ Still, there are important differences.
 
     alert(User); // class User { ... }
     ```
+    There are other differences, we'll see them soon.
 
 2. Class methods are non-enumerable.
     A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`.
@@ -209,7 +210,6 @@ new User().sayHi(); // works, shows MyClass definition
 alert(MyClass); // error, MyClass name isn't visible outside of the class
 ```
 
-
 We can even make classes dynamically "on-demand", like this:
 
 ```js run
@@ -218,7 +218,7 @@ function makeClass(phrase) {
   return class {
     sayHi() {
       alert(phrase);
-    };
+    }
   };
 }
 
@@ -229,7 +229,7 @@ new User().sayHi(); // Hello
 ```
 
 
-## Getters/setters, other shorthands
+## Getters/setters
 
 Just like literal objects, classes may include getters/setters, computed properties etc.
 
@@ -267,22 +267,11 @@ alert(user.name); // John
 user = new User(""); // Name is too short.
 ```
 
-The class declaration creates getters and setters in `User.prototype`, like this:
+Technically, such class declaration works by creating getters and setters in `User.prototype`.
 
-```js
-Object.defineProperties(User.prototype, {
-  name: {
-    get() {
-      return this._name
-    },
-    set(name) {
-      // ...
-    }
-  }
-});
-```
+## Computed names [...]
 
-Here's an example with a computed property name in brackets `[...]`:
+Here's an example with a computed method name using brackets `[...]`:
 
 ```js run
 class User {
@@ -298,13 +287,22 @@ class User {
 new User().sayHi();
 ```
 
+<<<<<<< HEAD
+=======
+Such features are easy to remember, as they resemble that of literal objects.
+
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 ## Class fields
 
 ```warn header="Old browsers may need a polyfill"
 Class fields are a recent addition to the language.
 ```
 
+<<<<<<< HEAD
 Previously, classes only had methods.
+=======
+Previously, our classes only had methods.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 "Class fields" is a syntax that allows to add any properties.
 
@@ -313,7 +311,7 @@ For instance, let's add `name` property to `class User`:
 ```js run
 class User {
 *!*
-  name = "Anonymous";
+  name = "John";
 */!*
 
   sayHi() {
@@ -321,15 +319,44 @@ class User {
   }
 }
 
-new User().sayHi();
-
-alert(User.prototype.sayHi); // placed in User.prototype
-alert(User.prototype.name); // undefined, not placed in User.prototype
+new User().sayHi(); // Hello, John!
 ```
 
+So, we just write "<property name> = <value>" in the declaration, and that's it.
+
+The important difference of class fields is that they are set on individual objects, not `User.prototype`:
+
+```js run
+class User {
+*!*
+  name = "John";
+*/!*
+}
+
+let user = new User();
+alert(user.name); // John
+alert(User.prototype.name); // undefined
+```
+
+<<<<<<< HEAD
 The important thing about class fields is that they are set on individual objects, not `User.prototype`.
 
 Technically, they are processed after the constructor has done it's job.
+=======
+We can also assign values using more complex expressions and function calls:
+
+```js run
+class User {
+*!*
+  name = prompt("Name, please?", "John");
+*/!*
+}
+
+let user = new User();
+alert(user.name); // John
+```
+
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 ### Making bound methods with class fields
 
@@ -362,6 +389,7 @@ The problem is called "losing `this`".
 There are two approaches to fixing it, as discussed in the chapter <info:bind>:
 
 1. Pass a wrapper-function, such as `setTimeout(() => button.click(), 1000)`.
+<<<<<<< HEAD
 2. Bind the method to object, e.g. in the constructor:
 
 ```js run
@@ -386,6 +414,11 @@ setTimeout(button.click, 1000); // hello
 ```
 
 Class fields provide a more elegant syntax for the latter solution:
+=======
+2. Bind the method to object, e.g. in the constructor.
+
+Class fields provide another, quite elegant syntax:
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 ```js run
 class Button {
@@ -404,9 +437,15 @@ let button = new Button("hello");
 setTimeout(button.click, 1000); // hello
 ```
 
+<<<<<<< HEAD
 The class field `click = () => {...}` creates an independent function on each `Button` object, with `this` bound to the object. Then we can pass `button.click` around anywhere, and it will be called with the right `this`.
 
 That's especially useful in browser environment, when we need to setup a method as an event listener.
+=======
+The class field `click = () => {...}` is created on a per-object basis, there's a separate function for each `Button` object, with `this` inside it referencing that object. We can pass `button.click` around anywhere, and the value of `this` will always be correct.
+
+That's especially useful in browser environment, for event listeners.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 ## Summary
 
