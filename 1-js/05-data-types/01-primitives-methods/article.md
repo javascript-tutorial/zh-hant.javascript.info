@@ -12,7 +12,10 @@ JavaScript 允許我們像物件一樣來使用原生類型（字串、數值等
 =======
 - Is a value of a primitive type.
 - There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
+<<<<<<< HEAD
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 物件
 
@@ -44,8 +47,13 @@ john.sayHi(); // Hi buddy!
 
 JavaScript 的建立者們面臨了這樣的一個矛盾：
 
+<<<<<<< HEAD
 - 人們想對字串或數值這樣的原生類型做許多事，若能透過其方法來存取就太棒了。
 - 原生類型應該要盡可能的快速和輕量化。
+=======
+- There are many things one would want to do with a primitive like a string or a number. It would be great to access them using methods.
+- Primitives must be as fast and lightweight as possible.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 解法看起來有點笨，但就是這樣：
 
@@ -53,7 +61,11 @@ JavaScript 的建立者們面臨了這樣的一個矛盾：
 2. 語言允許存取字串、數值、布林與符號的方法與屬性。
 3. 為了要讓其可以運作，建立一個特殊的 "物件包裝" 並提供額外的功能，然後運作後再銷毀。
 
+<<<<<<< HEAD
 "物件包裝" 對於每種原生類型都不同，名為：`String`、`Number`、`Boolean` 和 `Symbol`。因此，它們提供不同的方法集合。
+=======
+The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 舉個例，有個字串方法 [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) 回傳被大寫的 `str`。
 
