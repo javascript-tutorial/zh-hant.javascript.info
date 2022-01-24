@@ -25,7 +25,9 @@ The classes are:
     - [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) -- the class for `<input>` elements,
     - [HTMLBodyElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlbodyelement) -- the class for `<body>` elements,
     - [HTMLAnchorElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlanchorelement) -- the class for `<a>` elements,
-    - ...and so on, each tag has its own class that may provide specific properties and methods.
+    - ...and so on.
+
+There are many other tags with their own classes that may have specific properties and methods, while some elements, such as `<span>`, `<section>`, `<article>` do not have any specific properties, so they are instances of `HTMLElement` class.
 
 So, the full set of properties and methods of a given node comes as the result of the inheritance.
 
@@ -128,7 +130,7 @@ For instance:
 
 ```html run
 <body>
-  <script>  
+  <script>
   let elem = document.body;
 
   // let's examine what it is?
@@ -198,7 +200,7 @@ In XML mode the case is kept "as is". Nowadays XML mode is rarely used.
 
 ## innerHTML: the contents
 
-The [innerHTML](https://w3c.github.io/DOM-Parsing/#widl-Element-innerHTML) property allows to get the HTML inside the element as a string.
+The [innerHTML](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) property allows to get the HTML inside the element as a string.
 
 We can also modify it. So it's one of the most powerful ways to change the page.
 
@@ -397,7 +399,7 @@ Compare the two:
 <div id="elem2"></div>
 
 <script>
-  let name = prompt("What's your name?", "<b>Winnie-the-pooh!</b>");
+  let name = prompt("What's your name?", "<b>Winnie-the-Pooh!</b>");
 
   elem1.innerHTML = name;
   elem2.textContent = name;
@@ -405,7 +407,7 @@ Compare the two:
 ```
 
 1. The first `<div>` gets the name "as HTML": all tags become tags, so we see the bold name.
-2. The second `<div>` gets the name "as text", so we literally see `<b>Winnie-the-pooh!</b>`.
+2. The second `<div>` gets the name "as text", so we literally see `<b>Winnie-the-Pooh!</b>`.
 
 In most cases, we expect the text from a user, and want to treat it as text. We don't want unexpected HTML in our site. An assignment to `textContent` does exactly that.
 
@@ -413,7 +415,7 @@ In most cases, we expect the text from a user, and want to treat it as text. We 
 
 The "hidden" attribute and the DOM property specifies whether the element is visible or not.
 
-We can use it in HTML or assign using JavaScript, like this:
+We can use it in HTML or assign it using JavaScript, like this:
 
 ```html run height="80"
 <div>Both divs below are hidden</div>
