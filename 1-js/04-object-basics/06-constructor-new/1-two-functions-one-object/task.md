@@ -4,7 +4,11 @@ importance: 2
 
 # 兩個函式 - 一個物件
 
+<<<<<<< HEAD
 有可能建立函式 `A` 和 `B` 使得 `new A()==new B()` 嗎？
+=======
+Is it possible to create functions `A` and `B` so that `new A() == new B()`?
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 ```js no-beautify
 function A() { ... }
