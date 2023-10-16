@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Last day of month?
+# 月份的最後一天？
 
-Write a function `getLastDayOfMonth(year, month)` that returns the last day of month. Sometimes it is 30th, 31st or even 28/29th for Feb.
+撰寫一個函數 `getLastDayOfMonth(year, month)`，該函數返回該月的最後一天。有時是 30 日，31 日，甚至是 2 月的 28/29 日。
 
-Parameters:
+參數：
 
-- `year` -- four-digits year, for instance 2012.
-- `month` -- month, from 0 to 11.
+- `year` -- 四位數的年份，例如 2012。
+- `month` -- 月份，從 0 到 11。
 
-For instance, `getLastDayOfMonth(2012, 1) = 29` (leap year, Feb).
+例如，`getLastDayOfMonth(2012, 1) = 29`（閏年，2月）。

@@ -1,4 +1,4 @@
-The idea is simple: to substract given number of days from `date`:
+想法很簡單：從 `date` 中減去給定的天數：
 
 ```js
 function getDateAgo(date, days) {
@@ -7,9 +7,9 @@ function getDateAgo(date, days) {
 }
 ```
 
-...But the function should not change `date`. That's an important thing, because the outer code which gives us the date does not expect it to change.
+...但是，函數不應該改變 `date`。這是很重要的一點，因為給我們日期的外部程式不希望它被改變。
 
-To implement it let's clone the date, like this:
+為了實作這一點，讓我們複製這個日期，像這樣：
 
 ```js run demo
 function getDateAgo(date, days) {
@@ -21,7 +21,7 @@ function getDateAgo(date, days) {
 
 let date = new Date(2015, 0, 2);
 
-alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
-alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
-alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+alert( getDateAgo(date, 1) ); // 1, (2015 年 1 月 1 號)
+alert( getDateAgo(date, 2) ); // 31, (2014 年 12 月 31 號)
+alert( getDateAgo(date, 365) ); // 2, (2014 年 1 月 2 號)
 ```

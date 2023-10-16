@@ -2,20 +2,20 @@ importance: 4
 
 ---
 
-# Which day of month was many days ago?
+# 多少天前是這個月的哪一天？
 
-Create a function `getDateAgo(date, days)` to return the day of month `days` ago from the `date`.
+創建一個函數 `getDateAgo(date, days)`，回傳從 `date` 開始算起 `days` 天前的那一天的日期。
 
-For instance, if today is 20th, then `getDateAgo(new Date(), 1)` should be 19th and `getDateAgo(new Date(), 2)` should be 18th.
+例如，如果今天是 20 號，那麼 `getDateAgo(new Date(), 1)` 應該是 19 號，`getDateAgo(new Date(), 2)` 應該是 18 號。
 
-Should work reliably for `days=365` or more:
+應該對 `days=365` 或更多天的情況也能正常運作：
 
 ```js
 let date = new Date(2015, 0, 2);
 
-alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
-alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
-alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+alert( getDateAgo(date, 1) ); // 1, (2015 年 1 月 1 號)
+alert( getDateAgo(date, 2) ); // 31, (2014 年 12 月 31 號)
+alert( getDateAgo(date, 365) ); // 2, (2014 年 1 月 2 號)
 ```
 
-P.S. The function should not modify the given `date`.
+附註：該函數不應修改給定的 `date`。

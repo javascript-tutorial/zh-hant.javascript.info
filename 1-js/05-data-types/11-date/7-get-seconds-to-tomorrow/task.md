@@ -2,14 +2,14 @@ importance: 5
 
 ---
 
-# How many seconds till tomorrow?
+# 距離明天還有多少秒？
 
-Create a function `getSecondsToTomorrow()` that returns the number of seconds till tomorrow.
+建立一個函數 `getSecondsToTomorrow()`，用於回傳距離明天還有多少秒。
 
-For instance, if now is `23:00`, then:
+例如，如果現在是 `23:00`，則：
 
 ```js
 getSecondsToTomorrow() == 3600
 ```
 
-P.S. The function should work at any day, the "today" is not hardcoded.
+附註：該函數應適用於任何一天，"今天"不是寫死的。

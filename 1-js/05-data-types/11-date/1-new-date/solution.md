@@ -1,6 +1,6 @@
-The `new Date` constructor uses the local time zone. So the only important thing to remember is that months start from zero.
+`new Date` 建構式使用的是本地時區。因此，唯一需要注意的事情是月份是從零開始。
 
-So February has number 1.
+因此二月的編號是 1。
 
 ```js run
 let d = new Date(2012, 1, 20, 3, 12);
