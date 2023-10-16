@@ -1,6 +1,6 @@
-The method `date.getDay()` returns the number of the weekday, starting from sunday.
+方法 `date.getDay()` 返回從星期日開始的星期幾的編號。
 
-Let's make an array of weekdays, so that we can get the proper day name by its number:
+讓我們建立一個包含星期名稱的陣列，這樣我們就可以通過編號獲得相應的星期名稱：
 
 ```js run demo
 function getWeekDay(date) {
@@ -9,6 +9,6 @@ function getWeekDay(date) {
   return days[date.getDay()];
 }
 
-let date = new Date(2014, 0, 3); // 3 Jan 2014
+let date = new Date(2014, 0, 3); // 2014 年 1 月 3 號
 alert( getWeekDay(date) ); // FR
 ```

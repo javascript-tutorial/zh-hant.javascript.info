@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Create a date
+# 建立日期
 
-Create a `Date` object for the date: Feb 20, 2012, 3:12am. The time zone is local.
+建立一個 `Date` 物件來表示日期：2012 年 2 月 20 日，凌晨 3 點 12 分。時區為本地時區。
 
-Show it using `alert`.
+使用 `alert` 來顯示它。

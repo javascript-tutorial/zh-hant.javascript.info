@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Show a weekday
+# 顯示星期幾
 
-Write a function `getWeekDay(date)` to show the weekday in short format: 'MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'.
+寫一個函數 `getWeekDay(date)`，以簡短格式顯示星期幾：'MO'、'TU'、'WE'、'TH'、'FR'、'SA'、'SU'。
 
-For instance:
+例如：
 
 ```js no-beautify
-let date = new Date(2012, 0, 3);  // 3 Jan 2012
-alert( getWeekDay(date) );        // should output "TU"
+let date = new Date(2012, 0, 3);  // 2012 年 1 月 3 號
+alert( getWeekDay(date) );        // 應該顯示 "TU"
 ```
