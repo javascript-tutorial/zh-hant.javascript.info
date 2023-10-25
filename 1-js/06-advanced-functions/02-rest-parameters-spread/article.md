@@ -1,68 +1,70 @@
-# Rest parameters and spread syntax
+# Rest 參數與 Spread 語法
 
-Many JavaScript built-in functions support an arbitrary number of arguments.
+許多 JavaScript 內建函式支援任意數量的參數。
 
-For instance:
+例如:
 
-- `Math.max(arg1, arg2, ..., argN)` -- returns the greatest of the arguments.
-- `Object.assign(dest, src1, ..., srcN)` -- copies properties from `src1..N` into `dest`.
-- ...and so on.
+- `Math.max(arg1, arg2, ..., argN)` -- 返回參數中最大的值。
+- `Object.assign(dest, src1, ..., srcN)` -- 複製 `src1..N` 的屬性到 `dest`。
+- ...等。
 
-In this chapter we'll learn how to do the same. And also, how to pass arrays to such functions as parameters.
+在本章中，我們將學習如何做到這一點。 並且，如何將陣列作為參數傳遞給這樣的函式。
 
-## Rest parameters `...`
+## Rest 參數 `...`
 
-A function can be called with any number of arguments, no matter how it is defined.
+一個函式可以被任意數量的參數呼叫，不管它是如何定義的。
 
-Like here:
+如下:
+
 ```js run
 function sum(a, b) {
-  return a + b;
+	return a + b;
 }
 
-alert( sum(1, 2, 3, 4, 5) );
+alert(sum(1, 2, 3, 4, 5));
 ```
 
-There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
+這裡並不會因為過多的參數而產生錯誤。 但這裡的結果只會計算前兩個。
 
-The rest of the parameters can be included in the function definition by using three dots `...` followed by the name of the array that will contain them. The dots literally mean "gather the remaining parameters into an array".
+剩下的參數可以在函式定義中使用三個點 `...` 並跟著包含它們的陣列名稱。 這些點字面上意味著「將剩餘的參數收集到陣列中」。
 
-For instance, to gather all arguments into array `args`:
+例如，將所有參數收集到陣列 `args` 中:
 
 ```js run
-function sumAll(...args) { // args is the name for the array
-  let sum = 0;
+function sumAll(...args) {
+	// args 是陣列的名稱
+	let sum = 0;
 
-  for (let arg of args) sum += arg;
+	for (let arg of args) sum += arg;
 
-  return sum;
+	return sum;
 }
 
-alert( sumAll(1) ); // 1
-alert( sumAll(1, 2) ); // 3
-alert( sumAll(1, 2, 3) ); // 6
+alert(sumAll(1)); // 1
+alert(sumAll(1, 2)); // 3
+alert(sumAll(1, 2, 3)); // 6
 ```
 
-We can choose to get the first parameters as variables, and gather only the rest.
+我們可以選擇將第一個參數作為變數，並只收集剩下的參數。
 
-Here the first two arguments go into variables and the rest go into `titles` array:
+這裡的前兩個參數會進入變數，其餘的則會進入 `titles` 陣列:
 
 ```js run
 function showName(firstName, lastName, ...titles) {
-  alert( firstName + ' ' + lastName ); // Julius Caesar
+	alert(firstName + " " + lastName); // Julius Caesar
 
-  // the rest go into titles array
-  // i.e. titles = ["Consul", "Imperator"]
-  alert( titles[0] ); // Consul
-  alert( titles[1] ); // Imperator
-  alert( titles.length ); // 2
+	// 剩餘的參數會被收集到陣列中
+	// i.e. titles = ["Consul", "Imperator"]
+	alert(titles[0]); // Consul
+	alert(titles[1]); // Imperator
+	alert(titles.length); // 2
 }
 
 showName("Julius", "Caesar", "Consul", "Imperator");
 ```
 
-````warn header="The rest parameters must be at the end"
-The rest parameters gather all remaining arguments, so the following does not make sense and causes an error:
+````warn header="剩餘的參數必須在最後"
+Rest 參數會收集所有剩餘的參數，所以以下的寫法是不合理的，並會產生錯誤:
 
 ```js
 function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
@@ -70,10 +72,10 @@ function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
 }
 ```
 
-The `...rest` must always be last.
+`...rest` 必須在參數最後。
 ````
 
-## The "arguments" variable
+## "arguments" 變數
 
 There is also a special array-like object named `arguments` that contains all arguments by their index.
 
@@ -81,12 +83,12 @@ For instance:
 
 ```js run
 function showName() {
-  alert( arguments.length );
-  alert( arguments[0] );
-  alert( arguments[1] );
+	alert(arguments.length);
+	alert(arguments[0]);
+	alert(arguments[1]);
 
-  // it's iterable
-  // for(let arg of arguments) alert(arg);
+	// it's iterable
+	// for(let arg of arguments) alert(arg);
 }
 
 // shows: 2, Julius, Caesar
@@ -111,14 +113,15 @@ Here's an example:
 
 ```js run
 function f() {
-  let showArg = () => alert(arguments[0]);
-  showArg();
+	let showArg = () => alert(arguments[0]);
+	showArg();
 }
 
 f(1); // 1
 ```
 
 As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
+
 ````
 
 
@@ -287,3 +290,4 @@ Use patterns:
 Together they help to travel between a list and an array of parameters with ease.
 
 All arguments of a function call are also available in "old-style" `arguments`: array-like iterable object.
+````
