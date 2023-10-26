@@ -77,9 +77,9 @@ function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
 
 ## "arguments" 變數
 
-There is also a special array-like object named `arguments` that contains all arguments by their index.
+這裡也有一個名為 `arguments` 的特殊陣列式物件，它按索引包含所有參數。
 
-For instance:
+例如:
 
 ```js run
 function showName() {
@@ -87,29 +87,34 @@ function showName() {
 	alert(arguments[0]);
 	alert(arguments[1]);
 
-	// it's iterable
+	// 可遍歷的
 	// for(let arg of arguments) alert(arg);
 }
 
-// shows: 2, Julius, Caesar
+// 依序顯示: 2, Julius, Caesar
 showName("Julius", "Caesar");
 
-// shows: 1, Ilya, undefined (no second argument)
+// 依序顯示: 1, Ilya, undefined (無第二個參數)
 showName("Ilya");
 ```
 
-In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function. And it still works, we can find it in the old code.
+過去，rest 參數並不存在於 JavaScript 中，使用 `arguments` 是取得函式所有參數的唯一方法。 這仍然有效，我們可以在舊程式碼中找到它。
 
-But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't call `arguments.map(...)` for example.
+````warn header="`arguments` 是可遍歷的，但不是陣列"
+但缺點是，`arguments`同時是陣列式的和可遍歷的，但它不是陣列。 因此不支援陣列方法，所以我們不能呼叫`arguments.map(...)` 等方法。
 
-Also, it always contains all arguments. We can't capture them partially, like we did with rest parameters.
+`````
 
-So when we need these features, then rest parameters are preferred.
+此外，它包含所有參數。 我們無法像使用 rest 參數只擷取部分參數。
 
-````smart header="Arrow functions do not have `\"arguments\"`"
-If we access the `arguments` object from an arrow function, it takes them from the outer "normal" function.
+因此，當我們需要這些功能時，建議優先使用 rest 參數。
 
-Here's an example:
+````smart header="箭頭函式沒有 `\"arguments\"`"
+
+如果我們在箭頭函式中存取 `arguments` 物件，它會從外部「正常」函式中取得。
+
+
+例如:
 
 ```js run
 function f() {
@@ -120,21 +125,20 @@ function f() {
 f(1); // 1
 ```
 
-As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
+還記得嗎？箭頭函式沒有自己的 `this`。現在我們知道它們也沒有特殊的 `arguments` 物件。
 
-````
-
+`````
 
 ## Spread syntax [#spread-syntax]
 
-We've just seen how to get an array from the list of parameters.
+我們已經看到如何從參數列表中取得陣列。
 
-But sometimes we need to do exactly the reverse.
+但有時候我們也需要做相反的事情。
 
-For instance, there's a built-in function [Math.max](mdn:js/Math/max) that returns the greatest number from a list:
+例如, 內建函式 [Math.max](mdn:js/Math/max) 會返回列表中最大數值:
 
 ```js run
-alert( Math.max(3, 5, 1) ); // 5
+alert(Math.max(3, 5, 1)); // 5
 ```
 
 Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
@@ -151,7 +155,7 @@ alert( Math.max(arr) ); // NaN
 
 And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
 
-*Spread syntax* to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
+_Spread syntax_ to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
 
 When `...arr` is used in the function call, it "expands" an iterable object `arr` into the list of arguments.
 
@@ -160,7 +164,7 @@ For `Math.max`:
 ```js run
 let arr = [3, 5, 1];
 
-alert( Math.max(...arr) ); // 5 (spread turns array into a list of arguments)
+alert(Math.max(...arr)); // 5 (spread turns array into a list of arguments)
 ```
 
 We also can pass multiple iterables this way:
@@ -169,17 +173,16 @@ We also can pass multiple iterables this way:
 let arr1 = [1, -2, 3, 4];
 let arr2 = [8, 3, -8, 1];
 
-alert( Math.max(...arr1, ...arr2) ); // 8
+alert(Math.max(...arr1, ...arr2)); // 8
 ```
 
 We can even combine the spread syntax with normal values:
-
 
 ```js run
 let arr1 = [1, -2, 3, 4];
 let arr2 = [8, 3, -8, 1];
 
-alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
+alert(Math.max(1, ...arr1, 2, ...arr2, 25)); // 25
 ```
 
 Also, the spread syntax can be used to merge arrays:
@@ -202,7 +205,7 @@ For instance, here we use the spread syntax to turn the string into array of cha
 ```js run
 let str = "Hello";
 
-alert( [...str] ); // H,e,l,l,o
+alert([...str]); // H,e,l,l,o
 ```
 
 The spread syntax internally uses iterators to gather elements, the same way as `for..of` does.
@@ -215,7 +218,7 @@ For this particular task we could also use `Array.from`, because it converts an 
 let str = "Hello";
 
 // Array.from converts an iterable into an array
-alert( Array.from(str) ); // H,e,l,l,o
+alert(Array.from(str)); // H,e,l,l,o
 ```
 
 The result is the same as `[...str]`.
@@ -227,7 +230,6 @@ But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
 
 So, for the task of turning something into an array, `Array.from` tends to be more universal.
 
-
 ## Get a new copy of an object/array
 
 Remember when we talked about `Object.assign()` [in the past](https://javascript.info/object#cloning-and-merging-object-assign)?
@@ -237,7 +239,7 @@ It is possible to do the same thing with the spread operator!
 ```js run
 let arr = [1, 2, 3];
 let arrCopy = [...arr]; // spread the array into a list of parameters
-                        // then put the result into a new array
+// then put the result into a new array
 
 // do the arrays have the same contents?
 alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
@@ -256,7 +258,7 @@ Note that it is possible to do the same thing to make a copy of an object:
 ```js run
 let obj = { a: 1, b: 2, c: 3 };
 let objCopy = { ...obj }; // spread the object into a list of parameters
-                          // then return the result in a new object
+// then return the result in a new object
 
 // do the objects have the same contents?
 alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
@@ -271,7 +273,6 @@ alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
 ```
 
 This way of copying an object is much shorter than `let objCopy = Object.assign({}, obj);` or for an array `let arrCopy = Object.assign([], arr);` so we prefer to use it whenever we can.
-
 
 ## Summary
 
@@ -290,4 +291,7 @@ Use patterns:
 Together they help to travel between a list and an array of parameters with ease.
 
 All arguments of a function call are also available in "old-style" `arguments`: array-like iterable object.
-````
+
+```
+
+```
