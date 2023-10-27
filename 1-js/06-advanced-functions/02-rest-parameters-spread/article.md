@@ -141,9 +141,9 @@ f(1); // 1
 alert(Math.max(3, 5, 1)); // 5
 ```
 
-Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
+假設我們有一組陣列 `[3, 5, 1]`。 我們如何使用它呼叫 `Math.max`?
 
-Passing it "as is" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
+原封不動地傳入這組陣列是不行的，因為 `Math.max` 預期的是一組數值參數，而不是單一個陣列:
 
 ```js run
 let arr = [3, 5, 1];
@@ -153,21 +153,21 @@ alert( Math.max(arr) ); // NaN
 */!*
 ```
 
-And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
+我們不能在程式碼中手動列出項目 `Math.max(arr[0], arr[1], arr[2])`，因為並不能確定有多少項，當程式碼執行時，可能有很多，也可能沒有，這會導致程式碼將變得很醜。
 
-_Spread syntax_ to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
+_Spread 語法_ 就是解方！ 它和 Rest 參數很像，也使用 `...`，但用途相反。
 
-When `...arr` is used in the function call, it "expands" an iterable object `arr` into the list of arguments.
+當 `...arr` 在函式呼叫中使用時，它會將可迭代物件 `arr` 展開成參數列表。
 
-For `Math.max`:
+以 `Math.max` 為例:
 
 ```js run
 let arr = [3, 5, 1];
 
-alert(Math.max(...arr)); // 5 (spread turns array into a list of arguments)
+alert(Math.max(...arr)); // 5 (spread 將陣列轉換為參數列表)
 ```
 
-We also can pass multiple iterables this way:
+我們也可以這樣傳入多個可迭代物件:
 
 ```js run
 let arr1 = [1, -2, 3, 4];
@@ -176,7 +176,7 @@ let arr2 = [8, 3, -8, 1];
 alert(Math.max(...arr1, ...arr2)); // 8
 ```
 
-We can even combine the spread syntax with normal values:
+我們甚至可以將 spread 語法和正常的值結合:
 
 ```js run
 let arr1 = [1, -2, 3, 4];
@@ -185,7 +185,7 @@ let arr2 = [8, 3, -8, 1];
 alert(Math.max(1, ...arr1, 2, ...arr2, 25)); // 25
 ```
 
-Also, the spread syntax can be used to merge arrays:
+另外，spread 語法也可以用來合併陣列:
 
 ```js run
 let arr = [3, 5, 1];
@@ -195,12 +195,12 @@ let arr2 = [8, 9, 15];
 let merged = [0, ...arr, 2, ...arr2];
 */!*
 
-alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
+alert(merged); // 0,3,5,1,2,8,9,15 (0, 接著是 arr, 然後是 2, 再接著是 arr2)
 ```
 
-In the examples above we used an array to demonstrate the spread syntax, but any iterable will do.
+在這個範例中，我們使用陣列來展示 spread 語法，但任何可迭代物件都可以。
 
-For instance, here we use the spread syntax to turn the string into array of characters:
+例如，這裡我們使用 spread 語法將字串轉換為字元陣列:
 
 ```js run
 let str = "Hello";
@@ -208,90 +208,86 @@ let str = "Hello";
 alert([...str]); // H,e,l,l,o
 ```
 
-The spread syntax internally uses iterators to gather elements, the same way as `for..of` does.
+spread 語法內部使用迭代器 (iterator) 來收集元素，就像 `for..of` 一樣。
 
-So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
+因此，對於字串來說，`for...of` 會回傳字元，而 `...str` 則會變成 `"H","e","l","l","o"`。 字元列表會傳入陣列初始化器 `[...str]`。
 
-For this particular task we could also use `Array.from`, because it converts an iterable (like a string) into an array:
+針對這個特別的任務，我們也可以使用 `Array.from`，因為它會將可迭代物件(像是字串)轉換為陣列:
 
 ```js run
 let str = "Hello";
 
-// Array.from converts an iterable into an array
+// Array.from 將可迭代物件轉換為陣列
 alert(Array.from(str)); // H,e,l,l,o
 ```
 
-The result is the same as `[...str]`.
+執行後結果和 `[...str]` 一致。
 
-But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
+不過 `Array.from(obj)` 和 `[...obj]` 之間有一個微妙的差異:
 
-- `Array.from` operates on both array-likes and iterables.
-- The spread syntax works only with iterables.
+- `Array.form` 可以操作陣列式物件和可迭代物件。
+- Spread 語法只能操作可迭代物件。
 
-So, for the task of turning something into an array, `Array.from` tends to be more universal.
+因此，對於將"某些東西"轉換為陣列的任務，`Array.from` 通常更被廣泛使用。
 
-## Get a new copy of an object/array
+## 複製物件 (object) / 陣列 (array)
 
-Remember when we talked about `Object.assign()` [in the past](https://javascript.info/object#cloning-and-merging-object-assign)?
+還記得我們[先前](https://javascript.info/object#cloning-and-merging-object-assign)提到的 `Object.assign()` 嗎？
 
-It is possible to do the same thing with the spread operator!
+使用 spread 語法也可以做到相同的事情！(註：淺拷貝)
 
 ```js run
 let arr = [1, 2, 3];
-let arrCopy = [...arr]; // spread the array into a list of parameters
-// then put the result into a new array
+let arrCopy = [...arr]; // 將陣列展開成參數列表
+// 在新陣列返回結果
 
-// do the arrays have the same contents?
+// 兩個陣列的內容相同嗎？
 alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
 
-// are the arrays equal?
-alert(arr === arrCopy); // false (not same reference)
+// 兩個陣列相等嗎？
+alert(arr === arrCopy); // false (非同一個參考)
 
-// modifying our initial array does not modify the copy:
+// 修改原始陣列不會影響副本:
 arr.push(4);
 alert(arr); // 1, 2, 3, 4
 alert(arrCopy); // 1, 2, 3
 ```
 
-Note that it is possible to do the same thing to make a copy of an object:
+注意，用相同的方式來複製一個物件也是可行的。
 
 ```js run
 let obj = { a: 1, b: 2, c: 3 };
-let objCopy = { ...obj }; // spread the object into a list of parameters
-// then return the result in a new object
+let objCopy = { ...obj }; // 展開物件成參數列表
+// 在新物件返回結果
 
-// do the objects have the same contents?
+// d兩個物件的內容相同嗎？
 alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
 
-// are the objects equal?
+// 兩個物件相等嗎？
 alert(obj === objCopy); // false (not same reference)
 
-// modifying our initial object does not modify the copy:
+// 修改原始物件不會影響副本:
 obj.d = 4;
 alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
 alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
 ```
 
-This way of copying an object is much shorter than `let objCopy = Object.assign({}, obj);` or for an array `let arrCopy = Object.assign([], arr);` so we prefer to use it whenever we can.
+以這樣的方式複製一個物件比 `let objCopy = Object.assign({}, obj);` 或是複製一個陣列 `let arrCopy = Object.assign([], arr);` 來得簡潔，所以我們優先使用它。
 
-## Summary
+## 結論
 
-When we see `"..."` in the code, it is either rest parameters or the spread syntax.
+當我們在程式碼中看到 `...`，它可能是 rest 參數或是 spread 語法。
 
-There's an easy way to distinguish between them:
+有一個簡單的方法可以區分它們:
 
-- When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list of arguments into an array.
-- When `...` occurs in a function call or alike, it's called a "spread syntax" and expands an array into a list.
+- 當 `...` 在一個函式參數的最後，它是一個 "rest 參數"，並且會將參數列表中剩餘的參數收集到一個陣列中。
+- 當 `...` 在函式呼叫或類似的地方出現時，它被稱為 "spread 語法"，並且會將陣列展開成參數列表。
 
-Use patterns:
+應用場景：
 
-- Rest parameters are used to create functions that accept any number of arguments.
-- The spread syntax is used to pass an array to functions that normally require a list of many arguments.
+- Rest 參數用來建立可以接受任意數量參數的函式。
+- spread 語法用來將陣列傳入一個需要多個參數的函式。
 
-Together they help to travel between a list and an array of parameters with ease.
+兩者並行可以讓我們在陣列和參數列表之間輕鬆地切換。
 
-All arguments of a function call are also available in "old-style" `arguments`: array-like iterable object.
-
-```
-
-```
+所有函式呼叫的參數都可以在 "舊式" 的 `arguments` 中使用: 類似陣列的可迭代物件。
