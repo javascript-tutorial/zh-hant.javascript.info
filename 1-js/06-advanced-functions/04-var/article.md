@@ -1,29 +1,29 @@
-
 # The old "var"
 
-```smart header="This article is for understanding old scripts"
-The information in this article is useful for understanding old scripts.
+```smart header="本篇文章主要是幫助理解舊的腳本"
+本篇文章的資訊對於理解舊的腳本很有幫助。
 
-That's not how we write a new code.
+但這不是我們寫新程式碼的方式
 ```
 
 In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
+在[變數](info:variables)的第一章中，我們提到了三種變數宣告的方式：
 
 1. `let`
 2. `const`
 3. `var`
 
-`let` and `const` behave exactly the same way in terms of Lexical Environments.
+在作用域環境 (Lexical Environments) 方面，`let` 和 `const` 的行為完全相同。
 
-But `var` is a very different beast, that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
+但 `var` 是一個非常不同的東西，它來自很久以前的時代。它通常不會在現代腳本中使用，但仍然潛伏在舊腳本中。
 
-If you don't plan on meeting such scripts you may even skip this chapter or postpone it, but then there's a chance that it bites you later.
+如果你不打算遇到這樣的腳本，你甚至可以跳過這一章或者推遲閱讀，但是以後它可能會反咬你一口。
 
-From the first sight, `var` behaves similar to `let`. That is, declares a variable:
+從第一眼看來，`var` 的行為與 `let` 相似。也就是說，它宣告了一個變數：
 
 ```js run
 function sayHi() {
-  var phrase = "Hello"; // local variable, "var" instead of "let"
+  var phrase = "Hello"; // 局部變數 (local variable)，使用 "var" 而非 "let"
 
   alert(phrase); // Hello
 }
@@ -33,31 +33,32 @@ sayHi();
 alert(phrase); // Error, phrase is not defined
 ```
 
-...But here are the differences.
+...但是這裡有一些差異。
 
-## "var" has no block scope
+## "var" 沒有區塊作用域
 
 Variables, declared with `var`, are either function-wide or global. They are visible through blocks.
+使用 `var` 宣告的變數，其作用域不是函式範圍，就是全域範圍。它們可以在區塊中被看見。
 
-For instance:
+例如：
 
 ```js run
 if (true) {
-  var test = true; // use "var" instead of "let"
+  var test = true; // 使用 "var" 而非 "let"
 }
 
 *!*
-alert(test); // true, the variable lives after if
+alert(test); // true, 變數在 if 後仍存在
 */!*
 ```
 
-As `var` ignores code blocks, we've got a global variable `test`.
+`var` 忽略了區塊，所以我們得到了一個全域變數 `test`。
 
-If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
+如果我們使用 `let test` 而非 `var test`，那麼變數只會在 `if` 內可見：
 
 ```js run
 if (true) {
-  let test = true; // use "let"
+  let test = true; // 使用 "let"
 }
 
 *!*
@@ -65,7 +66,7 @@ alert(test); // Error: test is not defined
 */!*
 ```
 
-The same thing for loops: `var` cannot be block- or loop-local:
+對於迴圈也是一樣的：`var` 不能是區塊或迴圈的區域變數：
 
 ```js
 for (var i = 0; i < 10; i++) {
@@ -73,11 +74,12 @@ for (var i = 0; i < 10; i++) {
 }
 
 *!*
-alert(i); // 10, "i" is visible after loop, it's a global variable
+alert(i); // 10, "i" 在迴圈結束後仍存在，它是全域變數
 */!*
 ```
 
 If a code block is inside a function, then `var` becomes a function-level variable:
+如果一個區塊在函式內部，那麼 `var` 就會變成函式級別的變數：
 
 ```js run
 function sayHi() {
@@ -85,7 +87,7 @@ function sayHi() {
     var phrase = "Hello";
   }
 
-  alert(phrase); // works
+  alert(phrase); // 可行
 }
 
 sayHi();
@@ -93,14 +95,15 @@ alert(phrase); // Error: phrase is not defined (Check the Developer Console)
 ```
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript blocks had no Lexical Environments. And `var` is a remnant of that.
+如同我們所見，`var` 穿透了 `if`、`for` 或其他區塊。這是因為在 JavaScript 中，區塊在很久以前沒有作用域環境 (Lexical Environments)。而 `var` 就是那個時代的遺物。
 
-## "var" declarations are processed at the function start
+## "var" 宣告在函式開始時處理
 
-`var` declarations are processed when the function starts (or script starts for globals).
+`var` 宣告在函式開始時處理 (或全域範圍開始時處理)。
 
-In other words, `var` variables are defined from the beginning of the function, no matter where the definition is (assuming that the definition is not in the nested function).
+換句話說，`var` 變數在函式開始時就被定義了，不管它的定義在哪裡 (假設定義不在巢狀函式中)。
 
-So this code:
+這段程式碼：
 
 ```js run
 function sayHi() {
@@ -115,7 +118,7 @@ function sayHi() {
 sayHi();
 ```
 
-...Is technically the same as this (moved `var phrase` above):
+...技術上與這個程式碼相同 (將 `var phrase` 移到上面)：
 
 ```js run
 function sayHi() {
@@ -157,7 +160,7 @@ That's best demonstrated with an example:
 
 ```js run
 function sayHi() {
-  alert(phrase);  
+  alert(phrase);
 
 *!*
   var phrase = "Hello";
@@ -203,12 +206,10 @@ That's not something we should use nowadays, but you can find them in old script
 An IIFE looks like this:
 
 ```js run
-(function() {
-
+(function () {
   let message = "Hello";
 
   alert(message); // Hello
-
 })();
 ```
 
