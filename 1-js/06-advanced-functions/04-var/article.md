@@ -79,7 +79,7 @@ alert(i); // 10, "i" 在迴圈結束後仍存在，它是全域變數
 ```
 
 If a code block is inside a function, then `var` becomes a function-level variable:
-如果一個區塊在函式內部，那麼 `var` 就會變成函式級別的變數：
+如果一個區塊在函式內部，那麼 `var` 就會變成函式層級的變數：
 
 ```js run
 function sayHi() {
@@ -91,7 +91,7 @@ function sayHi() {
 }
 
 sayHi();
-alert(phrase); // Error: phrase is not defined (Check the Developer Console)
+alert(phrase); // Error: phrase is not defined (可透過開發者工具查看)
 ```
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript blocks had no Lexical Environments. And `var` is a remnant of that.
@@ -133,7 +133,7 @@ function sayHi() {
 sayHi();
 ```
 
-...Or even as this (remember, code blocks are ignored):
+...或者這樣 (記住，區塊是被忽略的)：
 
 ```js run
 function sayHi() {
@@ -150,13 +150,13 @@ function sayHi() {
 sayHi();
 ```
 
-People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+人們也稱這種行為作 "hoisting" (提升)，因為所有的 `var` 都被 "hoisted" (提升) 到函式的頂部。
 
-So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
+因此在上面的例子中，`if (false)` 分支永遠不會執行，但這並不重要。它內部的 `var` 在函式開始時就被處理了，所以在 `(*)` 的時候變數已經存在了。
 
-**Declarations are hoisted, but assignments are not.**
+**宣告 (declarations) 會被提升，但賦值 (assignments) 不會。**
 
-That's best demonstrated with an example:
+這個例子可以很好地說明：
 
 ```js run
 function sayHi() {
@@ -170,40 +170,40 @@ function sayHi() {
 sayHi();
 ```
 
-The line `var phrase = "Hello"` has two actions in it:
+`var phrase = "Hello"` 這一行有兩個動作：
 
-1. Variable declaration `var`
-2. Variable assignment `=`.
+1. 變數宣告 `var`
+2. 變數賦值 `=`.
 
-The declaration is processed at the start of function execution ("hoisted"), but the assignment always works at the place where it appears. So the code works essentially like this:
+宣告在函式開始時處理 (提升)，但賦值總是在它出現的地方處理。所以程式碼實際上像這樣運作：
 
 ```js run
 function sayHi() {
 *!*
-  var phrase; // declaration works at the start...
+  var phrase; // 宣告在函式開始時處理...
 */!*
 
   alert(phrase); // undefined
 
 *!*
-  phrase = "Hello"; // ...assignment - when the execution reaches it.
+  phrase = "Hello"; // ...賦值 - 當程式執行到這裡時
 */!*
 }
 
 sayHi();
 ```
 
-Because all `var` declarations are processed at the function start, we can reference them at any place. But variables are undefined until the assignments.
+因為所有的 `var` 宣告都在函式開始時處理，所以我們可以在任何地方引用它們。但是變數在賦值之前都是未定義的。
 
-In both examples above `alert` runs without an error, because the variable `phrase` exists. But its value is not yet assigned, so it shows `undefined`.
+在上面的兩個例子中，`alert` 都沒有錯誤，因為變數 `phrase` 存在。但它的值還沒有被賦值，所以它顯示 `undefined`。
 
 ### IIFE
 
-As in the past there was only `var`, and it has no block-level visibility, programmers invented a way to emulate it. What they did was called "immediately-invoked function expressions" (abbreviated as IIFE).
+過去只有 `var`，而且它沒有區塊層級的可見性，所以程式設計師發明了一種模擬它的方式，被稱為 "立即呼叫函式 (immediately-invoked function expressions)"。
 
-That's not something we should use nowadays, but you can find them in old scripts.
+這不是我們現在應該使用的東西，但你可以在舊的腳本中找到它們。
 
-An IIFE looks like this:
+一個 IIFE 看起來像這樣：
 
 ```js run
 (function () {
@@ -213,12 +213,12 @@ An IIFE looks like this:
 })();
 ```
 
-Here a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
+這裡建立了一個函式表達式 (Function Expression) 並立即呼叫它。所以程式碼立即執行，並且有它自己的私有變數。
 
-The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript meets `"function"` in the main code flow, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
+函式表達式被括號 `(function {...})` 包裹，因為當 JavaScript 在主程式碼中遇到 `"function"` 時，它會將其視為函式宣告的開始。但是函式宣告必須有名字，所以這種程式碼會出錯：
 
 ```js run
-// Try to declare and immediately call a function
+// 嘗試宣告並立即呼叫函式
 function() { // <-- Error: Function statements require a function name
 
   let message = "Hello";
@@ -228,21 +228,21 @@ function() { // <-- Error: Function statements require a function name
 }();
 ```
 
-Even if we say: "okay, let's add a name", that won't work, as JavaScript does not allow Function Declarations to be called immediately:
+即使我們說："好吧，那就加一個名字"，但這也不會起作用，因為 JavaScript 不允許立即呼叫函式宣告：
 
 ```js run
-// syntax error because of parentheses below
+// 因為下面的括號而導致語法錯誤
 function go() {
 
-}(); // <-- can't call Function Declaration immediately
+}(); // <-- 不能立即呼叫函式宣告
 ```
 
-So, the parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
+因此，函式周圍的括號是一個技巧，可以告訴 JavaScript 函式是在另一個表達式的上下文中建立的，因此它是一個函式表達式：它不需要名字，並且可以立即呼叫。
 
-There exist other ways besides parentheses to tell JavaScript that we mean a Function Expression:
+除了括號之外，還有其他方法可以告訴 JavaScript 我們的意思是函式表達式：
 
 ```js run
-// Ways to create IIFE
+// 建立 IIFE 的其他方式
 
 (function() {
   alert("Parentheses around the function");
@@ -261,15 +261,15 @@ There exist other ways besides parentheses to tell JavaScript that we mean a Fun
 }();
 ```
 
-In all the above cases we declare a Function Expression and run it immediately. Let's note again: nowadays there's no reason to write such code.
+在上述所有情況下，我們都宣告了一個函式表達式並立即執行它。再次注意：現在沒有理由寫這樣的程式碼。
 
-## Summary
+## 結論
 
-There are two main differences of `var` compared to `let/const`:
+相較於 `let/const`，`var` 有兩個主要的差異：
 
-1. `var` variables have no block scope, they are visible minimum at the function level.
-2. `var` declarations are processed at function start (script start for globals).
+1. `var` 變數沒有區塊區塊作用域，它們至少在函式層級可見。
+2. `var` 宣告在函式開始時處理 (全域範圍開始時處理)。
 
-There's one more very minor difference related to the global object, that we'll cover in the next chapter.
+還有一個與全域物件 (global object) 有關的非常小的差異，我們將在下一章中介紹。
 
-These differences make `var` worse than `let` most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
+這些差異使得 `var` 大多數時候比 `let` 差。區塊層級的變數是一件很棒的事情。這就是為什麼 `let` 很久以前就被引入標準中，並且現在是宣告變數的主要方式之一 (與 `const` 一起)。
