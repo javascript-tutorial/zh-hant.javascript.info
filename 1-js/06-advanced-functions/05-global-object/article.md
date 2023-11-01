@@ -1,19 +1,18 @@
+# 全域物件 (Global object)
 
-# Global object
+全域物件提供可以在任何地方使用的變數和函式。預設情況下，這些變數和函式是內建在語言或環境中的。
 
-The global object provides variables and functions that are available anywhere. By default, those that are built into the language or the environment.
+在瀏覽器中，它的名稱是 `window`，在 Node.js 中是 `global`，在其他環境中可能有其他名稱。
 
-In a browser it is named `window`, for Node.js it is `global`, for other environments it may have another name.
+近期，`globalThins` 被加入到語言中，作為一個全域物件的標準名稱，所有主流環境中均應該支援。但在某些瀏覽器中，特別是非 Chromium Edge，雖尚未支援 `globalThis`，但可以很容易地進行 polyfilled。
 
-Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. In some browsers, namely non-Chromium Edge, `globalThis` is not yet supported, but can be easily polyfilled.
+這裡我們將使用 `window`，假設我們的環境是瀏覽器。如果你的腳本可能在其他環境中執行，最好使用 `globalThis`。
 
-We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
-
-All properties of the global object can be accessed directly:
+所有全域物件的屬性都可以直接存取：
 
 ```js run
 alert("Hello");
-// is the same as
+// 與以下相同
 window.alert("Hello");
 ```
 
@@ -60,6 +59,7 @@ That said, using global variables is generally discouraged. There should be as f
 We use the global object to test for support of modern language features.
 
 For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
+
 ```js run
 if (!window.Promise) {
   alert("Your browser is really old!");
@@ -78,10 +78,12 @@ if (!window.Promise) {
 
 - The global object holds variables that should be available everywhere.
 
-    That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
+  That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
+
 - The global object has a universal name `globalThis`.
 
-    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
+  ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
+
 - We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
 - In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
 - To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
