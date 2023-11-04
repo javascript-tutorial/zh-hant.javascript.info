@@ -1,87 +1,89 @@
+# 全域物件 (Global object)
 
-# Global object
+全域物件提供可以在任何地方使用的變數和函式。預設情況下，這些變數和函式是內建在語言或環境中的。
 
-The global object provides variables and functions that are available anywhere. By default, those that are built into the language or the environment.
+在瀏覽器中，它的名稱是 `window`，在 Node.js 中是 `global`，在其他環境中可能有其他名稱。
 
-In a browser it is named `window`, for Node.js it is `global`, for other environments it may have another name.
+近期，`globalThins` 被加入到語言中，作為一個全域物件的標準名稱，所有主流環境中均應該支援。但在某些瀏覽器中，特別是非 Chromium Edge，雖尚未支援 `globalThis`，但可以很容易地進行 polyfilled。
 
-Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. In some browsers, namely non-Chromium Edge, `globalThis` is not yet supported, but can be easily polyfilled.
+這裡我們將使用 `window`，假設我們的環境是瀏覽器。如果你的腳本可能在其他環境中執行，最好使用 `globalThis`。
 
-We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
-
-All properties of the global object can be accessed directly:
+所有全域物件的屬性都可以直接存取：
 
 ```js run
 alert("Hello");
-// is the same as
+// 與以下相同
 window.alert("Hello");
 ```
 
-In a browser, global functions and variables declared with `var` (not `let/const`!) become the property of the global object:
+在一個瀏覽器，使用 `var` (不是 `let/const`!) 宣告的全域函式和變數，會成為全域物件的屬性：
 
 ```js run untrusted refresh
 var gVar = 5;
 
-alert(window.gVar); // 5 (became a property of the global object)
+alert(window.gVar); // 5 (變數成為全域物件的屬性)
 ```
 
-Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
+請不要依賴這個方式！這個行為是為了相容性而存在的。現代腳本使用 [JavaScript modules](info:modules)，來避免這種事情的發生。
 
-If we used `let` instead, such thing wouldn't happen:
+如果我們使用 `let`，這種事情就不會發生：
 
 ```js run untrusted refresh
 let gLet = 5;
 
-alert(window.gLet); // undefined (doesn't become a property of the global object)
+alert(window.gLet); // undefined (沒有成為全域物件的屬性)
 ```
 
-If a value is so important that you'd like to make it available globally, write it directly as a property:
+如果有一個值重要到你想要讓它在全域物件中使用，直接寫成屬性：
 
 ```js run
 *!*
-// make current user information global, to let all scripts access it
+// 使目前使用者資訊成為全域物件，讓所有腳本都可以存取
 window.currentUser = {
   name: "John"
 };
 */!*
 
-// somewhere else in code
+// 在其他腳本中
 alert(currentUser.name);  // John
 
-// or, if we have a local variable with the name "currentUser"
-// get it from window explicitly (safe!)
+// 或者，如果我們有一個叫做 "currentUser" 的本地變數
+// 從全域物件中取得它 (是安全的！)
 alert(window.currentUser.name); // John
 ```
 
-That said, using global variables is generally discouraged. There should be as few global variables as possible. The code design where a function gets "input" variables and produces certain "outcome" is clearer, less prone to errors and easier to test than if it uses outer or global variables.
+這樣說來，使用全域變數通常是不鼓勵的。應該盡可能少使用全域變數。一個函式接收"輸入"變數並產生某些"結果"的程式設計，比起使用外部或全域變數，更清楚、更不容易出錯，也更容易測試。
 
-## Using for polyfills
+## 使用 polyfills
 
-We use the global object to test for support of modern language features.
+我們使用全域物件來測試對現代語言特性的支援。
 
-For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
+例如，測試內建的 `Promise` 物件是否存在 (在舊的瀏覽器中並不存在)：
+
 ```js run
 if (!window.Promise) {
   alert("Your browser is really old!");
 }
 ```
 
-If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by the environment, but exist in the modern standard.
+如果沒有 (例如，我們在舊的瀏覽器中)，我們可以建立"polyfills"：加入一些在現代標準中存在，但環境不支援的函式。
 
 ```js run
 if (!window.Promise) {
-  window.Promise = ... // custom implementation of the modern language feature
+  window.Promise = ...// 自訂的現代語言特性實作
 }
 ```
 
-## Summary
+## 結論
 
-- The global object holds variables that should be available everywhere.
+- 全域物件包含所有環境中的內建變數。
 
-    That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
-- The global object has a universal name `globalThis`.
+  包含 JavaScript 內建的例如 `Array` 和環境特定的值，例如 `window.innerHeight` - 瀏覽器中的視窗高度。
 
-    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
-- We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
-- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
-- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
+- 全域物件有一個通用的名稱 `globalThis`。
+
+  ...但更常見的是使用"舊的"環境特定名稱，例如 `window` (瀏覽器) 和 `global` (Node.js)。因為 `globalThis` 是最近的提案，所以在非 Chromium Edge 中並不支援 (但可以 polyfilled)。
+
+- 我們應該只在真的需要時，才將值儲存在全域物件中。並且盡可能減少數量。
+- 在瀏覽器中，除非我們使用 [modules](info:modules)，否則使用 `var` 宣告的全域函式和變數，會成為全域物件的屬性。
+- 為了讓我們的程式碼具有未來的擴充性，並且更容易理解，我們應該直接存取全域物件的屬性，例如 `window.x`。
