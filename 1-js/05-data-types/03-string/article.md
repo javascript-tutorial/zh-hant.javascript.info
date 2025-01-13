@@ -49,9 +49,15 @@ let guestList = "Guests: // 錯誤：意料之外的令牌（標記、符號） 
   * John";
 ```
 
+<<<<<<< HEAD
 單引號和雙引號來自創造語言的古早時代，當時沒有考慮對多行字串的需求。 反引號出現得較晚，因此用途更廣。
 
 反引號還允許我們，在第一個反引號前指定 "模板功能 (template function)"。 語法為 <code>func&#96;string&#96;</code>。 函數 `func` 會被自動調用，接收字串和嵌入式表達式並處理他們，這稱為 "標記模板 (tagged templates)"。 此功能使實現自定義模板更加容易，但很少在實踐中使用。您可以在 [手冊](mdn:/JavaScript/Reference/Template_literals#Tagged_templates) 中了解更多信息。
+=======
+Single and double quotes come from ancient times of language creation, when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
+
+Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This feature is called "tagged templates", it's rarely seen, but you can read about it in the MDN: [Template literals](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 ## 特殊字元
@@ -61,10 +67,17 @@ let guestList = "Guests: // 錯誤：意料之外的令牌（標記、符號） 
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
 
+<<<<<<< HEAD
 alert(guestList); // 一個多行的來賓列表
 ```
 
 例如， 這兩行做法是相同的，只是書寫方式不同：
+=======
+alert(guestList); // a multiline list of guests, same as above
+```
+
+As a simpler example, these two lines are equal, just written differently:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let str1 = "Hello\nWorld"; // 使用一個 "換行符" 創建的兩行字串
@@ -76,12 +89,17 @@ World`;
 alert(str1 == str2); // true
 ```
 
+<<<<<<< HEAD
 還有其他一些不太常見的 "特殊" 字元。
 
 這裡是完整的列表：
+=======
+There are other, less common special characters:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 | 字元 | 描述 |
 |-----------|-------------|
+<<<<<<< HEAD
 |`\n`| 換行、新行|
 |`\r`| 回車：不單獨使用。 Windows 純文字檔案使用兩個字元組合 `\r\n` 來表示換行。 |
 |`\'`, `\"`| 引號。|
@@ -103,6 +121,24 @@ alert( "\u{1F60D}" ); // 😍, 一個笑臉符號（另一個長的 unicode）
 所有特殊字元均以反斜槓字元 `\` 開頭。也稱為 "跳脫字元"。
 
 當我們想在字串中安插引號，也可以使用它。
+=======
+|`\n`|New line|
+|`\r`|In Windows text files a combination of two characters `\r\n` represents a new break, while on non-Windows OS it's just `\n`. That's for historical reasons, most Windows software also understands `\n`. |
+|`\'`,&nbsp;`\"`,&nbsp;<code>\\`</code>|Quotes|
+|`\\`|Backslash|
+|`\t`|Tab|
+|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- mentioned for completeness, coming from old times, not used nowadays (you can forget them right now). |
+
+As you can see, all special characters start with a backslash character `\`. It is also called an "escape character".
+
+Because it's so special, if we need to show an actual backslash `\` within the string, we need to double it:
+
+```js run
+alert( `The backslash: \\` ); // The backslash: \
+```
+
+So-called "escaped" quotes `\'`, `\"`, <code>\\`</code> are used to insert a quote into the same-quoted string.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 例如：
 
@@ -112,12 +148,17 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 就像你看到的，我們必須在內部的引號前加上反斜槓 `\`，否則它將結束字串。
 
+<<<<<<< HEAD
 當然，只有跟該封閉引號相同的引號才需要跳脫。因此，作為更優雅的解決方案，我們可以轉為使用雙引號或反引號：
+=======
+Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
-alert( `I'm the Walrus!` ); // I'm the Walrus!
+alert( "I'm the Walrus!" ); // I'm the Walrus!
 ```
 
+<<<<<<< HEAD
 請注意，反斜槓 `\` 是為了使 JavaScript 正確讀取字串，然後就消失。儲存的字串中沒有 `\`。你可以在上面的 `alert` 範例中，清楚地看到這點。
 
 但若我們需要在字串中顯示實際的反斜槓 `\` 怎麼辦？
@@ -127,6 +168,9 @@ alert( `I'm the Walrus!` ); // I'm the Walrus!
 ```js run
 alert( `The backslash: \\` ); // The backslash: \
 ```
+=======
+Besides these special characters, there's also a special notation for Unicode codes `\u…`, it's rarely used and is covered in the optional chapter about [Unicode](info:unicode).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## 字串長度
 
@@ -141,33 +185,55 @@ alert( `My\n`.length ); // 3
 ```warn header="`length` 是一個屬性"
 有其他程式語言背景的人，有時會打字錯誤，用 `str.length()` 而不是 `str.length`。那是行不通的。
 
+<<<<<<< HEAD
 請注意，`str.length` 是數值屬性，而不是函數，不需在後面添加括號。
+=======
+Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it. Not `.length()`, but `.length`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 ## 訪問字元
 
+<<<<<<< HEAD
 在位置 `pos` 取一個字元，請使用方括號 `[pos]` 或調用方法 [str.charAt(pos)](mdn:js/String/charAt)。 第一個字元是由位置零開始：
+=======
+To get a character at position `pos`, use square brackets `[pos]` or call the method [str.at(pos)](mdn:js/String/at). The first character starts from the zero position:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let str = `Hello`;
 
 // 第一個字元
 alert( str[0] ); // H
-alert( str.charAt(0) ); // H
+alert( str.at(0) ); // H
 
 // 最後一個字元
 alert( str[str.length - 1] ); // o
+alert( str.at(-1) );
 ```
 
+<<<<<<< HEAD
 使用方括號，是獲取字元的現代化方式，而 `charAt` 的存在主要出於歷史性原因。
 
 它們之間的唯一區別是，如果找不到字元，則 `[]` 將返回 `undefined`，而 `charAt` 返回一個空字串：
+=======
+As you can see, the `.at(pos)` method has a benefit of allowing negative position. If `pos` is negative, then it's counted from the end of the string.
+
+So `.at(-1)` means the last character, and `.at(-2)` is the one before it, etc.
+
+The square brackets always return `undefined` for negative indexes, for instance:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let str = `Hello`;
 
+<<<<<<< HEAD
 alert( str[1000] ); // undefined
 alert( str.charAt(1000) ); // '' (一個空字串)
+=======
+alert( str[-2] ); // undefined
+alert( str.at(-2) ); // l
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 我們也可以使用 `for..of` 來迭代過每個字元
@@ -216,7 +282,7 @@ alert( 'Interface'.toLowerCase() ); // interface
 
 或者，我們想要一個單獨的小寫字元：
 
-```js
+```js run
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
@@ -241,7 +307,11 @@ alert( str.indexOf('widget') ); // -1，沒找到，檢索是有區分大小寫�
 alert( str.indexOf("id") ); // 1, "id" 在索引位置 "1" 處就被找到 (..idget 中的 id) 。
 ```
 
+<<<<<<< HEAD
 第二個參數是可選的，允許我們從給定的位置開始檢索。
+=======
+The optional second parameter allows us to start searching from a given position.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 舉例來說，`"id"` 第一次出現的位置是 `1`，要尋找下一個，我們從位置 `2` 開始找。
 
@@ -312,6 +382,7 @@ if (str.indexOf("Widget") != -1) {
 }
 ```
 
+<<<<<<< HEAD
 #### 按位（bitwise）NOT 技巧
 
 這裡使用一個古老的技巧， [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` 運算子。它將數字轉換為一個 32 位元 （32-bit）的整數（如果有小數點則全部捨棄），然後反轉它的二進製表示中的所有位元。
@@ -351,6 +422,8 @@ if (~str.indexOf("Widget")) {
 
 現在，我們只能在舊程式碼中看到此技巧，因為現代 JavaScript 提供了 `.includes` 方法（見下文）。
 
+=======
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ### includes, startsWith, endsWith
 
 更現代的方法 [str.includes(substr, pos)](mdn:js/String/includes) 會根據 `str` 中是否包含 `substr` 來回傳 `true/false`。
@@ -373,8 +446,13 @@ alert( "Widget".includes("id", 3) ); // false, 從索引位置 3 開始檢索不
 方法 [str.startsWith](mdn:js/String/startsWith) 和 [str.endsWith](mdn:js/String/endsWith) 完全如它們所說：
 
 ```js run
+<<<<<<< HEAD
 alert( "Widget".startsWith("Wid") ); // true, "Widget" 以 "Wid" 開始
 alert( "Widget".endsWith("get") ); // true, "Widget" 以 "get" 結尾
+=======
+alert( "*!*Wid*/!*get".startsWith("Wid") ); // true, "Widget" starts with "Wid"
+alert( "Wid*!*get*/!*".endsWith("get") ); // true, "Widget" ends with "get"
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 ## 取得一個子字串
@@ -410,9 +488,16 @@ alert( str.slice(-4, -1) ); // 'gif'
 `str.substring(start [, end])` :
 回傳該字串 `start` 和 `end` *之間* 的部分。
 
+<<<<<<< HEAD
 它幾乎與 `slice` 一樣，但它允許 `start` 可以大於 `end`。
 
 例如：
+=======
+`str.substring(start [, end])`
+: Returns the part of the string *between* `start` and `end` (not including `end`).
+
+    This is almost the same as `slice`, but it allows `start` to be greater than `end` (in this case it simply swaps `start` and `end` values).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let str = "st*!*ring*/!*ify";
@@ -447,16 +532,39 @@ alert( str.substr(-4, 2) ); // 'gi', 從位置 4 開始取 2 個字元
 
 讓我們回顧一下這些方法，以免混淆：
 
+<<<<<<< HEAD
 | 方法 | 選擇器 | 負號參數 |
 |--------|-----------|-----------|
 | `slice(start, end)` | 從 `start` 到 `end` (不包含 `end`) | 允許負號參數 |
 | `substring(start, end)` | `start` 與 `end` 之間 | 負號參數視為 `0`|
 | `substr(start, length)` | 從 `start` 取 `length` 個字元 | 允許 `start` 為負數 |
+=======
+    ```js run
+    let str = "strin*!*gi*/!*fy";
+    alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
+    ```
+
+    This method resides in the [Annex B](https://tc39.es/ecma262/#sec-string.prototype.substr) of the language specification. It means that only browser-hosted Javascript engines should support it, and it's not recommended to use it. In practice, it's supported everywhere.
+
+Let's recap these methods to avoid any confusion:
+
+| method | selects... | negatives |
+|--------|-----------|-----------|
+| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
+| `substring(start, end)` | between `start` and `end` (not including `end`)| negative values mean `0` |
+| `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```smart header="使用哪一個？"
 它們都可以勝任工作。從形式上看，`substr` 有個小缺點：它不是在 JavaScript 的核心規範中被描述，而是寫在附件 B 中，它涵蓋了主要由於歷史因素而存在的瀏覽器特性。因此，非瀏覽器環境可能無法支持它，但實際上它在任何地方都可運作。
 
+<<<<<<< HEAD
 另外兩個變種，`slice` 更靈活一點，它允許負號參數，且寫得短些。所以只要記住這三個方法中的 `slice` 就夠了。
+=======
+Of the other two variants, `slice` is a little bit more flexible, it allows negative arguments and shorter to write.
+
+So, for practical use it's enough to remember only `slice`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 ## Comparing strings 比對字串
@@ -479,6 +587,7 @@ alert( str.substr(-4, 2) ); // 'gi', 從位置 4 開始取 2 個字元
 
     這可能導致奇怪的結果，如果我們排序這些國名，一般人們會認為列表中 `Zealand` 會排在 `Österreich` 之後。
 
+<<<<<<< HEAD
 為了明白發生什麼事，我們回顧一下 JavaScript 中，字串的內部表現形式。
 
 所有字串都是用 [UTF-16](https://en.wikipedia.org/wiki/UTF-16) 編碼的。即：每一個字元都有一個對應的數字代碼。有一些特殊的方法可以獲取代碼表示的字符，以及字符對應的代碼。
@@ -491,10 +600,26 @@ alert( str.substr(-4, 2) ); // 'gi', 從位置 4 開始取 2 個字元
 alert( "z".codePointAt(0) ); // 122
 alert( "Z".codePointAt(0) ); // 90
 ```
+=======
+To understand what happens, we should be aware that strings in Javascript are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code.
+
+There are special methods that allow to get the character for the code and back:
+
+`str.codePointAt(pos)`
+: Returns a decimal number representing the code for the character at position `pos`:
+
+    ```js run
+    // different case letters have different codes
+    alert( "Z".codePointAt(0) ); // 90
+    alert( "z".codePointAt(0) ); // 122
+    alert( "z".codePointAt(0).toString(16) ); // 7a (if we need a hexadecimal value)
+    ```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 `String.fromCodePoint(code)`：
 用字元的代碼數字 `code` 創建字元
 
+<<<<<<< HEAD
 ```js run
 alert( String.fromCodePoint(90) ); // Z
 ```
@@ -505,6 +630,12 @@ alert( String.fromCodePoint(90) ); // Z
 // 在十六進制系統中 90 為 5a
 alert( '\u005a' ); // Z
 ```
+=======
+    ```js run
+    alert( String.fromCodePoint(90) ); // Z
+    alert( String.fromCodePoint(0x5a) ); // Z (we can also use a hex value as an argument)
+    ```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 現在我們來看代碼 `60..220` 的字元（拉丁字母和一些額外的字元）方法是用它們創建一個字串：
 
@@ -515,6 +646,7 @@ for (let i = 65; i <= 220; i++) {
   str += String.fromCodePoint(i);
 }
 alert( str );
+// Output:
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
@@ -525,16 +657,27 @@ alert( str );
 
 字元通過它們的數字代碼進行比較。代碼較大表示該字元較大。 `a` 代碼 (97) 大於 `Z` 代碼 (90)。
 
+<<<<<<< HEAD
 - 所有小寫字母都在大寫字母後面，因為它們的代碼更大。
 - 一些字母像是 `Ö` 與主要字母分開。在這裏，它的代碼比從 `a` 到 `z` 的任何字元代碼都大。
 
 ### Correct comparisons 正確的比較
+=======
+- All lowercase letters go after uppercase letters because their codes are greater.
+- Some letters like `Ö` stand apart from the main alphabet. Here, its code is greater than anything from `a` to `z`.
+
+### Correct comparisons [#correct-comparisons]
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 執行字串比較，"正確" 的演算法比看起來更複雜，因為不同語言的字母是不同的。
 
 所以，瀏覽器需要知道要比較的語言是什麼。
 
+<<<<<<< HEAD
 幸運的是，所有現代瀏覽器（IE10 -- 需要額外的函式庫 [Intl.JS](https://github.com/andyearnshaw/Intl.js/)）都支援國際化標準 [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf)。
+=======
+Luckily, modern browsers support the internationalization standard [ECMA-402](https://www.ecma-international.org/publications-and-standards/standards/ecma-402/).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 It provides a special method to compare strings in different languages, following their rules.
 它提供一種特殊方法來比較不同的語言的字串，遵循語言的規則。
@@ -553,6 +696,7 @@ alert( 'Österreich'.localeCompare('Zealand') ); // -1
 
 這個方法實際上在 [此文件](mdn:js/String/localeCompare) 指定了兩個額外的參數，它允許指定語言（預設會在環境中獲取語言，字母順序會根據語言不同）並設定額外規則，像是區分大小寫，或是否將 `"a"` 和 `"á"` 視為相同等等。
 
+<<<<<<< HEAD
 ## 內部的, Unicode
 
 ```warn header="進階知識"
@@ -672,10 +816,31 @@ alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 - 字串大小寫轉換，使用：`toLowerCase/toUpperCase`。
 - 要搜尋一個子字串，使用： `indexOf`，或用 `includes/startsWith/endsWith` 來做簡單的確認。
 - 要依據語言比較字串時使用：`localeCompare`，否則將使用字元編碼比較
+=======
+## Summary
+
+- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
+- We can use special characters, such as a line break `\n`.
+- To get a character, use: `[]` or `at` method.
+- To get a substring, use: `slice` or `substring`.
+- To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
+- To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
+- To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 關於字串，其他ㄧ些有用的方法：
 
+<<<<<<< HEAD
 - `str.trim()` -- 移除 ("trims") 字串前後的空格。
 - `str.repeat(n)` -- 重複該字串 `n` 次。
 - ...更多內容請參考 [manual 手冊](mdn:js/String).
 字串也有使用正則表達式進行 檢索/替換 的方法。但這是個大主題，因此，將在一個單獨的教程章節 <info:regular-expressions> 中說明。
+=======
+- `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
+- `str.repeat(n)` -- repeats the string `n` times.
+- ...and more to be found in the [manual](mdn:js/String).
+
+Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
+
+Also, as of now it's important to know that strings are based on Unicode encoding, and hence there're issues with comparisons. There's more about Unicode in the chapter <info:unicode>.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
