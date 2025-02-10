@@ -24,7 +24,11 @@ let message;
 let message;
 
 *!*
+<<<<<<< HEAD
 message = 'Hello'; // 儲存該字串
+=======
+message = 'Hello'; // store the string 'Hello' in the variable named message
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 */!*
 ```
 
@@ -63,7 +67,11 @@ let age = 25;
 let message = 'Hello';
 ```
 
+<<<<<<< HEAD
 有些人也會這樣子來宣告多行變數：
+=======
+Some people also define multiple variables in this multiline style:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js no-beautify
 let user = 'John',
@@ -81,23 +89,38 @@ let user = 'John'
 
 技術上來說，這些變化在都做一樣的事，所以這只是個人的喜好與美學而已。
 
+<<<<<<< HEAD
 ````smart header="用 `var` 而非 `let`"
 在一些較舊的腳本中，你也許會發現另一個關鍵字：`var` 而非 `let`：
+=======
+````smart header="`var` instead of `let`"
+In older scripts, you may also find another keyword: `var` instead of `let`:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js
 *!*var*/!* message = 'Hello';
 ```
 
+<<<<<<< HEAD
 `var` 關鍵字 *幾乎* 等同於 `let`，它一樣宣告變數，但有一點點的那麼 "老派" 的差異。
 
 `let` 和 `var` 之間有著微妙的差異，但現在對我們來說還沒什麼，我們將會在 <info:var> 這個章節內涵蓋這些細節。
+=======
+The `var` keyword is *almost* the same as `let`. It also declares a variable but in a slightly different, "old-school" way.
+
+There are subtle differences between `let` and `var`, but they do not matter to us yet. We'll cover them in detail in the chapter <info:var>.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ````
 
 ## 一個現實世界的比喻
 
 若把它想像成一個上面貼有獨特命名貼紙的資料 "盒"，我們可以更簡單地掌握 "變數" 這個概念。
 
+<<<<<<< HEAD
 例如，變數 `message` 可以被想像成一個被標註上 `"message"` 的盒子，裡面裝著 `"Hello!"` 的值：
+=======
+For instance, the variable `message` can be imagined as a box labelled `"message"` with the value `"Hello!"` in it:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ![](variable.svg)
 
@@ -105,6 +128,11 @@ let user = 'John'
 
 我們也可以隨意改變放入的值：
 
+<<<<<<< HEAD
+=======
+We can also change it as many times as we want:
+
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ```js run
 let message;
 
@@ -136,12 +164,35 @@ alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
+<<<<<<< HEAD
 ```smart header="函數式語言（Functional languages）"
 值得注意的是，有種叫 [函式編程（functional programming）](https://en.wikipedia.org/wiki/Functional_programming) 的語言，像是 [Scala](http://www.scala-lang.org/) 或 [Erlang](http://www.erlang.org/)，禁止更改變數值。
+=======
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we should declare a variable once and then refer to it without `let`.
+````
+
+```smart header="Functional languages"
+It's interesting to note that there exist so-called [pure functional](https://en.wikipedia.org/wiki/Purely_functional_programming) programming languages, such as [Haskell](https://en.wikipedia.org/wiki/Haskell), that forbid changing variable values.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 在這些語言中，一旦值被 "裝箱" 就永遠在那了，如果我們需要存到別的地方，這種語言強制我們建立一個新的箱子（宣告一個新變數），我們不能再使用舊的。
 
+<<<<<<< HEAD
 雖然第一次看起來有點怪，但這些語言更有足夠能力勝任正規的開發，甚至在像是平行計算的領域內，有這些限制反而更好。建議可以研讀一門這樣的語言（即使你近期還沒打算開始用），有助於增廣見聞。
+=======
+Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ```
 
 ## 變數命名 [#variable-naming]
@@ -179,19 +230,32 @@ let 1a; // 不能以數字開頭
 let my-name; // 連字號 '-' 不能用於命名
 ```
 
+<<<<<<< HEAD
 ```smart header="大小寫有差"
 用 `apple` 和 `AppLE` 命名的變數是不同的。
 ```
 
 ````smart header="可以使用非拉丁字母，但並不建議"
 可以使用任意語言，包括西里爾（cyrillic）字母甚至象形文字，像這樣：
+=======
+```smart header="Case matters"
+Variables named `apple` and `APPLE` are two different variables.
+```
+
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including Cyrillic letters, Chinese logograms and so on, like this:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js
 let имя = '...';
 let 我 = '...';
 ```
 
+<<<<<<< HEAD
 技術上這樣不會有問題，這些名稱都是被允許的，但國際傳統是使用英文來命名。就算我們只是寫個很小的腳本，它可能也會存活很久，到時其他國家的人也許會需要閱讀它。
+=======
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it sometime.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ````
 
 ````warn header="保留字（Reserved names）"
@@ -244,13 +308,21 @@ const myBirthday = '18.04.1982';
 myBirthday = '01.01.2001'; // 錯誤，不能對常數重新賦值！
 ```
 
+<<<<<<< HEAD
 當程式設計師確認一個變數將不會再被更動，就可以用 `const` 宣告它以確保並清楚地告知他人這件事。
 
 ### 大寫常數
+=======
+When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and communicate that fact to everyone.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 有個普遍的做法是，使用常數作為那些執行程式前就已知有夠難記的值的別名。
 
+<<<<<<< HEAD
 這些常數使用大寫字母與底線來命名。
+=======
+There is a widespread practice to use constants as aliases for difficult-to-remember values that are known before execution.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 例如，使用常數來代表那些被稱為 "web"（十六進位）格式的顏色：
 
@@ -273,16 +345,29 @@ alert(color); // #FF7F00
 
 什麼時候我們該使用大寫命名常數，什麼時候正常命名就好？讓我們弄更清楚吧。
 
+<<<<<<< HEAD
 作為一個 "常數" 就代表變數的值永不再變動，但有些常數是早在執行程式前就已知的（像代表紅色的十六進位數值），而有些要在執行時期才內被 *計算* 出來，但在賦予值之後就不會被更動。
 
 例如：
+=======
+Being a "constant" just means that a variable's value never changes. But some constants are known before execution (like a hexadecimal value for red) and some constants are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+
+For instance:
+
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ```js
 const pageLoadTime = /* 載入網頁時間 */;
 ```
 
+<<<<<<< HEAD
 `pageLoadTime` 的值在載入頁面之前是未知的，所以用正常命名就好。但它依然是一個常數，因為被給定值後就不會再變動。
 
 換句話說，大寫命名的常數只作為那些 "被寫死" 的值的別名。
+=======
+The value of `pageLoadTime` is not known before the page load, so it's named normally. But it's still a constant because it doesn't change after the assignment.
+
+In other words, capital-named constants are only used as aliases for "hard-coded" values.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ## 正確命名變數
 
@@ -290,18 +375,31 @@ const pageLoadTime = /* 載入網頁時間 */;
 
 一個變數名稱應該要有著清楚且明確的含義，用以描述儲存在內的資料。
 
+<<<<<<< HEAD
 變數名稱是學習寫程式的過程中，最重要且困難的技巧之一。一眼掃過變數名稱就可以區分出程式碼是新手還是有經驗的老手寫的。
 
 在真實專案中，大部分時間都花在修改且擴展一套現存的程式碼，而非從頭開始寫完全不相干的東西。當我們做了些其他事情後再回來看某段程式碼時，被良好標示過的資訊會是更易於閱讀的，也就是變數有被很好地命名時。
+=======
+Variable naming is one of the most important and complex skills in programming. A glance at variable names can reveal which code was written by a beginner versus an experienced developer.
+
+In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labelled. Or, in other words, when the variables have good names.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 請在宣告變數前花點時間思考一個變數的正確名字，這麼做將會有很好地回報。
 
 一些最好要遵守的規則是：
 
+<<<<<<< HEAD
 - 使用人類易讀的名字，像是 `userName` 或 `shoppingCart`。
 - 避免使用縮寫或短名稱，像是 `a`、`b` 和 `c`，除非你真的知道你在做什麼。
 - 讓名字盡量具有描述性且精簡。`data` 和 `value` 是不良的例子，這些名字沒有含義，只有在程式碼上下文可以特別清楚知道 `data` 或 `value` 是從哪來時才會較適合使用。
 - 腦中的字彙應該要與團隊保持一致，若一個網站訪客稱為 "user" 那我們就該命名相關的變數為 `currentUser` 或 `newUser` 而非 `currentVisitor` 或 `newManInTown`。
+=======
+- Use human-readable names like `userName` or `shoppingCart`.
+- Stay away from abbreviations or short names like `a`, `b`, and `c`, unless you know what you're doing.
+- Make names maximally descriptive and concise. Examples of bad names are `data` and `value`. Such names say nothing. It's only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
+- Agree on terms within your team and in your mind. If a site visitor is called a "user" then we should name related variables `currentUser` or `newUser` instead of `currentVisitor` or `newManInTown`.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 聽起來很簡單？用聽的當然簡單，但要實際建立一個具描述性且精簡的變數名字就沒那麼簡單，試試看吧。
 

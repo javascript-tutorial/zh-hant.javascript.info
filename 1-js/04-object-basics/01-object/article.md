@@ -2,7 +2,11 @@
 
 如我們從 <info:types> 所知，JavaScript 內有八種資料類型。其中七種被稱為 "原生類型（primitive）"，因為它們的值只包含了單一種東西（是個字串或數值或什麼的）。
 
+<<<<<<< HEAD
 相對的，物件被用來儲存使用鍵配對的多種資料群集與更為複雜的實體。在 JavaScript，物件幾乎滲入該語言的各個方面，所以我們必須在更深入其它主題前先理解物件。
+=======
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 物件可以經由花括號 `{…}` 與一些可選的 *屬性（properties）* 來建立。一個屬性也是一組 "鍵（key）：值（value）" 配對，其中 `key` 是一串字串（也被稱為 "屬性名稱（property name）"），而 `value` 可以是任何東西。
 
@@ -43,7 +47,11 @@ let user = {     // 一個物件
 
 ![user object](object-user.svg)
 
+<<<<<<< HEAD
 我們可以在任意時間增加、移除或讀取檔案。
+=======
+We can add, remove and read files from it at any time.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 屬性值可以使用點號（dot notation）來存取：
 
@@ -61,7 +69,11 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
+<<<<<<< HEAD
 要移除一個屬性，我們可以用 `delete` 運算子：
+=======
+To remove a property, we can use the `delete` operator:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js
 delete user.age;
@@ -102,7 +114,13 @@ let user = {
 user.likes birds = true
 ```
 
+<<<<<<< HEAD
 JavaScript 無法理解這樣的語法。它會解析到 `user.likes`，接者遇到預期外的 `birds` 時，給予語法錯誤。
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` and `_` are allowed).
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 這是因為句點需要鍵是個有效的變數識別符，也就是：沒有空格、不是由數值為開頭，以及不包含特殊字元（`$` 和 `_` 可被允許）。
 
@@ -162,7 +180,11 @@ alert( user.key ) // undefined
 
 ### 計算屬性（Computed properties）
 
+<<<<<<< HEAD
 我們可以在物件字面值使用方括號，這被稱為 *計算屬性（computed properties）*。
+=======
+We can use square brackets in an object literal, when creating an object. That's called *computed properties*.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 舉個例：
 
@@ -203,10 +225,15 @@ let bag = {
 };
 ```
 
+<<<<<<< HEAD
 方括號比點號更為強大，它允許任意屬性名稱和變數，但寫起來也較累贅。
+=======
+Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 所以大多時候，當屬性名稱已知且單純時，用句點就好，而若我們需要某些較複雜的東西時，再轉用方括號即可。
 
+<<<<<<< HEAD
 ````smart header="保留字可被允許用於屬性名稱"
 變數不能使用語言保留字作為名稱，像是 "for"、"let"、"return" 等等。
 
@@ -246,13 +273,24 @@ alert(obj.__proto__); // [object Object]，與預期的不同
 在真正寫程式時我們常使用現存的變數作為屬性名稱的值。
 
 舉個例：
+=======
+## Property value shorthand
+
+In real code, we often use existing variables as values for property names.
+
+For instance:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js run
 function makeUser(name, age) {
   return {
     name: name,
     age: age,
+<<<<<<< HEAD
     // ...其它屬性
+=======
+    // ...other properties
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
   };
 }
 
@@ -268,8 +306,13 @@ alert(user.name); // John
 function makeUser(name, age) {
 *!*
   return {
+<<<<<<< HEAD
     name, // 和 name: name 相同
     age,  // 和 age: age 相同
+=======
+    name, // same as name: name
+    age,  // same as age: age
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
     // ...
   };
 */!*
@@ -286,6 +329,7 @@ let user = {
 >>>
 ```
 
+<<<<<<< HEAD
 ## 屬性值命名限制
 
 屬性值的名稱（keys）必須是字串或是符號（一種特殊類型的識別符，之後會介紹）。
@@ -311,6 +355,17 @@ alert( obj[0] ); // test (同個屬性值)
 但對於物件的屬性值，就沒有這樣的限制。任何的名稱都可以：
 
 ```js run
+=======
+
+## Property names limitations
+
+As we already know, a variable cannot have a name equal to one of the language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction:
+
+```js run
+// these properties are all right
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 let obj = {
   for: 1,
   let: 2,
@@ -320,6 +375,7 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
+<<<<<<< HEAD
 我們可以用任何字串當作鍵值，但有個特殊的屬性值 `__proto__` 由於歷史因素，擁有不同的待遇。
 
 舉例來說，我們沒辦法將一個非物件的值賦值給它：
@@ -346,6 +402,41 @@ alert(obj.__proto__); // [object Object] - 該值是一個物件, 不如預期�
 ## 存在性確認，"in" 運作子
 
 有個值得注意的物件功能是我們可以存取任意屬性，就算屬性不存在也不會有任何錯誤！存取一個不存在的屬性只會回傳 `undefined`，這提供了一個非常常見的方式來檢測屬性是否存在 -- 取得它並跟 undefined 做比較：
+=======
+In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+There's a minor gotcha with a special property named `__proto__`. We can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+We'll cover the special nature of `__proto__` in [subsequent chapters](info:prototype-inheritance), and suggest the [ways to fix](info:prototype-methods) such behavior.
+
+## Property existence test, "in" operator
+
+A notable feature of objects in JavaScript, compared to many other languages, is that it's possible to access any property. There will be no error if the property doesn't exist!
+
+Reading a non-existing property just returns `undefined`. So we can easily test whether the property exists:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js run
 let user = {};
@@ -353,9 +444,13 @@ let user = {};
 alert( user.noSuchProperty === undefined ); // true 代表 "沒有這個屬性"
 ```
 
+<<<<<<< HEAD
 同樣還有一個特殊的運算子 `"in"` 用來確認屬性是否存在。
 
 語法是：
+=======
+There's also a special operator `"in"` for that.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js
 "key" in object
@@ -372,17 +467,30 @@ alert( "blabla" in user ); // false，user.blabla 不存在
 
 請注意 `in` 的左側必須要是個 *屬性名稱*，通常是個置於引號內的字串。
 
+<<<<<<< HEAD
 若我們忽略引號，代表將使用某個變數包含的實際名稱來測試。舉個例：
+=======
+If we omit quotes, that means a variable should contain the actual name to be tested. For instance:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
+<<<<<<< HEAD
 alert( *!*key*/!* in user ); // true，名稱由 key 而來，並檢查該屬性
 ```
 
 ````smart header="對儲存 `undefined` 的屬性使用 \"in\""
 通常，使用嚴格比較 `"=== undefined"` 來確認屬性是否存在是沒問題的，然而有個特殊情況這麼做會失敗，但 `"in"` 能正確運作。
+=======
+alert( *!*key*/!* in user ); // true, property "age" exists
+```
+
+Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
+
+Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 就是當物件屬性存在，卻儲存著 `undefined` 時：
 
@@ -396,12 +504,21 @@ alert( obj.test ); // 這是 undefined，所以屬性不存在？
 alert( "test" in obj ); // true，該屬性存在！
 ```
 
+<<<<<<< HEAD
 在上面的程式碼中，屬性 `obj.test` 技術上來說是存在的，所以 `in` 運算子運作正確。
 
 類似的情況非常少發生，因為 `undefined` 通常不會被指定，我們對於 "未知" 或 "空白" 的值大多會使用 `null`，所以 `in` 運算子可以算是程式碼的過客。
 ````
 
 ## "for..in" 迴圈
+=======
+In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+
+Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+
+
+## The "for..in" loop [#forin]
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 要走遍物件的所有鍵，有個特殊的迴圈型式可用： `for..in`。這是完全不同於我們曾經讀過的 `for(;;)` 的構造。
 
@@ -434,9 +551,13 @@ for (let key in user) {
 
 同樣地，我們這裡可以使用另一個變數名稱而不用 `key`。例如，`"for (let prop in obj)"` 也很廣泛地使用。
 
+<<<<<<< HEAD
 ### 像物件一樣排序
 
 物件是否有序？換句話說，若我們巡迴物件，是否所有屬性都能同樣以當初加入的順序取得呢？我們能依賴這性質嗎？
+=======
+### Ordered like an object
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 簡短的答案是："特異的順序"：整數屬性為排序過的，其它則按照加入時的順序，細節在底下。
 
@@ -458,7 +579,11 @@ for (let code in codes) {
 */!*
 ```
 
+<<<<<<< HEAD
 此物件被用來建議一個選項清單給使用者，假若我們正在建立以德國用戶為主的網站，那我們也許想要 `49` 為清單第一個選項。
+=======
+The object may be used to suggest a list of options to the user. If we're making a site mainly for a German audience then we probably want `49` to be the first.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 但若我們執行程式，我們會看到完全不同的情景：
 
@@ -470,6 +595,7 @@ for (let code in codes) {
 ````smart header="整數屬性？那是什麼？"
 這邊的 "整數屬性" 詞彙代表著某種字串，可以在不被變更的情況下轉換為整數。
 
+<<<<<<< HEAD
 所以，"49" 是整數屬性名稱，因為當它被轉成整數值再轉回來時，依然保持一樣。但 "+49" 和 "1.2" 就不行：
 
 ```js run
@@ -477,6 +603,16 @@ for (let code in codes) {
 alert( String(Math.trunc(Number("49"))) ); // "49"，一樣，是整數屬性
 alert( String(Math.trunc(Number("+49"))) ); // "49"，跟 "+49" 不一樣 ⇒  非整數屬性
 alert( String(Math.trunc(Number("1.2"))) ); // "1"，跟 "1.2" 不一樣 ⇒ 非整數屬性
+=======
+So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
+
+```js run
+// Number(...) explicitly converts to a number
+// Math.trunc is a built-in function that removes the decimal part
+alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ```
 ````
 
@@ -517,6 +653,7 @@ for (let code in codes) {
 
 現在它們會如預期般的運作了。
 
+<<<<<<< HEAD
 ## 依照參考複製（Copying by reference）
 
 物件與原生類型之間有個本質上的差異，就是物件是 "依照參考（by reference）" 被儲存和複製。
@@ -781,6 +918,9 @@ There's a standard algorithm for deep cloning that handles the case above and mo
 它們儲存屬性（鍵值配對），其中：
 - 屬性鍵必須為字串或符號（symbols）（通常為字串）。
 - 值可以為任意類型。
+=======
+## Summary
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 要存取屬性，我們可以使用：
 - 點號：`obj.property`。
@@ -791,10 +931,17 @@ There's a standard algorithm for deep cloning that handles the case above and mo
 - 要確認某個鍵的屬性是否存在：`"key" in obj`。
 - 要迭代整個物件：`for (let key in obj)` 迴圈。
 
+<<<<<<< HEAD
 物件經由參考被被指定與複製，換句話說，變數儲存的並非 "物件值"，而是值的 "參考"（記憶體位址）。所以複製該變數或將它作為函式引數傳遞都只會複製參考，而非物件。所有經由複製的參考所做的操作（像是 新增/移除 屬性），都會在同一個物件上進行。
+=======
+To access a property, we can use:
+- The dot notation: `obj.property`.
+- Square brackets notation `obj["property"]`. Square brackets allow taking the key from a variable, like `obj[varWithKey]`.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 要建立一份 "真正的複本"（克隆體），我們可以使用 `Object.assign` 或 [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep)。
 
+<<<<<<< HEAD
 我們這章所學到的都被稱為 "普通物件（plain object）" 或就叫 `物件（Object）`。
 
 JavaScript 中還有更多其它種類的物件：
@@ -803,6 +950,9 @@ JavaScript 中還有更多其它種類的物件：
 - `Date` 用來儲存日期與時間的資訊，
 - `Error` 用來儲存關於錯誤的資訊。
 - ...等等。
+=======
+What we've studied in this chapter is called a "plain object", or just `Object`.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 它們有著自身的特殊特性，我們晚點會讀到。有時候人們說了像是 "矩陣類型" 或 "日期類型"，但正式上這些都沒有自己的類型，而是屬於一個 "物件" 資料類型，且以多種方式對其延伸。
 
