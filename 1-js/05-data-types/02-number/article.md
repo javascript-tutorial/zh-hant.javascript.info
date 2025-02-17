@@ -1,8 +1,18 @@
 # 數值（Numbers）
 
+<<<<<<< HEAD
 在現代 JavaScript 中，有兩種類型的數值：
 
 1. 一般數值以 64 位元格式儲存 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) ，亦被稱為 "雙精度浮點數值"。 這種數值是我們最常使用的類型，而我們將會在這章節中討論它。
+=======
+In modern JavaScript, there are two types of numbers:
+
+1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
+
+2. BigInt numbers represent integers of arbitrary length. They are sometimes needed because a regular integer number can't safely exceed <code>(2<sup>53</sup>-1)</code> or be less than <code>-(2<sup>53</sup>-1)</code>, as we mentioned earlier in the chapter <info:types>. As bigints are used in a few special areas, we devote them to a special chapter <info:bigint>.
+
+So here we'll talk about regular numbers. Let's expand our knowledge of them.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 2. BigInt 數值，用來表示任意長度的整數。有時我們會需要它，因為一般數字無法超過<code>2<sup>53</sup></code> 或小於 <code>-2<sup>53</sup></code>。 由於 bigints 只用在少數幾個特殊領域，我們將用一個特殊章節來介紹它。 <info:bigint>.
 
@@ -16,29 +26,55 @@
 let billion = 1000000000;
 ```
 
+<<<<<<< HEAD
 但現實生活中，我們通常避免寫下有這麼多零的長字串，因為太容易打錯了。同樣地，我們很懶惰，我們通常只想要寫 `"1bn"` 來代表一個十億或 `"7.3bn"` 來代表七十三億，對多數的大數字而言也是同樣態度。
 
 JavaScript 中，我們對於數字附加一個字母 `"e"` 用以指定零的數量來縮短一個數值：
+=======
+We also can use underscore `_` as the separator:
+
+```js
+let billion = 1_000_000_000;
+```
+
+Here the underscore `_` plays the role of the "[syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)", it makes the number more readable. The JavaScript engine simply ignores `_` between digits, so it's exactly the same one billion as above.
+
+In real life though, we try to avoid writing long sequences of zeroes. We're too lazy for that. We'll try to write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+
+In JavaScript, we can shorten a number by appending the letter `"e"` to it and specifying the zeroes count:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
 let billion = 1e9;  // 1 個十億，如字面所說：1 與 9 個零
 
+<<<<<<< HEAD
 alert( 7.3e9 );  // 7.3 個十億 (7,300,000,000)
 ```
 
 換句話說，`"e"` 把該數字乘上 `1` 後面跟著指定數量的零。
-
-```js
-1e3 = 1 * 1000
-1.23e6 = 1.23 * 1000000
+=======
+alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
 ```
 
+In other words, `e` multiplies the number by `1` with the given zeroes count.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
+
+```js
+1e3 === 1 * 1000; // e3 means *1000
+1.23e6 === 1.23 * 1000000; // e6 means *1000000
+```
+
+<<<<<<< HEAD
 現在來寫些非常小的數值吧，例如 1 微秒（百萬分之一秒）：
+=======
+Now let's write something very small. Say, 1 microsecond (one-millionth of a second):
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js
-let ms = 0.000001;
+let mсs = 0.000001;
 ```
 
+<<<<<<< HEAD
 就跟之前一樣，使用 `"e"` 會有幫助。若我們想避免明確寫下那麼多零，我們可以：
 
 ```js
@@ -46,15 +82,35 @@ let ms = 1e-6; // 在 1 左側有六個零
 ```
 
 若我們在 `0.000001` 中數零的數量，會有 6 個，所以自然就是 `1e-6`。
+=======
+Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could write the same as:
+
+```js
+let mcs = 1e-6; // five zeroes to the left from 1
+```
+
+If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 換句話說，`"e"` 之後的負數代表除以 1 後面跟著指定數量的零：
 
 ```js
+<<<<<<< HEAD
 // -3 除以 1 後面跟著 3 個零
 1e-3 = 1 / 1000 (=0.001)
 
 // -6 除以 1 後面跟著 6 個零
 1.23e-6 = 1.23 / 1000000 (=0.00000123)
+=======
+// -3 divides by 1 with 3 zeroes
+1e-3 === 1 / 1000; // 0.001
+
+// -6 divides by 1 with 6 zeroes
+1.23e-6 === 1.23 / 1000000; // 0.00000123
+
+// an example with a bigger number
+1234e-2 === 1234 / 100; // 12.34, decimal point moves 2 times
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ```
 
 ### 十六進位（hex）、二進位（binary）和八進位（octal）數值
@@ -92,13 +148,23 @@ alert( num.toString(16) );  // ff
 alert( num.toString(2) );   // 11111111
 ```
 
+<<<<<<< HEAD
 `base` 可以在 `2` 至 `36` 中變換，預設是 `10`。
+=======
+The `base` can vary from `2` to `36`. By default, it's `10`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 常用的使用情境是：
 
+<<<<<<< HEAD
 - **base=16** 被用於十六進位顏色、字元編碼等，數字可以是 `0..9` 或 `A..F`。
 - **base=2** 大多用於除錯以位元為單位的操作，數字可以是 `0` 或 `1`。
 - **base=36** 是最大值，數字可以是 `0..9` 或 `A..Z`，整個拉丁字母表都被用來表示數值。對於 `36` 的一個有趣但有用的情境會發生在，當我們需要把一個長數值識別符轉為更簡短時，例如做個短 URL 的時候。使用 `36` 作為基底，可以簡單的在數值系統表示它：
+=======
+- **base=16** is used for hex colors, character encodings etc, digits can be `0..9` or `A..F`.
+- **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
+- **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole Latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example, to make a short url. Can simply represent it in the numeral system with base `36`:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
     ```js run
     alert( 123456..toString(36) ); // 2n9c
@@ -107,9 +173,16 @@ alert( num.toString(2) );   // 11111111
 ```warn header="兩個句點來呼叫方法"
 請注意在 `123456..toString(36)` 中的兩個句點並非打錯字。若我們想直接在數值上呼叫像是上述的 `toString` 方法，那我們需要在其後放兩個句點 `..`。
 
+<<<<<<< HEAD
 若我們只放一個句點：`123456.toString(36)`，那就會產生錯誤，因為 JavaScript 的語法中，在第一個句點之後意味著的是小數點部分。而若我們放置多於一個句點，那 JavaScript 就知道小數點部分為空，接下來的是方法。
 
 也可寫成 `(123456).toString(36)`。
+=======
+If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now uses the method.
+
+Also could write `(123456).toString(36)`.
+
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ```
 
 ## 進位（Rounding）
@@ -125,7 +198,11 @@ alert( num.toString(2) );   // 11111111
 : 向上進位：`3.1` 變成 `4`，且 `-1.1` 變成 `-1`。
 
 `Math.round`
+<<<<<<< HEAD
 : 四捨五入進位至最近的整數：`3.1` 變成 `3`、`3.6` 變成 `4` 且 `-1.1` 變成 `-1`。
+=======
+: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4`. In the middle cases `3.5` rounds up to `4`, and `-3.5` rounds up to `-3`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 `Math.trunc`（Internet Explorer 不支援）
 : 不進位直接捨去小數點之後的部分：`3.1` 變成 `3`，`-1.1` 變成 `-1`。
@@ -135,8 +212,10 @@ alert( num.toString(2) );   // 11111111
 |   | `Math.floor` | `Math.ceil` | `Math.round` | `Math.trunc` |
 |---|---------|--------|---------|---------|
 |`3.1`|  `3`    |   `4`  |    `3`  |   `3`   |
+|`3.5`|  `3`    |   `4`  |    `4`  |   `3`   |
 |`3.6`|  `3`    |   `4`  |    `4`  |   `3`   |
 |`-1.1`|  `-2`    |   `-1`  |    `-1`  |   `-1`   |
+|`-1.5`|  `-2`    |   `-1`  |    `-1`  |   `-1`   |
 |`-1.6`|  `-2`    |   `-1`  |    `-2`  |   `-1`   |
 
 這些函式涵蓋處理一個數值其小數點部分的所有可能方法。但如果我們想要進位數值到小數點後 `第 n 位` 該怎麼辦？
@@ -152,7 +231,7 @@ alert( num.toString(2) );   // 11111111
     ```js run
     let num = 1.23456;
 
-    alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+    alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
 2. 方法 [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) 進位數值到小數點後第 `n` 個數字，並回傳其結果的字串表示法。
@@ -169,20 +248,34 @@ alert( num.toString(2) );   // 11111111
     alert( num.toFixed(1) ); // "12.4"
     ```
 
+<<<<<<< HEAD
     請注意 `toFixed` 的結果是個字串，若小數點部分比要求的還短，結尾會被添加零：
+=======
+    Please note that the result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
     ```js run
     let num = 12.34;
     alert( num.toFixed(5) ); // "12.34000"，加零來讓它剛好五個數字
     ```
 
+<<<<<<< HEAD
     我們可以使用一元正號將它轉為數值或是呼叫 `Number()`：`+num.toFixed(5)`。
+=======
+    We can convert it to a number using the unary plus or a `Number()` call, e.g. write `+num.toFixed(5)`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ## 不精確計算
 
+<<<<<<< HEAD
 在內部，數值使用 64 位元格式表示 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision)，所以只有 64 個位元用來儲存一個數值：其中 52 個用來儲存數字部分，11 個用來儲存小數點位置（對整數來說都是零），且 1 個位元表示正負號。
 
 若某個數值太大，它可能會溢出 64 位元的儲存空間，潛在地給出無窮大（infinity）：
+=======
+Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point, and 1 bit is for the sign.
+
+If a number is really huge, it may overflow the 64-bit storage and become a special numeric value `Infinity`:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
 alert( 1e500 ); // Infinity
@@ -190,7 +283,11 @@ alert( 1e500 ); // Infinity
 
 精度的損失稍微沒那麼明顯但卻很常發生。
 
+<<<<<<< HEAD
 考慮這個（錯的！）測試：
+=======
+Consider this (falsy!) equality test:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
@@ -204,13 +301,27 @@ alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
 alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 
+<<<<<<< HEAD
 哎呀！這會造成比不正確的比較更為嚴重的後果。想像一下你正在製作電子商務網站，而訪問者放入 `$0.10` 和 `$0.20` 的商品到購物車內，但訂單總額卻是 `$0.30000000000000004`，那會讓任何人都感到驚訝。
+=======
+Ouch! Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their cart. The order total will be `$0.30000000000000004`. That would surprise anyone.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 但這為什麼會發生？
 
 數值在記憶體中以二進位格式存放，一和零的一串位元。但像是 `0.1`、`0.2` 這樣在十進位數值系統內很簡單的小數點，實際上在二進位格式內是循環小數。
 
+<<<<<<< HEAD
 換句話說，什麼是 `0.1`？是一除以十 `1/10`，也就是十分之一，在十進位數值系統中要表示這種數值很簡單。但跟三分之一比較看看：`1/3`，就變成一個無窮循環小數了 `0.33333(3)`。
+=======
+```js run
+alert(0.1.toString(2)); // 0.0001100110011001100110011001100110011001100110011001101
+alert(0.2.toString(2)); // 0.001100110011001100110011001100110011001100110011001101
+alert((0.1 + 0.2).toString(2)); // 0.0100110011001100110011001100110011001100110011001101
+```
+
+What is `0.1`? It is one divided by ten `1/10`, one-tenth. In the decimal numeral system, such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 因此，除以 `10` 的次方數在十進位系統中保證運作良好，但除以 `3` 就不是了。同樣的原因，在二進位數值系統中，除以 `2` 的次方數保證可以運作，但 `1/10` 會變成一個無窮循環小數。
 
@@ -231,14 +342,18 @@ alert( 0.1.toFixed(20) ); // 0.10000000000000000555
 ```smart header="不僅是 JavaScript 而已"
 同樣的問題存在許多程式語言之中。
 
+<<<<<<< HEAD
 PHP、Java、C、Perl、Ruby 都給出同樣的結果，因為它們都以同一個數值格式為基底。
+=======
+PHP, Java, C, Perl, and Ruby give exactly the same result, because they are based on the same numeric format.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ```
 
 我們有辦法繞過這個問題嗎？當然，最可靠的做法就經由方法 [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) 的幫助將結果進位處理：
 
 ```js run
 let sum = 0.1 + 0.2;
-alert( sum.toFixed(2) ); // 0.30
+alert( sum.toFixed(2) ); // "0.30"
 ```
 
 請注意 `toFixed` 總是回傳字串。它保證小數點後會有兩個數字。若我們有一個電子商務網站且需要顯示 `$0.30` 時，這實際上是很方便的。對於其它情境，我們可以使用一元正號以強制轉為數值：
@@ -255,7 +370,11 @@ alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
 alert( (0.28 * 100 + 0.14 * 100) / 100); // 0.4200000000000001
 ```
 
+<<<<<<< HEAD
 所以，乘/除 的作法雖然減少錯誤，但卻不能完全消除。
+=======
+So, the multiply/divide approach reduces the error, but doesn't remove it totally.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 有時候我們可以試著完全避免分數。像是若我們在處理一個商店時，我們可以用美分而不是用美元來儲存價格。但若我們採用 30% 的折扣時怎麼辦？實際上，不太可能完全避免使用分數。就只能採取進位並在需要時切除 "尾部" 的作法了。
 
@@ -275,6 +394,7 @@ JavaScript 在這種事件下不會觸發錯誤，它會盡全力讓數值符合
 ```smart header="兩個零"
 另一個數值內部表現的有趣結果是，存在有兩個零：`0` 和 `-0`。
 
+<<<<<<< HEAD
 這是因為使用單一個位元來表示正負號，所以每個數值都可以為正或負，包括零。
 
 在大多情況下不會注意到有這樣的區別，因為運算子對待它們一視同仁。
@@ -286,6 +406,14 @@ JavaScript 在這種事件下不會觸發錯誤，它會盡全力讓數值符合
 
 - `Infinity`（和 `-Infinity`）是個大於（小於）任何東西的特殊數值。
 - `NaN` 表示有錯誤產生。
+=======
+That's because a sign is represented by a single bit, so it can be set or not set for any number including a zero.
+
+In most cases, the distinction is unnoticeable, because operators are suited to treat them as the same.
+```
+
+## Tests: isFinite and isNaN
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 它們屬於 `數值` 類型，但並非 "一般" 數值，因此有特別的函式用來確認它們：
 
@@ -296,7 +424,11 @@ JavaScript 在這種事件下不會觸發錯誤，它會盡全力讓數值符合
     alert( isNaN("str") ); // true
     ```
 
+<<<<<<< HEAD
     但我們需要這個函式嗎？不能只用 `=== NaN` 這樣的比較嗎？抱歉，答案是不行。`NaN` 這個值很特殊，它不會跟任何東西相等，包括它自己：
+=======
+    But do we need this function? Can't we just use the comparison `=== NaN`? Unfortunately not. The value `NaN` is unique in that it does not equal anything, including itself:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
     ```js run
     alert( NaN === NaN ); // false
@@ -319,6 +451,7 @@ let num = +prompt("Enter a number", '');
 alert( isFinite(num) );
 ```
 
+<<<<<<< HEAD
 請注意空字串或是只有空格在內的字串，在包括 `isFinite` 在內的所有的數值函式中，都會被視為 `0`。
 
 ```smart header="和 `Object.is` 相比"
@@ -327,10 +460,52 @@ alert( isFinite(num) );
 
 1. `NaN` 適用：`Object.is(NaN, NaN) === true`，這是件好事。
 2. 值 `0` 和 `-0` 是不同的：`Object.is(0, -0) === false`，技術上來說這是對的，因為在數值內部有個正負號位元不同，就算其它位元都為零。
+=======
+Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.
+
+````smart header="`Number.isNaN` and `Number.isFinite`"
+[Number.isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN) and [Number.isFinite](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite) methods are the more "strict" versions of `isNaN` and `isFinite` functions. They do not autoconvert their argument into a number, but check if it belongs to the `number` type instead.
+
+- `Number.isNaN(value)` returns `true` if the argument belongs to the `number` type and it is `NaN`. In any other case, it returns `false`.
+
+    ```js run
+    alert( Number.isNaN(NaN) ); // true
+    alert( Number.isNaN("str" / 2) ); // true
+
+    // Note the difference:
+    alert( Number.isNaN("str") ); // false, because "str" belongs to the string type, not the number type
+    alert( isNaN("str") ); // true, because isNaN converts string "str" into a number and gets NaN as a result of this conversion
+    ```
+
+- `Number.isFinite(value)` returns `true` if the argument belongs to the `number` type and it is not `NaN/Infinity/-Infinity`. In any other case, it returns `false`.
+
+    ```js run
+    alert( Number.isFinite(123) ); // true
+    alert( Number.isFinite(Infinity) ); // false
+    alert( Number.isFinite(2 / 0) ); // false
+
+    // Note the difference:
+    alert( Number.isFinite("123") ); // false, because "123" belongs to the string type, not the number type
+    alert( isFinite("123") ); // true, because isFinite converts string "123" into a number 123
+    ```
+
+In a way, `Number.isNaN` and `Number.isFinite` are simpler and more straightforward than `isNaN` and `isFinite` functions. In practice though, `isNaN` and `isFinite` are mostly used, as they're shorter to write.
+````
+
+```smart header="Comparison with `Object.is`"
+There is a special built-in method `Object.is` that compares values like `===`, but is more reliable for two edge cases:
+
+1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
+2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's correct because internally the number has a sign bit that may be different even if all other bits are zeroes.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 在其它情況下，`Object.is(a, b)` 與 `a === b` 相同。
 
+<<<<<<< HEAD
 這種比較方式通常用於 JavaScript 規格內，當一個內部演算法需要比較兩個值是否完全相等時，會使用 `Object.is`（內部稱為[SameValue](https://tc39.github.io/ecma262/#sec-samevalue)）。
+=======
+We mention `Object.is` here, because it's often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ```
 
 ## parseInt 和 parseFloat
@@ -343,7 +518,11 @@ alert( +"100px" ); // NaN
 
 唯一的例外是字串起始或結尾的空格，它們會被忽略。
 
+<<<<<<< HEAD
 但在現實世界裡數字通常會給單位，像是 CSS 內的 `"100px"` 或 `"12pt"`。在許多國家貨幣符號也會放在數量之後，所以我們可能會有 `"19€"` 並想把其中的數值抽出來的情況。
+=======
+But in real life, we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries, the currency symbol goes after the amount, so we have `"19€"` and would like to extract a numeric value out of that.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 這就是 `parseInt` 和 `parseFloat` 要處理的。
 
@@ -381,7 +560,11 @@ JavaScript 有個內建的 [Math](https://developer.mozilla.org/en/docs/Web/Java
 幾個例子：
 
 `Math.random()`
+<<<<<<< HEAD
 : 回傳由 0 至 1 的隨機數值（不包含 1）
+=======
+: Returns a random number from 0 to 1 (not including 1).
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
     ```js run
     alert( Math.random() ); // 0.1234567894322
@@ -389,8 +572,13 @@ JavaScript 有個內建的 [Math](https://developer.mozilla.org/en/docs/Web/Java
     alert( Math.random() ); // ...（其它隨機數值）
     ```
 
+<<<<<<< HEAD
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
 : 回傳引數中的 最大值/最小值。
+=======
+`Math.max(a, b, c...)` and `Math.min(a, b, c...)`
+: Returns the greatest and smallest from the arbitrary number of arguments.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
     ```js run
     alert( Math.max(3, 5, -10, 0, 1) ); // 5
@@ -398,28 +586,58 @@ JavaScript 有個內建的 [Math](https://developer.mozilla.org/en/docs/Web/Java
     ```
 
 `Math.pow(n, power)`
+<<<<<<< HEAD
 : 回傳 `n` 的給定次方數
+=======
+: Returns `n` raised to the given power.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
     ```js run
     alert( Math.pow(2, 10) ); // 2 的 10 次方 = 1024
     ```
 
+<<<<<<< HEAD
 在 `Math` 物件中有更多的函式與常數，包括三角函數，你可以在 [Math 的文件](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 中找到。
+=======
+There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ## 總結
 
+<<<<<<< HEAD
 要寫一個擁有許多零的數值：
 
 - 附加 `"e"` 與零的數量到數值後方，像是：`123e6` 是 `123` 後有 6 個零。
 - `"e"` 之後的負數會使得數值除以 1 的後面帶有給定數量的零，像是百萬分之一這樣。
+=======
+To write numbers with many zeroes:
+
+- Append `"e"` with the zeroes count to the number. Like: `123e6` is the same as `123` with 6 zeroes `123000000`.
+- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. E.g. `123e-6` means `0.000123` (`123` millionths).
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 對於不同的數值系統：
 
+<<<<<<< HEAD
 - 可以直接寫十六進位（`0x`）、八進位（`0o`）和二進位（`0b`）系統。
 - `parseInt(str, base)` 於給定 `base` 為基底的數值系統內，將字串 `str` 解析為整數，其中 `2 ≤ base ≤ 36`。
 - `num.toString(base)` 於給定 `base` 為基底的數值系統內，將數值轉換為字串。
 
 要轉換像是 `12pt` 和 `100px` 的值為數值：
+=======
+- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems.
+- `parseInt(str, base)` parses the string `str` into an integer in numeral system with given `base`, `2 ≤ base ≤ 36`.
+- `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
+
+For regular number tests:
+
+- `isNaN(value)` converts its argument to a number and then tests it for being `NaN`
+- `Number.isNaN(value)` checks whether its argument belongs to the `number` type, and if so, tests it for being `NaN`
+- `isFinite(value)` converts its argument to a number and then tests it for not being `NaN/Infinity/-Infinity`
+- `Number.isFinite(value)` checks whether its argument belongs to the `number` type, and if so, tests it for not being `NaN/Infinity/-Infinity`
+
+For converting values like `12pt` and `100px` to a number:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 - 對於 "軟性" 轉換使用 `parseInt/parseFloat`，這會從字串讀取數值且在錯誤之前回傳它盡可能讀取到的值。
 
@@ -432,3 +650,7 @@ JavaScript 有個內建的 [Math](https://developer.mozilla.org/en/docs/Web/Java
 
 - 當你需要時，查看 [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 物件，這個函式庫很小，但涵蓋基礎的需求。
 
+<<<<<<< HEAD
+=======
+- See the [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object when you need them. The library is very small but can cover basic needs.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a

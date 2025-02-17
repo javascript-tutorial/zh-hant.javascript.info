@@ -2,7 +2,11 @@
 
 這本書是個 *教程*，主要是幫助你漸漸地學會這門語言，一旦你熟悉了基礎，你將會需要更多其他的資源。
 
+<<<<<<< HEAD
 ## 規格書
+=======
+This book is a *tutorial*. It aims to help you gradually learn the language. But once you're familiar with the basics, you'll need other resources.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) 規格書包含了 JavaScript 最深入、詳細以及形式化的資訊。它定義了這門語言。
 
@@ -10,14 +14,23 @@
 
 每年都會有新規格版本釋出，這些釋出版本之間的最新規格草案在這 <https://tc39.es/ecma262/>。
 
+<<<<<<< HEAD
 如果你想知道最尖端的功能，包含那些 "即將成為標準"（所謂 "stage 3"）的功能，可以看一下 <https://github.com/tc39/proposals>。
+=======
+A new specification version is released every year. Between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 同樣地，假如你在開發瀏覽器相關的功能，我們也有在此教程的 [第二部分](info:browser-environment) 介紹相關的規格書。
 
+<<<<<<< HEAD
 ## 操作手冊
+=======
+Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 - **MDN (Mozilla) JavaScript Reference** 是一個包含了範例以及其他資訊的操作手冊，很適合拿來獲取個別函式或是方法的深入資訊。
 
+<<<<<<< HEAD
     你可以在這裡找到 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>。
 
     不過，透過網路搜尋通常會是較好的選擇。使用在搜尋列打入 "MDN [關鍵字]" 的方式，比如你要搜尋 `parseInt` 這個函式，可以用 <https://google.com/search?q=MDN+parseInt>。
@@ -29,6 +42,13 @@
 ## 兼容表
 
 JavaScript 是一個持續開發中的語言，它定期會被加入一些新功能。
+=======
+- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
+
+    You can find it at <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
+
+Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for the `parseInt` function.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 想知道瀏覽器或是其他引擎的支援程度，可以參考：
 
@@ -37,5 +57,14 @@ JavaScript 是一個持續開發中的語言，它定期會被加入一些新功
 
 所有這些資訊對於實務開發都是很有用的，因為他們包含了非常有價值的資訊，比如支援程度跟語言的細節等。
 
+<<<<<<< HEAD
 當你需要比較深入的資訊或是需要了解一些特定的功能時，請記得使用這些資訊（或是此頁）。
 
+=======
+- <https://caniuse.com> - per-feature tables of support, e.g. to see which engines support modern cryptography functions: <https://caniuse.com/#feat=cryptography>.
+- <https://kangax.github.io/compat-table> - a table with language features and engines that support those or don't support.
+
+All these resources are useful in real-life development, as they contain valuable information about language details, their support, etc.
+
+Please remember them (or this page) for the cases when you need in-depth information about a particular feature.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a

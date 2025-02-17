@@ -6,9 +6,15 @@ importance: 5
 
 建立一個建構子函式 `Calculator` 來建立有著三個方法的物件：
 
+<<<<<<< HEAD
 - `read()` 使用 `prompt` 詢問兩個值並記憶在物件屬性內。
 - `sum()` 回傳這些屬性的加總。
 - `mul()` 回傳這些屬性的乘積。
+=======
+- `read()` prompts for two values and saves them as object properties with names `a` and `b` respectively.
+- `sum()` returns the sum of these properties.
+- `mul()` returns the multiplication product of these properties.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 舉個例：
 
