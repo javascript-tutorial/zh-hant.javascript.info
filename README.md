@@ -18,23 +18,41 @@
 
 **讓其他人知道你正在翻譯這份教程，甚至可以邀請他們一起加入！**
 
+<<<<<<< HEAD
 🎉 感激不盡！
 
 你的名字和貢獻量將會在翻譯釋出後，出現在 "[關於本計畫](https://zh-hant.javascript.info/about)" 頁面上。
+=======
+Something's wrong? A topic is missing? Explain it to people, add it as PR 👏
+
+**You can edit the text in any editor.** The tutorial uses an enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 註：完整的多國語言翻譯列表可以在 <https://javascript.info/translate> 之中找到
 
 ## 文件結構
 
+<<<<<<< HEAD
 每個章節、文章、或課題都在專屬的檔案夾中。
 
 該檔案夾會以 `N-url` 的方式命名，其中 `N` 代表序號 (文章有經過排序)，而 `url` 是該網站上對應的 *URL-slug*。
+=======
+Every chapter, article, or task has its folder.
+
+The folder is named like `N-url`, where `N` is a number for the sorting purposes and `URL` is the URL part with the title of the material.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 檔案夾中會有以下其中一種檔案：
 
+<<<<<<< HEAD
 - `index.md` 對應一個章節,
 - `article.md` 對應一篇文章,
 - `task.md` 對應一個課題 (若有解答就也會有 `solution.md` 這個檔案)
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 一個檔案將以 `# 標題` 開始，然後內文以類 Markdown 的格式用簡單編輯器即可編輯。
 
@@ -153,6 +171,7 @@ MDN 的連結可以使用部分翻譯的版本。
 ```md
 importance: 5
 
+<<<<<<< HEAD
 ---
 ...
 ```
@@ -183,3 +202,8 @@ importance: 5
 - Len Chen [@lenchen1112](https://github.com/lenchen1112)
 - Tom Wu [@tom76kimo](https://github.com/tom76kimo)
 
+=======
+---  
+♥  
+Ilya Kantor @iliakan
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
