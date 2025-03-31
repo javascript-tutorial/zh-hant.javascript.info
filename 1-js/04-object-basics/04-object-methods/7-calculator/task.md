@@ -6,9 +6,15 @@ importance: 5
 
 建立一個物件 `calculator` 並有三個方法在內：
 
+<<<<<<< HEAD
 - `read()` 提示輸入（prompt）兩個值並將它們儲存到物件屬性內。
 - `sum()` 回傳儲存值的總和。
 - `mul()` 相乘儲存的值並回傳結果。
+=======
+- `read()` prompts for two values and saves them as object properties with names `a` and `b` respectively.
+- `sum()` returns the sum of saved values.
+- `mul()` multiplies saved values and returns the result.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 ```js
 let calculator = {
@@ -21,4 +27,3 @@ alert( calculator.mul() );
 ```
 
 [demo]
-

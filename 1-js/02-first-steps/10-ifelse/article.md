@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # 條件運算子：if、'?'
+=======
+# Conditional branching: if, '?'
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 有時候我們需要根據不同條件執行不同操作。
 
@@ -68,9 +72,13 @@ if (cond) {
 
 ## "else" 語句
 
+<<<<<<< HEAD
 `if` 述語可以包含一個可選的 "else" 區塊，它會在條件為 false 時執行。
 
 例如：
+=======
+The `if` statement may contain an optional `else` block. It executes when the condition is falsy.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 ```js run
 let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
@@ -183,10 +191,17 @@ alert( message );
 
 第一眼可能很難看出發生什麼事，但進一步細看，我們可以發現這只是普通的一連串檢查：
 
+<<<<<<< HEAD
 1. 第一個問號確認 `age < 3`。
 2. 若為真 -- 回傳 `'Hi, baby!'`，否則進到冒號 `":"` 後的表達式，檢查 `age < 18`。
 3. 若為真 -- 回傳 `'Hello!'`，否則進到下一個冒號 `":"` 後的表達式，檢查 `age < 100`。
 4. 若為真 -- 回傳 `'Greetings!'`，否則進到最後一個冒號 `":"` 後的表達式，回傳 `'What an unusual age!'`。
+=======
+1. The first question mark checks whether `age < 3`.
+2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon ":", checking `age < 18`.
+3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon ":", checking `age < 100`.
+4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon ":", returning `'What an unusual age!'`.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 使用 `if...else` 達到同樣效果的樣子：
 
