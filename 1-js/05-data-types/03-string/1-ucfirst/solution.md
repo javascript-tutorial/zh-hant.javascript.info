@@ -8,12 +8,16 @@ let newStr = str[0].toUpperCase() + str.slice(1);
 
 但仍然有個小問題。若 `str` 為空，則 `str[0]` 會是 `undefined`。而 `undefined` 不會有 `toUpperCase()` 方法，我們會得到錯誤。
 
+<<<<<<< HEAD
 有兩種處理方式：
 
 1. 使用 `str.charAt(0)`，它會永遠回傳一個字串 (可能為空) 。
 2. 為空字串添加一個測試。
 
 這是第二個作法：
+=======
+The easiest way out is to add a test for an empty string, like this:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js run demo
 function ucFirst(str) {
@@ -24,4 +28,3 @@ function ucFirst(str) {
 
 alert( ucFirst("john") ); // John
 ```
-
