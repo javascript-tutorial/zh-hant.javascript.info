@@ -57,9 +57,15 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
+<<<<<<< HEAD
 該解法的時間複雜度為 [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation) 。換句話說，若我們增加兩倍的陣列大小，該演算法就會多花四倍的時間。
 
 對於大陣列來說（1000、10000 或更多項目）該演算法可能導致嚴重的延遲。
+=======
+The solution has a time complexity of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
+
+For big arrays (1000, 10000 or more items) such algorithms can lead to serious sluggishness.
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 
 # 快的解法
 
@@ -93,3 +99,7 @@ alert( getMaxSubSum([-1, -2, -3]) ); // 0
 
 你可以在這裡找到更多關於該演算法的細節資訊：[Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem)。若覺得對於它如何運作依然沒那麼明顯，請追蹤上述例子中的演算法來看看它是如何運作的，這麼做會比任何文字還要有用。
 
+<<<<<<< HEAD
+=======
+You can find more detailed information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words.
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
