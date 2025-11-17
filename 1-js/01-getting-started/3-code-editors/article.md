@@ -12,8 +12,13 @@
 
 如果你還沒選擇使用一個 IDE，可以考慮以下選擇：
 
+<<<<<<< HEAD
 - [Visual Studio Code](https://code.visualstudio.com/)（跨平台，免費）。
 - [WebStorm](http://www.jetbrains.com/webstorm/)（跨平台，付費）。
+=======
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 若使用 Windows 系統，也可選用 "Visual Studio"，但別跟 "Visual Studio Code" 搞混了。"Visual Studio" 是一個需付費且強大的 Windows 專屬編輯器，特別適合開發 .NET 平台，用來開發 JavaScript 也不錯。它有個免費的版本 [Visual Studio Community](https://www.visualstudio.com/vs/community/)。
 
@@ -29,6 +34,7 @@
 
 實際上，輕量化編輯器可能有各式各樣的插件，包含目錄語法層級分析與自動程式補完，所以兩者間並沒有明顯的界線。
 
+<<<<<<< HEAD
 以下是一些值得考慮的選擇：
 
 - [Atom](https://atom.io/)（跨平台，免費）。
@@ -36,6 +42,13 @@
 - [Sublime Text](http://www.sublimetext.com)（跨平台，共享軟體）。
 - [Notepad++](https://notepad-plus-plus.org/)（Windows，免費）。
 - [Vim](http://www.vim.org/) 和 [Emacs](https://www.gnu.org/software/emacs/) 也很不錯，前提是你要知道怎麼使用。
+=======
+There are many options, for instance:
+
+- [Sublime Text](https://www.sublimetext.com/) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](https://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 ## 不要起爭議
 
@@ -45,3 +58,12 @@
 
 選擇編輯器就像選其他工具一樣，需要依照你的專案、習慣和個人喜好選擇。
 
+<<<<<<< HEAD
+=======
+The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+
+The author's personal opinion:
+
+- I'd use [Visual Studio Code](https://code.visualstudio.com/) if I develop mostly frontend.
+- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533

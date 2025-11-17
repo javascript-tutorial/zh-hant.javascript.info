@@ -22,18 +22,30 @@
 
 看起來像這樣：
 
-![chrome](chrome.png)
+![chrome](chrome.webp)
 
 開發者工具的具體樣貌取決於你的 Chrome 版本，它會隨著時間改變但應該都長差不多。
 
 - 在這裡我們可以看到紅色標註的錯誤訊息，這個例子中，腳本內有一個未知的 "lalala" 指令。
 - 在右邊有一個可以點擊連至原始碼的連結 `bug.html:12`，伴隨著產生錯誤的程式行數。
 
+<<<<<<< HEAD
 錯誤訊息底下，有一個藍色 `>` 符號，它代表著我們可以輸入 JavaScript 的 "命令行"。按下 `key:Enter` 來執行它們（用 `key:Shift+Enter` 來輸入多行指令）。
+=======
+Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 現在我們可以看到錯誤就夠了，晚點會於章節 <info:debugging-chrome> 再回到開發者工具並深入探討除錯這件事。
 
+<<<<<<< HEAD
 ## Firefox、Edge 與其他
+=======
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 多數其他瀏覽器使用 `key:F12` 打開開發者工具。
 
@@ -43,12 +55,17 @@
 
 Safari（Mac 瀏覽器，Windows/Linux 不支援）有點不太一樣，我們需要先開啟 "開發者選單（Develop menu）"。
 
+<<<<<<< HEAD
 打開偏好設定（Preferences）並至 "進階（Advanced）" 面板，底部有一個勾選欄位：
+=======
+Open Settings and go to the "Advanced" pane. There's a checkbox at the bottom:
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 ![safari](safari.png)
 
 現在 `key:Cmd+Opt+C` 可以開啟控制台。同樣地，注意最上方出現一個新的選單名為 "開發（Develop）"，有著許多指令與選項。
 
+<<<<<<< HEAD
 ```smart header="輸入多行"
 通常當我們輸入一行程式碼到控制台並按下 `key:Enter`，它就執行了。
 
@@ -56,6 +73,9 @@ Safari（Mac 瀏覽器，Windows/Linux 不支援）有點不太一樣，我們�
 ```
 
 ## 總結
+=======
+## Summary
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 - 開發者工具允許我們看到錯誤、執行指令、查看變數（variables）與更多其它事。
 - 大多數 Windows 的瀏覽器可以經由按下 `key:F12` 開啟。Mac 上的 Chrome 需要 `key:Cmd+Opt+J`；Safari 要用 `key:Cmd+Opt+C`（需先啟用）。
