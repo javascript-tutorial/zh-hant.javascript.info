@@ -1,6 +1,14 @@
 # 資料類型
 
+<<<<<<< HEAD
 JavaScript 中的變數可包含任意資料，一個變數可以在某時間點是字串然後在另一個時間點是數值：
+=======
+A value in JavaScript is always of a certain type. For example, a string or a number.
+
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+
+We can put any type in a variable. For example, a variable can at one moment be a string and then store a number:
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```js
 // 沒有出錯
@@ -8,11 +16,17 @@ let message = "hello";
 message = 123456;
 ```
 
+<<<<<<< HEAD
 若允許這麼做的程式語言，稱其具有 "動態類型（dynamically typed）"，意思是變數不會綁定任一種資料類型。
 
 JavaScript 中有八種基礎的資料類型，在此我們會稍微介紹下它們，然後在接下來的章節中我們會逐一介紹其細節：
 
 ## 數值（A number）
+=======
+Programming languages that allow such things, such as JavaScript, are called "dynamically typed", meaning that there exist data types, but variables are not bound to any of them.
+
+## Number
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```js
 let n = 123;
@@ -45,13 +59,23 @@ n = 12.345;
     alert( "not a number" / 2 ); // NaN，這種除法是錯誤的
     ```
 
+<<<<<<< HEAD
     `NaN` 具有黏性。任何對 `NaN` 的進一步運算都會回傳 `NaN`：
+=======
+    `NaN` is sticky. Any further mathematical operation on `NaN` returns `NaN`:
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
     ```js run
-    alert( "not a number" / 2 + 5 ); // NaN
+    alert( NaN + 1 ); // NaN
+    alert( 3 * NaN ); // NaN
+    alert( "not a number" / 2 - 1 ); // NaN
     ```
 
+<<<<<<< HEAD
     所以如果數學表示式中有個 `NaN`，就會傳播至整個運算結果上。
+=======
+    So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result (there's only one exception to that: `NaN ** 0` is `1`).
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```smart header="數學運算很安全"
 操作數學運算在 JavaScript 是 "安全的"。我們可以做任何事情：除以零、把不是數值的字串當作數值等等。
@@ -63,7 +87,39 @@ n = 12.345;
 
 我們會在章節 <info:number> 中看到更多使用數值的方式。
 
+<<<<<<< HEAD
 ## BigInt 類型
+=======
+## BigInt [#bigint-type]
+
+In JavaScript, the "number" type cannot safely represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives.
+
+To be really precise, the "number" type can store larger integers (up to <code>1.7976931348623157 * 10<sup>308</sup></code>), but outside of the safe integer range <code>±(2<sup>53</sup>-1)</code> there'll be a precision error, because not all digits fit into the fixed 64-bit storage. So an "approximate" value may be stored.
+
+For example, these two numbers (right above the safe range) are the same:
+
+```js
+console.log(9007199254740991 + 1); // 9007199254740992
+console.log(9007199254740991 + 2); // 9007199254740992
+```
+
+So to say, all odd integers greater than <code>(2<sup>53</sup>-1)</code> can't be stored at all in the "number" type.
+
+For most purposes <code>±(2<sup>53</sup>-1)</code> range is quite enough, but sometimes we need the entire range of really big integers, e.g. for cryptography or microsecond-precision timestamps.
+
+`BigInt` type was recently added to the language to represent integers of arbitrary length.
+
+A `BigInt` value is created by appending `n` to the end of an integer:
+
+```js
+// the "n" at the end means it's a BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+As `BigInt` numbers are rarely needed, we don't cover them here, but devoted them a separate chapter <info:bigint>. Read it when you need such big numbers.
+
+## String
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 在 JavaScript 中，"number" 類型沒辦法代表大於 <code>2<sup>53</sup></code> （或小於 <code>-2<sup>53</sup></code> ）的整數，這是其內部表示系統上的技術限制。這大約是 16 位十進位數字，在大多數的情況下，這個限制都不是問題，但有時我們真的需要很大的數字，例如用於密碼學或是精準度到 microsecond 的時間戳記。
 
@@ -88,8 +144,13 @@ JavaScript 中的字串（string）必須被引號（quotes）所環繞。
 
 ```js
 let str = "Hello";
+<<<<<<< HEAD
 let str2 = 'Single quotes are ok too（單引號也可以）';
 let phrase = `can embed ${str}（字串可被 \${內嵌}）`;
+=======
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ```
 
 在 JavaScript 中，有三種引號。
@@ -98,7 +159,11 @@ let phrase = `can embed ${str}（字串可被 \${內嵌}）`;
 2. 單引號：`'Hello'`。
 3. 反引號：<code>&#96;Hello&#96;</code>。
 
+<<<<<<< HEAD
 單雙引號都是 "簡易的" 引號，在 JavaScript 中它們沒有差異。
+=======
+Double and single quotes are "simple" quotes. There's practically no difference between them in JavaScript.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 反引號是 "功能擴展" 引號，讓我們可以在字串中利用 `${...}` 嵌入變數或是表達式，例如：
 
@@ -121,6 +186,7 @@ alert( "the result is ${1 + 2}" ); // the result is ${1 + 2}（雙引號什麼�
 
 我們會在章節 <info:string> 中介紹更多細節。
 
+<<<<<<< HEAD
 ```smart header="不存在 *字元（character）* 類型"
 在一些語言中，單一字元有個特殊的 "字元" 類型，像是在 C 語言或是 Java 中的 `char`。
 
@@ -128,6 +194,15 @@ alert( "the result is ${1 + 2}" ); // the result is ${1 + 2}（雙引號什麼�
 ```
 
 ## 布林（Boolean）（邏輯類型）
+=======
+```smart header="There is no *character* type."
+In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is called "char".
+
+In JavaScript, there is no such type. There's only one type: `string`. A string may consist of zero characters (be empty), one character or many of them.
+```
+
+## Boolean (logical type)
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 布林（boolean）類型只有兩種值：`true` 和 `false`。
 
@@ -164,7 +239,11 @@ let age = null;
 
 它就只是個代表著 "沒東西"、"空白" 或 "未知值" 的特殊值。
 
+<<<<<<< HEAD
 上面那段程式碼中的 `age`，就表示因為某些因素而未知或空白。
+=======
+The code above states that `age` is unknown.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## "undefined" 值
 
@@ -175,33 +254,54 @@ let age = null;
 如果一個變數被宣告了但還沒被賦予值，那它的值就是 `undefined`：
 
 ```js run
-let x;
+let age;
 
+<<<<<<< HEAD
 alert(x); // 顯示 "undefined"
 ```
 
 技術上來說，可以把 `undefined` 指定給任何變數：
-
-```js run
-let x = 123;
-
-x = undefined;
-
-alert(x); // "undefined"
+=======
+alert(age); // shows "undefined"
 ```
 
+Technically, it is possible to explicitly assign `undefined` to a variable:
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
+
+```js run
+let age = 100;
+
+// change the value to undefined
+age = undefined;
+
+alert(age); // "undefined"
+```
+
+<<<<<<< HEAD
 ...但我們不建議這麼做。通常我們使用 `null` 來給一個變數 "空白" 或是 "未知" 的值，然後使用 `undefined` 來查看變數是否有被給過值。
+=======
+...But we don't recommend doing that. Normally, one uses `null` to assign an "empty" or "unknown" value to a variable, while `undefined` is reserved as a default initial value for unassigned things.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## 物件（Objects）和符號（Symbols）
 
 `物件（object）` 這個類型很特殊。
 
+<<<<<<< HEAD
 其它類型都稱為 "原生（primitive）" 類型，因為它們的值只可包含一種東西（一個字串或一個數值或一個其它東西），相對地，物件被用來儲存資料群集和更複雜的東西。再更充分了解原生類型後，我們晚點會在 <info:object> 這個章節中介紹它。
 
 `符號（symbol）` 類型被用在為物件建立一個獨特的識別符（identifiers），為了完整性我們在此提到它，但會在介紹完物件後再來學習。
+=======
+All other types are called "primitive" because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities.
+
+Being that important, objects deserve a special treatment. We'll deal with them later in the chapter <info:object>, after we learn more about primitives.
+
+The `symbol` type is used to create unique identifiers for objects. We have to mention it here for the sake of completeness, but also postpone the details till we know objects.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## typeof 運算子(typeof operator）[#type-typeof]
 
+<<<<<<< HEAD
 `typeof` 運算子會回傳其引數（argument）的類型。這在當我們想要分開處理不同類型的值，或只是想要快速檢查類型時，就會很有用。
 
 它支援兩種語法格式：
@@ -212,6 +312,11 @@ alert(x); // "undefined"
 換句話說，有沒有括號都可以正常運作，結果也都一樣。
 
 呼叫 `typeof x` 會回傳一個該類型名稱的字串：
+=======
+The `typeof` operator returns the type of the operand. It's useful when we want to process values of different types differently or just want to do a quick check.
+
+A call to `typeof x` returns a string with the type name:
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```js
 typeof undefined // "undefined"
@@ -241,13 +346,29 @@ typeof alert // "function"（3）
 
 最後三行可能需要額外解釋：
 
+<<<<<<< HEAD
 1. `Math` 是個用來提供數學運算的內建物件，我們會在 <info:number> 這個章節中介紹它，在這裡只是把它視為一個物件的範例。
 2. `typeof null` 的結果是 `object`，這是錯誤的。這是個官方承認在 `typeof` 中的錯誤，保留它只是為了兼容性。`null` 當然不是一個物件，它是個有著自己類型的特殊值。再次強調，這是語言中的一個錯誤。
 3. `typeof alert` 的結果是 `function`，因為 `alert` 是個函式。我們會在接下來的章節中學到函式，並了解 JavaScript 中沒有 "function" 這個特殊的類型。函式屬於物件類型的一種，但 `typeof` 視它們為不同兩者並回傳 `function`。這不那麼正確，但在實作中卻很方便。
+=======
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
+2. The result of `typeof null` is `"object"`. That's an officially recognized error in `typeof`, coming from very early days of JavaScript and kept for compatibility. Definitely, `null` is not an object. It is a special value with a separate type of its own. The behavior of `typeof` is wrong here.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
+```smart header="The `typeof(x)` syntax"
+You may also come across another syntax: `typeof(x)`. It's the same as `typeof x`.
+
+To put it clear: `typeof` is an operator, not a function. The parentheses here aren't a part of `typeof`. It's the kind of parentheses used for mathematical grouping.
+
+Usually, such parentheses contain a mathematical expression, such as `(2 + 2)`, but here they contain only one argument `(x)`. Syntactically, they allow to avoid a space between the `typeof` operator and its argument, and some people like it.
+
+Some people prefer `typeof(x)`, although the `typeof x` syntax is much more common.
+```
 
 ## 總結
 
+<<<<<<< HEAD
 在 JavaScript 中有 8 種基礎資料類型：
 
 - `number` 用於任何類型的數值：整數或浮點數。
@@ -258,12 +379,32 @@ typeof alert // "function"（3）
 - `undefined` 用於尚未指定值 -- 只有一個值 `undefined` 的獨立類型。
 - `object` 用於更為複雜的資料結構。
 - `symbol` 用於獨特的識別符。
+=======
+There are 8 basic data types in JavaScript.
+
+- Seven primitive data types:
+    - `number` for numbers of any kind: integer or floating-point, integers are limited by <code>±(2<sup>53</sup>-1)</code>.
+    - `bigint` for integer numbers of arbitrary length.
+    - `string` for strings. A string may have zero or more characters, there's no separate single-character type.
+    - `boolean` for `true`/`false`.
+    - `null` for unknown values -- a standalone type that has a single value `null`.
+    - `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+    - `symbol` for unique identifiers.
+- And one non-primitive data type:
+    - `object` for more complex data structures.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 `typeof` 運算子讓我們確認變數中儲存的類型。
 
+<<<<<<< HEAD
 - 兩種格式：`typeof x` 或 `typeof(x)`。
 - 回傳一個類型名稱的字串，像是 `"string"`。
 - 對於 `null` 回傳 `"object"` -- 這是語言中的錯誤，它實際上不是個物件。
 
 接下來的章節中，我們將更專注於介紹原生類型，一旦對它們更熟悉了，就會開始來介紹物件。
+=======
+- Usually used as `typeof x`, but `typeof(x)` is also possible.
+- Returns a string with the name of the type, like `"string"`.
+- For `null` returns `"object"` -- this is an error in the language, it's not actually an object.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
