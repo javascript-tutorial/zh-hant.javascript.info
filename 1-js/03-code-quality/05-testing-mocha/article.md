@@ -2,7 +2,11 @@
 
 自動化測試將會在未來的任務中被使用，且也會在真實專案上被廣泛地使用。
 
+<<<<<<< HEAD
 ## 為什麼我們需要測試？
+=======
+## Why do we need tests?
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 當我們寫下一個函式，我們通常可以想像它應該要做些什麼：哪些參數會給出哪些結果。
 
@@ -51,7 +55,11 @@ describe("pow", function() {
 從上面你可以發現一份規格有三個主要的建構區塊：
 
 `describe("title", function() { ... })`
+<<<<<<< HEAD
 : 代表我們正在描述什麼樣的功能。在我們的例子中描述的是 `pow` 這個函式。用來組合 "workers" -- 也就是 `it` 區塊。
+=======
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 `it("use case description", function() { ... })`
 : 在 `it` 的標題中，我們使用 *人類可讀的方式* 來描述特定的使用情境，而第二個引數是用來測試它的函式。
@@ -67,6 +75,7 @@ describe("pow", function() {
 
 開發流程通常看起來像這樣：
 
+<<<<<<< HEAD
 1. 寫下最初規格，測試最為基本的功能。
 2. 建立最初實作。
 3. 要檢查它是否運作，我們執行測試框架 [Mocha](http://mochajs.org/)（很快就有更多細節）來運行規格。當功能尚未完成時，錯誤會被顯示出來，我們得持續修正直到一切運作正常為止。
@@ -74,20 +83,39 @@ describe("pow", function() {
 5. 我們加入更多使用情境到規格中，也許某些在目前的實作中尚未支援，所以測試將會失敗。
 6. 回到 3，更新實作直到測試無誤為止。
 7. 重複步驟 3-6 直到功能齊全為止。
+=======
+1. An initial spec is written, with tests for the most basic functionality.
+2. An initial implementation is created.
+3. To check whether it works, we run the testing framework [Mocha](https://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
+4. Now we have a working initial implementation with tests.
+5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
+6. Go to 3, update the implementation till tests give no errors.
+7. Repeat steps 3-6 till the functionality is ready.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 所以，開發是 *迭代的*。我們寫下規格、實作它、保證通過測試、然後再寫更多測試、確認它們無誤等等。最後我們將擁有運行正常的實作與其測試。
 
 在我們的實際例子中來看看這個開發流程。
 
+<<<<<<< HEAD
 第一步已經完成了：對於 `pow` 我們已經有初始的規格。現在，在開始實作之前，來用些 JavaScript 函式庫運行測試，看看它們是否運作正常（全部都會失敗）。
+=======
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use a few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## 實作規格
 
 在教程中我們將使用以下 JavaScript 函式庫做測試：
 
+<<<<<<< HEAD
 - [Mocha](http://mochajs.org/) -- 核心框架：它提供包含 `describe` 和 `it` 的常見測試函式，與運行測試的主函式。
 - [Chai](http://chaijs.com) -- 有許多斷言的函式庫。它可以使用很多不同的斷言，現在我們只需要 `assert.equal`。
 - [Sinon](http://sinonjs.org/) -- 該函式庫可監控函式、模擬內建函式與其它功能，我們稍後會需要它。
+=======
+- [Mocha](https://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
+- [Chai](https://www.chaijs.com/) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
+- [Sinon](https://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 這些函式庫用於瀏覽器端或是伺服器端的測試都很適合，在此我們用在瀏覽器上。
 
@@ -183,10 +211,14 @@ function pow(x, n) {
 [iframe height=250 src="pow-2" edit border="1"]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 如我們所預期，第二個測試失敗了。當然，我們的函式總是回傳 `8`，然而 `assert` 預期的是 `27`。
 =======
 As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## 改進實作
 
@@ -342,6 +374,7 @@ describe("pow", function() {
 ```smart header="其它斷言"
 請注意斷言 `assert.isNaN`：它用於確認 `NaN`。
 
+<<<<<<< HEAD
 [Chai](http://chaijs.com) 中也有其它斷言，例如：
 
 - `assert.equal(value1, value2)` -- 確認相等 `value1 == value2`。
@@ -350,6 +383,16 @@ describe("pow", function() {
 - `assert.isTrue(value)` -- 確認 `value === true`
 - `assert.isFalse(value)` -- 確認 `value === false`
 - ...完整的列表在 [文件](http://chaijs.com/api/assert/)
+=======
+There are other assertions in [Chai](https://www.chaijs.com/) as well, for instance:
+
+- `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
+- `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
+- `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
+- `assert.isTrue(value)` -- checks that `value === true`
+- `assert.isFalse(value)` -- checks that `value === false`
+- ...the full list is in the [docs](https://www.chaijs.com/api/assert/)
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ```
 
 所以我們應該在 `pow` 多加幾行：

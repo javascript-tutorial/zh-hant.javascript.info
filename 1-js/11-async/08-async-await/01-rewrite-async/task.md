@@ -12,9 +12,13 @@ function loadJson(url) {
       } else {
         throw new Error(response.status);
       }
-    })
+    });
 }
 
+<<<<<<< HEAD
 loadJson('no-such-user.json')
+=======
+loadJson('https://javascript.info/no-such-user.json')
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
   .catch(alert); // Error: 404
 ```
