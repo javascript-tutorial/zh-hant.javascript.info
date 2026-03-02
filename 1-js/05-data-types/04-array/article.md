@@ -91,7 +91,42 @@ let fruits = [
 該 "尾部逗號" 風格讓它更容易 插入/移除 項目，因為每一行都變得很相似。
 ````
 
+<<<<<<< HEAD
 ## pop/push 和 shift/unshift 方法
+=======
+## Get last elements with "at"
+
+[recent browser="new"]
+
+Let's say we want the last element of the array.
+
+Some programming languages allow the use of negative indexes for the same purpose, like `fruits[-1]`.
+
+However, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
+
+We can explicitly calculate the last element index and then access it: `fruits[fruits.length - 1]`.
+
+```js run
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits[fruits.length-1] ); // Plum
+```
+
+A bit cumbersome, isn't it? We need to write the variable name twice.
+
+Luckily, there's a shorter syntax: `fruits.at(-1)`:
+
+```js run
+let fruits = ["Apple", "Orange", "Plum"];
+
+// same as fruits[fruits.length-1]
+alert( fruits.at(-1) ); // Plum
+```
+
+In other words, `arr.at(i)`:
+- is exactly the same as `arr[i]`, if `i >= 0`.
+- for negative values of `i`, it steps back from the end of the array.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 [佇列（queue）](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) 是陣列最常見的用途之一。在計算機科學中，這代表著支援這兩種操作的有序群集元素：
 
@@ -119,9 +154,15 @@ let fruits = [
 
 對於堆疊而言，最後被放入的物品會最早被取得，也被稱為 LIFO (Last-In-First-Out) 原則。對於佇列而言，則是 FIFO (First-In-First-Out)。
 
+<<<<<<< HEAD
 JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 加入/移除 元素 至/由 最前端或最末端都可以。
 
 在計算機科學中，允許這種運作的資料結構被稱為 [雙端佇列（deque）](https://en.wikipedia.org/wiki/Double-ended_queue)。
+=======
+Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements, both to/from the beginning or the end.
+
+In computer science, the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 **運作於陣列末端的方法：**
 
@@ -135,6 +176,8 @@ JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 �
 
     alert( fruits ); // Apple, Orange
     ```
+
+    Both `fruits.pop()` and `fruits.at(-1)` return the last element of the array, but `fruits.pop()` also modifies the array by removing it.
 
 `push`
 : 附加元素至陣列末端：
@@ -154,7 +197,7 @@ JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 �
 `shift`
 : 抽取陣列第一個元素並回傳它：
 
-    ```js
+    ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
     alert( fruits.shift() ); // 移除 Apple 並 alert 它
@@ -165,7 +208,7 @@ JavaScript 中的陣列被視為佇列與堆疊兩者皆可。它們允許你 �
 `unshift`
 : 於陣列最前端加上該元素：
 
-    ```js
+    ```js run
     let fruits = ["Orange", "Pear"];
 
     fruits.unshift('Apple');
@@ -191,7 +234,11 @@ alert( fruits );
 
 它們延伸了物件，提供特殊方法以使得有序群集資料可以運作，並給予 `length` 屬性，但其核心依然是個物件。
 
+<<<<<<< HEAD
 要記得，JavaScript 內只有 7 種基本類型。陣列是個物件類型，因此會產生像是物件的行為。
+=======
+Remember, there are only eight basic data types in JavaScript (see the [Data types](info:types) chapter for more info). Array is an object and thus behaves like an object.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 舉個例，它是經由參考被複製的：
 
@@ -207,7 +254,11 @@ arr.push("Pear"); // 經由參考修改陣列
 alert( fruits ); // Banana, Pear - 現在有兩個物品
 ```
 
+<<<<<<< HEAD
 ...但使陣列真的變得特殊的是它們的內部表示方式。引擎試圖以連續記憶體區塊，一個接一個儲存它的元素，就像本章插圖描繪的那樣。同樣也存在其他優化方法，來讓陣列可以很快地運作。
+=======
+...But what makes arrays really special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 但若我們放棄以 "有序群集" 的方式來操作陣列，並開始將它視為普通物件來使用時，這些優化就都不會生效了。
 
@@ -245,7 +296,11 @@ fruits.age = 25; // 以任意名稱建立一個屬性
 fruits.shift(); // 由前端取出 1 個元素
 ```
 
+<<<<<<< HEAD
 只取出並移除編號 `0` 的元素還不夠，其它元素也需要被重新編號。
+=======
+It's not enough to take and remove the element with the index `0`. Other elements need to be renumbered as well.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 `shift` 操作必須做三件事情：
 
@@ -361,11 +416,19 @@ alert( arr[3] ); // undefined：值回不來了
 let arr = *!*new Array*/!*("Apple", "Pear", "etc");
 ```
 
+<<<<<<< HEAD
 這很少被用到，因為中括號 `[]` 較簡短，且這語法還有個微妙的特性。
+=======
+It's rarely used, because square brackets `[]` are shorter. Also, there's a tricky feature with it.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 若 `new Array` 使用單一數值作為引數來呼叫，那它會建立一個 *內部沒有項目而只有給定 length* 的陣列。
 
+<<<<<<< HEAD
 來看看這會如何拿石頭砸自己的腳：
+=======
+Let's see how one can shoot themselves in the foot:
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 ```js run
 let arr = new Array(2); // 它會建立 [2] 這樣的陣列嗎？
@@ -375,9 +438,13 @@ alert( arr[0] ); // 是 undefined！沒有元素在內。
 alert( arr.length ); // 但 length 是 2
 ```
 
+<<<<<<< HEAD
 在上面的程式碼中，`new Array(number)` 的所有元素都是 `undefined`。
 
 要避免這種驚喜，我們通常使用中括號語法就好，除非我們真的知道自己在做什麼。
+=======
+To avoid such surprises, we usually use square brackets, unless we really know what we're doing.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 ## 多維度陣列
 
@@ -390,7 +457,11 @@ let matrix = [
   [7, 8, 9]
 ];
 
+<<<<<<< HEAD
 alert( matrix[1][1] ); // 5，最中央的元素
+=======
+alert( matrix[0][1] ); // 2, the second value of the first inner array
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 ```
 
 ## toString
@@ -424,10 +495,62 @@ alert( "1" + 1 ); // "11"
 alert( "1,2" + 1 ); // "1,21"
 ```
 
+<<<<<<< HEAD
 ## 總結
+=======
+## Don't compare arrays with ==
+
+Arrays in JavaScript, unlike some other programming languages, shouldn't be compared with operator `==`.
+
+This operator has no special treatment for arrays, it works with them as with any objects.
+
+Let's recall the rules:
+
+- Two objects are equal `==` only if they're references to the same object.
+- If one of the arguments of `==` is an object, and the other one is a primitive, then the object gets converted to primitive, as explained in the chapter <info:object-toprimitive>.
+- ...With an exception of `null` and `undefined` that equal `==` each other and nothing else.
+
+The strict comparison `===` is even simpler, as it doesn't convert types.
+
+So, if we compare arrays with `==`, they are never the same, unless we compare two variables that reference exactly the same array.
+
+For example:
+```js run
+alert( [] == [] ); // false
+alert( [0] == [0] ); // false
+```
+
+These arrays are technically different objects. So they aren't equal. The `==` operator doesn't do item-by-item comparison.
+
+Comparison with primitives may give seemingly strange results as well:
+
+```js run
+alert( 0 == [] ); // true
+
+alert('0' == [] ); // false
+```
+
+Here, in both cases, we compare a primitive with an array object. So the array `[]` gets converted to primitive for the purpose of comparison and becomes an empty string `''`.
+
+Then the comparison process goes on with the primitives, as described in the chapter <info:type-conversions>:
+
+```js run
+// after [] was converted to ''
+alert( 0 == '' ); // true, as '' becomes converted to number 0
+
+alert('0' == '' ); // false, no type conversion, different strings
+```
+
+So, how to compare arrays?
+
+That's simple: don't use the `==` operator. Instead, compare them item-by-item in a loop or using iteration methods explained in the next chapter.
+
+## Summary
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 陣列是個特殊的物件，適合儲存管理有序的資料項目。
 
+<<<<<<< HEAD
 - 宣告：
 
     ```js
@@ -439,11 +562,33 @@ alert( "1,2" + 1 ); // "1,21"
     ```
 
     呼叫 `new Array(number)` 會建立一個有著指定 length 的陣列，但其內都沒有元素。
+=======
+The declaration:
+
+```js
+// square brackets (usual)
+let arr = [item1, item2...];
+
+// new Array (exceptionally rare)
+let arr = new Array(item1, item2...);
+```
+
+The call to `new Array(number)` creates an array with the given length, but without elements.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 - `length` 屬性是陣列長度，或更精準地說，是它的最大數值索引值再加上一。它由陣列的方法自動調整。
 - 若我們手動縮短 `length`，則陣列會被截斷。
 
+<<<<<<< HEAD
 我們可以將陣列視為雙端佇列來使用以下操作：
+=======
+Getting the elements:
+
+- we can get element by its index, like `arr[0]`
+- also we can use `at(i)` method that allows negative indexes. For negative values of `i`, it steps back from the end of the array. If `i >= 0`, it works same as `arr[i]`.
+
+We can use an array as a deque with the following operations:
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 - `push(...items)` 增加 `items` 至末端。
 - `pop()` 由末端移除元素並回傳。
@@ -457,3 +602,11 @@ alert( "1,2" + 1 ); // "1,21"
 
 我們會在章節 <info:array-methods> 中回顧陣列，並學習更多像是增加、移除、取出元素和排序陣列等的方法。
 
+<<<<<<< HEAD
+=======
+To compare arrays, don't use the `==` operator (as well as `>`, `<` and others), as they have no special treatment for arrays. They handle them as any objects, and it's not what we usually want.
+
+Instead you can use `for..of` loop to compare arrays item-by-item.
+
+We will continue with arrays and study more methods to add, remove, extract elements and sort arrays in the next chapter <info:array-methods>.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11

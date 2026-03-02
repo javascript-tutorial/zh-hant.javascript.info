@@ -1,14 +1,22 @@
+<<<<<<< HEAD
 # 在 Chrome 中除錯
+=======
+# Debugging in the browser
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 在我們寫更複雜的程式碼之前，來說說怎麼除錯吧。
 
 [除錯（Debugging）](https://en.wikipedia.org/wiki/Debugging) 是在腳本中找出並修正錯誤的過程。所有現代瀏覽器和大部分的環境都支援除錯工具 -- 開發工具中特別的使用者介面，用來讓除錯更為簡單。它也可以一步步追蹤程式碼執行步驟，以看出現在到底發生什麼事。
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 在此我們會使用 Chrome，因為它具有足夠的功能，大部分其它的瀏覽器也有相似的除錯流程。
 =======
 We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
 >>>>>>> 71120d5968cec3103743014cf563e0f7c8045a16
+=======
+We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 ## "Sources" 面板
 
@@ -33,6 +41,7 @@ The toggler button <span class="devtools" style="background-position:-172px -98p
 ![](chrome-tabs.svg)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 在這我們可以看到三個區域：
 
 1. **資源區域** 列出 HTML、JavaScript、CSS 和其他檔案，包含置於頁面中的圖片。Chrome 擴充套件（extensions）也可能顯示在這。
@@ -40,6 +49,13 @@ The toggler button <span class="devtools" style="background-position:-172px -98p
 3. **資訊與控制區域** 是為了除錯使用，我們很快會探討它。
 =======
 The Sources panel has 3 parts:
+=======
+The Sources panel has 3 parts:
+
+1. The **File Navigator** pane lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
+2. The **Code Editor** pane shows the source code.
+3. The **JavaScript Debugging** pane is for debugging, we'll explore it soon.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 1. The **File Navigator** pane lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
 2. The **Code Editor** pane shows the source code.
@@ -58,7 +74,11 @@ Now you could click the same toggler <span class="devtools" style="background-po
 
 在述語被執行後，其結果會在下方顯示。
 
+<<<<<<< HEAD
 例如，這邊的 `1+2` 結果為 `3`，且 `hello("debugger")` 沒回傳東西，所以結果是 `undefined`：
+=======
+For example, here `1+2` results in `3`, while the function call `hello("debugger")` returns nothing, so the result is `undefined`:
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 ![](chrome-sources-console.svg)
 
@@ -82,13 +102,22 @@ Now you could click the same toggler <span class="devtools" style="background-po
 - 右鍵點擊並選擇 Remove 可以移除某個中斷點。
 - ...等等。
 
+<<<<<<< HEAD
 ```smart header="條件式中斷點"
 *右鍵點擊* 某行號允許你建立一個 *條件式* 中斷點，它只有在給予的條件為真值時才會被觸發。
+=======
+```smart header="Conditional breakpoints"
+*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 當我們只有在某個特定變數值或特別的函式參數需要中斷時，這會很方便。
 ```
 
+<<<<<<< HEAD
 ## 除錯命令
+=======
+## The command "debugger"
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 我們也可以經由使用 `debugger` 命令來暫停程式碼，像這樣：
 
@@ -104,9 +133,13 @@ function hello(name) {
 }
 ```
 
+<<<<<<< HEAD
 當我們正在程式碼編輯器中，而不想切換到瀏覽器再到除錯器內查看腳本並設置中斷點時，這會非常方便。
 
 ## 暫停且查看
+=======
+Such command works only when the development tools are open, otherwise the browser ignores it.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 在我們的例子中，`hello()` 在頁面載入時被呼叫，所以（在我們設置中斷點後）啟動除錯器最簡單的方法就是重新載入頁面。所以來按下 `key:F5`（Windows, Linux）或 `key:Cmd+R`（Mac）吧。
 
@@ -118,7 +151,11 @@ function hello(name) {
 
 1. **`Watch` -- 顯示目前任何表達式的值。**
 
+<<<<<<< HEAD
     你可以點擊加號 `+` 並輸入表達式，除錯器會隨時顯示它的值，並在程序執行時自動重新計算。
+=======
+    You can click the plus `+` and input an expression. The debugger will show its value, automatically recalculating it in the process of execution.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 2. **`Call Stack` -- 顯示巢狀呼叫鏈。**
 
@@ -178,11 +215,11 @@ There are buttons for it at the top of the right panel. Let's engage them.
     Clicking this again and again will step through all script statements one by one.
 
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
-: Similar to the previous the "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
+: Similar to the previous "Step" command, but behaves differently if the next statement is a function call (not a built-in, like `alert`, but a function of our own).
 
-    The "Step" command goes into it and pauses the execution at its first line, while "Step over" executes the nested function call invisibly, skipping the function internals.
+    If we compare them, the "Step" command goes into a nested function call and pauses the execution at its first line, while "Step over" executes the nested function call invisibly to us, skipping the function internals.
 
-    The execution is then paused immediately after that function.
+    The execution is then paused immediately after that function call.
 
     That's good if we're not interested to see what happens inside the function call.
 
@@ -198,8 +235,12 @@ There are buttons for it at the top of the right panel. Let's engage them.
 : That button does not move the execution. Just a mass on/off for breakpoints.
 
 <span class="devtools" style="background-position:-90px -146px"></span> -- enable/disable automatic pause in case of an error.
+<<<<<<< HEAD
 : When enabled, and the developer tools is open, a script error automatically pauses the execution. Then we can analyze variables to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
 >>>>>>> en_upstream
+=======
+: When enabled, if the developer tools is open, an error during the script execution automatically pauses it. Then we can analyze variables in the debugger to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 ```smart header="繼續至此（Continue to here）"
 右鍵點擊一行程式碼可以開啟有著一個非常棒選項的選單，"Continue to here"。
@@ -231,7 +272,11 @@ for (let i = 0; i < 5; i++) {
 2. `debugger` 述語。
 3. 錯誤（若開發者工具開著且按鈕 <span class="devtools" style="background-position:-264px -4px"></span> 開啟著）。
 
+<<<<<<< HEAD
 當暫停時，我們可以除錯 - 檢查變數和追蹤程式碼來看執行哪裡有問題。
+=======
+When paused, we can debug: examine variables and trace the code to see where the execution goes wrong.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 開發者工具有更多尚未在此被介紹的選項，完整的操作手冊在 <https://developers.google.com/web/tools/chrome-devtools>。
 
