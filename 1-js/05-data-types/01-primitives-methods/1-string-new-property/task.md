@@ -14,5 +14,9 @@ str.test = 5;
 alert(str.test);
 ```
 
+<<<<<<< HEAD
 你覺得如何，這樣行嗎？會顯示什麼？
 
+=======
+What do you think, will it work? What will be shown?
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf

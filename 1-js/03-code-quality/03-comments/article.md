@@ -126,6 +126,7 @@ function addJuice(container) {
 : 有個特殊的語法 [JSDoc](http://en.wikipedia.org/wiki/JSDoc) 可以幫函式寫文件：用途、參數和回傳值。
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     舉個例：
     ```js
     /**
@@ -159,6 +160,27 @@ function pow(x, n) {
   ...
 }
 ```
+=======
+For instance:
+```js
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+ */
+function pow(x, n) {
+  ...
+}
+```
+
+Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <https://jsdoc.app>.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
 
