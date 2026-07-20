@@ -36,7 +36,7 @@ Additionally, there are derived properties:
 ```online
 For instance click this button to see its window coordinates:
 
-<p><input id="brTest" type="button" value="Get coordinates using button.getBoundingClientRect() for this button" onclick='showRect(this)'/></p>
+<p><input id="brTest" type="button" style="max-width: 90vw;" value="Get coordinates using button.getBoundingClientRect() for this button" onclick='showRect(this)'/></p>
 
 <script>
 function showRect(elem) {
@@ -88,8 +88,8 @@ As you can see, `left/top` do not equal `x/y` in such case.
 In practice though, `elem.getBoundingClientRect()` always returns positive width/height, here we mention negative `width/height` only for you to understand why these seemingly duplicate properties are not actually duplicates.
 ```
 
-```warn header="Internet Explorer and Edge: no support for `x/y`"
-Internet Explorer and Edge don't support `x/y` properties for historical reasons.
+```warn header="Internet Explorer: no support for `x/y`"
+Internet Explorer doesn't support `x/y` properties for historical reasons.
 
 So we can either make a polyfill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
 ```
@@ -216,6 +216,11 @@ function getCoords(elem) {
 
   return {
     top: box.top + window.pageYOffset,
+<<<<<<< HEAD
+=======
+    right: box.right + window.pageXOffset,
+    bottom: box.bottom + window.pageYOffset,
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
     left: box.left + window.pageXOffset
   };
 }

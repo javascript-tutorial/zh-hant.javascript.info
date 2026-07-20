@@ -29,7 +29,11 @@ regexp = /pattern/gmi; // 搭配旗標 g、m 和 i （等一下會講到）
 
 兩種語法主要不同之處在於一種使用斜線 `/.../`，不允許插入表達式（像是字串樣板字面值 `${...}`）。他們是完全靜態的。
 
+<<<<<<< HEAD
 斜線用在當我們撰寫程式碼時，所知道的正規表達式 -- 這是最常見的情況。而 `new RegExp`，經常用在我們需要用動態產生的字串建立一個 "即時" 的正規表達式。例如：
+=======
+Slashes are used when we know the regular expression at the code writing time -- and that's the most common situation. While `new RegExp` is more often used when we need to create a regexp "on the fly" from a dynamically generated string. For instance:
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 ```js
 let tag = prompt("What tag do you want to find?", "h2");
@@ -51,7 +55,12 @@ let regexp = new RegExp(`<${tag}>`); // 如果在提示窗中回答 "h2"，則�
 
 `pattern:s`：啟用 "dotAll" 模式, 允許句點符號 `pattern:.` 去匹配換行字元 `\n`（在此章節 <info:regexp-character-classes> 介紹）。
 
+<<<<<<< HEAD
 `pattern:u`：啟用完整 unicode 支援。該旗標啟用了正確的代理對（surrogate pairs）處理。關於更多資訊會列在此章節 <info:regexp-unicode>。
+=======
+`pattern:u`
+: Enables full Unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 `pattern:y`："Sticky" 模式：搜尋在文本中的確切位置（在此章節 <info:regexp-sticky> 介紹）
 
