@@ -69,7 +69,7 @@ let sayMixin = {
 };
 
 let sayHiMixin = {
-  __proto__: sayMixin, // (or we could use Object.create to set the prototype here)
+  __proto__: sayMixin, // (or we could use Object.setPrototypeOf to set the prototype here)
 
   sayHi() {
     *!*
@@ -103,7 +103,7 @@ Here's the diagram (see the right part):
 
 That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So even though they got copied, their `[[HomeObject]]` internal property references `sayHiMixin`, as shown in the picture above.
 
-As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
+As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`.
 
 ## EventMixin
 
@@ -140,7 +140,7 @@ let eventMixin = {
    *  menu.off('select', handler)
    */
   off(eventName, handler) {
-    let handlers = this._eventHandlers && this._eventHandlers[eventName];
+    let handlers = this._eventHandlers?.[eventName];
     if (!handlers) return;
     for (let i = 0; i < handlers.length; i++) {
       if (handlers[i] === handler) {
@@ -154,7 +154,7 @@ let eventMixin = {
    *  this.trigger('select', data1, data2);
    */
   trigger(eventName, ...args) {
-    if (!this._eventHandlers || !this._eventHandlers[eventName]) {
+    if (!this._eventHandlers?.[eventName]) {
       return; // no handlers for that event name
     }
 

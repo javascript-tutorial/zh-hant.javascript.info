@@ -21,9 +21,9 @@ let ladder = {
     return this;
 */!*
   }
-}
+};
 
-ladder.up().up().down().up().down().showStep(); // 1
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
 ```
 
 我們也可以在每行都使用單獨的呼叫，對於長鏈接而言這樣更具可讀性：
@@ -33,8 +33,8 @@ ladder
   .up()
   .up()
   .down()
-  .up()
+  .showStep() // 1
   .down()
-  .showStep(); // 1
+  .showStep(); // 0
 ```
 
