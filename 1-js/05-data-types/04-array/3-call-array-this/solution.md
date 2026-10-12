@@ -9,7 +9,7 @@ arr.push(function() {
   alert( this );
 })
 
-arr[2](); // "a","b",function
+arr[2](); // a,b,function(){...}
 ```
 
 該陣列有三個值：一開始有兩個，再加上該函式。
