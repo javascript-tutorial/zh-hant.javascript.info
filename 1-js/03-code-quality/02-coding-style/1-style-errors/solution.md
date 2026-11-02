@@ -2,6 +2,7 @@
 你可以注意到以下幾點：
 
 ```js no-beautify
+<<<<<<< HEAD
 function pow(x,n)  // <- 引數間沒有空格
 {  // <- 大括號自成一行了
   let result=1;   // <- = 前後沒有空格
@@ -15,6 +16,21 @@ let x=prompt("x?",''), n=prompt("n?",'') // <-- 技術上雖可行，
 if (n<0)  // <- 在 (n < 0) 缺少空格，而且應該在上方要有額外的一行
 {   // <- 大括號自成一行了
   // 底下這行太長了，可以拆分成多行以增加可讀性
+=======
+function pow(x,n)  // <- no space between arguments
+{  // <- curly brace on a separate line
+  let result=1;   // <- no spaces before or after =
+  for(let i=0;i<n;i++) {result*=x;}   // <- no spaces
+  // the contents of { ... } should be on a new line
+  return result;
+}
+
+let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
+// but better make it 2 lines, also there's no spaces and missing ;
+if (n<=0)  // <- no spaces inside (n <= 0), and should be extra line above it
+{   // <- curly brace on a separate line
+  // below - long lines can be split into multiple lines for improved readability
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
   alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
 }
 else // <- 可以像這樣 "} else {" 寫成一行
@@ -39,7 +55,7 @@ function pow(x, n) {
 let x = prompt("x?", "");
 let n = prompt("n?", "");
 
-if (n < 0) {
+if (n <= 0) {
   alert(`Power ${n} is not supported,
     please enter an integer number greater than zero`);
 } else {
