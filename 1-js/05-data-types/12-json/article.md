@@ -27,7 +27,7 @@ Luckily, there's no need to write the code to handle all this. The task has been
 
 ## JSON.stringify
 
-The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](http://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
+The [JSON](https://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](https://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
 
 JavaScript provides methods:
 
@@ -41,7 +41,7 @@ let student = {
   age: 30,
   isAdmin: false,
   courses: ['html', 'css', 'js'],
-  wife: null
+  spouse: null
 };
 
 *!*
@@ -58,7 +58,7 @@ alert(json);
   "age": 30,
   "isAdmin": false,
   "courses": ["html", "css", "js"],
-  "wife": null
+  "spouse": null
 }
 */
 */!*
@@ -105,7 +105,7 @@ JSON is data-only language-independent specification, so some JavaScript-specifi
 Namely:
 
 - Function properties (methods).
-- Symbolic properties.
+- Symbolic keys and values.
 - Properties that store `undefined`.
 
 ```js run
@@ -276,6 +276,7 @@ name:         John
 name:         Alice
 place:        [object Object]
 number:       23
+occupiedBy: [object Object]
 */
 ```
 
@@ -327,6 +328,8 @@ alert(JSON.stringify(user, null, 2));
 }
 */
 ```
+
+The third argument can also be a string. In this case, the string is used for indentation instead of a number of spaces.
 
 The `space` parameter is used solely for logging and nice-output purposes.
 
@@ -402,7 +405,7 @@ To decode a JSON-string, we need another method named [JSON.parse](mdn:js/JSON/p
 
 The syntax:
 ```js
-let value = JSON.parse(str, [reviver]);
+let value = JSON.parse(str[, reviver]);
 ```
 
 str
@@ -448,7 +451,7 @@ let json = `{
 
 Besides, JSON does not support comments. Adding a comment to JSON makes it invalid.
 
-There's another format named [JSON5](http://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
+There's another format named [JSON5](https://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
 
 The regular JSON is that strict not because its developers are lazy, but to allow easy, reliable and very fast implementations of the parsing algorithm.
 
